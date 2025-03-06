@@ -1,5 +1,9 @@
 # coachtechフリマ
 
+## 概要
+ある企業が開発した独自のフリマアプリです。アイテムの出品と購入を行う機能を備えています。
+制作の目標は初年度でのユーザー数1,000人達成です。
+
 ## 環境構築
 **Dockerビルド**
 1. `git clone git@github.com:NoriyoshiUmeda/freemarket.gitを貼り付け`
