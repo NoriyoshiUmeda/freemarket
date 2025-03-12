@@ -19,6 +19,29 @@ mysql:
     environment:
 ```
 
+## メール認証機能について
+
+### メール送信の設定
+本プロジェクトでは `Mailtrap` を使用して、開発環境でのメール送信を行います。
+
+`.env` に以下の設定を追加してください。
+``` text
+MAIL_MAILER=smtp
+MAIL_HOST=sandbox.smtp.mailtrap.io
+MAIL_PORT=2525
+MAIL_USERNAME=0488563f2fe967
+MAIL_PASSWORD=87586010c1494c
+MAIL_ENCRYPTION=tls
+MAIL_FROM_ADDRESS=noreply@example.com
+MAIL_FROM_NAME="$coachtech フリマ"
+```
+### メール認証について
+1. **ユーザー登録後、認証メールが送信されます**
+2. **メール内のリンクをクリックすると、メールアドレスが認証されます**
+3. **未認証のユーザーはログインできません**
+4. **`/email/verify` にアクセスすると、認証メールの再送が可能です**
+
+
 **Laravel環境構築**
 1. `docker-compose exec php bash`
 2. `composer install`
@@ -31,15 +54,6 @@ DB_PORT=3306
 DB_DATABASE=laravel_db
 DB_USERNAME=laravel_user
 DB_PASSWORD=laravel_pass
-
-MAIL_MAILER=smtp
-MAIL_HOST=sandbox.smtp.mailtrap.io
-MAIL_PORT=2525
-MAIL_USERNAME=0488563f2fe967
-MAIL_PASSWORD=87586010c1494c
-MAIL_ENCRYPTION=tls
-MAIL_FROM_ADDRESS=null
-MAIL_FROM_NAME="${APP_NAME}"
 ```
 5. アプリケーションキーの作成
 ``` bash
