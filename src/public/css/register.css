@@ -1,0 +1,103 @@
+/* フォーム全体のデザイン */
+.register-container {
+    background: white;
+    width: 680px; 
+    height: 678px;
+    padding: 40px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; 
+    align-items: center;
+}
+
+/* 各フォーム要素を縦並びに */
+.form-group {
+    text-align: left;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+/* ラベルデザイン */
+.form-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 8px;
+    font-size: 16px;
+}
+
+/* 入力フィールド */
+.form-group input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+/* フォームの中央配置 */
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+
+/* 登録ボタンのデザイン */
+.register-button {
+    background: #ff5b5b;
+    color: white;
+    border: none;
+    padding: 12px 0;
+    width: 100%;
+    max-width: 680px;
+    height: 65.25px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 40px;
+    text-align: center;
+}
+
+.register-button:hover {
+    background: #ff3b3b;
+}
+
+/* ログインリンク */
+.login-link {
+    display: block;
+    margin-top: 15px;
+    color: #007bff;
+    font-size: 14px;
+    text-decoration: none;
+    text-align: center;
+}
+
+.login-link:hover {
+    text-decoration: underline;
+}
+
+.error-message {
+    color: red;
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+/* タブレット対応 (768px - 850px) */
+@media (max-width: 850px) {
+    .register-container {
+        width: 90%;
+        max-width: 500px;
+        padding: 30px;
+    }
+
+    .register-button {
+        font-size: 16px;
+        height: 60px;
+        padding: 10px;
+    }
+}

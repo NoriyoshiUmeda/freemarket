@@ -1,0 +1,123 @@
+/* ログインコンテナ */
+.login-container {
+    background: white;
+    width: 680px; 
+    height: 656px;
+    padding: 40px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+    align-items: center;
+    border-radius: 10px;
+    margin: 50px auto;
+}
+
+/* フォーム全体 */
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+/* 各フォーム要素 */
+.form-group {
+    text-align: left;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+/* ラベル */
+.form-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 8px;
+    font-size: 16px;
+}
+
+/* 入力フィールド */
+.form-group input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+/* ログインボタン */
+.login-button {
+    background: #ff5b5b;
+    color: white;
+    border: none;
+    padding: 15px 0;
+    width: 100%;
+    max-width: 680px;
+    height: 65px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+    text-align: center;
+}
+
+.login-button:hover {
+    background: #ff3b3b;
+}
+
+/* 会員登録リンク */
+.register-link {
+    display: block;
+    margin-top: 15px;
+    color: #007bff;
+    font-size: 14px;
+    text-decoration: none;
+    text-align: center;
+}
+
+.register-link:hover {
+    text-decoration: underline;
+}
+
+/* エラーメッセージ */
+.error-message {
+    color: red;
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+/* ======================== */
+/* === レスポンシブ対応 === */
+/* ======================== */
+
+/* タブレット対応 (768px - 850px) */
+@media (max-width: 850px) {
+    .login-container {
+        width: 90%;
+        max-width: 500px;
+        padding: 30px;
+    }
+
+    .login-button {
+        font-size: 16px;
+        height: 60px;
+        padding: 10px;
+    }
+}
+
+/* モバイル対応 (～768px) */
+@media (max-width: 768px) {
+    .login-container {
+        width: 95%;
+        padding: 20px;
+    }
+
+    .login-button {
+        font-size: 16px;
+        height: 55px;
+        padding: 10px;
+    }
+}

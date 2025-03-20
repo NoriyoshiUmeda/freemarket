@@ -9,7 +9,7 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
-class User extends Authenticatable
+class User extends Authenticatable implements MustVerifyEmail
 {
     use HasFactory, Notifiable;
 
@@ -17,7 +17,9 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'is_first_login', 
     ];
+
 
     /**
      * ユーザーが出品した商品
