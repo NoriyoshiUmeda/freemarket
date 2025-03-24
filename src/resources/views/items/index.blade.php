@@ -11,7 +11,7 @@
     <!-- ヘッダー -->
     <header class="auth-header">
         <div class="header-container">
-            <a href="{{ route('register') }}">
+            <a href="{{ route('item.index') }}">
                 <img src="{{ asset('svg/logo.svg') }}" alt="COACHTECHロゴ" class="header-logo">
             </a>
 
@@ -47,9 +47,11 @@
             </a>
         </div>
 
-        <!-- 商品一覧 -->
+                <!-- 商品一覧 -->
         <div class="item-grid">
-            @foreach ($items as $item)
+            @if ($tab === 'mylist' && !Auth::check())
+            @else
+            @forelse ($items as $item)
                 <div class="item-card">
                     <a href="{{ route('item.show', ['item_id' => $item->id]) }}">
                         <img src="{{ asset('storage/' . $item->image) }}" alt="{{ $item->name }}" class="item-image">
@@ -62,8 +64,12 @@
                         <p class="sold-label">Sold</p>
                     @endif
                 </div>
-            @endforeach
+            @empty
+                <p>商品が見つかりませんでした。</p>
+            @endforelse
+            @endif
         </div>
+
 
         <!-- ページネーション -->
         <div class="pagination">

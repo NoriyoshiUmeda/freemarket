@@ -48,7 +48,7 @@ class UserController extends Controller
     $profile->building = $request->building;
     $profile->save();
 
-    return redirect()->route('profile.edit')->with('success', 'プロフィールを更新しました');
+    return redirect()->route('item.index');
 
 }
     

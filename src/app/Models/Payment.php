@@ -19,8 +19,8 @@ class Payment extends Model
     /**
      * 支払い情報が紐づく購入履歴（1対1）
      */
-    public function purchase(): HasOne
+    public function purchase(): BelongsTo
     {
-        return $this->hasOne(Purchase::class);
+        return $this->belongsTo(Purchase::class);
     }
 }

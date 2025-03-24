@@ -11,7 +11,7 @@
   <header class="auth-header">
     <div class="header-container">
       <!-- 左端：ロゴ -->
-      <a href="{{ route('register') }}" class="logo-link">
+      <a href="{{ route('item.index') }}" class="logo-link">
         <img src="{{ asset('svg/logo.svg') }}" alt="COACHTECHロゴ" class="header-logo">
       </a>
 
@@ -55,7 +55,7 @@
   <div class="profile-image-container">
     @php
       // ユーザーのprofile_imageがあるかチェック
-      $hasProfileImage = auth()->user()->profile_image;
+      $hasProfileImage = optional(auth()->user()->profile)->profile_image;
     @endphp
 
     @if ($hasProfileImage)
@@ -71,6 +71,9 @@
     <input type="file" name="profile_image" id="profile_image" class="hidden">
     画像を選択する
   </label>
+     @error('profile_image')
+    <div class="error">{{ $message }}</div>
+     @enderror
 </div>
 
 
@@ -79,6 +82,9 @@
         <label for="name">ユーザー名</label>
         <input type="text" name="name" id="name"
                value="{{ old('name', auth()->user()->name) }}">
+        @error('name')
+          <div class="error">{{ $message }}</div>
+        @enderror
       </div>
       
       <!-- 郵便番号 -->
@@ -86,6 +92,9 @@
         <label for="postal_code">郵便番号</label>
         <input type="text" name="postal_code" id="postal_code"
                value="{{ old('postal_code', optional(auth()->user()->profile)->postal_code) }}">
+        @error('postal_code')
+          <div class="error">{{ $message }}</div>
+        @enderror
       </div>
       
       <!-- 住所 -->
@@ -93,6 +102,9 @@
         <label for="address">住所</label>
         <input type="text" name="address" id="address"
                value="{{ old('postal_code', optional(auth()->user()->profile)->address) }}">
+        @error('address')
+          <div class="error">{{ $message }}</div>
+        @enderror
       </div>
       
       <!-- 建物名 (任意ならこのままでもOK) -->
@@ -100,6 +112,9 @@
         <label for="building">建物名</label>
         <input type="text" name="building" id="building"
                value="{{ old('postal_code', optional(auth()->user()->profile)->building) }}">
+        @error('building')
+          <div class="error">{{ $message }}</div>
+        @enderror
       </div>
       
       <!-- 更新ボタン -->

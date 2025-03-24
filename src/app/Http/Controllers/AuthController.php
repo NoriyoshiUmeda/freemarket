@@ -32,6 +32,9 @@ class AuthController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
+        // ユーザーを自動ログインさせる
+        Auth::login($user);
+
       
         return redirect()->route('profile.edit'); 
     }
@@ -46,16 +49,6 @@ class AuthController extends Controller
     $credentials = $request->only('email', 'password');
 
     if (Auth::attempt($credentials)) {
-        $user = Auth::user();
-
-        if ($user->is_first_login) {
-            // 初回ログイン時は `is_first_login` を false に更新し、プロフィール編集画面へリダイレクト
-            $user->update(['is_first_login' => false]);
-            Auth::setUser($user->fresh());
-            return redirect()->route('profile.edit');
-        }
-
-        // 2回目以降のログインは商品一覧画面へリダイレクト
         return redirect()->route('item.index');
     }
 

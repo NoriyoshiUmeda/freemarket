@@ -24,6 +24,9 @@ Route::post('/login', [AuthController::class, 'login']); // ← ここは必須
 //商品一覧画面
 Route::get('/', [ItemController::class, 'index'])->name('item.index');
 
+// ユーザ認証不要：商品詳細画面表示
+Route::get('/item/{item_id}', 'ItemController@show')->name('item.show');
+
 // 認証が必要なページ（auth ミドルウェアを適用）
 Route::middleware(['auth'])->group(function () {
     Route::get('/mypage', [UserController::class, 'show'])->name('mypage');
@@ -36,7 +39,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/purchase/address/{item_id}', [PurchaseController::class, 'edit']);
     Route::put('/purchase/address/{item_id}', [PurchaseController::class, 'update']);
 
-    Route::get('/item/{item_id}/like', [ItemController::class, 'like']);
+    Route::post('/item/{item_id}/like', [ItemController::class, 'like']);
     Route::delete('/item/{item_id}/unlike', [ItemController::class, 'unlike']);
     Route::post('/item/{item_id}/comment', [ItemController::class, 'addComment']);
 });
