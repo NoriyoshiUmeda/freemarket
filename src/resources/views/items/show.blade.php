@@ -93,16 +93,7 @@
       <!-- 商品情報（カテゴリ, 状態） -->
       <div class="product-section">
         <h2 class="section-title">商品情報</h2>
-        @php
-    // $item->category_id が配列でなければ、配列に変換する
-    $categoryIds = is_array($item->category_id) ? $item->category_id : [$item->category_id];
-    // 対象のカテゴリー名をcategoriesテーブルから取得
-    $categoryNames = \App\Models\Category::whereIn('id', $categoryIds)
-                        ->pluck('category')
-                        ->toArray();
-@endphp
-
-        <p class="section-text">カテゴリ：{{ implode(', ', $categoryNames) }}</p>
+        <p class="section-text">カテゴリ：{{ $item->category->category ?? '' }}</p>
         <p class="section-text">商品の状態：{{ $item->status->name ?? '' }}</p>
       </div>
     </div>

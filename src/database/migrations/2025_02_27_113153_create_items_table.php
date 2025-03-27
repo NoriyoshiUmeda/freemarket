@@ -16,7 +16,7 @@ class CreateItemsTable extends Migration
         Schema::create('items', function (Blueprint $table) {
             $table->id(); // bigint unsigned, AUTO_INCREMENT, PRIMARY KEY
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade'); 
-            $table->foreignId('category_id')->constrained('categories')->onDelete('cascade'); 
+            $table->json('category_id')->constrained('categories')->onDelete('cascade'); 
             $table->foreignId('status_id')->constrained('statuses')->onDelete('cascade'); 
             $table->string('name', 255); // VARCHAR(255) NOT NULL
             $table->string('description', 255); // VARCHAR(255) NOT NULL
