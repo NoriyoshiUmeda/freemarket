@@ -5,6 +5,12 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Item;
+use App\Models\Comment; // コメント取得用
+use App\Models\Favorite; // いいね数を取得するため
+use Illuminate\Pagination\LengthAwarePaginator;
+use App\Http\Requests\CommentRequest;
+
+
 
 class ItemController extends Controller
 {
@@ -18,40 +24,59 @@ class ItemController extends Controller
     // ログインユーザーのIDを取得（未ログイン時はnull）
     $userId = Auth::id();
 
-    if ($tab === 'mylist') {
-        // マイリストタブの場合
-        // 例として、ここではお気に入り商品のクエリを実装する想定ですが、
-        // 実装に応じて、favorites テーブルなどと連携させてください。
-
-        // 商品一覧を取得（自分が出品した商品は除外）
-        $query = Item::with(['category', 'status', 'purchase'])
-            ->when($userId, function ($query) use ($userId) {
-                return $query->where('user_id', '!=', $userId);
-            })
-            ->latest();
-
-        // 検索キーワードが入力されている場合、商品名で部分一致検索
-        if ($search) {
-            $query->where('name', 'like', '%' . $search . '%');
-        }
-
-        $items = $query->paginate(12)
-            ->appends(['tab' => 'mylist', 'search' => $search]);
+   if ($tab === 'mylist') {
+    if (!$userId) {
+        $items = collect();
     } else {
-        // デフォルト（おすすめ）タブの場合
-        $query = Item::with(['category', 'status', 'purchase'])
-            ->when($userId, function ($query) use ($userId) {
-                return $query->where('user_id', '!=', $userId);
-            })
-            ->latest();
+        // ログインユーザーのお気に入りを取得し、そこから Item を抽出
+        $favorites = \App\Models\Favorite::with(['item.category', 'item.status', 'item.purchase'])
+            ->where('user_id', $userId)
+            ->latest()
+            ->get();
+        $items = $favorites->pluck('item');
 
+        // 検索キーワードが入力されている場合、コレクション上で部分一致検索
         if ($search) {
-            $query->where('name', 'like', '%' . $search . '%');
+            $items = $items->filter(function($item) use ($search) {
+                return stripos($item->name, $search) !== false;
+            });
         }
-
-        $items = $query->paginate(12)
-            ->appends(['tab' => 'recommend', 'search' => $search]);
+        // 注意: この方法では paginate() は使えないので、ページネーションは別途対応が必要になります
     }
+
+    // 手動ページネーション処理
+        $page = $request->input('page', 1);
+        $perPage = 12; // 「recommend」タブと同じ件数にする場合
+        $offset = ($page - 1) * $perPage;
+        $currentItems = $items->slice($offset, $perPage)->values();
+        $paginatedItems = new LengthAwarePaginator(
+            $currentItems,
+            $items->count(),
+            $perPage,
+            $page,
+            [
+                'path' => $request->url(),
+                'query' => $request->query(),
+            ]
+        );
+        $items = $paginatedItems;
+
+} else {
+    // おすすめタブの場合は、現在のコードの通りに自分が出品した商品を除外したクエリで取得
+    $query = Item::with(['category', 'status', 'purchase'])
+        ->when($userId, function ($query) use ($userId) {
+            return $query->where('user_id', '!=', $userId);
+        })
+        ->latest();
+
+    if ($search) {
+        $query->where('name', 'like', '%' . $search . '%');
+    }
+
+    $items = $query->paginate(12)
+        ->appends(['tab' => 'recommend', 'search' => $search]);
+}
+
 
     return view('items.index', compact('items', 'tab'));
 }
@@ -64,10 +89,14 @@ class ItemController extends Controller
      */
     public function show($item_id)
     {
-        // 商品を取得（存在しない場合は404を返す）
+        // 商品を取得
         $item = Item::with(['category', 'status', 'purchase', 'comments', 'favorites'])->findOrFail($item_id);
         // 関連するコメントを取得（最新順など必要に応じて調整）
         $comments = $item->comments()->latest()->get();
+
+        $favoriteCount = $item->favorites->count();
+        $commentCount = $item->comments->count();
+        return view('items.show', compact('item', 'comments', 'favoriteCount', 'commentCount'));
 
         return view('items.show', compact('item', 'comments'));
     }
@@ -117,12 +146,8 @@ class ItemController extends Controller
      * @param int $item_id
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function addComment(Request $request, $item_id)
+    public function addComment(CommentRequest $request, $item_id)
     {
-        // バリデーション
-        $request->validate([
-            'comment' => 'required|string|max:255',
-        ]);
 
         $item = Item::findOrFail($item_id);
 

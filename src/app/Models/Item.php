@@ -22,6 +22,12 @@ class Item extends Model
         'image',
     ];
 
+        // これで category_id カラムは JSON 形式で保存され、取得時には配列として扱われる
+         protected $casts = [
+        'category_id' => 'array',
+    ];
+
+
     /**
      * 出品者（ユーザー）とのリレーション
      */

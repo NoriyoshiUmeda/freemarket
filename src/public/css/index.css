@@ -128,13 +128,17 @@ body {
 /* 商品一覧のグリッド */
 .item-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(auto-fill, 290px);
+    gap: 69px;
     margin-top: 20px;
+    justify-content: center;
 }
 
 /* 商品カード */
 .item-card {
+    width: 290px;   /* カードの幅 */
+    height: 320px;  /* カードの高さ */
+
     background: #f9f9f9;
     padding: 15px;
     text-align: center;
@@ -145,16 +149,17 @@ body {
 /* 商品画像 */
 .item-image {
     width: 100%;
-    height: 150px;
+    height: 180px;
     object-fit: cover;
     border-radius: 5px;
+    margin-bottom: 10px;
 }
 
 /* 商品名 */
 .item-name {
     margin-top: 10px;
-    font-size: 16px;
-    font-weight: bold;
+    font-size: 25px;
+    font-weight: 400;
 }
 
 /* 価格 */

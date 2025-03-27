@@ -21,81 +21,81 @@ class ItemSeeder extends Seeder
                 'name'          => '腕時計',
                 'price'         => 15000,
                 'description'   => 'スタイリッシュなデザインのメンズ腕時計',
-                'image'         => 'https://coachtech-matter.s3.ap-northeast-1.amazonaws.com/image/Armani+Mens+Clock.jpg',
+                'image'         => 'images/Armani+Mens+Clock.jpg',
                 'condition'     => '良好',
-                'category'      => 'ファッション',
+                'category'      => ['ファッション'],
             ],
             [
                 'name'          => 'HDD',
                 'price'         => 5000,
                 'description'   => '高速で信頼性の高いハードディスク',
-                'image'         => 'https://coachtech-matter.s3.ap-northeast-1.amazonaws.com/image/HDD+Hard+Disk.jpg',
+                'image'         => 'images/HDD+Hard+Disk.jpg',
                 'condition'     => '目立った傷や汚れなし',
-                'category'      => '家電',
+                'category'      => ['家電'],
             ],
             [
                 'name'          => '玉ねぎ3束',
                 'price'         => 300,
                 'description'   => '新鮮な玉ねぎ3束のセット',
-                'image'         => 'https://coachtech-matter.s3.ap-northeast-1.amazonaws.com/image/iLoveIMG+d.jpg',
+                'image'         => 'images/iLoveIMG+d.jpg',
                 'condition'     => 'やや傷や汚れあり',
-                'category'      => 'キッチン',
+                'category'      => ['キッチン','家電'],
             ],
             [
                 'name'          => '革靴',
                 'price'         => 4000,
                 'description'   => 'クラシックなデザインの革靴',
-                'image'         => 'https://coachtech-matter.s3.ap-northeast-1.amazonaws.com/image/Leather+Shoes+Product+Photo.jpg',
+                'image'         => 'images/Leather+Shoes+Product+Photo.jpg',
                 'condition'     => '状態が悪い',
-                'category'      => 'ファッション',
+                'category'      => ['ファッション'],
             ],
             [
                 'name'          => 'ノートPC',
                 'price'         => 45000,
                 'description'   => '高性能なノートパソコン',
-                'image'         => 'https://coachtech-matter.s3.ap-northeast-1.amazonaws.com/image/Living+Room+Laptop.jpg',
+                'image'         => 'images/Living+Room+Laptop.jpg',
                 'condition'     => '良好',
-                'category'      => '家電',
+                'category'      => ['家電'],
             ],
             [
                 'name'          => 'マイク',
                 'price'         => 8000,
                 'description'   => '高音質のレコーディング用マイク',
-                'image'         => 'https://coachtech-matter.s3.ap-northeast-1.amazonaws.com/image/Music+Mic+4632231.jpg',
+                'image'         => 'images/Music+Mic+4632231.jpg',
                 'condition'     => '目立った傷や汚れなし',
-                'category'      => '家電',
+                'category'      => ['家電'],
             ],
             [
                 'name'          => 'ショルダーバッグ',
                 'price'         => 3500,
                 'description'   => 'おしゃれなショルダーバッグ',
-                'image'         => 'https://coachtech-matter.s3.ap-northeast-1.amazonaws.com/image/Purse+fashion+pocket.jpg',
+                'image'         => 'images/Purse+fashion+pocket.jpg',
                 'condition'     => 'やや傷や汚れあり',
-                'category'      => 'ファッション',
+                'category'      => ['ファッション'],
             ],
             [
                 'name'          => 'タンブラー',
                 'price'         => 500,
                 'description'   => '使いやすいタンブラー',
-                'image'         => 'https://coachtech-matter.s3.ap-northeast-1.amazonaws.com/image/Tumbler+souvenir.jpg',
+                'image'         => 'images/Tumbler+souvenir.jpg',
                 'condition'     => '状態が悪い',
-                'category'      => 'キッチン',
+                'category'      => ['キッチン'],
             ],
             [
                 'name'          => 'コーヒーミル',
                 'price'         => 4000,
                 'description'   => '手動のコーヒーミル',
-                'image'         => 'https://coachtech-matter.s3.ap-northeast-1.amazonaws.com/image/Waitress+with+Coffee+Grinder.jpg',
+                'image'         => 'images/Waitress+with+Coffee+Grinder.jpg',
                 'condition'     => '良好',
-                'category'      => 'キッチン',
+                'category'      => ['キッチン'],
             ],
             [
                 'name'          => 'メイクセット',
                 'price'         => 2500,
                 'description'   => '便利なメイクアップセット',
-                'image'         => 'https://coachtech-matter.s3.ap-northeast-1.amazonaws.com/image/%E5%A4%96%E5%87%BA%E3%83%A1%E3%82%A4%E3%82%AF%E3%82%A2%E3%83%83%E3%83%95%E3%82%9A%E3%82%BB%E3%83%83%E3%83%88.jpg',
+                'image'         => 'images/外出メイクアップセット.jpg',
                 'condition'     => '目立った傷や汚れなし',
-                'category'      => 'コスメ',
+                'category'      => ['コスメ'],
             ],
         ];
 
@@ -116,15 +116,22 @@ class ItemSeeder extends Seeder
             // ランダムな出品者を選ぶ
             $userId = $users->random()->id;
 
-            // カテゴリー名から対応する Category モデルを取得
-            $category = $categories->get($product['category']);
+            // 複数のカテゴリー名から、対応するカテゴリーIDの配列を作成
+            $categoryIds = [];
+            if (isset($product['categories']) && is_array($product['categories'])) {
+                foreach ($product['categories'] as $catName) {
+                    if ($categories->has($catName)) {
+                        $categoryIds[] = $categories->get($catName)->id;
+                    }
+                }
+            }
 
             // 状態：condition文字列から status_id を取得
             $statusId = $statusMap[$product['condition']];
 
             Item::create([
                 'user_id'     => $userId,
-                'category_id' => $category->id,
+                'category_id' => $categoryids,
                 'status_id'   => $statusId,
                 'name'        => $product['name'],
                 'description' => $product['description'],
