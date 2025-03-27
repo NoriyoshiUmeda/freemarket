@@ -13,8 +13,8 @@ npm-debug.log
 yarn-error.log
 /.idea
 /.vscode
-# storage ディレクトリ全体は除外しているが、
-# 画像を置くディレクトリだけは除外を解除する
-/storage/app/public
-!/storage/app/public/images
+storage/
+!storage/images/
+!storage/images/*.png
+!storage/images/*.jpg
 
