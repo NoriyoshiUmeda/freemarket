@@ -47,6 +47,11 @@ php artisan migrate
 php artisan db:seed
 ```
 
+8. シンボリックリンクの作成
+``` bash
+php artisan storage:link
+```
+
 ## メール認証機能について
 
 ### メール送信の設定
