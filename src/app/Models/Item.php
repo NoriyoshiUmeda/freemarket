@@ -20,6 +20,7 @@ class Item extends Model
         'description',
         'price',
         'image',
+        'brand',
     ];
 
 
