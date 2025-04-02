@@ -24,10 +24,15 @@
 
             <!-- ナビゲーションメニュー -->
             <nav class="nav-links">
-  <form action="{{ route('logout') }}" method="POST" style="display: inline;">
+                @auth
+            <form action="{{ route('logout') }}" method="POST" style="display: inline;">
     @csrf
     <button type="submit" class="logout-btn">ログアウト</button>
   </form>
+  @endauth
+  @guest
+   <a href="{{ route('login') }}" class="login-btn">ログイン</a>
+  @endguest
   <a href="{{ route('mypage') }}" class="mypage-btn">マイページ</a>
   <a href="{{ route('sell') }}" class="sell-btn">出品</a>
 </nav>

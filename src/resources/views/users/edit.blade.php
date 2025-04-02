@@ -101,7 +101,7 @@
       <div class="form-group">
         <label for="address">住所</label>
         <input type="text" name="address" id="address"
-               value="{{ old('postal_code', optional(auth()->user()->profile)->address) }}">
+               value="{{ old('address', optional(auth()->user()->profile)->address) }}">
         @error('address')
           <div class="error">{{ $message }}</div>
         @enderror
@@ -111,7 +111,7 @@
       <div class="form-group">
         <label for="building">建物名</label>
         <input type="text" name="building" id="building"
-               value="{{ old('postal_code', optional(auth()->user()->profile)->building) }}">
+               value="{{ old('building', optional(auth()->user()->profile)->building) }}">
         @error('building')
           <div class="error">{{ $message }}</div>
         @enderror
@@ -121,5 +121,33 @@
       <button type="submit" class="submit-btn">更新する</button>
     </form>
   </div>
+  <script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const input = document.getElementById('profile_image');
+    const preview = document.getElementById('preview-image');
+
+    input.addEventListener('change', function () {
+      const file = input.files[0];
+      if (file && file.type.startsWith('image/')) {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+          if (preview) {
+            preview.src = e.target.result;
+          } else {
+            // 画像タグがまだない場合は作って差し込む
+            const img = document.createElement('img');
+            img.src = e.target.result;
+            img.id = 'preview-image';
+            img.classList.add('profile-image');
+            document.querySelector('.profile-image-container').innerHTML = '';
+            document.querySelector('.profile-image-container').appendChild(img);
+          }
+        };
+        reader.readAsDataURL(file);
+      }
+    });
+  });
+</script>
+
 </body>
 </html>

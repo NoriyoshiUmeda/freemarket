@@ -28,9 +28,9 @@ class Purchase extends Model
     /**
      * 購入された商品とのリレーション(1対1)
      */
-    public function item(): HasOne
+    public function item(): BelongsTo
     {
-        return $this->hasOne(Item::class);
+        return $this->belongsTo(Item::class);
     }
 
     /**

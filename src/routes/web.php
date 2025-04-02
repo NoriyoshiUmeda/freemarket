@@ -35,9 +35,15 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/sell', [ItemController::class, 'create'])->name('sell');
     Route::post('/sell', [ItemController::class, 'store']);
 
-    Route::get('/purchase/{item_id}', [PurchaseController::class, 'showPurchasePage'])->name('purchase');
-    Route::get('/purchase/address/{item_id}', [PurchaseController::class, 'edit']);
-    Route::put('/purchase/address/{item_id}', [PurchaseController::class, 'update']);
+    Route::get('/purchase/address/{item_id}', [PurchaseController::class, 'edit'])
+    ->name('purchase.address.edit');
+    
+    Route::put('/purchase/address/{item_id}', [PurchaseController::class, 'update'])
+    ->name('purchase.address.update');
+
+    Route::get('/purchase/{item_id}', [PurchaseController::class, 'showPurchasePage'])->name('purchase.show');
+    Route::post('/purchase/{item_id}', [PurchaseController::class, 'executePurchase'])
+     ->name('purchase.execute');
 
     Route::post('/item/{item_id}/like', [ItemController::class, 'like'])->name('item.like');
     Route::delete('/item/{item_id}/unlike', [ItemController::class, 'unlike'])->name('item.unlike');

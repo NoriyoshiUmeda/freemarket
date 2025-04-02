@@ -21,7 +21,7 @@ class ProfileRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'profile_image.image' => 'プロフィール画像は画像ファイルをアップロードしてください',
+            'profile_image.image' => 'プロフィール画像はJPEGまたはPNG形式でアップロードしてください',
             'profile_image.mimes' => 'プロフィール画像はJPEGまたはPNG形式でアップロードしてください',
         ];
     }
