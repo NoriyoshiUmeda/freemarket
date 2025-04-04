@@ -1,6 +1,6 @@
 /* フォーム全体のデザイン */
 .register-container {
-    background: white;
+    background: #FFFFFF;
     width: 680px; 
     height: 678px;
     padding: 40px;
@@ -9,6 +9,7 @@
     flex-direction: column;
     justify-content: space-between; 
     align-items: center;
+    margin: 80px auto;
 }
 
 /* 各フォーム要素を縦並びに */
