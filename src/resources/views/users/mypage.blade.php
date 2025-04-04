@@ -7,29 +7,7 @@
   <link rel="stylesheet" href="{{ asset('css/users/mypage.css') }}">
 </head>
 <body>
-  <!-- ヘッダー -->
-  <header class="auth-header">
-    <div class="header-container">
-      <a href="{{ route('item.index') }}">
-        <img src="{{ asset('svg/logo.svg') }}" alt="COACHTECHロゴ" class="header-logo">
-      </a>
-
-      <!-- 検索フォーム -->
-      <form action="{{ route('item.index') }}" method="GET" class="search-form">
-        <input type="text" name="search" placeholder="なにをお探しですか？" class="search-box">
-      </form>
-
-      <!-- ナビゲーションメニュー -->
-      <nav class="nav-links">
-        <form action="{{ route('logout') }}" method="POST" style="display:inline;">
-          @csrf
-          <button type="submit" class="logout-btn">ログアウト</button>
-        </form>
-        <a href="{{ route('mypage') }}" class="mypage-btn">マイページ</a>
-        <a href="{{ route('sell') }}" class="sell-btn">出品</a>
-      </nav>
-    </div>
-  </header>
+  @include('layouts.newapp')
 
   <!-- メインコンテンツ -->
   <main class="container">
