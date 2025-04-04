@@ -9,6 +9,9 @@ use App\Models\Comment; // コメント取得用
 use App\Models\Favorite; // いいね数を取得するため
 use Illuminate\Pagination\LengthAwarePaginator;
 use App\Http\Requests\CommentRequest;
+use App\Models\Category;
+use App\Models\Status;
+use App\Http\Requests\ExhibitionRequest; 
 
 
 
@@ -159,6 +162,34 @@ class ItemController extends Controller
         $comment->save();
 
         return back();
+    }
+
+    public function create()
+    {
+    $categories = Category::all();
+    $statuses = Status::all();
+    
+    return view('items.create', compact('categories', 'statuses'));
+    }   
+
+    public function store(ExhibitionRequest $request)
+    {
+        // バリデーション済みデータを取得
+        $validated = $request->validated();
+
+        // 画像アップロード
+        if ($request->hasFile('image')) {
+            $path = $request->file('image')->store('public/products');
+            $validated['image'] = Storage::url($path);
+        }
+
+        // 現在のユーザーIDをセット（必要に応じて）
+        $validated['user_id'] = Auth::id();
+
+        // 商品情報登録（Itemモデルの $fillable に必要な項目が設定されていること）
+        $item = Item::create($validated);
+
+        return redirect()->route('product.create')->with('success', '商品が出品されました！');
     }
 
 }

@@ -1,0 +1,143 @@
+.product-create-container {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 20px 30px;
+    background: #ffffff;
+    text-align: center;
+}
+
+/* 見出し */
+.product-create-container h1 {
+    font-size: 32px;
+    margin-bottom: 20px;
+}
+
+/* セクションタイトルと線 */
+.section-title {
+    font-size: 20px;
+    font-weight: bold;
+    text-align: left;
+    margin-top: 30px;
+}
+
+.section-line {
+    border: none;
+    border-top: 1px solid #ccc;
+    margin-bottom: 20px;
+}
+
+/* 画像アップロードエリア */
+.image-upload-area {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+/* プレビュー枠: 680x150, 白背景 */
+.image-preview-container {
+    position: relative;
+    width: 680px;
+    height: 150px;
+    background-color: #fff; /* 何もアップしていないとき白 */
+    border: 2px dashed #ccc;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+/* 画像プレビュー */
+.image-preview {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* 画像を選択するボタン */
+.image-upload-label {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(255, 255, 255, 0.9);
+    color: #FF5555;
+    border: 2px solid #FF5555;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* フォーム全体 */
+.sell-form {
+    text-align: left;
+    margin: 0 auto;
+    max-width: 600px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+    font-size: 16px;
+}
+
+.form-group input[type="text"],
+.form-group input[type="number"],
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+/* カテゴリー(複数選択) */
+.category-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.category-label {
+    display: inline-flex;
+    align-items: center;
+    background-color: #f5f5f5;
+    padding: 5px 10px;
+    border-radius: 16px;
+    cursor: pointer;
+}
+
+.category-label input[type="checkbox"] {
+    margin-right: 5px;
+}
+
+/* 出品ボタン */
+.submit-button {
+    display: block;
+    width: 100%;
+    padding: 14px;
+    background-color: #FF5555;
+    color: #fff;
+    font-size: 18px;
+    font-weight: bold;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 30px;
+}
+
+.submit-button:hover {
+    background-color: #FF3333;
+}
+
+/* エラーメッセージ */
+.error-message {
+    color: red;
+    margin-top: 5px;
+    font-size: 14px;
+}
