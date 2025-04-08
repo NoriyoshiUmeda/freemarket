@@ -10,6 +10,10 @@
 
   @include('layouts.newapp')
 
+  @if (session('success'))
+      <div class="alert-success">{{ session('success') }}</div>
+  @endif
+
   <main class="product-detail-container">
     <!-- 左カラム：商品画像 -->
     <div class="left-column">
@@ -21,7 +25,7 @@
       <!-- 商品情報 -->
       <div class="product-info">
         <h1 class="product-name">{{ $item->name }}</h1>
-        <p class="product-brand">{{ $item->brand ?? 'ブランド未設定' }}</p>
+        <p class="product-brand">{{ $item->brand ?? '' }}</p>
         <p class="product-price">
           ¥{{ number_format($item->price) }} <span class="tax-included">（税込）</span>
         </p>
@@ -61,9 +65,12 @@
             <span class="icon-count">{{ $item->comments->count() }}</span>
           </div>
         </div>
-
+        @if ($hasPurchased)
+          <span class="purchase-btn disabled">購入済み</span>
+        @else
         <!-- 購入ボタン（小さめ） -->
         <a href="{{ route('purchase.show', ['item_id' => $item->id]) }}" class="purchase-btn">購入手続きへ</a>
+        @endif
 
         <!-- 商品説明 -->
         <div class="product-section">
@@ -76,7 +83,9 @@
           <h2 class="section-title">商品の情報</h2>
           <p class="section-text">
             <span class="bold-700">カテゴリ</span>：
-            {{ $item->category->category ?? '' }}
+             @foreach ($categories as $cat)
+         {{ $cat->category }}@if(!$loop->last)、@endif
+             @endforeach
           </p>
           <p class="section-text">
             <span class="bold-700">商品の状態</span>：

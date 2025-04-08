@@ -12,18 +12,36 @@
     margin-bottom: 20px;
 }
 
-/* セクションタイトルと線 */
+/* 汎用のセクションタイトル */
 .section-title {
-    font-size: 20px;
-    font-weight: bold;
+    font-size: 24px;
+    font-weight: 700;
     text-align: left;
     margin-top: 30px;
+    margin-bottom: 10px;
 }
 
+/* 「商品画像」を少し右に寄せたい場合 */
+.section-title-image {
+    margin-left: 60px; 
+}
+
+/* 「商品の詳細」をグレー色(#666)、30px、太さ700 */
+.section-title-detail {
+    color: #666;
+    font-size: 30px;
+    font-weight: 700;
+    text-align: left;
+    margin-top: 30px;
+    margin-bottom: 10px;
+}
+
+/* セクション区切り線 */
 .section-line {
     border: none;
     border-top: 1px solid #ccc;
-    margin-bottom: 20px;
+    margin: 10px auto;
+    width: 100%;
 }
 
 /* 画像アップロードエリア */
@@ -33,14 +51,13 @@
     margin-bottom: 30px;
 }
 
-/* プレビュー枠: 680x150, 白背景 */
 .image-preview-container {
     position: relative;
     width: 680px;
     height: 150px;
-    background-color: #fff; /* 何もアップしていないとき白 */
-    border: 2px dashed #ccc;
-    border-radius: 10px;
+    background-color: #fff;
+    border: 1px dashed #ccc;
+    border-radius: 4px;
     overflow: hidden;
 }
 
@@ -58,8 +75,8 @@
     left: 50%;
     transform: translate(-50%, -50%);
     background-color: rgba(255, 255, 255, 0.9);
-    color: #FF5555;
-    border: 2px solid #FF5555;
+    color: #FF5655;
+    border: 2px solid #FF5655;
     padding: 10px 20px;
     border-radius: 8px;
     font-weight: bold;
@@ -96,24 +113,83 @@
     box-sizing: border-box;
 }
 
-/* カテゴリー(複数選択) */
+/* カテゴリー(複数選択) - チェックボックスをトグル風に */
 .category-list {
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
 }
 
+/* ラベル自体をクリック可能にして、inputは非表示 */
 .category-label {
-    display: inline-flex;
-    align-items: center;
-    background-color: #f5f5f5;
-    padding: 5px 10px;
-    border-radius: 16px;
+    position: relative;
+    display: inline-block;
     cursor: pointer;
 }
 
 .category-label input[type="checkbox"] {
-    margin-right: 5px;
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+    pointer-events: none; /* マウスイベントを受け取らない */
+}
+
+.category-text {
+    font-size: 15px;
+    font-weight: 500;
+    border: 2px solid #FF5655 ;
+    color: #FF5655;
+    background-color: #ffffff;
+    padding: 5px 10px;
+    border-radius: 200px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* ホバーしたときのエフェクト */
+.category-label:hover .category-text {
+    background-color: #ddd;
+}
+
+/* チェックが入ったときに色を変える */
+.category-label input[type="checkbox"]:checked ~ .category-text {
+    background-color: #FF5555;
+    color: #fff;
+}
+
+/* 販売価格(¥記号つき) */
+.price-input-wrapper {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+}
+
+.yen-symbol {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 16px;
+    color: #333;
+    pointer-events: none;
+}
+
+.price-input-wrapper input {
+    padding-left: 18px !important;
+}
+
+/* Chrome, Safari, Edge, Opera 向け */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Firefox 向け */
+input[type="number"] {
+    -webkit-appearance: none; /* Chrome, Safari, Edge, Opera 用 */
+    -moz-appearance: textfield; /* Firefox 用 */
+    appearance: none; /* 標準プロパティ */
 }
 
 /* 出品ボタン */

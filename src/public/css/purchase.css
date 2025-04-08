@@ -12,12 +12,14 @@
 .purchase-main {
   position: relative;
   display: flex;
+  flex-wrap: wrap;
   gap: 40px; /* 右カラムが下に配置されるための高さを確保 */
+  justify-content: center;
 }
 
 /* 左カラム */
 .left-info {
-  flex: 1;
+  flex: 1 1 0;
   width: 805px;
   padding-right: 20px;      /* 線から内容を少し離す */
 }
@@ -27,7 +29,7 @@
   border-bottom: 1px solid #000000;
   padding: 20px 0;
   margin-bottom: 20px;
-  width: 805px;
+  width: 100%;
 }
 
 /* ラベル */
@@ -90,10 +92,17 @@
 
 /* 右カラム：絶対配置、画面上部から469px下に配置 */
 .right-info {
-  position: fixed;
-  top: 200px;
-  left: 1500px;
-  width: 360px;
+  position: relative;
+  width: 440px;
+  flex: 0 0 440px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.right-info form {
+  margin: 0 auto;
+  text-align: center;
+  width: 100%;
 }
 
 /* 枠線で囲むボックス（商品代金＆支払方法） */
@@ -102,6 +111,8 @@
   border: 1px solid #000000;
   padding: 20px;
   margin-bottom: 20px;
+  display: block;
+  margin: 0 auto;
 }
 
 /* 横並びの行 */
@@ -141,7 +152,7 @@
   display: block;
   width: 440px;
   height: 60px;
-  margin-top: 50px;
+  margin: 50px auto;
   padding: 15px;
   font-size: 26px;
   color: #fff;
@@ -181,8 +192,6 @@
 
   .right-info {
     position: static;
-    top: auto;
-    left: auto;
     margin-top: 20px;
   }
 
@@ -200,11 +209,20 @@
   }
 }
 
-/* ------------------------------
-   PC（1400px〜1540px）微調整
------------------------------- */
+
 @media screen and (max-width: 1540px) and (min-width: 1400px) {
   .right-info {
     left: 72%;
+  }
+}
+
+  @media screen and (max-width: 767px) {
+  .purchase-main {
+    flex-direction: column;
+  }
+
+  .right-info {
+    width: 100%;
+    margin-top: 20px;
   }
 }

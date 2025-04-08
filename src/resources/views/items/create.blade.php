@@ -15,33 +15,28 @@
 <div class="product-create-container">
     <h1>商品の出品</h1>
 
-    @if(session('success'))
-        <div class="alert alert-success">
-            {{ session('success') }}
-        </div>
-    @endif
-
-    <!-- 商品画像セクション -->
-    <div class="section-title">商品画像</div>
-    
-    <div class="image-upload-area">
-        <div class="image-preview-container">
-            <label class="image-upload-label">
-                画像を選択する
-                <input type="file" id="image" name="image" accept="image/*" hidden>
-            </label>
-        </div>
-    </div>
-
     <!-- フォーム -->
     <form action="{{ route('sell.store') }}" method="POST" enctype="multipart/form-data" class="sell-form">
         @csrf
 
-        <!-- 商品の詳細セクション -->
-        <div class="section-title">商品の詳細</div>
+        <!-- 商品画像セクション（フォーム内に移動） -->
+        <div class="section-title section-title-image">商品画像</div>
+        
+        <div class="image-upload-area">
+            <div class="image-preview-container">
+                <img id="preview-image" class="image-preview" src="" alt="画像プレビュー" style="display: none;">
+                <label class="image-upload-label">
+                    画像を選択する
+                    <input type="file" id="image" name="image" accept="image/*" hidden>
+                </label>
+            </div>
+        </div>
+
+        <!-- その他のフォーム項目 -->
+        <div class="section-title section-title-detail">商品の詳細</div>
         <hr class="section-line" />
 
-        <!-- カテゴリー（複数選択） -->
+        <!-- カテゴリー -->
         <div class="form-group">
             <label>カテゴリー</label>
             <div class="category-list">
@@ -49,7 +44,7 @@
                     <label class="category-label">
                         <input type="checkbox" name="category_id[]" value="{{ $category->id }}"
                             {{ is_array(old('category_id')) && in_array($category->id, old('category_id')) ? 'checked' : '' }}>
-                        {{ $category->category }}
+                        <span class="category-text">{{ $category->category }}</span>
                     </label>
                 @endforeach
             </div>
@@ -58,7 +53,7 @@
             @enderror
         </div>
 
-        <!-- 商品の状態（プルダウン） -->
+        <!-- 商品の状態 -->
         <div class="form-group">
             <label for="status_id">商品の状態</label>
             <select name="status_id" id="status_id">
@@ -74,7 +69,7 @@
             @enderror
         </div>
 
-        <!-- 商品名と説明セクション -->
+        <!-- 商品名と説明 -->
         <div class="section-title">商品名と説明</div>
         <hr class="section-line" />
 
@@ -105,10 +100,13 @@
             @enderror
         </div>
 
-        <!-- 販売価格 -->
+        <!-- 販売価格(¥記号つき) -->
         <div class="form-group">
             <label for="price">販売価格</label>
-            <input type="number" name="price" id="price" value="{{ old('price') }}" step="1">
+            <div class="price-input-wrapper">
+                <span class="yen-symbol">¥</span>
+                <input type="number" name="price" id="price" value="{{ old('price') }}" step="1">
+            </div>
             @error('price')
                 <p class="error-message">{{ $message }}</p>
             @enderror
@@ -118,6 +116,7 @@
         <button type="submit" class="submit-button">出品する</button>
     </form>
 </div>
+
 @endsection
 
 @section('scripts')
@@ -125,24 +124,44 @@
 document.addEventListener('DOMContentLoaded', function () {
     const imageInput = document.getElementById('image');
     const previewImage = document.getElementById('preview-image');
+    const uploadLabel = document.querySelector('.image-upload-label');
 
-    // 画像未選択時は背景が白になるように、最初はsrcを空に
-    // CSSで白背景を設定しておく
-    previewImage.src = "";
+    // 初期状態の設定
+    if (previewImage) {
+        previewImage.src = "";
+        previewImage.style.display = "none";
+    }
 
-    imageInput.addEventListener('change', function (event) {
-        const file = event.target.files[0];
-        if (file && file.type.startsWith('image/')) {
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                previewImage.src = e.target.result;
-            };
-            reader.readAsDataURL(file);
-        } else {
-            // 未選択または画像以外なら空にする
-            previewImage.src = "";
-        }
-    });
+    if (imageInput) {
+        imageInput.addEventListener('change', function (event) {
+            const file = event.target.files[0];
+            if (file && file.type.startsWith('image/')) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    if (previewImage) {
+                        previewImage.src = e.target.result;
+                        previewImage.style.display = "block"; // 画像を表示
+                    }
+                    if (uploadLabel) {
+                        uploadLabel.style.display = "none"; // ラベルを非表示にする
+                    }
+                }; // reader.onloadの閉じ括弧
+                reader.readAsDataURL(file);
+            } else {
+                // 未選択または画像以外の場合は元に戻す
+                if (previewImage) {
+                    previewImage.src = "";
+                    previewImage.style.display = "none";
+                }
+                if (uploadLabel) {
+                    uploadLabel.style.display = "block";
+                }
+            }
+        });
+    }
 });
 </script>
 @endsection
+
+</body>
+</html>

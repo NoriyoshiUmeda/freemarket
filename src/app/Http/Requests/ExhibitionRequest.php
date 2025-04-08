@@ -34,13 +34,16 @@ class ExhibitionRequest extends FormRequest
             'image' => 'required|image|mimes:jpeg,png',
             
             // 商品のカテゴリー: 選択必須、categoriesテーブルに存在するID
-            'category_id' => 'required|exists:categories,id',
+            'category_id' => 'required|array',
+            'category_id.*' => 'exists:categories,id',
             
             // 商品の状態: 選択必須、conditionsテーブルに存在するID
-            'condition_id' => 'required|exists:conditions,id',
+            'status_id' => 'required|exists:statuses,id',
             
             // 商品価格: 入力必須、数値型、0円以上
             'price' => 'required|numeric|min:0',
+
+            'brand' => 'nullable|string|max:255',
         ];
     }
 
@@ -54,10 +57,11 @@ class ExhibitionRequest extends FormRequest
             'image.image'               => '商品画像はJPEGまたはPNG形式でアップロードしてください',
             'image.mimes'               => '商品画像はJPEGまたはPNG形式でアップロードしてください',
             'category_id.required'      => '商品のカテゴリーを選択してください',
-            'condition_id.required'     => '商品の状態を選択してください',
+            'status_id.required'     => '商品の状態を選択してください',
             'price.required'            => '商品価格を入力してください',
             'price.numeric'             => '商品価格は数値で入力してください',
             'price.min'                 => '商品価格は0円以上で入力してください',
+            'brand.max'                 => 'ブランド名は255文字以内で入力してください'
         ];  
     }
 }

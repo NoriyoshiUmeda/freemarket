@@ -12,10 +12,6 @@
 
   <main class="purchase-container">
 
-    @if (session('success'))
-      <div class="alert alert-success">{{ session('success') }}</div>
-    @endif
-
     <div class="purchase-main">
       <!-- 左カラム：商品情報・支払方法選択・配送先 -->
       <div class="left-info">

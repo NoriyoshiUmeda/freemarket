@@ -45,6 +45,7 @@
         購入した商品
       </a>
     </div>
+    <hr class="full-width-line">
 
     <!-- 商品一覧 -->
     <div class="item-grid">

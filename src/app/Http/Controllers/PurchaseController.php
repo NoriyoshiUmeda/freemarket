@@ -50,8 +50,7 @@ class PurchaseController extends Controller
         'amount' => $item->price,
     ]);
 
-    return redirect()->route('purchase.show', ['item_id' => $item->id])
-                     ->with('success', '購入が完了しました！');
+    return redirect()->route('item.show', ['item_id' => $item->id]);
     }
     /**
      * 送付先住所変更画面の表示

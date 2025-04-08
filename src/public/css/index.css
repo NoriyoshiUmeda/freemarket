@@ -12,8 +12,20 @@
     display: flex;
     gap: 20px;
     padding: 10px;
-    border-bottom: 2px solid #ccc;
+    font-size: 24px;
+    font-weight: 700;
 }
+
+.full-width-line {
+    width: 100vw;
+    margin-left: calc(50% - 50vw); 
+    border: none;
+    border-top: 2px solid #ccc;
+    /* 必要に応じて余白を調整 */
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
 
 .nav-item {
     text-decoration: none;
@@ -23,8 +35,7 @@
 }
 
 .nav-item.active {
-    color: red;
-    border-bottom: 2px solid red;
+    color: #FF0000;
 }
 
 /* 商品一覧のグリッド */
@@ -60,6 +71,8 @@
     margin-top: 10px;
     font-size: 25px;
     font-weight: 400;
+    text-align: left;
+
 }
 
 /* 価格 */
