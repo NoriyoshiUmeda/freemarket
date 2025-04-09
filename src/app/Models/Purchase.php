@@ -14,7 +14,9 @@ class Purchase extends Model
     protected $fillable = [
         'user_id', // 購入者ID
         'item_id', // 購入された商品ID
-        'address', // 配送先住所
+        'postal_code',
+        'address',
+        'building', 
     ];
 
     /**

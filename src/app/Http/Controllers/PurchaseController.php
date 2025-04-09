@@ -32,14 +32,18 @@ class PurchaseController extends Controller
     $item = Item::findOrFail($item_id);
     $data = $request->validated();
 
-    // プロフィールから配送先住所を取得
-    $shippingAddress = $user->profile->address;
+     // セッションに保存されている配送先情報を取得（なければユーザーのプロフィール情報をフォールバック）
+    $postal_code = session('postal_code', $user->profile->postal_code);
+    $address     = session('address', $user->profile->address);
+    $building    = session('building', $user->profile->building);
 
-    // 購入レコードを保存
+    // 購入レコードの保存（Purchaseテーブルに郵便番号、住所、建物情報を登録）
     $purchase = Purchase::create([
-        'user_id' => $user->id,
-        'item_id' => $item->id,
-        'address' => $shippingAddress,
+            'user_id'     => $user->id,
+            'item_id'     => $item->id,
+            'postal_code' => $postal_code,
+            'address'     => $address,
+            'building'    => $building,
     ]);
 
     // 支払方法の保存（今回はフォームからの選択）
@@ -49,6 +53,9 @@ class PurchaseController extends Controller
         'stripe_payment_id' => 'dummy_' . uniqid(), // 一意なダミーIDを生成
         'amount' => $item->price,
     ]);
+
+     // 購入完了後、使用済みのセッション配送先情報を削除
+        session()->forget(['postal_code', 'address', 'building']);
 
     return redirect()->route('item.show', ['item_id' => $item->id]);
     }
@@ -77,16 +84,15 @@ class PurchaseController extends Controller
     public function update(PurchaseAddressRequest $request, $item_id)
 {
 
-    // ユーザーのプロフィールを取得
-    $user = auth()->user();
-    $profile = $user->profile; // Profileモデルとのリレーションが定義されている前提
+    // PurchaseAddressRequest でバリデーション済みのデータを取得
+        $data = $request->validated();
 
-    // AddressRequestでバリデーション済みのデータを取得
-    $data = $request->validated();
-
-      // プロフィールを更新（ここでは郵便番号、住所、建物名など）
-    $profile->update($data);
-    $profile->save();
+        // ユーザーの配送先情報をセッションに保存（プロフィールは更新しない）
+        session([
+            'postal_code' => $data['postal_code'],
+            'address'     => $data['address'],
+            'building'    => $data['building'] ?? null,
+        ]);
 
 
     // 更新後、購入画面にリダイレクト

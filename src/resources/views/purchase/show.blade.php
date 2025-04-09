@@ -43,9 +43,19 @@
           <span class="label">配送先</span>
           <a href="{{ route('purchase.address.edit', ['item_id' => $item->id]) }}" class="address-change-btn">変更する</a>
           <div class="content">
-            @if(isset($user) && $user->profile)
-              〒{{ $user->profile->postal_code }}<br>
-              {{ $user->profile->address }}
+           @php
+              // セッションの値があればそちらを優先、なければユーザーのプロフィール情報から取得
+              $postal_code = session('postal_code', isset($user) && $user->profile ? $user->profile->postal_code : '');
+              $address = session('address', isset($user) && $user->profile ? $user->profile->address : '');
+              $building = session('building', isset($user) && $user->profile ? $user->profile->building : '');
+            @endphp
+
+            @if($postal_code && $address)
+              〒{{ $postal_code }}<br>
+              {{ $address }}<br>
+              @if($building)
+                {{ $building }}
+              @endif
             @else
               住所情報が登録されていません。
             @endif

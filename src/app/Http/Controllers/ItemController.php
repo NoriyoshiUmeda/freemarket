@@ -188,8 +188,8 @@ class ItemController extends Controller
 
         // 画像アップロード
         if ($request->hasFile('image')) {
-            $path = $request->file('image')->store('public/products');
-            $validated['image'] = Storage::url($path);
+            $path = $request->file('image')->store('products', 'public');
+            $validated['image'] = $path;
         }
 
         // 現在のユーザーIDをセット（必要に応じて）

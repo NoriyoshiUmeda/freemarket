@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="{{ asset('css/address_edit.css') }}">
 </head>
 <body>
-     @include('layouts.newapp') 
+  @include('layouts.newapp') 
   <main class="address-edit-container">
     <h1 class="page-title">住所の変更</h1>
 
@@ -23,7 +23,8 @@
           type="text" 
           name="postal_code" 
           id="postal_code" 
-          value="{{ old('postal_code', $profile->postal_code) }}"
+          value="{{ old('postal_code', session('postal_code', $profile->postal_code)) }}"
+          required maxlength="255"
         >
         @error('postal_code')
           <div class="error">{{ $message }}</div>
@@ -37,7 +38,8 @@
           type="text" 
           name="address" 
           id="address" 
-          value="{{ old('address', $profile->address) }}" 
+          value="{{ old('address', session('address', $profile->address)) }}"
+          required maxlength="255"
         >
         @error('address')
           <div class="error">{{ $message }}</div>
@@ -51,7 +53,8 @@
           type="text" 
           name="building" 
           id="building" 
-          value="{{ old('building', $profile->building) }}"
+          value="{{ old('building', session('building', $profile->building)) }}"
+          maxlength="255"
         >
         @error('building')
           <div class="error">{{ $message }}</div>
@@ -62,6 +65,5 @@
       <button type="submit" class="update-btn">更新する</button>
     </form>
   </main>
-
 </body>
 </html>
