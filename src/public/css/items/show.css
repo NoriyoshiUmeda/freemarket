@@ -75,6 +75,26 @@
   padding: 0;
 }
 
+.like-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+/* 通常の状態 */
+.like-btn img.icon-img {
+  filter: none;  /* 通常はフィルターなし */
+  transition: filter 0.2s ease;
+}
+
+/* いいね済みの場合（.liked クラスが付いたボタンに対して） */
+.like-btn.liked img.icon-img {
+  /* 例: hue-rotate や saturate、brightnessを組み合わせて金色に */
+  filter: brightness(0) saturate(100%) invert(72%) sepia(75%) saturate(2900%) hue-rotate(2deg) brightness(103%) contrast(101%);
+}
+
+
 /* アイコン画像のサイズを固定 (40×40) */
 .icon-img {
   width: 40px;

@@ -42,7 +42,7 @@
             <form action="{{ route('item.unlike', ['item_id' => $item->id]) }}" method="POST" style="display:inline;">
               @csrf
               @method('DELETE')
-               <button type="submit" class="like-btn" style="background: none; border: none; cursor: pointer;">
+               <button type="submit" class="like-btn liked">
       <img src="{{ asset('storage/images/favorite.png') }}" alt="いいね済み" class="icon-img">
     </button>
             </form>
