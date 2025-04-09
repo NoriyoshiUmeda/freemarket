@@ -41,23 +41,26 @@
 
 /* 商品名・ブランド・価格 */
 .product-name {
-  font-size: 28px;
-  font-weight: bold;
+  font-size: 45px;
+  font-weight: 700;
   margin: 0 0 10px;
 }
 .product-brand {
-  font-size: 16px;
-  color: #666;
+  font-size: 20px;
+  font-weight: 400;
+  color: #000000;
   margin: 0 0 15px;
 }
 .product-price {
-  font-size: 22px;
-  color: #e3342f;
+  font-size: 45px;
+  font-weight: 400;
+  color: #000000;
   margin: 0 0 15px;
 }
 .tax-included {
-  font-size: 14px;
-  color: #666;
+  font-size: 30px;
+  font-weight: 400;
+  color: #000000;
 }
 
 /* いいね数・コメント数 */
@@ -103,6 +106,8 @@
 
 /* 数字の表示スタイル (お好みで) */
 .icon-count {
+  font-size: 18px;
+  font-weight: 700;
   margin-left: 4px;
   vertical-align: middle; /* アイコンと揃える場合 */
 }
@@ -141,7 +146,7 @@
 }
 .section-title {
   font-size: 36px;
-  font-weight: bold;
+  font-weight: 700;
   margin-bottom: 5px;
 }
 
@@ -152,6 +157,7 @@
 
 .section-text {
   font-size: 24px;
+  font-weight: 400;
 }
 
 /* コメント欄 */
@@ -160,8 +166,8 @@
   padding: 20px;
 }
 .comment-title {
-  font-size: 16px;
-  font-weight: bold;
+  font-size: 28px;
+  font-weight: 700;
   margin-bottom: 15px;
 }
 .comment-list {
@@ -199,8 +205,8 @@
 
 
 .comment-user {
-  font-size: 14px;
-  font-weight: bold;
+  font-size: 30px;
+  font-weight: 700;
   margin-bottom: 5px;
 }
 
@@ -210,8 +216,9 @@
 }
 
 .comment-body {
-  font-size: 14px;
-  color: #333;
+  font-size: 20px;
+  font-weight: 300;
+  color: #000000;
   margin: 0;
   text-align: left;
   word-wrap: break-word;       /* 長い単語も折り返す（IE対応） */
@@ -221,8 +228,9 @@
 }
 
 .no-comment {
-  font-size: 14px;
-  color: #666;
+  font-size: 20px;
+  color: #000000;
+  font-weight: 300;
 }
 
 /* コメント投稿フォーム */
