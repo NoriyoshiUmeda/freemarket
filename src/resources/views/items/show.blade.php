@@ -81,12 +81,14 @@
         <!-- 商品情報（カテゴリ, 状態） -->
         <div class="product-section">
           <h2 class="section-title">商品の情報</h2>
-          <p class="section-text">
+          <div class="section-text">
             <span class="bold-700">カテゴリ</span>：
+            <div class="category-tags">
              @foreach ($categories as $cat)
-         {{ $cat->category }}@if(!$loop->last)、@endif
+              <span class="category-tag">{{ $cat->category }}</span>
              @endforeach
-          </p>
+          </div>
+        </div>
           <p class="section-text">
             <span class="bold-700">商品の状態</span>：
             {{ $item->status->name ?? '' }}

@@ -31,6 +31,9 @@
                 </label>
             </div>
         </div>
+            @error('image')
+                <p class="error-message">{{ $message }}</p>
+            @enderror
 
         <!-- その他のフォーム項目 -->
         <div class="section-title section-title-detail">商品の詳細</div>

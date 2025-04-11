@@ -160,6 +160,26 @@
   font-weight: 400;
 }
 
+/* -------------------------
+   カテゴリ表示用タグのスタイル
+------------------------- */
+.category-tags {
+  display: inline-block;
+  margin-left: 10px; /* 「カテゴリ」ラベルとの間隔（必要に応じて調整） */
+}
+
+.category-tag {
+  display: inline-block;
+  background-color: #D9D9D9;      /* グレー背景 */
+  color: #000000;                 /* 文字色 */
+  padding: 6px 12px;           /* 内側の余白 */
+  margin-right: 8px;           /* タグ同士の間隔 */
+  border-radius: 15px;         /* 丸みの強い角 */
+  font-size: 20px;             /* 文字サイズ：必要に応じて調整 */
+  font-weight: 400;            /* 文字の太さ */
+}
+
+
 /* コメント欄 */
 .product-comment {
   background-color: #fff;
@@ -172,13 +192,14 @@
 }
 .comment-list {
   margin-bottom: 20px;
-  display: flex;
-  flex-wrap: wrap; /* 必要に応じて */
+  display: block;
+  max-height: 400px;  /* 表示エリアの最大高さ（必要に応じて調整） */
+  overflow-y: auto;   /* 高さを超えた場合は縦スクロール */
+  padding-right: 10px; /* スクロールバーとテキストが重ならないようにする（必要なら） */
 }
 .comment-item {
   margin-bottom: 10px;
   min-width: 0; /* 長いテキストを折り返せるようにする */
-  flex: 1;      /* お好みで */
 }
 
 .user-info{
@@ -238,6 +259,7 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
+  align-items: center;
 }
 
 .error-message {
