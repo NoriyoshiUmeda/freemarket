@@ -142,9 +142,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         previewImage.src = e.target.result;
                         previewImage.style.display = "block"; // 画像を表示
                     }
-                    if (uploadLabel) {
-                        uploadLabel.style.display = "none"; // ラベルを非表示にする
-                    }
+                    
                 }; // reader.onloadの閉じ括弧
                 reader.readAsDataURL(file);
             } else {

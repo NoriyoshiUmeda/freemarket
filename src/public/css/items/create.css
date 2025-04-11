@@ -74,7 +74,6 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: rgba(255, 255, 255, 0.9);
     color: #FF5655;
     border: 2px solid #FF5655;
     padding: 10px 20px;
@@ -217,3 +216,83 @@ input[type="number"] {
     margin-top: 5px;
     font-size: 14px;
 }
+
+@media screen and (min-width: 1400px) and (max-width: 1540px) {
+  .product-detail-container {
+    width: 1400px; /* 固定幅または適切な最大幅に */
+    margin: 100px auto 20px;
+    gap: 40px;
+    flex-direction: row;
+  }
+  .left-column {
+    width: 700px;  /* 左カラムの幅調整 */
+    padding-right: 20px;
+  }
+  .right-column {
+    width: 680px;  /* 右カラムの幅調整 */
+    text-align: center;
+  }
+  
+  /* 例えば、購入ボタンも調整 */
+  .purchase-btn {
+    width: 440px;
+    height: 60px;
+    font-size: 26px;
+    margin: 50px auto;
+    line-height: 60px;
+  }
+  
+  /* その他、文字サイズやマージン等、必要に応じて微調整 */
+  .product-name {
+    font-size: 45px;
+  }
+  .product-price-left {
+    font-size: 45px;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 850px) {
+  .product-detail-container {
+    width: 100%;
+    margin: 100px 10px 20px;   /* 横の余白を確保 */
+    gap: 20px;
+    flex-direction: column;    /* 左右カラムを縦に積む */
+  }
+  
+  .left-column, .right-column {
+    width: 100%;   /* カラム幅は全体幅に合わせる */
+    padding-right: 0;   /* 左カラムの余白は不要な場合 */
+  }
+  
+  /* 商品画像は全幅表示 */
+  .product-image {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+  
+  /* 右カラム内の要素も中央寄せ */
+  .right-column {
+    text-align: center;
+    margin: 0 auto;
+  }
+  
+  /* 購入ボタンを調整（必要に応じて幅やフォントサイズの縮小） */
+  .purchase-btn {
+    width: 100%;
+    max-width: 440px;
+    height: 60px;
+    font-size: 24px;
+    margin: 20px auto;
+    line-height: 60px;
+  }
+  
+  /* その他、フォントサイズやマージン、パディングの調整 */
+  .product-name {
+    font-size: 30px;
+  }
+  .product-price-left {
+    font-size: 30px;
+  }
+}
+

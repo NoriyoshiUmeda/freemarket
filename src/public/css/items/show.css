@@ -257,7 +257,8 @@
   border-radius: 4px;
 }
 .comment-submit {
-  align-self: flex-end;
+  display: block;
+  margin: 0 auto;
   background-color: #FF5555;
   color: #fff;
   border: none;

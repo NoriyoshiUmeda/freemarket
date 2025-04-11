@@ -93,15 +93,17 @@
 /* 右カラム：絶対配置、画面上部から469px下に配置 */
 .right-info {
   position: relative;
-  width: 440px;
+  width: auto;
   flex: 0 0 440px;
   margin: 0 auto;
   text-align: center;
 }
 
 .right-info form {
+  display: flex;
+  justify-content: center;
   margin: 0 auto;
-  text-align: center;
+  
   width: 100%;
 }
 
