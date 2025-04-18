@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>商品一覧画面（トップ）</title>
+  <title>商品詳細画面</title>
   <link rel="stylesheet" href="{{ asset('css/items/show.css') }}">
 </head>
 <body>
@@ -11,18 +11,19 @@
   @include('layouts.newapp')
 
   @if (session('success'))
-      <div class="alert-success">{{ session('success') }}</div>
+    <div class="alert-success">{{ session('success') }}</div>
   @endif
 
   <main class="product-detail-container">
-    <!-- 左カラム：商品画像 -->
+    {{-- 左カラム：商品画像 --}}
     <div class="left-column">
       <img src="{{ asset('storage/' . $item->image) }}" alt="{{ $item->name }}" class="product-image">
     </div>
 
-    <!-- 右カラム：商品情報 + コメント欄 -->
+    {{-- 右カラム：商品情報 + コメント欄 --}}
     <div class="right-column">
-      <!-- 商品情報 -->
+
+      {{-- 商品情報 --}}
       <div class="product-info">
         <h1 class="product-name">{{ $item->name }}</h1>
         <p class="product-brand">{{ $item->brand ?? '' }}</p>
@@ -30,88 +31,107 @@
           ¥{{ number_format($item->price) }} <span class="tax-included">（税込）</span>
         </p>
 
-        <!-- いいね数・コメント数のアイコン -->
+        {{-- いいね数・コメント数のアイコン --}}
         <div class="icon-info">
-          @php
-            $user = Auth::user();
-            $isLiked = $user && $item->favorites()->where('user_id', $user->id)->exists();
-          @endphp
+          {{-- いいね部分 --}}
+          <div class="icon-box">
+            @php
+              $user      = Auth::user();
+              $isLiked   = $user && $item->favorites()->where('user_id', $user->id)->exists();
+              $likeCount = $item->favorites->count();
+            @endphp
 
-          @if($isLiked)
-            <!-- 既にいいね済み：DELETEメソッド -->
-            <form action="{{ route('item.unlike', ['item_id' => $item->id]) }}" method="POST" style="display:inline;">
-              @csrf
-              @method('DELETE')
-               <button type="submit" class="like-btn liked">
-      <img src="{{ asset('storage/images/favorite.png') }}" alt="いいね済み" class="icon-img">
-    </button>
-            </form>
-          @else
-            <!-- いいねボタン (未いいねの場合) -->
-            <form action="{{ route('item.like', ['item_id' => $item->id]) }}" method="POST" style="display:inline;">
-              @csrf
-              <button type="submit" class="like-btn">
-                <img src="{{ asset('storage/images/favorite.png') }}" alt="いいね" class="icon-img">
-              </button>
-            </form>
-          @endif
+            @if($isLiked)
+              <form action="{{ route('item.unlike', ['item_id' => $item->id]) }}" method="POST">
+                @csrf
+                @method('DELETE')
+                <button type="submit" class="like-btn liked">
+                  <img src="{{ asset('storage/images/favorite.png') }}" alt="いいね済み" class="icon-img">
+                </button>
+              </form>
+            @else
+              <form action="{{ route('item.like', ['item_id' => $item->id]) }}" method="POST">
+                @csrf
+                <button type="submit" class="like-btn">
+                  <img src="{{ asset('storage/images/favorite.png') }}" alt="いいね" class="icon-img">
+                </button>
+              </form>
+            @endif
 
-          <!-- いいね数表示 -->
-          <span class="icon-count">{{ $item->favorites->count() }}</span>
+            {{-- いいね数が1以上のときだけ表示 --}}
+            @if($likeCount > 0)
+              <span class="icon-count">{{ $likeCount }}</span>
+            @endif
+          </div>
 
-          <!-- コメントアイコンと数 -->
+          {{-- コメント部分 --}}
           <div class="icon-box">
             <img src="{{ asset('storage/images/comment.png') }}" alt="コメント" class="icon-img">
-            <span class="icon-count">{{ $item->comments->count() }}</span>
+            @php
+              $commentCount = $item->comments->count();
+            @endphp
+            {{-- コメント数が1以上のときだけ表示 --}}
+            @if($commentCount > 0)
+              <span class="icon-count">{{ $commentCount }}</span>
+            @endif
           </div>
         </div>
-        @if ($hasPurchased)
-          <span class="purchase-btn disabled">購入済み</span>
+
+        {{-- 購入ボタン制御 --}}
+        @if ($hasPurchased || $item->user_id == Auth::id())
+          <span class="purchase-btn disabled">購入出来ません</span>
         @else
-        <!-- 購入ボタン（小さめ） -->
-        <a href="{{ route('purchase.show', ['item_id' => $item->id]) }}" class="purchase-btn">購入手続きへ</a>
+          <a href="{{ route('purchase.show', ['item_id' => $item->id]) }}" class="purchase-btn">
+            購入手続きへ
+          </a>
         @endif
 
-        <!-- 商品説明 -->
+        {{-- 商品説明 --}}
         <div class="product-section">
           <h2 class="section-title">商品説明</h2>
           <p class="section-text">{{ $item->description }}</p>
         </div>
 
-        <!-- 商品情報（カテゴリ, 状態） -->
+        {{-- 商品情報（カテゴリ, 状態） --}}
         <div class="product-section">
           <h2 class="section-title">商品の情報</h2>
           <div class="section-text">
             <span class="bold-700">カテゴリ</span>：
             <div class="category-tags">
-             @foreach ($categories as $cat)
-              <span class="category-tag">{{ $cat->category }}</span>
-             @endforeach
+              @foreach ($categories as $cat)
+                <span class="category-tag">{{ $cat->category }}</span>
+              @endforeach
+            </div>
           </div>
-        </div>
           <p class="section-text">
-            <span class="bold-700">商品の状態</span>：
-            {{ $item->status->name ?? '' }}
+            <span class="bold-700">商品の状態</span>：{{ $item->status->name ?? '' }}
           </p>
         </div>
       </div>
 
-      <!-- コメント欄（右側の下部に配置） -->
+      {{-- コメント欄 --}}
       <div class="product-comment">
-        <h2 class="comment-title">コメント ({{ $item->comments->count() }})</h2>
+        <h2 class="comment-title">コメント ({{ $commentCount }})</h2>
         <div class="comment-list">
           @forelse ($item->comments as $comment)
             <div class="comment-item">
-              <!-- ユーザー情報 -->
+              {{-- ユーザー情報 --}}
               <div class="user-info">
-                @if($comment->user->profile_image)
-                  <img src="{{ asset('storage/' . $comment->user->profile_image) }}" alt="User Avatar" class="comment-avatar">
+                @php
+                  $profileImage = optional($comment->user->profile)->profile_image
+                    ? asset('storage/' . $comment->user->profile->profile_image)
+                    : null;
+                @endphp
+
+                @if($profileImage)
+                  <img src="{{ $profileImage }}" alt="User Avatar" class="comment-avatar">
                 @else
                   <div class="comment-avatar no-image"></div>
                 @endif
+
                 <p class="comment-user">{{ $comment->user->name }}</p>
               </div>
-              <!-- コメント本文 -->
+              {{-- コメント本文 --}}
               <div class="comment-text">
                 <p class="comment-body">{{ $comment->comment }}</p>
               </div>
@@ -121,17 +141,23 @@
           @endforelse
         </div>
 
-        <!-- コメント投稿フォーム -->
-        <form action="{{ route('item.comment', ['item_id' => $item->id]) }}" method="POST" class="comment-form">
+        {{-- コメント投稿フォーム --}}
+        <form action="{{ route('item.comment', ['item_id' => $item->id]) }}"
+              method="POST"
+              class="comment-form">
           @csrf
           <p class="comment-title">商品へのコメント</p>
-          <textarea name="comment" rows="3" placeholder="コメントを入力">{{ old('comment') }}</textarea>
+          <textarea name="comment" rows="3"
+                    placeholder="コメントを入力">{{ old('comment') }}</textarea>
           @error('comment')
             <div class="error-message">{{ $message }}</div>
           @enderror
-          <button type="submit" class="comment-submit">コメントを送信する</button>
+          <div class="submit-wrapper">
+            <button type="submit" class="comment-submit">コメントを送信する</button>
+          </div>
         </form>
       </div>
+
     </div>
   </main>
 

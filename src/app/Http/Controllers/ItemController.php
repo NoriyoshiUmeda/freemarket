@@ -20,7 +20,6 @@ class ItemController extends Controller
 {
    public function index(Request $request)
 {
-    // クエリパラメータ 'tab' を取得（指定がなければ 'recommend' をデフォルト値とする）
     $tab = $request->input('tab', 'recommend');
 
     $search = $request->input('search'); // 検索キーワード取得
@@ -45,7 +44,6 @@ class ItemController extends Controller
                 return stripos($item->name, $search) !== false;
             });
         }
-        // 注意: この方法では paginate() は使えないので、ページネーションは別途対応が必要になります
     }
 
     // 手動ページネーション処理
@@ -82,7 +80,7 @@ class ItemController extends Controller
 }
 
 
-    return view('items.index', compact('items', 'tab'));
+    return view('items.index', compact('items', 'tab', 'search'));
 }
 
 /**
@@ -94,9 +92,9 @@ class ItemController extends Controller
     public function show($item_id)
     {
         // 商品を取得
-        $item = Item::with(['status', 'purchase', 'comments', 'favorites'])->findOrFail($item_id);
+        $item = Item::with(['status', 'purchase', 'comments.user', 'favorites'])->findOrFail($item_id);
         // 関連するコメントを取得（最新順など必要に応じて調整）
-        $comments = $item->comments()->latest()->get();
+        $comments = $item->comments()->with('user')->latest()->get();
 
         $favoriteCount = $item->favorites->count();
         $commentCount = $item->comments->count();

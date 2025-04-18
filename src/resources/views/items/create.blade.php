@@ -129,40 +129,46 @@ document.addEventListener('DOMContentLoaded', function () {
     const previewImage = document.getElementById('preview-image');
     const uploadLabel = document.querySelector('.image-upload-label');
 
-    // 初期状態の設定
-    if (previewImage) {
-        previewImage.src = "";
-        previewImage.style.display = "none";
+    // sessionStorageから保存済み画像データを読み込んで表示
+    const savedImageData = sessionStorage.getItem('selectedImage');
+    if (savedImageData && previewImage) {
+        previewImage.src = savedImageData;
+        previewImage.style.display = "block";
     }
 
+    // 画像が選択されたときの処理
     if (imageInput) {
         imageInput.addEventListener('change', function (event) {
             const file = event.target.files[0];
             if (file && file.type.startsWith('image/')) {
                 const reader = new FileReader();
                 reader.onload = function(e) {
+                    const imageDataUrl = e.target.result;
+
+                    // プレビューに表示
                     if (previewImage) {
-                        previewImage.src = e.target.result;
-                        previewImage.style.display = "block"; // 画像を表示
+                        previewImage.src = imageDataUrl;
+                        previewImage.style.display = "block";
                     }
-                    
-                }; // reader.onloadの閉じ括弧
+
+                    // sessionStorage に保存
+                    sessionStorage.setItem('selectedImage', imageDataUrl);
+                };
                 reader.readAsDataURL(file);
             } else {
-                // 未選択または画像以外の場合は元に戻す
+                // プレビューとsessionStorageをリセット
                 if (previewImage) {
                     previewImage.src = "";
                     previewImage.style.display = "none";
                 }
-                if (uploadLabel) {
-                    uploadLabel.style.display = "block";
-                }
+                sessionStorage.removeItem('selectedImage');
             }
         });
     }
 });
 </script>
 @endsection
+
 
 </body>
 </html>

@@ -62,12 +62,11 @@ class UserController extends Controller
     {
         $user = Auth::user(); // ログインユーザー情報を取得
 
-        // クエリパラメータ "tab" を取得（指定がなければ 'buy' とする）
+        // クエリパラメータ "tab" を取得
         $tab = $request->input('tab', 'buy');
 
         if ($tab === 'sell') {
             // 出品した商品一覧
-            // Userモデルに items() リレーションがある想定
             $items = $user->items()->latest()->get();
             $mode  = 'sell';
         } else {

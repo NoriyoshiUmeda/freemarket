@@ -13,11 +13,11 @@
     <main class="container">
         <!-- タブ切り替えナビゲーション -->
         <div class="nav-bar">
-            <a href="{{ route('item.index', ['tab' => 'recommend']) }}"
+            <a href="{{ route('item.index', ['tab' => 'recommend', 'search' => $search]) }}"
                class="nav-item {{ $tab === 'recommend' ? 'active' : '' }}">
                 おすすめ
             </a>
-            <a href="{{ route('item.index', ['tab' => 'mylist']) }}"
+            <a href="{{ route('item.index', ['tab' => 'mylist', 'search' => $search]) }}"
                class="nav-item {{ $tab === 'mylist' ? 'active' : '' }}">
                 マイリスト
             </a>
@@ -40,9 +40,7 @@
                         <p class="sold-label">Sold</p>
                     @endif
                 </div>
-            @empty
-                <p>商品が見つかりませんでした。</p>
-            @endforelse
+            @endforeach
             @endif
         </div>
 

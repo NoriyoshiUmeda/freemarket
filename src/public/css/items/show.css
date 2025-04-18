@@ -1,3 +1,7 @@
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
 /* メインコンテナ */
 .product-detail-container {
   width: 1380px;
@@ -27,10 +31,10 @@
 /* 右カラム：商品情報 + コメント欄 */
 .right-column {
   width: 690px;
-  height: 1074px;
+  height: auto;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   gap: 20px; /* 情報とコメント欄の間隔 */
 }
 
@@ -63,11 +67,32 @@
   color: #000000;
 }
 
-/* いいね数・コメント数 */
-/* アイコンと数値をまとめるコンテナ */
+/* いいね数・コメント数のアイコン */
+/* 外側のアイコンコンテナ */
+.icon-info {
+  display: flex;     /* いいねとコメントブロックを横並びに */
+  gap: 20px;         /* ブロック間の隙間 */
+  align-items: center;
+}
+/* 各アイコン＋数値ブロック */
 .icon-box {
-  display: inline-block;
-  margin-right: 16px; /* アイコン同士の間隔を調整したい場合 */
+  display: flex;
+  flex-direction: column; /* アイコンが上、数値が下 */
+  align-items: center;
+  text-align: center;
+}
+/* アイコン画像 */
+.icon-img {
+  width: 40px;
+  height: 40px;
+  display: block;
+}
+/* 数字の表示 */
+.icon-count {
+  font-size: 18px;
+  font-weight: 700;
+  margin-top: 4px;   /* アイコンと数字の間隔 */
+  display: block;
 }
 
 /* ボタンのリセット */
@@ -77,41 +102,15 @@
   cursor: pointer;
   padding: 0;
 }
-
-.like-btn {
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 0;
-}
-
 /* 通常の状態 */
 .like-btn img.icon-img {
   filter: none;  /* 通常はフィルターなし */
   transition: filter 0.2s ease;
 }
-
-/* いいね済みの場合（.liked クラスが付いたボタンに対して） */
+/* いいね済みの場合 */
 .like-btn.liked img.icon-img {
-  /* 例: hue-rotate や saturate、brightnessを組み合わせて金色に */
   filter: brightness(0) saturate(100%) invert(72%) sepia(75%) saturate(2900%) hue-rotate(2deg) brightness(103%) contrast(101%);
 }
-
-
-/* アイコン画像のサイズを固定 (40×40) */
-.icon-img {
-  width: 40px;
-  height: 40px;
-}
-
-/* 数字の表示スタイル (お好みで) */
-.icon-count {
-  font-size: 18px;
-  font-weight: 700;
-  margin-left: 4px;
-  vertical-align: middle; /* アイコンと揃える場合 */
-}
-
 
 /* 購入ボタン */
 .purchase-btn {
@@ -130,14 +129,12 @@
   width: 570px;
   line-height: 56px;  /* ボタンの高さと同じにする */
 }
-
-/* 購入ボタン（購入済み・グレーアウト状態） */
 .purchase-btn.disabled {
-  background-color: #cccccc; /* グレーアウト用の背景色 */
-  color: #666666;            /* グレーの文字色 */
-  pointer-events: none;      /* クリック無効 */
-  cursor: default;           /* 通常のカーソルに変更 */
-  text-decoration: none;     /* リンク装飾を解除 */
+  background-color: #cccccc;
+  color: #666666;
+  pointer-events: none;
+  cursor: default;
+  text-decoration: none;
 }
 
 /* 商品説明・商品情報 */
@@ -149,105 +146,99 @@
   font-weight: 700;
   margin-bottom: 5px;
 }
-
 .bold-700 {
   font-weight: 700;
   font-size: 24px;
 }
-
 .section-text {
   font-size: 24px;
   font-weight: 400;
+  word-break: break-word;        /* 単語の途中でも折り返す */
+  overflow-wrap: break-word;     /* 長い語句を折り返す（保険） */
+  white-space: normal;           /* 折り返しを有効にする */
 }
 
-/* -------------------------
-   カテゴリ表示用タグのスタイル
-------------------------- */
+/* カテゴリ表示用タグ */
 .category-tags {
   display: inline-block;
-  margin-left: 10px; /* 「カテゴリ」ラベルとの間隔（必要に応じて調整） */
+  margin-left: 10px;
 }
-
 .category-tag {
   display: inline-block;
-  background-color: #D9D9D9;      /* グレー背景 */
-  color: #000000;                 /* 文字色 */
-  padding: 6px 12px;           /* 内側の余白 */
-  margin-right: 8px;           /* タグ同士の間隔 */
-  border-radius: 15px;         /* 丸みの強い角 */
-  font-size: 20px;             /* 文字サイズ：必要に応じて調整 */
-  font-weight: 400;            /* 文字の太さ */
+  background-color: #D9D9D9;
+  color: #000000;
+  padding: 6px 12px;
+  margin-right: 8px;
+  border-radius: 15px;
+  font-size: 20px;
+  font-weight: 400;
 }
-
 
 /* コメント欄 */
 .product-comment {
   background-color: #fff;
   padding: 20px;
+  text-align: left;
+  align-self: flex-start;
+  width: 100%;
 }
+
 .comment-title {
   font-size: 28px;
   font-weight: 700;
   margin-bottom: 15px;
+  text-align: left;
 }
+
 .comment-list {
   margin-bottom: 20px;
   display: block;
-  max-height: 400px;  /* 表示エリアの最大高さ（必要に応じて調整） */
-  overflow-y: auto;   /* 高さを超えた場合は縦スクロール */
-  padding-right: 10px; /* スクロールバーとテキストが重ならないようにする（必要なら） */
+  max-height: 400px;
+  overflow-y: auto;
+  padding-right: 10px;
 }
 .comment-item {
   margin-bottom: 10px;
-  min-width: 0; /* 長いテキストを折り返せるようにする */
+  min-width: 0;
 }
-
-.user-info{
-    display: flex;
-    align-items: center;
-    gap: 10px;
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
-
-/* ユーザーのプロフィール画像 */
 .comment-avatar {
   width: 70px;
   height: 70px;
-  border-radius: 50%;  /* 円形に */
-  object-fit: cover;   /* 枠いっぱいに表示 */
+  border-radius: 50%;
+  object-fit: cover;
   border: 1px solid #ccc;
 }
-
-.no-image{
-    background-color: #d9d9d9;
-    width: 70px;
-    height: 70px;
-    border-radius: 50%;
+.no-image {
+  background-color: #d9d9d9;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
 }
-
-
 .comment-user {
   font-size: 30px;
   font-weight: 700;
   margin-bottom: 5px;
 }
-
-.comment-text{
-    margin-top: 5px;
-    margin-left: 0;
+.comment-text {
+  margin-top: 5px;
+  margin-left: 0;
 }
-
 .comment-body {
   font-size: 20px;
   font-weight: 300;
   color: #000000;
   margin: 0;
   text-align: left;
-  word-wrap: break-word;       /* 長い単語も折り返す（IE対応） */
-  overflow-wrap: break-word;   /* 長い単語も折り返す（モダンブラウザ対応） */
-  white-space: pre-wrap;       /* 改行を保持しながら折り返し */
-  word-break: break-all;       /* 長い単語やURLなどを強制的に折り返す */
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  white-space: pre-wrap;
+  word-break: break-all;
 }
-
 .no-comment {
   font-size: 20px;
   color: #000000;
@@ -256,20 +247,21 @@
 
 /* コメント投稿フォーム */
 .comment-form {
+  width: 570px;
+  margin-left: 0;
   display: flex;
   flex-direction: column;
   gap: 10px;
-  align-items: center;
+  align-items: flex-start;
 }
 
 .error-message {
-  color: red;      /* 赤字 */
-  font-size: 14px; /* お好みのサイズに調整 */
-  margin: 10px 0;  /* テキストエリアとボタンの間に十分なスペースを確保 */
+  color: red;
+  font-size: 14px;
+  margin: 10px 0;
 }
-
 .comment-form textarea {
-  width: 570px;
+  width: 100%;
   height: 246px;
   min-height: 60px;
   padding: 8px;
@@ -278,8 +270,14 @@
   border: 1px solid #ccc;
   border-radius: 4px;
 }
+
+.submit-wrapper {
+  width: 100%;
+  text-align: center;  /* ラッパー内を中央寄せ */
+}
+
 .comment-submit {
-  display: block;
+  display: inline-block;
   margin: 0 auto;
   background-color: #FF5555;
   color: #fff;
@@ -290,29 +288,25 @@
   font-weight: 700;
   cursor: pointer;
   height: 56px;
-  width: 570px;
+  width: 100%;
 }
 
-/* PC向け調整（画面幅が1400px〜1540pxの場合） */
+/* メディアクエリ */
 @media screen and (min-width: 1400px) and (max-width: 1540px) {
   .product-detail-container {
-    width: 1400px; /* 固定幅または必要に応じて */
+    width: 1400px;
     margin: 100px auto 20px;
     gap: 40px;
     flex-direction: row;
   }
 }
-
-/* タブレット向け調整（画面幅が768px〜850pxの場合） */
 @media screen and (min-width: 768px) and (max-width: 850px) {
   .product-detail-container {
     width: 100%;
-    margin: 100px 10px 20px;  /* 横の余白を狭く */
+    margin: 100px 10px 20px;
     gap: 20px;
-    flex-direction: column; /* 左右のカラムを縦に並べる */
+    flex-direction: column;
   }
-
-  /* 左カラム（商品画像）の調整 */
   .left-column {
     width: 100%;
     height: auto;
@@ -324,14 +318,10 @@
     height: auto;
     object-fit: cover;
   }
-
-  /* 右カラム（商品情報・コメント）の調整 */
   .right-column {
     width: 100%;
     height: auto;
   }
-  
-  /* 商品名や価格、フォントサイズの微調整例 */
   .product-name {
     font-size: 24px;
   }

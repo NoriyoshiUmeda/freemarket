@@ -42,13 +42,15 @@
     @endif
   </div>
   <!-- 画像アップロードボタン(ラベル) -->
-  <label class="file-label">
+  <div class="file-input-wrapper">
+  <label class="file-label" for="profile_image">
     <input type="file" name="profile_image" id="profile_image" class="hidden">
     画像を選択する
   </label>
      @error('profile_image')
     <div class="error">{{ $message }}</div>
      @enderror
+</div>
 </div>
 
 
