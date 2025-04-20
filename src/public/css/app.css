@@ -1,97 +1,54 @@
-/* 全体リセット */
+/*─────────────────────────────
+  全体リセット
+─────────────────────────────*/
 body {
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
-    background-color: white;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans‑serif;
+  background-color: #ffffff;
+  box-sizing: border-box;
 }
 
-/* ヘッダー */
+/*─────────────────────────────
+  ヘッダー共通スタイル
+─────────────────────────────*/
 .auth-header {
-    background-color: #000000;  /* 背景色 */
-    border-bottom: 1px solid #ddd;  /* 下線 */
-    padding: 10px 0;  /* 上下の余白 */
-    /* 位置は通常の文書の流れに従うのでposition指定は不要 */
+  background-color: #000000;       /* 背景色 */
+  border-bottom: 1px solid #ddd;   /* 下線 */
+  padding: 10px 1rem;              /* モバイル時の上下/左右余白 */
+  box-sizing: border-box;
 }
 
-/* ヘッダー内のコンテナ */
-.header-container {
-    max-width: 1515px;   /* 横幅を1515pxに固定（または1512pxでも可） */
-    height: 82px;        /* 高さを82pxに固定 */
-    margin: 0 auto;      /* 横中央に配置 */
-    padding: 0 20px;     /* 内側の左右余白 */
-    display: flex;
-    align-items: center; /* 垂直方向中央揃え */
-    justify-content: space-between; /* 左・中央・右に分散 */
+/* ロゴ（SVG or IMG） */
+.auth-header a svg,
+.auth-header a img {
+  display: block;
+  width: 120px;                    /* モバイル時のロゴ幅 */
+  height: auto;
 }
 
-/* 各エリアの配置 */
-.header-left,
-.header-center,
-.header-right {
-    flex: 1;
+/*─────────────────────────────
+  タブレット対応 (768px〜850px)
+─────────────────────────────*/
+@media (min-width: 768px) and (max-width: 850px) {
+  .auth-header {
+    padding: 15px 2rem;            /* タブレット時の余白 */
+  }
+  .auth-header a svg,
+  .auth-header a img {
+    width: 150px;                  /* タブレット時のロゴ幅 */
+  }
 }
 
-.header-left {
-    text-align: left;
-}
-
-.header-center {
-    text-align: center;
-}
-
-.header-right {
-    text-align: right;
-}
-
-/* ロゴのサイズ調整 */
-.header-logo {
-    max-height: 50px;
-    width: 370px;
-    height: 36px;
-}
-
-/* 検索フォーム */
-.search-form {
-    display: inline-block;
-}
-
-.search-box {
-    width: 500px;
-    height: 50px;
-    padding: 15px 31px;
-    font-size: 24px;
-    font-weight: 400;
-}
-
-.search-box::placeholder {
-    color: #000000;
-    font-size: 24px;
-    font-weight: 400;
-}
-
-/* ナビゲーションのリンク・ボタン */
-.nav-links a,
-.nav-links button {
-    margin-left: 20px;
-    text-decoration: none;
-    color: #FFFFFF;
-    font-size: 24px;
-    font-weight: 400;
-    cursor: pointer;
-}
-
-/* 出品ボタン */
-.sell-btn {
-    box-sizing: border-box;
-    width: 100px;
-    height: 49px;
-    font-size: 24px;
-    font-weight: 400;
-    background-color: #FFFFFF !important;
-    color: #000000 !important;
-    padding: 8px 16px;
-    border: 2px solid #fff;
-    border-radius: 4px;
-    text-decoration: none;
+/*─────────────────────────────
+  PC対応 (1400px〜1540px)
+─────────────────────────────*/
+@media (min-width: 1400px) and (max-width: 1540px) {
+  .auth-header {
+    padding: 20px 4rem;            /* PC時の余白 */
+  }
+  .auth-header a svg,
+  .auth-header a img {
+    width: 180px;                  /* PC時のロゴ幅 */
+  }
 }

@@ -1,138 +1,160 @@
+/*─────────────────────────────
+  全要素に box‑sizing を適用
+─────────────────────────────*/
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
 
+/*─────────────────────────────
+  ベース（モバイルファースト）
+─────────────────────────────*/
 /* メインコンテンツ */
 .container {
-    max-width: 1200px;
-    margin: auto;
-    padding: 100px 20px 20px; /* ヘッダーの高さ分余白を確保 */
-    background: #fff;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 100px 20px 20px; /* ヘッダー分の余白 */
+  background: #fff;
 }
 
-/* ナビゲーションバー */
+/* ナビタブ */
 .nav-bar {
-    display: flex;
-    gap: 20px;
-    padding: 10px;
-    font-size: 24px;
-    font-weight: 700;
+  display: flex;
+  gap: 20px;
+  padding: 10px 0;
+  font-size: 24px;
+  font-weight: 700;
 }
 
+/* 全幅ライン */
 .full-width-line {
-    width: 100vw;
-    margin-left: calc(50% - 50vw); 
-    border: none;
-    border-top: 2px solid #ccc;
-    /* 必要に応じて余白を調整 */
-    margin-top: 0;
-    margin-bottom: 10px;
+  border: none;
+  border-top: 2px solid #ccc;
+  margin: 0 0 10px;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100vw;
+  box-sizing: content-box;
 }
 
-
+/* タブリンク */
 .nav-item {
-    text-decoration: none;
-    color: #666;
-    font-weight: bold;
-    padding-bottom: 5px;
+  text-decoration: none;
+  color: #666;
+  font-weight: bold;
+  padding-bottom: 5px;
 }
-
 .nav-item.active {
-    color: #FF0000;
+  color: #FF0000;
 }
 
-/* 商品一覧のグリッド */
+/* 商品グリッド */
 .item-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, 290px);
-    gap: 69px;
-    margin-top: 20px;
-    justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+  gap: 69px;
+  margin-top: 20px;
+  justify-content: center;
 }
 
 /* 商品カード */
 .item-card {
-    width: 290px;   /* カードの幅 */
-    height: 320px;  /* カードの高さ */
-    padding: 0px;
-    text-align: center;
-    border-radius: opx;
-    position: relative;
+  width: 290px;
+  height: 320px;
+  text-align: center;
+  position: relative;
 }
 
 /* 商品画像 */
 .item-image {
-    width: 290px;
-    height: 290px;
-    object-fit: cover;
-    border-radius: 5px;
-    margin-bottom: 10px;
+  width: 100%;
+  height: 290px;
+  object-fit: cover;
+  border-radius: 5px;
+  margin-bottom: 10px;
 }
 
-/* 商品名 */
+/* 商品名・価格 */
 .item-name {
-    margin-top: 10px;
-    font-size: 25px;
-    font-weight: 400;
-    text-align: left;
-
+  margin: 0 0 5px;
+  font-size: 25px;
+  font-weight: 400;
+  text-align: left;
 }
-
-/* 価格 */
 .item-price {
-    font-size: 14px;
-    color: #333;
+  font-size: 14px;
+  color: #333;
 }
 
-/* "Sold" 表示 */
+/* Sold ラベル */
 .sold-label {
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    background: red;
-    color: white;
-    padding: 5px 10px;
-    font-size: 14px;
-    font-weight: bold;
-    border-radius: 5px;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: red;
+  color: #fff;
+  padding: 5px 10px;
+  font-size: 14px;
+  font-weight: bold;
+  border-radius: 5px;
 }
 
-/*==============================
-  レスポンシブ対応
-===============================*/
-
-/* タブレット: 768～850px */
+/*─────────────────────────────
+  タブレット対応 (768px〜850px)
+─────────────────────────────*/
 @media screen and (min-width: 768px) and (max-width: 850px) {
-    /* 検索欄を少し小さく */
-    .search-box {
-        width: 300px;
-    }
-    /* 商品カードを狭い幅に対応 */
-    .item-grid {
-        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    }
-    .item-image {
-        height: 120px;
-    }
-    .item-name {
-        font-size: 14px;
-    }
+  .container {
+    max-width: 680px;
+    padding: 100px 20px 20px;
+  }
+  .item-grid {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 20px;
+  }
+  .item-card {
+    width: auto;
+    height: auto;
+  }
+  .item-image {
+    width: 100%;
+    height: 120px;
+  }
+  .item-name {
+    font-size: 14px;
+  }
+  .item-price {
+    font-size: 14px;
+  }
 }
 
-/* PC: 1400～1540px */
+/*─────────────────────────────
+  PC対応 (1400px〜1540px)：4列レイアウト
+─────────────────────────────*/
 @media screen and (min-width: 1400px) and (max-width: 1540px) {
-    /* 検索欄を少し大きく */
-    .search-box {
-        width: 600px;
-    }
-    /* 商品カードを広い幅に対応 */
-    .item-grid {
-        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    }
-    .item-image {
-        height: 180px;
-    }
-    .item-name {
-        font-size: 18px;
-    }
-    .item-price {
-        font-size: 16px;
-    }
+  .container {
+    max-width: 1512px;     /* 4×290 + 3×gap(20)＝1280+60=1340に余裕を持たせ */
+    padding: 100px 40px 20px;
+  }
+  .item-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4列固定 */
+    gap: 20px;
+    justify-content: space-between;
+  }
+  .item-card {
+    max-width: 290px;      /* 各カード幅を290pxに制限 */
+    margin: 0 auto;
+  }
+  .item-image {
+    width: 100%;
+    height: 180px;
+  }
+  .item-name {
+    font-size: 18px;
+  }
+  .item-price {
+    font-size: 16px;
+  }
 }

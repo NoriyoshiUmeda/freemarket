@@ -1,13 +1,29 @@
+/*───────────────────────────
+  リセット＆共通
+───────────────────────────*/
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background: #f5f7fa;
+}
 
-/* 住所変更ページのメインコンテナ */
+/*───────────────────────────
+  住所変更ページのメインコンテナ
+───────────────────────────*/
 .address-edit-container {
   max-width: 700px;
-  margin: 100px auto; 
+  margin: 100px auto;
   padding: 0 20px;
   text-align: center; /* タイトルやフォームを中央揃え */
 }
 
-/* タイトル */
+/* ページタイトル */
 .address-edit-container .page-title {
   font-size: 36px;
   font-weight: 700;
@@ -19,11 +35,11 @@
 .address-edit-form {
   display: flex;
   flex-direction: column;
-  gap: 90px; 
+  gap: 90px;
   align-items: center; /* 入力欄を中央揃え */
 }
 
-/* フォームグループ */
+/* 各フォームグループ */
 .form-group {
   width: 100%;
   display: flex;
@@ -31,21 +47,18 @@
   align-items: flex-start; /* ラベルと入力を左寄せ */
   max-width: 680px;
 }
-
-/* ラベル */
 .form-group label {
   font-size: 24px;
   font-weight: 700;
   margin-bottom: 8px;
 }
-
-/* テキスト入力欄 */
 .form-group input[type="text"] {
   width: 680px;
   height: 45px;
   padding: 10px;
   font-size: 16px;
   border: 1px solid #5f5f5f;
+  border-radius: 4px;
   box-sizing: border-box;
 }
 
@@ -60,10 +73,10 @@
 .update-btn {
   width: 680px;
   height: 45px;
-  padding: 14px;
-  font-size: 18px;
+  padding: 0 14px;
   display: flex;
   justify-content: center;
+  font-size: 18px;
   font-weight: bold;
   color: #fff;
   background-color: #FF5555;
@@ -72,5 +85,80 @@
   cursor: pointer;
   text-align: center;
   align-items: center;
-  margin: 0 auto; /* 追加: ボタンを中央に配置 */
+  margin: 0 auto;
+}
+.update-btn:hover {
+  background-color: #e03e3e;
+}
+
+/*───────────────────────────
+  タブレット対応 (768px〜850px)
+───────────────────────────*/
+@media screen and (min-width: 768px) and (max-width: 850px) {
+  .address-edit-container {
+    max-width: 600px;
+    padding: 0 30px;
+    margin: 80px auto;
+  }
+  .address-edit-container .page-title {
+    font-size: 28px;
+    margin-bottom: 32px;
+  }
+  .form-group {
+    max-width: 100%;
+  }
+  .form-group label {
+    font-size: 18px;
+    margin-bottom: 6px;
+  }
+  .form-group input[type="text"] {
+    width: 100%;
+    max-width: 560px;
+    height: 40px;
+    font-size: 14px;
+  }
+  .update-btn {
+    width: 100%;
+    max-width: 560px;
+    height: 40px;
+    font-size: 16px;
+    padding: 12px;
+    margin-top: 20px;
+  }
+}
+
+/*───────────────────────────
+  PC対応 (1400px〜1540px)
+───────────────────────────*/
+@media screen and (min-width: 1400px) and (max-width: 1540px) {
+  .address-edit-container {
+    max-width: 900px;
+    padding: 0 40px;
+    margin: 120px auto;
+  }
+  .address-edit-container .page-title {
+    font-size:  Forty-two px; /* 例: 少し大きめに */
+    margin-bottom: 50px;
+  }
+  .form-group {
+    max-width: 100%;
+  }
+  .form-group label {
+    font-size: 26px;
+    margin-bottom: 10px;
+  }
+  .form-group input[type="text"] {
+    width: 100%;
+    max-width: 800px;
+    height: 50px;
+    font-size: 18px;
+  }
+  .update-btn {
+    width: 100%;
+    max-width: 800px;
+    height: 50px;
+    font-size: 20px;
+    padding: 16px;
+    margin-top: 30px;
+  }
 }

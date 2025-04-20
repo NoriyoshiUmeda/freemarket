@@ -1,104 +1,207 @@
-/* 全体リセット */
+/*─────────────────────────────
+  全体リセット
+─────────────────────────────*/
 body {
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
-    background-color: white;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background-color: #fff;
+  box-sizing: border-box;
 }
 
-/* ヘッダー */
+/*─────────────────────────────
+  ヘッダー／共通
+─────────────────────────────*/
 .auth-header {
-    background-color: #000000; /* 背景色はお手本に合わせて調整 */
-    border-bottom: 1px solid #ddd;
-    padding: 10px 0;
+  background-color: #000;
+  border-bottom: 1px solid #ddd;
 }
 
 .header-container {
-    max-width: 1512px;  /* 全体の横幅を調整 */
-    max-height: 80px;
-    margin: 0 auto;
-    padding: 0 20px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+  max-width: 1512px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
-/* 各エリアを左右中央に配置 */
-.header-left,
-.header-center,
-.header-right {
-    flex: 1;
+.header-left, .header-center, .header-right {
+  flex: 1;
 }
+.header-left   { text-align: left; }
+.header-center { text-align: center; }
+.header-right  { text-align: right; }
 
-.header-left {
-    text-align: left;
-}
-
-.header-center {
-    text-align: center;
-}
-
-.header-right {
-    text-align: right;
-}
-
-/* ロゴサイズの調整 */
 .header-logo {
-    max-height: 50px;  /* お手本に合わせてサイズ調整 */
-    width: 370px;
-    height: 36px;
+  display: inline-block;
+  width: 370px;
+  max-height: 50px;
+  height: 36px;
 }
 
-/* 検索フォームのスタイル */
 .search-form {
-    display: inline-block;
+  display: inline-block;
 }
 
 .search-box {
-    width: 500px; 
-    height: 50px;        
-    padding: 15px 31px;
-    font-size: 24px;
-    font-weight: 400;
+  width: 100%;            /* まずは常に幅100% */
+  max-width: 500px;       /* でも上限は500px */
+  height: 50px;           /* 高さはデスクトップ基準 */
+  padding: 0 15px;
+  font-size: 16px;
+  line-height: 50px;
+  box-sizing: border-box;
 }
 
 .search-box::placeholder {
-    color: #000000; /* プレースホルダの文字色 */
-    font-size: 24px;
-    font-weight: 400;
+  color: #000;
+  font-size: 24px;
+  font-weight: 400;
 }
 
-/* リセット */
+.nav-links {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 20px;
+  white-space: nowrap;
+}
 .nav-links button {
-    appearance: none;
-    -webkit-appearance: none;
-    border: none;
-    background: none;
-    padding: 0;
+  appearance: none;
+  -webkit-appearance: none;
+  border: none;
+  background: none;
+  padding: 0;
 }
-
-
-/* ナビゲーションのリンク・ボタンのスタイル */
 .nav-links a,
 .nav-links button {
-    margin-left: 20px;
-    text-decoration: none;
-    color: #FFFFFF;
-    font-size: 24px;
-    font-weight: 400;
-    cursor: pointer
+  color: #fff;
+  text-decoration: none;
+  font-size: 24px;
+  font-weight: 400;
+  cursor: pointer;
 }
 
 .sell-btn {
-    box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 16px;
+  font-size: 24px;
+  font-weight: 400;
+  background-color: #fff !important;
+  color: #000 !important;
+  border: 2px solid #000 !important;
+  border-radius: 4px;
+  text-decoration: none;
+  width: auto;
+  height: auto;
+  box-sizing: border-box;
+}
+
+/*─────────────────────────────
+  モバイル対応 (～767px)
+─────────────────────────────*/
+@media (max-width: 767px) {
+  .header-container {
+    flex-direction: column;
+    align-items: center;
+    padding: 10px 1rem;
+    gap: 0.5rem;
+  }
+  .header-left,
+  .header-center,
+  .header-right {
+    width: 100%;
+    text-align: center;
+    margin: 0.5rem 0;
+  }
+  .search-form {
+    width: 100%;
+  }
+  .search-box {
+    width: 100%;
+    height: 40px;
+    padding: 10px 16px;
+    font-size: 18px;
+  }
+  .nav-links {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .nav-links a,
+  .nav-links button {
+    font-size: 16px;
+    margin: 0;
+  }
+  .sell-btn {
+    font-size: 16px;
+    padding: 6px 12px;
+  }
+}
+
+/*─────────────────────────────
+  タブレット対応 (768px〜850px)
+─────────────────────────────*/
+@media (min-width: 768px) and (max-width: 1399px) {
+  .header-container {
+    flex-direction: column;
+    align-items: center;
+    padding: 10px 2rem;
+    gap: 0.5rem;
+  }
+  .header-left,
+  .header-center,
+  .header-right {
+    width: 100%;
+    text-align: center;
+    margin: 0.5rem 0;
+  }
+  .search-box {
+    width: 400px;
+    height: 45px;
+    padding: 12px 25px;
+    font-size: 20px;
+  }
+  .nav-links a,
+  .nav-links button {
+    font-size: 20px;
+  }
+  .sell-btn {
+    width: 90px;
+    height: 45px;
+    font-size: 20px;
+    padding: 6px 14px;
+  }
+}
+
+/*─────────────────────────────
+  PC対応 (1400px〜1540px)
+─────────────────────────────*/
+@media (min-width: 1400px) and (max-width: 1540px) {
+  .header-container {
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0 40px;
+  }
+  .header-left   { flex: 1; }
+  .header-center { flex: 2; }
+  .header-right  { flex: 1; }
+  .search-box {
+    width: 500px;
+    height: 50px;
+    padding: 15px 31px;
+    font-size: 24px;
+  }
+  .nav-links a,
+  .nav-links button {
+    font-size: 24px;
+  }
+  .sell-btn {
     width: 100px;
     height: 49px;
     font-size: 24px;
-    font-weight: 400;
-    background-color: #FFFFFF !important;  
-    color: #000000 !important;             /* 黒文字 */
-    padding: 8px 16px;       /* お好みのパディングに調整 */
-    border: 2px solid #fff;  /* 白い枠線 */
-    border-radius: 4px;      /* 角丸 */
-    text-decoration: none;
-    }
+    padding: 8px 16px;
+  }
+}

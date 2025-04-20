@@ -1,7 +1,8 @@
 /* ログインコンテナ */
 .login-container {
     background: white;
-    width: 680px; 
+    width: 90%; 
+    max-width: 680px;
     height: 656px;
     padding: 40px;
     text-align: center;
@@ -93,31 +94,37 @@ form {
 /* === レスポンシブ対応 === */
 /* ======================== */
 
-/* タブレット対応 (768px - 850px) */
-@media (max-width: 850px) {
+/* ── デフォルト（モバイル）───────────────────────── */
+.login-container {
+    background: white;
+    width: 90%;
+    max-width: 680px;
+    padding: 40px;
+    margin: 50px auto;
+    /* その他スタイルはそのまま */
+}
+
+/* ── タブレット対応 (768px〜850px) ────────────────────── */
+@media (min-width: 768px) and (max-width: 850px) {
     .login-container {
         width: 90%;
         max-width: 500px;
         padding: 30px;
     }
-
     .login-button {
         font-size: 16px;
         height: 60px;
-        padding: 10px;
     }
 }
 
-/* モバイル対応 (～768px) */
-@media (max-width: 768px) {
+/* ── PC対応 (1400px〜1540px) ─────────────────────────── */
+@media (min-width: 1400px) and (max-width: 1540px) {
     .login-container {
-        width: 95%;
-        padding: 20px;
+        width: 100%;
+        max-width: 800px;     /* お好みで調整OK */
+        padding: 40px;        /* 元の padding を維持 */
+        margin: 50px auto;
     }
-
-    .login-button {
-        font-size: 16px;
-        height: 55px;
-        padding: 10px;
-    }
+    /* 横並びは入れず、フォームグループは縦並びのまま */
+    /* タイトルやボタンもサイズはそのまま保ちつつ中央寄せをキープ */
 }
