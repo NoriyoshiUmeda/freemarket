@@ -13,162 +13,135 @@
 
 @section('content')
 <div class="product-create-container">
-    <h1>商品の出品</h1>
+  <h1>商品の出品</h1>
 
-    <!-- フォーム -->
-    <form action="{{ route('sell.store') }}" method="POST" enctype="multipart/form-data" class="sell-form">
-        @csrf
+  <form action="{{ route('sell.store') }}" method="POST" enctype="multipart/form-data" class="sell-form">
+    @csrf
 
-        <!-- 商品画像セクション（フォーム内に移動） -->
-        <div class="section-title section-title-image">商品画像</div>
-        
-        <div class="image-upload-area">
-            <div class="image-preview-container">
-                <img id="preview-image" class="image-preview" src="" alt="画像プレビュー" style="display: none;">
-                <label class="image-upload-label">
-                    画像を選択する
-                    <input type="file" id="image" name="image" accept="image/*" hidden>
-                </label>
-            </div>
-        </div>
-            @error('image')
-                <p class="error-message">{{ $message }}</p>
-            @enderror
+    <!-- ■ 商品画像セクション -->
+    <div class="section-title section-title-image">商品画像</div>
+    <div class="image-upload-area">
+      <div class="image-preview-container" id="preview-container">
+        <!-- プレビュー画像 -->
+        <img id="preview-image" class="image-preview" src="" alt="画像プレビュー" style="display: none;">
 
-        <!-- その他のフォーム項目 -->
-        <div class="section-title section-title-detail">商品の詳細</div>
-        <hr class="section-line" />
+        <!-- ファイル入力はラベルの外側に -->
+        <input type="file" id="image" name="image" accept="image/*" hidden>
 
-        <!-- カテゴリー -->
-        <div class="form-group">
-            <label>カテゴリー</label>
-            <div class="category-list">
-                @foreach($categories as $category)
-                    <label class="category-label">
-                        <input type="checkbox" name="category_id[]" value="{{ $category->id }}"
-                            {{ is_array(old('category_id')) && in_array($category->id, old('category_id')) ? 'checked' : '' }}>
-                        <span class="category-text">{{ $category->category }}</span>
-                    </label>
-                @endforeach
-            </div>
-            @error('category_id')
-                <p class="error-message">{{ $message }}</p>
-            @enderror
-        </div>
+        <!-- プレビュー前の大ボタン -->
+        <label for="image" class="image-upload-label">画像を選択する</label>
 
-        <!-- 商品の状態 -->
-        <div class="form-group">
-            <label for="status_id">商品の状態</label>
-            <select name="status_id" id="status_id">
-                <option value="">選択してください</option>
-                @foreach($statuses as $status)
-                    <option value="{{ $status->id }}" {{ old('status_id') == $status->id ? 'selected' : '' }}>
-                        {{ $status->name }}
-                    </option>
-                @endforeach
-            </select>
-            @error('status_id')
-                <p class="error-message">{{ $message }}</p>
-            @enderror
-        </div>
+        <!-- プレビュー後の小ボタン -->
+        <label for="image" class="image-change-label">変更する</label>
+      </div>
+    </div>
+    @error('image')
+      <p class="error-message">{{ $message }}</p>
+    @enderror
 
-        <!-- 商品名と説明 -->
-        <div class="section-title">商品名と説明</div>
-        <hr class="section-line" />
+    <!-- ■ 以降、既存フォーム項目そのまま -->
+    <div class="section-title section-title-detail">商品の詳細</div>
+    <hr class="section-line" />
 
-        <!-- 商品名 -->
-        <div class="form-group">
-            <label for="name">商品名</label>
-            <input type="text" name="name" id="name" value="{{ old('name') }}">
-            @error('name')
-                <p class="error-message">{{ $message }}</p>
-            @enderror
-        </div>
+    <div class="form-group">
+      <label>カテゴリー</label>
+      <div class="category-list">
+        @foreach($categories as $category)
+          <label class="category-label">
+            <input type="checkbox" name="category_id[]" value="{{ $category->id }}"
+              {{ is_array(old('category_id')) && in_array($category->id, old('category_id')) ? 'checked' : '' }}>
+            <span class="category-text">{{ $category->category }}</span>
+          </label>
+        @endforeach
+      </div>
+      @error('category_id')
+        <p class="error-message">{{ $message }}</p>
+      @enderror
+    </div>
 
-        <!-- ブランド名 -->
-        <div class="form-group">
-            <label for="brand">ブランド名</label>
-            <input type="text" name="brand" id="brand" value="{{ old('brand') }}">
-            @error('brand')
-                <p class="error-message">{{ $message }}</p>
-            @enderror
-        </div>
+    <div class="form-group">
+      <label for="status_id">商品の状態</label>
+      <select name="status_id" id="status_id">
+        <option value="">選択してください</option>
+        @foreach($statuses as $status)
+          <option value="{{ $status->id }}" {{ old('status_id') == $status->id ? 'selected' : '' }}>
+            {{ $status->name }}
+          </option>
+        @endforeach
+      </select>
+      @error('status_id')
+        <p class="error-message">{{ $message }}</p>
+      @enderror
+    </div>
 
-        <!-- 商品説明 -->
-        <div class="form-group">
-            <label for="description">商品説明</label>
-            <textarea name="description" id="description" rows="5">{{ old('description') }}</textarea>
-            @error('description')
-                <p class="error-message">{{ $message }}</p>
-            @enderror
-        </div>
+    <div class="section-title">商品名と説明</div>
+    <hr class="section-line" />
 
-        <!-- 販売価格(¥記号つき) -->
-        <div class="form-group">
-            <label for="price">販売価格</label>
-            <div class="price-input-wrapper">
-                <span class="yen-symbol">¥</span>
-                <input type="number" name="price" id="price" value="{{ old('price') }}" step="1">
-            </div>
-            @error('price')
-                <p class="error-message">{{ $message }}</p>
-            @enderror
-        </div>
+    <div class="form-group">
+      <label for="name">商品名</label>
+      <input type="text" name="name" id="name" value="{{ old('name') }}">
+      @error('name') <p class="error-message">{{ $message }}</p>@enderror
+    </div>
 
-        <!-- 出品ボタン -->
-        <button type="submit" class="submit-button">出品する</button>
-    </form>
+    <div class="form-group">
+      <label for="brand">ブランド名</label>
+      <input type="text" name="brand" id="brand" value="{{ old('brand') }}">
+      @error('brand') <p class="error-message">{{ $message }}</p>@enderror
+    </div>
+
+    <div class="form-group">
+      <label for="description">商品説明</label>
+      <textarea name="description" id="description" rows="5">{{ old('description') }}</textarea>
+      @error('description') <p class="error-message">{{ $message }}</p>@enderror
+    </div>
+
+    <div class="form-group">
+      <label for="price">販売価格</label>
+      <div class="price-input-wrapper">
+        <span class="yen-symbol">¥</span>
+        <input type="number" name="price" id="price" value="{{ old('price') }}" step="1">
+      </div>
+      @error('price') <p class="error-message">{{ $message }}</p>@enderror
+    </div>
+
+    <button type="submit" class="submit-button">出品する</button>
+  </form>
 </div>
-
 @endsection
 
 @section('scripts')
 <script>
 document.addEventListener('DOMContentLoaded', function () {
-    const imageInput = document.getElementById('image');
-    const previewImage = document.getElementById('preview-image');
-    const uploadLabel = document.querySelector('.image-upload-label');
+  const imageInput       = document.getElementById('image');
+  const previewImage     = document.getElementById('preview-image');
+  const previewContainer = document.getElementById('preview-container');
 
-    // sessionStorageから保存済み画像データを読み込んで表示
-    const savedImageData = sessionStorage.getItem('selectedImage');
-    if (savedImageData && previewImage) {
-        previewImage.src = savedImageData;
-        previewImage.style.display = "block";
+  // sessionStorageからの復元
+  const savedImageData = sessionStorage.getItem('selectedImage');
+  if (savedImageData) {
+    previewImage.src = savedImageData;
+    previewImage.style.display = 'block';
+    previewContainer.classList.add('has-image');
+  }
+
+  imageInput.addEventListener('change', function (e) {
+    const file = e.target.files[0];
+    if (file && file.type.startsWith('image/')) {
+      const reader = new FileReader();
+      reader.onload = function (ev) {
+        previewImage.src = ev.target.result;
+        previewImage.style.display = 'block';
+        previewContainer.classList.add('has-image');
+        sessionStorage.setItem('selectedImage', ev.target.result);
+      };
+      reader.readAsDataURL(file);
+    } else {
+      previewImage.src = '';
+      previewImage.style.display = 'none';
+      previewContainer.classList.remove('has-image');
+      sessionStorage.removeItem('selectedImage');
     }
-
-    // 画像が選択されたときの処理
-    if (imageInput) {
-        imageInput.addEventListener('change', function (event) {
-            const file = event.target.files[0];
-            if (file && file.type.startsWith('image/')) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    const imageDataUrl = e.target.result;
-
-                    // プレビューに表示
-                    if (previewImage) {
-                        previewImage.src = imageDataUrl;
-                        previewImage.style.display = "block";
-                    }
-
-                    // sessionStorage に保存
-                    sessionStorage.setItem('selectedImage', imageDataUrl);
-                };
-                reader.readAsDataURL(file);
-            } else {
-                // プレビューとsessionStorageをリセット
-                if (previewImage) {
-                    previewImage.src = "";
-                    previewImage.style.display = "none";
-                }
-                sessionStorage.removeItem('selectedImage');
-            }
-        });
-    }
+  });
 });
 </script>
 @endsection
-
-
-</body>
-</html>
