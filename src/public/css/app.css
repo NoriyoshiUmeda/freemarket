@@ -22,8 +22,8 @@ body {
 /* ロゴ（SVG or IMG） */
 .auth-header a svg,
 .auth-header a img {
-  display: block;
-  width: 120px;                    /* モバイル時のロゴ幅 */
+  display: inline-block;
+  width: 370px;                    /* モバイル時のロゴ幅 */
   height: auto;
 }
 

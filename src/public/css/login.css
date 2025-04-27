@@ -1,49 +1,69 @@
-/* ログインコンテナ */
+/*─────────────────────────────
+  ログインページ 共通スタイル
+─────────────────────────────*/
+
+/* メインのラッパー */
 .login-container {
-    background: white;
-    width: 90%; 
-    max-width: 680px;
-    height: 656px;
+    background: #FFFFFF;
+    width: 90%;
+    max-width: 680px;        /* 登録画面と同じ幅 */
     padding: 40px;
-    text-align: center;
+    margin: 50px auto;
+    box-sizing: border-box;
+    border-radius: 10px;
     display: flex;
     flex-direction: column;
-    justify-content: center; 
+    justify-content: center;
     align-items: center;
-    border-radius: 10px;
-    margin: 50px auto;
+    text-align: center;
+}
+
+/* タイトル */
+.login-container h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
 }
 
 /* フォーム全体 */
-form {
+.login-container form {
+    width: 100%;
+    max-width: 600px;        /* フォーム要素の最大幅 */
     display: flex;
     flex-direction: column;
-    align-items: center;
-    width: 100%;
+    align-items: stretch;
+    gap: 1.5rem;
 }
 
-/* 各フォーム要素 */
-.form-group {
+/* フォームグループ */
+.login-container .form-group {
     text-align: left;
     width: 100%;
-    margin-bottom: 20px;
 }
 
 /* ラベル */
-.form-group label {
+.login-container .form-group label {
     display: block;
     font-weight: bold;
-    margin-bottom: 8px;
-    font-size: 16px;
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
 }
 
 /* 入力フィールド */
-.form-group input {
+.login-container .form-group input {
     width: 100%;
     padding: 12px;
+    font-size: 1rem;
     border: 1px solid #ccc;
     border-radius: 5px;
-    font-size: 16px;
+    box-sizing: border-box;
+}
+
+/* エラーメッセージ */
+.login-container .error-message {
+    color: red;
+    font-size: 0.875rem;
+    margin-top: 0.5rem;
 }
 
 /* ログインボタン */
@@ -51,80 +71,54 @@ form {
     background: #ff5b5b;
     color: white;
     border: none;
-    padding: 15px 0;
+
+    /* ボタン幅 */
     width: 100%;
-    max-width: 680px;
+    max-width: 600px;        /* テキストボックスと同じ幅 */
+
     height: 65px;
     border-radius: 5px;
-    cursor: pointer;
-    font-size: 18px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 30px;
-    text-align: center;
-}
 
+    font-size: 1.125rem;
+    font-weight: bold;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+    margin: 1.5rem auto 0;
+    transition: background 0.2s;
+}
 .login-button:hover {
-    background: #ff3b3b;
+    background: #e04444;
 }
 
 /* 会員登録リンク */
 .register-link {
-    display: block;
-    margin-top: 15px;
+    margin-top: 1rem;
+    font-size: 0.875rem;
     color: #007bff;
-    font-size: 14px;
     text-decoration: none;
-    text-align: center;
 }
-
 .register-link:hover {
     text-decoration: underline;
 }
 
-/* エラーメッセージ */
-.error-message {
-    color: red;
-    font-size: 14px;
-    margin-top: 5px;
-}
-
-/* ======================== */
-/* === レスポンシブ対応 === */
-/* ======================== */
-
-/* ── デフォルト（モバイル）───────────────────────── */
-.login-container {
-    background: white;
-    width: 90%;
-    max-width: 680px;
-    padding: 40px;
-    margin: 50px auto;
-    /* その他スタイルはそのまま */
-}
-
-/* ── タブレット対応 (768px〜850px) ────────────────────── */
-@media (min-width: 768px) and (max-width: 850px) {
+/*─────────────────────────────
+  レスポンシブ対応
+─────────────────────────────*/
+@media (max-width: 480px) {
     .login-container {
-        width: 90%;
-        max-width: 500px;
-        padding: 30px;
+        padding: 20px;
+        margin: 30px auto;
+    }
+    .login-container h1 {
+        font-size: 1.5rem;
+        margin-bottom: 1.5rem;
     }
     .login-button {
-        font-size: 16px;
-        height: 60px;
+        height: 50px;
+        font-size: 1rem;
     }
-}
-
-/* ── PC対応 (1400px〜1540px) ─────────────────────────── */
-@media (min-width: 1400px) and (max-width: 1540px) {
-    .login-container {
-        width: 100%;
-        max-width: 800px;     /* お好みで調整OK */
-        padding: 40px;        /* 元の padding を維持 */
-        margin: 50px auto;
-    }
-    /* 横並びは入れず、フォームグループは縦並びのまま */
-    /* タイトルやボタンもサイズはそのまま保ちつつ中央寄せをキープ */
 }

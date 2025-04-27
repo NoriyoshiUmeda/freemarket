@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.newapp')
 
 @section('title', '会員登録')
 

@@ -58,10 +58,8 @@
               </form>
             @endif
 
-            {{-- いいね数が1以上のときだけ表示 --}}
-            @if($likeCount > 0)
-              <span class="icon-count">{{ $likeCount }}</span>
-            @endif
+            {{-- 常に 0 以上を表示 --}}
+            <span class="icon-count">{{ $likeCount }}</span>
           </div>
 
           {{-- コメント部分 --}}
@@ -70,10 +68,9 @@
             @php
               $commentCount = $item->comments->count();
             @endphp
-            {{-- コメント数が1以上のときだけ表示 --}}
-            @if($commentCount > 0)
-              <span class="icon-count">{{ $commentCount }}</span>
-            @endif
+
+            {{-- 常に 0 以上を表示 --}}
+            <span class="icon-count">{{ $commentCount }}</span>
           </div>
         </div>
 

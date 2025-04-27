@@ -179,7 +179,7 @@
 /* コメント欄 */
 .product-comment {
   background-color: #fff;
-  padding: 20px;
+  padding: 20px 0;
   text-align: left;
   align-self: flex-start;
   width: 100%;

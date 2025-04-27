@@ -91,13 +91,14 @@
 
 /* 商品グリッド */
 .item-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(290px,1fr));
-  gap: 20px;
-  margin-top: 20px;
+  display: flex;           /* 横並びに切り替え */
+  flex-wrap: wrap;         /* 折り返し許可 */
+  justify-content: flex-start; /* 左寄せ */
+  gap: 20px;               /* アイテム間の隙間 */
 }
+
 .item-card {
-  text-align: center;
+  text-align: left;
   position: relative;
 }
 .item-image {

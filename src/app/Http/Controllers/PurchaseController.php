@@ -57,7 +57,7 @@ class PurchaseController extends Controller
      // 購入完了後、使用済みのセッション配送先情報を削除
         session()->forget(['postal_code', 'address', 'building']);
 
-    return redirect()->route('item.show', ['item_id' => $item->id]);
+    return redirect()->route('mypage', ['tab' => 'buy']);
     }
     /**
      * 送付先住所変更画面の表示

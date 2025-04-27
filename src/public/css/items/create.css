@@ -40,8 +40,9 @@ body {
 
 /*── 画像アップロードまわり ───────────────────────*/
 .image-upload-area {
-  display: flex; justify-content: center;
-  margin-bottom: 30px;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 80px; /* 増やしてボタンを余裕で枠外に落とせるように */
 }
 .image-preview-container {
   position: relative;
@@ -50,15 +51,14 @@ body {
   background: #fff;
   border: 1px dashed #ccc;
   border-radius: 4px;
-  overflow: hidden;
+  overflow: visible; /* はみ出しを許可 */
+  margin: 0 auto;
 }
 .image-preview {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: contain;  /* 枠に合わせつつ縦横比を維持 */
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  object-fit: contain;
   display: block;
 }
 
@@ -72,33 +72,29 @@ body {
   padding: 10px 20px;
   border-radius: 8px;
   font-weight: bold;
+  background: #fff;
   cursor: pointer;
+  z-index: 1;
 }
 
-/* プレビュー後の小ボタン */
+/* プレビュー後の小ボタン（完全に消す） */
 .image-change-label {
-  position: absolute;
-  top: 10px; right: 10px;
-  background: rgba(0,0,0,0.6);
-  color: #fff;
-  padding: 5px 10px;
-  border-radius: 4px;
-  font-size: 14px;
-  display: none;
-  cursor: pointer;
+  display: none !important;
 }
 
 /* ■ has-image 時の切り替え ■ */
+/* ボタンを枠外に移動 */
 .image-preview-container.has-image .image-upload-label {
-  display: none;
-}
-.image-preview-container.has-image .image-change-label {
-  display: block;
+  top: auto;
+  bottom: -60px;   /* さらに下に落として枠と重ならないように */
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 /*── 以下、既存のフォーム全体 ───────────────────────*/
 .sell-form {
-  text-align: left; margin: 0 auto;
+  text-align: left;
+  margin: 0 auto;
   max-width: 600px;
 }
 .form-group { margin-bottom: 20px; }
@@ -145,7 +141,7 @@ body {
   transform: translateY(-50%); font-size: 16px;
   color: #333; pointer-events: none;
 }
-.price-input-wrapper input { padding-left: 18px !important; }
+.price-input-wrapper input { padding-left: 28px !important; }
 
 /* スピンボタン削除 */
 input[type="number"]::-webkit-outer-spin-button,

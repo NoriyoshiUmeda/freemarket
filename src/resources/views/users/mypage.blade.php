@@ -56,7 +56,6 @@
             <img src="{{ asset('storage/' . $item->image) }}" alt="{{ $item->name }}" class="item-image">
           </a>
           <p class="item-name">{{ $item->name }}</p>
-          <p class="item-price">¥{{ number_format($item->price) }}</p>
           @if ($item->purchase)
             <p class="sold-label">Sold</p>
           @endif

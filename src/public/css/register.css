@@ -1,137 +1,105 @@
-/*── モバイル（デフォルト）──────────────────────────────── */
+/* public/css/register.css */
+
+/* ───── 会員登録ラッパー ───── */
 .register-container {
-    background: #FFFFFF;
-    width: 90%;
-    max-width: 680px;
-    padding: 40px 20px;
-    box-sizing: border-box;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    margin: 80px auto;
+  background: #FFFFFF;
+  width: 90%;
+  max-width: 680px;
+  padding: 40px;
+  margin: 50px auto;
+  box-sizing: border-box;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
+/* タイトル */
 .register-title {
-    font-size: 36px;
-    font-weight: 700;
-    display: block;
+  font-size: 36px;
+  font-weight: 700;
+  margin-bottom: 2rem;
 }
 
-/* 各フォーム要素を縦並びに */
-.form-group {
-    text-align: left;
-    width: 100%;
-    margin-bottom: 20px;
+/* フォーム */
+.register-container form {
+  width: 100%;
 }
 
-/* ラベル */
-.form-group label {
-    display: block;
-    font-weight: 700;
-    margin-bottom: 8px;
-    font-size: 24px;
+/* フォームグループ */
+.register-container .form-group {
+  width: 100%;
+  margin-bottom: 20px;
+  text-align: left;
+}
+.register-container .form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+  font-size: 16px;
+}
+.register-container .form-group input {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
 }
 
-/* 入力フィールド */
-.form-group input {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 16px;
-    box-sizing: border-box;
+/* エラーメッセージ */
+.register-container .error-message {
+  color: red;
+  font-size: 14px;
+  margin-top: 5px;
 }
 
 /* 登録ボタン */
 .register-button {
-    background: #ff5555;
-    color: #fff;
-    border: none;
-    width: 100%;
-    padding: 12px 0;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 18px;
-    margin-top: 40px;
-    transition: background .2s;
+  width: 100%;
+  max-width: 680px;
+  height: 65px;
+  background: #ff5b5b;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 18px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 30px;
+  cursor: pointer;
+  transition: background 0.2s;
 }
-
+.register-button:hover {
+  background: #e04444;
+}
 
 /* ログインリンク */
 .login-link {
-    display: block;
-    margin-top: 15px;
-    color: #007bff;
-    font-size: 14px;
-    text-decoration: none;
+  display: block;
+  margin-top: 15px;
+  color: #007bff;
+  text-decoration: none;
+  font-size: 14px;
 }
-
 .login-link:hover {
-    text-decoration: underline;
+  text-decoration: underline;
 }
 
-/* エラーメッセージ */
-.error-message {
-    color: red;
-    font-size: 14px;
-    margin-top: 5px;
-}
-
-/*── タブレット対応 (768px〜850px) ────────────────────────────── */
-@media (min-width: 768px) and (max-width: 850px) {
-    .register-container {
-        max-width: 500px;
-        padding: 30px;
-    }
-    .register-container h1 {
-        font-size: 2rem;
-    }
-    .form-group input {
-        padding: 14px;
-        font-size: 1rem;
-    }
-    .register-button {
-        font-size: 16px;
-        height: 60px;
-    }
-}
-
-/*── PC対応 (1400px〜1540px) ────────────────────────────── */
-@media (min-width: 1400px) and (max-width: 1540px) {
-    .register-container {
-        max-width: 800px;
-        padding: 60px 40px;
-        margin: 100px auto;
-    }
-    .register-container h1 {
-        font-size: 2.5rem;
-        margin-bottom: 1.5rem;
-    }
-    /* ラベルと入力を横並びに */
-    .form-group {
-        display: flex;
-        align-items: center;
-        margin-bottom: 1.5rem;
-    }
-    .form-group label {
-        width: 150px;
-        margin: 0;
-        font-size: 1.125rem;
-    }
-    .form-group input {
-        flex: 1;
-        padding: 1rem;
-        font-size: 1.125rem;
-    }
-    .register-button {
-        width: auto;
-        padding: 1rem 3rem;
-        font-size: 1.125rem;
-        margin-top: 2rem;
-    }
-    .login-link {
-        font-size: 1rem;
-    }
+/* レスポンシブ */
+@media (max-width: 480px) {
+  .register-container {
+    padding: 20px;
+    margin: 30px auto;
+  }
+  .register-title {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+  .register-button {
+    height: 50px;
+    font-size: 16px;
+  }
 }
