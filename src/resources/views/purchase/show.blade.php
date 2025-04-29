@@ -4,58 +4,68 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>商品購入画面</title>
-  <!-- 購入画面用のCSS -->
   <link rel="stylesheet" href="{{ asset('css/purchase.css') }}">
 </head>
 <body>
-    @include('layouts.newapp')
+  @include('layouts.newapp')
 
   <main class="purchase-container">
-
     <div class="purchase-main">
-      <!-- 左カラム：商品情報・支払方法選択・配送先 -->
+      <!-- 左カラム -->
       <div class="left-info">
-        <!-- 商品情報セクション：商品画像と商品名・価格を横並びに配置 -->
         <div class="section product-info-section">
           <div class="product-image-wrapper">
-            <img src="{{ asset('storage/' . $item->image) }}" alt="{{ $item->name }}" class="product-image">
+            <img src="{{ asset('storage/' . $item->image) }}"
+                 alt="{{ $item->name }}"
+                 class="product-image">
           </div>
           <div class="product-text">
             <div class="product-name">{{ $item->name }}</div>
-            <!-- 商品名の下に価格を表示 -->
             <div class="product-price-left">¥{{ number_format($item->price) }}</div>
           </div>
         </div>
-        <!-- 支払方法選択セクション -->
+
         <div class="section">
           <span class="label">支払方法</span>
           <div class="content">
-            <form id="payment-form" action="{{ route('purchase.show', ['item_id' => $item->id]) }}" method="GET">
-              <select name="payment-method" id="payment-method">
-                <option value="credit_card" @if(request('payment_method', 'credit_card') === 'credit_card') selected @endif>カード支払い</option>
-                <option value="convenience_store" @if(request('payment_method') === 'convenience_store') selected @endif>コンビ二支払い</option>
+            <form id="payment-form"
+                  action="{{ route('purchase.show', ['item_id' => $item->id]) }}"
+                  method="GET">
+              <select name="payment_method"
+                      id="payment-method">
+                <option value="credit_card"
+                  @if(request('payment_method', 'credit_card') === 'credit_card') selected @endif>
+                  カード支払い
+                </option>
+                <option value="convenience_store"
+                  @if(request('payment_method') === 'convenience_store') selected @endif>
+                  コンビニ支払い
+                </option>
               </select>
             </form>
           </div>
         </div>
-        <!-- 配送先セクション -->
+
         <div class="section shipping-section">
           <span class="label">配送先</span>
-          <a href="{{ route('purchase.address.edit', ['item_id' => $item->id]) }}" class="address-change-btn">変更する</a>
+          <a href="{{ route('purchase.address.edit', ['item_id' => $item->id]) }}"
+             class="address-change-btn">
+            変更する
+          </a>
           <div class="content">
-           @php
-              // セッションの値があればそちらを優先、なければユーザーのプロフィール情報から取得
-              $postal_code = session('postal_code', isset($user) && $user->profile ? $user->profile->postal_code : '');
-              $address = session('address', isset($user) && $user->profile ? $user->profile->address : '');
-              $building = session('building', isset($user) && $user->profile ? $user->profile->building : '');
+            @php
+              $postal_code = session('postal_code',
+                  optional($user->profile)->postal_code ?? '');
+              $address     = session('address',
+                  optional($user->profile)->address ?? '');
+              $building    = session('building',
+                  optional($user->profile)->building ?? '');
             @endphp
 
             @if($postal_code && $address)
               〒{{ $postal_code }}<br>
               {{ $address }}<br>
-              @if($building)
-                {{ $building }}
-              @endif
+              @if($building) {{ $building }} @endif
             @else
               住所情報が登録されていません。
             @endif
@@ -67,59 +77,66 @@
       <div class="right-info">
         <div class="price-method-box">
           @php
-            $paymentMethod = request('payment-method', 'credit_card');
+            $paymentMethod = request('payment_method', 'credit_card');
             $methodLabels = [
-              'credit_card' => 'カード支払い',
-              'convenience_store' => 'コンビニ支払い',
-              ];
+              'credit_card'      => 'カード支払い',
+              'convenience_store'=> 'コンビニ支払い',
+            ];
           @endphp
-          <!-- 横並びの行：商品代金 -->
+
           <div class="info-row">
             <span class="label-row">商品代金</span>
             <span class="price-row">¥{{ number_format($item->price) }}</span>
           </div>
-
           <hr class="separator">
-          <!-- 横並びの行：支払方法 -->
           <div class="info-row">
             <span class="label-row">支払方法</span>
-            <span class="method-row">{{ $methodLabels[$paymentMethod] ?? '不明' }}</span>
+            <span class="method-row">
+              {{ $methodLabels[$paymentMethod] ?? '不明' }}
+            </span>
           </div>
         </div>
-        <form action="{{ route('purchase.execute', ['item_id' => $item->id]) }}" method="POST">
+
+        <form action="{{ route('purchase.execute', ['item_id' => $item->id]) }}"
+              method="POST">
           @csrf
-          <input type="hidden" name="payment-method" value="{{ $paymentMethod }}">
-          <button type="submit" class="purchase-btn">購入する</button>
+          <input type="hidden"
+                 name="payment_method"
+                 value="{{ $paymentMethod }}">
+          <button type="submit"
+                  class="purchase-btn">
+            購入する
+          </button>
         </form>
       </div>
     </div>
   </main>
 
-  <!-- JavaScript: リアルタイム更新 -->
   <script>
     document.addEventListener('DOMContentLoaded', function () {
-  var paymentSelect = document.getElementById('payment-method');
-  var methodRow = document.querySelector('.right-info .method-row');
-  var hiddenPaymentInput = document.querySelector('input[name="payment-method"]');
+      const paymentSelect      = document.getElementById('payment-method');
+      const methodRow          = document.querySelector('.right-info .method-row');
+      const hiddenPaymentInput = document.querySelector('input[name="payment_method"]');
 
-  const labels = {
-    credit_card: 'カード支払い',
-    convenience_store: 'コンビニ払い'
-  };
+      const labels = {
+        credit_card     : 'カード支払い',
+        convenience_store: 'コンビニ払い'
+      };
 
-  if (paymentSelect) {
-    paymentSelect.addEventListener('change', function () {
-      var selectedValue = this.value;
-      if (methodRow) {
-        methodRow.textContent = labels[selectedValue] || '不明';
-      }
-      if (hiddenPaymentInput) {
-        hiddenPaymentInput.value = selectedValue;
+      if (paymentSelect) {
+        paymentSelect.addEventListener('change', function () {
+          const val = this.value;
+          if (methodRow) {
+            methodRow.textContent = labels[val] || '不明';
+          }
+          if (hiddenPaymentInput) {
+            hiddenPaymentInput.value = val;
+          }
+          // 必要ならフォーム自動送信：
+          // document.getElementById('payment-form').submit();
+        });
       }
     });
-  }
-});
-
   </script>
 </body>
 </html>
