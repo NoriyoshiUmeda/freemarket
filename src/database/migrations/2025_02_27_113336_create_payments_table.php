@@ -18,7 +18,6 @@ class CreatePaymentsTable extends Migration
             $table->foreignId('purchase_id')->constrained('purchases')->onDelete('cascade');
             $table->integer('amount'); // 支払金額 (例: 価格)
             $table->enum('payment_method', ['credit_card', 'convenience_store']); // 支払方法enum
-            $table->string('stripe_payment_id', 255)->unique(); // Stripe決済ID, UNIQUE制約
             $table->timestamps(); // created_at, updated_at 自動追加
         });
     }
