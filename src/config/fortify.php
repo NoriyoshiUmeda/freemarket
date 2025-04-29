@@ -1,6 +1,5 @@
 <?php
 
-use App\Providers\RouteServiceProvider;
 use Laravel\Fortify\Features;
 
 return [
@@ -144,11 +143,10 @@ return [
     |
     */
 
-    'features' =>   [
-    Features::registration(), // 会員登録機能を有効化
-    Features::emailVerification(), // メール認証
-    Features::updateProfileInformation(), // プロフィール情報更新
-                    ],
-
+    'features' => [
+        Features::registration(), // 会員登録機能を有効化
+        Features::emailVerification(), // メール認証
+        Features::updateProfileInformation(), // プロフィール情報更新
+    ],
 
 ];

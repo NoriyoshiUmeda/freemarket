@@ -2,9 +2,9 @@
 
 namespace Tests\Feature;
 
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
-use App\Models\User;
 
 class LoginTest extends TestCase
 {
@@ -16,7 +16,7 @@ class LoginTest extends TestCase
     public function test_email_is_required_on_login()
     {
         $response = $this->post('/login', [
-            'email'    => '',
+            'email' => '',
             'password' => 'any-password',
         ]);
 
@@ -33,7 +33,7 @@ class LoginTest extends TestCase
     public function test_password_is_required_on_login()
     {
         $response = $this->post('/login', [
-            'email'    => 'user@example.com',
+            'email' => 'user@example.com',
             'password' => '',
         ]);
 
@@ -51,13 +51,13 @@ class LoginTest extends TestCase
     {
         // 事前にユーザーを作成しておく
         User::factory()->create([
-            'email'    => 'user@example.com',
+            'email' => 'user@example.com',
             'password' => bcrypt('correct-password'),
         ]);
 
         // from() を付けると、リダイレクト元が /login になる
         $response = $this->from('/login')->post('/login', [
-            'email'    => 'user@example.com',
+            'email' => 'user@example.com',
             'password' => 'wrong-password',
         ]);
 
@@ -75,12 +75,12 @@ class LoginTest extends TestCase
     public function test_successful_login_redirects_to_profile()
     {
         $user = User::factory()->create([
-            'email'    => 'user@example.com',
+            'email' => 'user@example.com',
             'password' => bcrypt('password123'),
         ]);
 
         $response = $this->post('/login', [
-            'email'    => 'user@example.com',
+            'email' => 'user@example.com',
             'password' => 'password123',
         ]);
 

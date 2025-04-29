@@ -1,0 +1,10 @@
+{
+  "devDependencies": {
+    "blade-formatter": "^1.42.2",
+    "htmlhint": "^1.1.4",
+    "husky": "^9.1.7",
+    "lint-staged": "^15.5.1",
+    "stylelint": "^16.19.1",
+    "stylelint-config-standard": "^38.0.0"
+  }
+}

@@ -345,13 +345,13 @@
   }
 
   /* 以下は既存の調整 */
-  .product-name { 
-    font-size: 20px; 
+  .product-name {
+    font-size: 20px;
   }
 
 
-  .product-price { 
-    font-size: 20px; 
+  .product-price {
+    font-size: 20px;
   }
 
 
@@ -360,29 +360,29 @@
      padding: 10px;
      }
 
-  .section-title  { 
-    font-size: 18px; 
+  .section-title  {
+    font-size: 18px;
   }
 
-  .section-text   { 
-    font-size: 14px; 
+  .section-text   {
+    font-size: 14px;
   }
 
-  .comment-avatar { 
-    width: 30px; 
-    height: 30px; 
+  .comment-avatar {
+    width: 30px;
+    height: 30px;
   }
 
-  .comment-user   { 
-    font-size: 14px; 
+  .comment-user   {
+    font-size: 14px;
   }
 
-  .comment-body   { 
-    font-size: 12px; 
+  .comment-body   {
+    font-size: 12px;
   }
 
-  .comment-submit { 
-    font-size: 14px; 
+  .comment-submit {
+    font-size: 14px;
   }
 
 }
@@ -399,75 +399,75 @@
     gap: 40px;
   }
 
-  .left-column { 
-    flex: 0 0 500px; 
+  .left-column {
+    flex: 0 0 500px;
   }
 
-  .product-image { 
-    width: 500px; 
-    height: 500px; 
+  .product-image {
+    width: 500px;
+    height: 500px;
   }
 
-  .right-column { 
-    flex: 1; 
+  .right-column {
+    flex: 1;
   }
 
-  .product-name { 
-    font-size: 32px; 
+  .product-name {
+    font-size: 32px;
   }
 
   .product-brand,
-  .product-price{ 
-    font-size: 24px; 
+  .product-price{
+    font-size: 24px;
   }
 
-  .tax-included { 
-    font-size: 18px; 
+  .tax-included {
+    font-size: 18px;
   }
 
-  .icon-img     { 
-    width: 32px; 
-    height: 32px; 
+  .icon-img     {
+    width: 32px;
+    height: 32px;
   }
 
-  .icon-count   { 
-    font-size: 16px; 
+  .icon-count   {
+    font-size: 16px;
   }
 
-  .purchase-btn { 
-    width: 300px; 
-    font-size: 20px; 
-    padding: 12px 0; 
+  .purchase-btn {
+    width: 300px;
+    font-size: 20px;
+    padding: 12px 0;
   }
 
-  .section-title{ 
-    font-size: 24px; 
+  .section-title{
+    font-size: 24px;
   }
 
-  .section-text { 
-    font-size: 16px; 
+  .section-text {
+    font-size: 16px;
   }
 
-  .category-tag { 
-    font-size: 16px; 
+  .category-tag {
+    font-size: 16px;
   }
 
-  .comment-avatar{ 
-    width: 40px; 
-    height: 40px; 
+  .comment-avatar{
+    width: 40px;
+    height: 40px;
   }
 
-  .comment-user { 
-    font-size: 16px; 
+  .comment-user {
+    font-size: 16px;
   }
 
-  .comment-body { 
-    font-size: 14px; 
+  .comment-body {
+    font-size: 14px;
   }
 
-  .comment-submit { 
-    font-size: 16px; 
-    padding: 12px 0; 
+  .comment-submit {
+    font-size: 16px;
+    padding: 12px 0;
   }
-  
+
 }

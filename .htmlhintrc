@@ -1,0 +1,4 @@
+{
+  "tagname-lowercase": true,
+  "id-class-pattern": "^[a-z][a-z0-9\-]*$"
+}

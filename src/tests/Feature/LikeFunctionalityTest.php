@@ -2,11 +2,10 @@
 
 namespace Tests\Feature;
 
-use Tests\TestCase;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use App\Models\Item;
 use App\Models\User;
-use App\Models\Favorite;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 
 class LikeFunctionalityTest extends TestCase
 {
@@ -20,7 +19,7 @@ class LikeFunctionalityTest extends TestCase
 
         // いいねをPOST
         $this->actingAs($user)
-             ->post(route('item.like', ['item_id' => $item->id]));
+            ->post(route('item.like', ['item_id' => $item->id]));
 
         // DB に保存されていること
         $this->assertDatabaseHas('favorites', [
@@ -33,9 +32,9 @@ class LikeFunctionalityTest extends TestCase
 
         $response->assertStatus(200)
                  // <span class="icon-count">1</span> が生のまま含まれること
-                 ->assertSee('<span class="icon-count">1</span>', false)
+            ->assertSee('<span class="icon-count">1</span>', false)
                  // ボタンに liked クラスが付いていることもチェック
-                 ->assertSee('class="like-btn liked"', false);
+            ->assertSee('class="like-btn liked"', false);
     }
 
     /** @test */
@@ -45,13 +44,13 @@ class LikeFunctionalityTest extends TestCase
         $item = Item::factory()->create();
 
         $this->actingAs($user)
-             ->post(route('item.like', ['item_id' => $item->id]));
+            ->post(route('item.like', ['item_id' => $item->id]));
 
         $response = $this->get(route('item.show', ['item_id' => $item->id]));
 
         $response->assertStatus(200)
                  // 生のクラス属性として liked が付与されているか
-                 ->assertSee('class="like-btn liked"', false);
+            ->assertSee('class="like-btn liked"', false);
     }
 
     /** @test */
@@ -62,10 +61,10 @@ class LikeFunctionalityTest extends TestCase
 
         // 1回目いいね
         $this->actingAs($user)
-             ->post(route('item.like', ['item_id' => $item->id]));
+            ->post(route('item.like', ['item_id' => $item->id]));
         // 2回目で解除 (DELETE リクエスト)
         $this->actingAs($user)
-             ->delete(route('item.unlike', ['item_id' => $item->id]));
+            ->delete(route('item.unlike', ['item_id' => $item->id]));
 
         // DB レコードが消えていること
         $this->assertDatabaseMissing('favorites', [
@@ -77,6 +76,6 @@ class LikeFunctionalityTest extends TestCase
 
         $response->assertStatus(200)
                  // いいね数のスパンがなくなっていることをチェック
-                 ->assertDontSee('<span class="icon-count">1</span>', false);
+            ->assertDontSee('<span class="icon-count">1</span>', false);
     }
 }

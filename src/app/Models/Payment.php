@@ -14,7 +14,7 @@ class Payment extends Model
         'purchase_id', // 購入ID
         'stripe_payment_id', // Stripe決済ID
         'payment_method', // 支払い方法（クレジットカード or コンビニ）
-        'amount'
+        'amount',
     ];
 
     /**

@@ -123,19 +123,19 @@ body {
 
 /* カテゴリ選択 */
 .category-list {
-  display: flex; 
+  display: flex;
   flex-wrap: wrap; gap: 10px;
 }
 
-.category-label { 
-  position: relative; 
-  cursor: pointer; 
+.category-label {
+  position: relative;
+  cursor: pointer;
 }
 
 .category-label input[type="checkbox"] {
-  position: absolute; 
-  opacity: 0; 
-  width: 0; 
+  position: absolute;
+  opacity: 0;
+  width: 0;
   height: 0;
 }
 
@@ -156,9 +156,9 @@ body {
 }
 
 /* 価格入力 */
-.price-input-wrapper { 
-  position: relative; 
-  width: 100%; 
+.price-input-wrapper {
+  position: relative;
+  width: 100%;
 }
 
 .yen-symbol {
@@ -167,19 +167,19 @@ body {
   color: #333; pointer-events: none;
 }
 
-.price-input-wrapper input { 
-  padding-left: 28px !important; 
+.price-input-wrapper input {
+  padding-left: 28px !important;
 }
 
 /* スピンボタン削除 */
 input[type="number"]::-webkit-outer-spin-button,
 input[type="number"]::-webkit-inner-spin-button {
-  appearance: none; 
+  appearance: none;
   margin: 0;
 }
 
-input[type="number"] { 
-  appearance: textfield; 
+input[type="number"] {
+  appearance: textfield;
   appearance: none;
  }
 

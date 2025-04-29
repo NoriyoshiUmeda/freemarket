@@ -1,0 +1,3096 @@
+[1mdiff --git a/.gitignore b/.gitignore[m
+[1mindex 0476196..04c7356 100755[m
+[1m--- a/.gitignore[m
+[1m+++ b/.gitignore[m
+[36m@@ -1,2 +1,3 @@[m
+ docker/mysql/data/*[m
+[31m-!.gitkeep[m
+\ No newline at end of file[m
+[32m+[m[32m!.gitkeep[m
+[32m+[m[32mnode_modules[m
+[1mdiff --git a/docker-compose.yml b/docker-compose.yml[m
+[1mindex 961832b..f4595b9 100755[m
+[1m--- a/docker-compose.yml[m
+[1m+++ b/docker-compose.yml[m
+[36m@@ -1,4 +1,4 @@[m
+[31m-version: '3.8'[m
+[32m+[m
+ [m
+ services:[m
+   nginx:[m
+[1mdiff --git a/docker/php/Dockerfile b/docker/php/Dockerfile[m
+[1mindex 5484470..e4420f8 100755[m
+[1m--- a/docker/php/Dockerfile[m
+[1m+++ b/docker/php/Dockerfile[m
+[36m@@ -1,4 +1,4 @@[m
+[31m-FROM php:7.4.9-fpm[m
+[32m+[m[32mFROM php:8.2-fpm[m
+ [m
+ COPY php.ini /usr/local/etc/php/[m
+ [m
+[36m@@ -10,4 +10,4 @@[m [mRUN curl -sS https://getcomposer.org/installer | php \[m
+   && mv composer.phar /usr/local/bin/composer \[m
+   && composer self-update[m
+ [m
+[31m-WORKDIR /var/www[m
+\ No newline at end of file[m
+[32m+[m[32mWORKDIR /var/www[m
+[1mdiff --git a/src/.phpunit.result.cache b/src/.phpunit.result.cache[m
+[1mindex 56b3849..e0f19ca 100644[m
+[1m--- a/src/.phpunit.result.cache[m
+[1m+++ b/src/.phpunit.result.cache[m
+[36m@@ -1 +1 @@[m
+[31m-{"version":1,"defects":{"Tests\\Feature\\RegistrationTest::test_name_is_required":3,"Tests\\Feature\\RegistrationTest::test_email_is_required":4,"Tests\\Feature\\RegistrationTest::test_password_is_required":3,"Tests\\Feature\\RegistrationTest::test_password_must_be_at_least_8_characters":3,"Tests\\Feature\\RegistrationTest::test_password_and_confirmation_must_match":3,"Tests\\Feature\\RegistrationTest::test_successful_registration_redirects_to_login_and_creates_user":3,"Tests\\Feature\\LogoutTest::guest_cannot_access_logout_route":3,"Tests\\Feature\\ProductListTest::all_products_are_displayed":3,"Tests\\Feature\\ProductListTest::purchased_items_are_marked_sold":3,"Tests\\Feature\\ProductDetailTest::product_detail_displays_all_required_information":4,"Tests\\Feature\\ProductDetailTest::product_detail_shows_multiple_selected_categories":4,"Tests\\Feature\\LikeFunctionalityTest::logged_in_user_can_like_an_item_and_count_increases":3,"Tests\\Feature\\LikeFunctionalityTest::like_icon_changes_state_after_liking":4,"Tests\\Feature\\LikeFunctionalityTest::clicking_like_again_unlikes_and_count_decreases":4,"Tests\\Feature\\PurchaseFunctionalityTest::logged_in_user_can_complete_a_purchase_and_item_is_marked_sold":3,"Tests\\Feature\\UserProfileTest::user_can_update_profile_information":3,"Tests\\Feature\\SellFunctionalityTest::authenticated_user_can_register_a_new_item":3,"Tests\\Feature\\SellFunctionalityTest::validation_errors_are_shown_when_required_fields_missing":3},"times":{"Tests\\Feature\\RegistrationTest::test_name_is_required":0.088,"Tests\\Feature\\RegistrationTest::test_email_is_required":0.079,"Tests\\Feature\\RegistrationTest::test_password_is_required":0.054,"Tests\\Feature\\RegistrationTest::test_password_must_be_at_least_8_characters":0.062,"Tests\\Feature\\RegistrationTest::test_password_and_confirmation_must_match":0.081,"Tests\\Feature\\RegistrationTest::test_successful_registration_redirects_to_login_and_creates_user":0.064,"Tests\\Feature\\LoginTest::test_email_is_required_on_login":0.032,"Tests\\Feature\\LoginTest::test_password_is_required_on_login":0.027,"Tests\\Feature\\LoginTest::test_cannot_login_with_invalid_credentials":0.037,"Tests\\Feature\\LoginTest::test_successful_login_redirects_to_profile":0.043,"Tests\\Feature\\LogoutTest::authenticated_user_can_logout":0.034,"Tests\\Feature\\LogoutTest::guest_cannot_access_logout_route":0.021,"Tests\\Feature\\ProductListTest::all_products_are_displayed":0.07,"Tests\\Feature\\ProductListTest::purchased_items_are_marked_sold":0.061,"Tests\\Feature\\MyListTest::test_guest_sees_no_items_in_mylist":0.057,"Tests\\Feature\\MyListTest::test_authenticated_user_sees_only_their_favorites":0.089,"Tests\\Feature\\ProductSearchTest::test_search_returns_empty_collection_when_no_match":0.048,"Tests\\Feature\\ProductSearchTest::test_exact_match_returns_only_matching_items":0.056,"Tests\\Feature\\ProductSearchTest::test_partial_and_case_insensitive_match":0.069,"Tests\\Feature\\ProductDetailTest::product_detail_displays_all_required_information":0.087,"Tests\\Feature\\ProductDetailTest::product_detail_shows_multiple_selected_categories":0.05,"Tests\\Feature\\ProductDetailTest::product_detail_shows_associated_category":0.049,"Tests\\Feature\\LikeFunctionalityTest::logged_in_user_can_like_an_item_and_count_increases":0.124,"Tests\\Feature\\LikeFunctionalityTest::like_icon_changes_state_after_liking":0.076,"Tests\\Feature\\LikeFunctionalityTest::clicking_like_again_unlikes_and_count_decreases":0.076,"Tests\\Feature\\CommentFunctionalityTest::logged_in_user_can_post_a_comment":4.8,"Tests\\Feature\\CommentFunctionalityTest::guest_cannot_post_a_comment":0.042,"Tests\\Feature\\CommentFunctionalityTest::empty_comment_triggers_validation_error":0.043,"Tests\\Feature\\CommentFunctionalityTest::overly_long_comment_triggers_validation_error":0.04,"Tests\\Feature\\PurchaseFunctionalityTest::logged_in_user_can_complete_a_purchase_and_item_is_marked_sold":0.18,"Tests\\Feature\\PurchaseFunctionalityTest::purchased_item_appears_in_user_profile_buy_list":0.137,"Tests\\Feature\\PaymentAndShippingTest::selecting_payment_method_reflects_immediately_on_purchase_page":0.104,"Tests\\Feature\\PaymentAndShippingTest::updating_shipping_address_reflects_on_purchase_page":0.092,"Tests\\Feature\\UserProfileTest::mypage_shows_profile_and_item_lists":0.116,"Tests\\Feature\\UserProfileTest::user_can_update_profile_information":0.074,"Tests\\Feature\\SellFunctionalityTest::authenticated_user_can_register_a_new_item":0.184,"Tests\\Feature\\SellFunctionalityTest::validation_errors_are_shown_when_required_fields_missing":0.06,"Tests\\Unit\\ExampleTest::test_example":0.002,"Tests\\Feature\\ExampleTest::test_example":0.036}}[m
+\ No newline at end of file[m
+[32m+[m[32m{"version":1,"defects":{"Tests\\Feature\\RegistrationTest::test_name_is_required":3,"Tests\\Feature\\RegistrationTest::test_email_is_required":4,"Tests\\Feature\\RegistrationTest::test_password_is_required":3,"Tests\\Feature\\RegistrationTest::test_password_must_be_at_least_8_characters":3,"Tests\\Feature\\RegistrationTest::test_password_and_confirmation_must_match":3,"Tests\\Feature\\RegistrationTest::test_successful_registration_redirects_to_login_and_creates_user":3,"Tests\\Feature\\LogoutTest::guest_cannot_access_logout_route":3,"Tests\\Feature\\ProductListTest::all_products_are_displayed":3,"Tests\\Feature\\ProductListTest::purchased_items_are_marked_sold":3,"Tests\\Feature\\ProductDetailTest::product_detail_displays_all_required_information":4,"Tests\\Feature\\ProductDetailTest::product_detail_shows_multiple_selected_categories":4,"Tests\\Feature\\LikeFunctionalityTest::logged_in_user_can_like_an_item_and_count_increases":3,"Tests\\Feature\\LikeFunctionalityTest::like_icon_changes_state_after_liking":4,"Tests\\Feature\\LikeFunctionalityTest::clicking_like_again_unlikes_and_count_decreases":4,"Tests\\Feature\\PurchaseFunctionalityTest::logged_in_user_can_complete_a_purchase_and_item_is_marked_sold":3,"Tests\\Feature\\UserProfileTest::user_can_update_profile_information":3,"Tests\\Feature\\SellFunctionalityTest::authenticated_user_can_register_a_new_item":3,"Tests\\Feature\\SellFunctionalityTest::validation_errors_are_shown_when_required_fields_missing":3},"times":{"Tests\\Feature\\RegistrationTest::test_name_is_required":0.022,"Tests\\Feature\\RegistrationTest::test_email_is_required":0.021,"Tests\\Feature\\RegistrationTest::test_password_is_required":0.023,"Tests\\Feature\\RegistrationTest::test_password_must_be_at_least_8_characters":0.025,"Tests\\Feature\\RegistrationTest::test_password_and_confirmation_must_match":0.024,"Tests\\Feature\\RegistrationTest::test_successful_registration_redirects_to_login_and_creates_user":0.037,"Tests\\Feature\\LoginTest::test_email_is_required_on_login":0.024,"Tests\\Feature\\LoginTest::test_password_is_required_on_login":0.033,"Tests\\Feature\\LoginTest::test_cannot_login_with_invalid_credentials":0.038,"Tests\\Feature\\LoginTest::test_successful_login_redirects_to_profile":0.032,"Tests\\Feature\\LogoutTest::authenticated_user_can_logout":0.029,"Tests\\Feature\\LogoutTest::guest_cannot_access_logout_route":0.027,"Tests\\Feature\\ProductListTest::all_products_are_displayed":0.058,"Tests\\Feature\\ProductListTest::purchased_items_are_marked_sold":0.046,"Tests\\Feature\\MyListTest::test_guest_sees_no_items_in_mylist":0.04,"Tests\\Feature\\MyListTest::test_authenticated_user_sees_only_their_favorites":0.085,"Tests\\Feature\\ProductSearchTest::test_search_returns_empty_collection_when_no_match":0.045,"Tests\\Feature\\ProductSearchTest::test_exact_match_returns_only_matching_items":0.046,"Tests\\Feature\\ProductSearchTest::test_partial_and_case_insensitive_match":0.071,"Tests\\Feature\\ProductDetailTest::product_detail_displays_all_required_information":0.061,"Tests\\Feature\\ProductDetailTest::product_detail_shows_multiple_selected_categories":0.05,"Tests\\Feature\\ProductDetailTest::product_detail_shows_associated_category":0.049,"Tests\\Feature\\LikeFunctionalityTest::logged_in_user_can_like_an_item_and_count_increases":0.066,"Tests\\Feature\\LikeFunctionalityTest::like_icon_changes_state_after_liking":0.065,"Tests\\Feature\\LikeFunctionalityTest::clicking_like_again_unlikes_and_count_decreases":0.066,"Tests\\Feature\\CommentFunctionalityTest::logged_in_user_can_post_a_comment":3.883,"Tests\\Feature\\CommentFunctionalityTest::guest_cannot_post_a_comment":0.049,"Tests\\Feature\\CommentFunctionalityTest::empty_comment_triggers_validation_error":0.056,"Tests\\Feature\\CommentFunctionalityTest::overly_long_comment_triggers_validation_error":0.046,"Tests\\Feature\\PurchaseFunctionalityTest::logged_in_user_can_complete_a_purchase_and_item_is_marked_sold":0.087,"Tests\\Feature\\PurchaseFunctionalityTest::purchased_item_appears_in_user_profile_buy_list":0.045,"Tests\\Feature\\PaymentAndShippingTest::selecting_payment_method_reflects_immediately_on_purchase_page":0.042,"Tests\\Feature\\PaymentAndShippingTest::updating_shipping_address_reflects_on_purchase_page":0.057,"Tests\\Feature\\UserProfileTest::mypage_shows_profile_and_item_lists":0.098,"Tests\\Feature\\UserProfileTest::user_can_update_profile_information":0.048,"Tests\\Feature\\SellFunctionalityTest::authenticated_user_can_register_a_new_item":0.097,"Tests\\Feature\\SellFunctionalityTest::validation_errors_are_shown_when_required_fields_missing":0.041,"Tests\\Unit\\ExampleTest::test_example":0.004,"Tests\\Feature\\ExampleTest::test_example":0.03}}[m
+\ No newline at end of file[m
+[1mdiff --git a/src/app/Actions/Fortify/UpdateUserProfileInformation.php b/src/app/Actions/Fortify/UpdateUserProfileInformation.php[m
+[1mindex 0930ddf..c8bfd93 100755[m
+[1m--- a/src/app/Actions/Fortify/UpdateUserProfileInformation.php[m
+[1m+++ b/src/app/Actions/Fortify/UpdateUserProfileInformation.php[m
+[36m@@ -29,8 +29,10 @@[m [mpublic function update(User $user, array $input): void[m
+             ],[m
+         ])->validateWithBag('updateProfileInformation');[m
+ [m
+[31m-        if ($input['email'] !== $user->email &&[m
+[31m-            $user instanceof MustVerifyEmail) {[m
+[32m+[m[32m        if ([m
+[32m+[m[32m            $input['email'] !== $user->email &&[m
+[32m+[m[32m            $user instanceof MustVerifyEmail[m
+[32m+[m[32m        ) {[m
+             $this->updateVerifiedUser($user, $input);[m
+         } else {[m
+             $user->forceFill([[m
+[1mdiff --git a/src/app/Console/Kernel.php b/src/app/Console/Kernel.php[m
+[1mindex d8bc1d2..854bcc8 100755[m
+[1m--- a/src/app/Console/Kernel.php[m
+[1m+++ b/src/app/Console/Kernel.php[m
+[36m@@ -10,7 +10,6 @@[m [mclass Kernel extends ConsoleKernel[m
+     /**[m
+      * Define the application's command schedule.[m
+      *[m
+[31m-     * @param  \Illuminate\Console\Scheduling\Schedule  $schedule[m
+      * @return void[m
+      */[m
+     protected function schedule(Schedule $schedule)[m
+[1mdiff --git a/src/app/Http/Controllers/AuthController.php b/src/app/Http/Controllers/AuthController.php[m
+[1mindex 860504f..62aa930 100644[m
+[1m--- a/src/app/Http/Controllers/AuthController.php[m
+[1m+++ b/src/app/Http/Controllers/AuthController.php[m
+[36m@@ -2,12 +2,11 @@[m
+ [m
+ namespace App\Http\Controllers;[m
+ [m
+[31m-use App\Http\Requests\RegisterRequest; // バリデーション用のFormRequest[m
+ use App\Http\Requests\LoginRequest; // バリデーション用のFormRequest[m
+[32m+[m[32muse App\Http\Requests\RegisterRequest; // バリデーション用のFormRequest[m
+ use App\Models\User;[m
+[31m-use Illuminate\Support\Facades\Hash;[m
+ use Illuminate\Support\Facades\Auth;[m
+[31m-use Illuminate\Http\Request;[m
+[32m+[m[32muse Illuminate\Support\Facades\Hash;[m
+ [m
+ class AuthController extends Controller[m
+ {[m
+[36m@@ -35,8 +34,7 @@[m [mpublic function register(RegisterRequest $request)[m
+         // ユーザーを自動ログインさせる[m
+         Auth::login($user);[m
+ [m
+[31m-      [m
+[31m-        return redirect()->route('profile.edit'); [m
+[32m+[m[32m        return redirect()->route('profile.edit');[m
+     }[m
+ [m
+     public function showLoginForm()[m
+[36m@@ -45,16 +43,15 @@[m [mpublic function showLoginForm()[m
+     }[m
+ [m
+     public function login(LoginRequest $request)[m
+[31m-{[m
+[31m-    $credentials = $request->only('email', 'password');[m
+[32m+[m[32m    {[m
+[32m+[m[32m        $credentials = $request->only('email', 'password');[m
+ [m
+[31m-    if (Auth::attempt($credentials)) {[m
+[31m-        return redirect()->route('item.index');[m
+[31m-    }[m
+[32m+[m[32m        if (Auth::attempt($credentials)) {[m
+[32m+[m[32m            return redirect()->route('item.index');[m
+[32m+[m[32m        }[m
+ [m
+[31m-    return back()->withErrors([[m
+[31m-        'email' => 'ログイン情報が登録されていません',[m
+[31m-    ]);[m
+[32m+[m[32m        return back()->withErrors([[m
+[32m+[m[32m            'email' => 'ログイン情報が登録されていません',[m
+[32m+[m[32m        ]);[m
+[32m+[m[32m    }[m
+ }[m
+[31m-[m
+[31m-}[m
+\ No newline at end of file[m
+[1mdiff --git a/src/app/Http/Controllers/Controller.php b/src/app/Http/Controllers/Controller.php[m
+[1mindex a0a2a8a..ce1176d 100755[m
+[1m--- a/src/app/Http/Controllers/Controller.php[m
+[1m+++ b/src/app/Http/Controllers/Controller.php[m
+[36m@@ -9,5 +9,7 @@[m
+ [m
+ class Controller extends BaseController[m
+ {[m
+[31m-    use AuthorizesRequests, DispatchesJobs, ValidatesRequests;[m
+[32m+[m[32m    use AuthorizesRequests;[m
+[32m+[m[32m    use DispatchesJobs;[m
+[32m+[m[32m    use ValidatesRequests;[m
+ }[m
+[1mdiff --git a/src/app/Http/Controllers/ItemController.php b/src/app/Http/Controllers/ItemController.php[m
+[1mindex c669f9e..6c7791b 100644[m
+[1m--- a/src/app/Http/Controllers/ItemController.php[m
+[1m+++ b/src/app/Http/Controllers/ItemController.php[m
+[36m@@ -2,91 +2,85 @@[m
+ [m
+ namespace App\Http\Controllers;[m
+ [m
+[31m-use Illuminate\Http\Request;[m
+[31m-use Illuminate\Support\Facades\Storage;[m
+[31m-use Illuminate\Support\Facades\Auth;[m
+[31m-use App\Models\Item;[m
+[31m-use App\Models\Comment; // コメント取得用[m
+[31m-use App\Models\Favorite; // いいね数を取得するため[m
+[31m-use Illuminate\Pagination\LengthAwarePaginator;[m
+ use App\Http\Requests\CommentRequest;[m
+[32m+[m[32muse App\Http\Requests\ExhibitionRequest;[m
+ use App\Models\Category;[m
+[32m+[m[32muse App\Models\Comment;[m
+[32m+[m[32muse App\Models\Item;[m
+ use App\Models\Status;[m
+[31m-use App\Http\Requests\ExhibitionRequest; [m
+[31m-[m
+[31m-[m
+[32m+[m[32muse Illuminate\Http\Request;[m
+[32m+[m[32muse Illuminate\Pagination\LengthAwarePaginator;[m
+[32m+[m[32muse Illuminate\Support\Facades\Auth;[m
+ [m
+ class ItemController extends Controller[m
+ {[m
+[31m-   public function index(Request $request)[m
+[31m-{[m
+[31m-    $tab = $request->input('tab', 'recommend');[m
+[31m-[m
+[31m-    $search = $request->input('search'); // 検索キーワード取得[m
+[31m-[m
+[31m-    // ログインユーザーのIDを取得（未ログイン時はnull）[m
+[31m-    $userId = Auth::id();[m
+[31m-[m
+[31m-   if ($tab === 'mylist') {[m
+[31m-    if (!$userId) {[m
+[31m-        $items = collect();[m
+[31m-    } else {[m
+[31m-        // ログインユーザーのお気に入りを取得し、そこから Item を抽出[m
+[31m-        $favorites = \App\Models\Favorite::with(['item.category', 'item.status', 'item.purchase'])[m
+[31m-            ->where('user_id', $userId)[m
+[31m-            ->latest()[m
+[31m-            ->get();[m
+[31m-        $items = $favorites->pluck('item');[m
+[31m-[m
+[31m-        // 検索キーワードが入力されている場合、コレクション上で部分一致検索[m
+[31m-        if ($search) {[m
+[31m-            $items = $items->filter(function($item) use ($search) {[m
+[31m-                return stripos($item->name, $search) !== false;[m
+[31m-            });[m
+[32m+[m[32m    public function index(Request $request)[m
+[32m+[m[32m    {[m
+[32m+[m[32m        $tab = $request->input('tab', 'recommend');[m
+[32m+[m
+[32m+[m[32m        $search = $request->input('search'); // 検索キーワード取得[m
+[32m+[m
+[32m+[m[32m        // ログインユーザーのIDを取得（未ログイン時はnull）[m
+[32m+[m[32m        $userId = Auth::id();[m
+[32m+[m
+[32m+[m[32m        if ($tab === 'mylist') {[m
+[32m+[m[32m            if (! $userId) {[m
+[32m+[m[32m                $items = collect();[m
+[32m+[m[32m            } else {[m
+[32m+[m[32m                // ログインユーザーのお気に入りを取得し、そこから Item を抽出[m
+[32m+[m[32m                $favorites = \App\Models\Favorite::with(['item.category', 'item.status', 'item.purchase'])[m
+[32m+[m[32m                    ->where('user_id', $userId)[m
+[32m+[m[32m                    ->latest()[m
+[32m+[m[32m                    ->get();[m
+[32m+[m[32m                $items = $favorites->pluck('item');[m
+[32m+[m
+[32m+[m[32m                // 検索キーワードが入力されている場合、コレクション上で部分一致検索[m
+[32m+[m[32m                if ($search) {[m
+[32m+[m[32m                    $items = $items->filter(function ($item) use ($search) {[m
+[32m+[m[32m                        return stripos($item->name, $search) !== false;[m
+[32m+[m[32m                    });[m
+[32m+[m[32m                }[m
+[32m+[m[32m            }[m
+[32m+[m
+[32m+[m[32m            // 手動ページネーション処理[m
+[32m+[m[32m            $page = $request->input('page', 1);[m
+[32m+[m[32m            $perPage = 12; // 「recommend」タブと同じ件数にする場合[m
+[32m+[m[32m            $offset = ($page - 1) * $perPage;[m
+[32m+[m[32m            $currentItems = $items->slice($offset, $perPage)->values();[m
+[32m+[m[32m            $paginatedItems = new LengthAwarePaginator([m
+[32m+[m[32m                $currentItems,[m
+[32m+[m[32m                $items->count(),[m
+[32m+[m[32m                $perPage,[m
+[32m+[m[32m                $page,[m
+[32m+[m[32m                [[m
+[32m+[m[32m                    'path' => $request->url(),[m
+[32m+[m[32m                    'query' => $request->query(),[m
+[32m+[m[32m                ][m
+[32m+[m[32m            );[m
+[32m+[m[32m            $items = $paginatedItems;[m
+[32m+[m[32m        } else {[m
+[32m+[m[32m            // おすすめタブの場合は、現在のコードの通りに自分が出品した商品を除外したクエリで取得[m
+[32m+[m[32m            $query = Item::with(['category', 'status', 'purchase'])[m
+[32m+[m[32m                ->when($userId, function ($query) use ($userId) {[m
+[32m+[m[32m                    return $query->where('user_id', '!=', $userId);[m
+[32m+[m[32m                })[m
+[32m+[m[32m                ->latest();[m
+[32m+[m
+[32m+[m[32m            if ($search) {[m
+[32m+[m[32m                $query->where('name', 'like', '%'.$search.'%');[m
+[32m+[m[32m            }[m
+[32m+[m
+[32m+[m[32m            $items = $query->paginate(12)[m
+[32m+[m[32m                ->appends(['tab' => 'recommend', 'search' => $search]);[m
+         }[m
+[31m-    }[m
+ [m
+[31m-    // 手動ページネーション処理[m
+[31m-        $page = $request->input('page', 1);[m
+[31m-        $perPage = 12; // 「recommend」タブと同じ件数にする場合[m
+[31m-        $offset = ($page - 1) * $perPage;[m
+[31m-        $currentItems = $items->slice($offset, $perPage)->values();[m
+[31m-        $paginatedItems = new LengthAwarePaginator([m
+[31m-            $currentItems,[m
+[31m-            $items->count(),[m
+[31m-            $perPage,[m
+[31m-            $page,[m
+[31m-            [[m
+[31m-                'path' => $request->url(),[m
+[31m-                'query' => $request->query(),[m
+[31m-            ][m
+[31m-        );[m
+[31m-        $items = $paginatedItems;[m
+[31m-[m
+[31m-} else {[m
+[31m-    // おすすめタブの場合は、現在のコードの通りに自分が出品した商品を除外したクエリで取得[m
+[31m-    $query = Item::with(['category', 'status', 'purchase'])[m
+[31m-        ->when($userId, function ($query) use ($userId) {[m
+[31m-            return $query->where('user_id', '!=', $userId);[m
+[31m-        })[m
+[31m-        ->latest();[m
+[31m-[m
+[31m-    if ($search) {[m
+[31m-        $query->where('name', 'like', '%' . $search . '%');[m
+[32m+[m[32m        return view('items.index', compact('items', 'tab', 'search'));[m
+     }[m
+ [m
+[31m-    $items = $query->paginate(12)[m
+[31m-        ->appends(['tab' => 'recommend', 'search' => $search]);[m
+[31m-}[m
+[31m-[m
+[31m-[m
+[31m-    return view('items.index', compact('items', 'tab', 'search'));[m
+[31m-}[m
+[31m-[m
+[31m-/**[m
+[32m+[m[32m    /**[m
+      * 商品詳細画面の表示[m
+      *[m
+[31m-     * @param int $item_id[m
+[32m+[m[32m     * @param  int  $item_id[m
+      * @return \Illuminate\View\View[m
+      */[m
+     public function show($item_id)[m
+[36m@@ -98,23 +92,23 @@[m [mpublic function show($item_id)[m
+ [m
+         $favoriteCount = $item->favorites->count();[m
+         $commentCount = $item->comments->count();[m
+[31m-         // 保存されたカンマ区切りのカテゴリーIDを配列に変換し、Category モデルから情報を取得[m
+[32m+[m[32m        // 保存されたカンマ区切りのカテゴリーIDを配列に変換し、Category モデルから情報を取得[m
+         $categoryIds = explode(',', $item->category_id);[m
+         $categories = Category::whereIn('id', $categoryIds)->get();[m
+ [m
+         // ログインの有無に関わらず、商品に対して購入レコードがあるかをチェック[m
+         $hasPurchased = $item->purchase()->exists();[m
+ [m
+[31m-       [m
+[31m-[m
+[31m-        return view('items.show', compact('item', 'comments', 'favoriteCount', 'commentCount', 'categories', 'hasPurchased'));[m
+[31m-[m
+[32m+[m[32m        return view([m
+[32m+[m[32m            'items.show',[m
+[32m+[m[32m            compact('item', 'comments', 'favoriteCount', 'commentCount', 'categories', 'hasPurchased')[m
+[32m+[m[32m        );[m
+     }[m
+ [m
+     /**[m
+      * お気に入り（いいね）追加処理[m
+      *[m
+[31m-     * @param int $item_id[m
+[32m+[m[32m     * @param  int  $item_id[m
+      * @return \Illuminate\Http\RedirectResponse[m
+      */[m
+     public function like($item_id)[m
+[36m@@ -123,7 +117,7 @@[m [mpublic function like($item_id)[m
+         $user = Auth::user();[m
+ [m
+         // 既にお気に入り登録していなければ新規作成[m
+[31m-        if (!$item->favorites()->where('user_id', $user->id)->exists()) {[m
+[32m+[m[32m        if (! $item->favorites()->where('user_id', $user->id)->exists()) {[m
+             $item->favorites()->create([[m
+                 'user_id' => $user->id,[m
+             ]);[m
+[36m@@ -135,7 +129,7 @@[m [mpublic function like($item_id)[m
+     /**[m
+      * お気に入り（いいね）削除処理[m
+      *[m
+[31m-     * @param int $item_id[m
+[32m+[m[32m     * @param  int  $item_id[m
+      * @return \Illuminate\Http\RedirectResponse[m
+      */[m
+     public function unlike($item_id)[m
+[36m@@ -152,8 +146,8 @@[m [mpublic function unlike($item_id)[m
+     /**[m
+      * コメント投稿処理[m
+      *[m
+[31m-     * @param \Illuminate\Http\Request $request[m
+[31m-     * @param int $item_id[m
+[32m+[m[32m     * @param  \Illuminate\Http\Request  $request[m
+[32m+[m[32m     * @param  int  $item_id[m
+      * @return \Illuminate\Http\RedirectResponse[m
+      */[m
+     public function addComment(CommentRequest $request, $item_id)[m
+[36m@@ -162,7 +156,7 @@[m [mpublic function addComment(CommentRequest $request, $item_id)[m
+         $item = Item::findOrFail($item_id);[m
+ [m
+         // コメントレコードを作成[m
+[31m-        $comment = new Comment();[m
+[32m+[m[32m        $comment = new Comment;[m
+         $comment->user_id = Auth::id();[m
+         $comment->item_id = $item_id;[m
+         $comment->comment = $request->input('comment');[m
+[36m@@ -173,11 +167,11 @@[m [mpublic function addComment(CommentRequest $request, $item_id)[m
+ [m
+     public function create()[m
+     {[m
+[31m-    $categories = Category::all();[m
+[31m-    $statuses = Status::all();[m
+[31m-    [m
+[31m-    return view('items.create', compact('categories', 'statuses'));[m
+[31m-    }   [m
+[32m+[m[32m        $categories = Category::all();[m
+[32m+[m[32m        $statuses = Status::all();[m
+[32m+[m
+[32m+[m[32m        return view('items.create', compact('categories', 'statuses'));[m
+[32m+[m[32m    }[m
+ [m
+     public function store(ExhibitionRequest $request)[m
+     {[m
+[36m@@ -195,13 +189,12 @@[m [mpublic function store(ExhibitionRequest $request)[m
+ [m
+         // 複数選択のカテゴリーをカンマ区切りの文字列に変換[m
+         if (isset($validated['category_id']) && is_array($validated['category_id'])) {[m
+[31m-        $validated['category_id'] = implode(',', $validated['category_id']);[m
+[31m-    }[m
+[32m+[m[32m            $validated['category_id'] = implode(',', $validated['category_id']);[m
+[32m+[m[32m        }[m
+ [m
+         // 商品情報登録（Itemモデルの $fillable に必要な項目が設定されていること）[m
+         $item = Item::create($validated);[m
+ [m
+         return redirect()->route('item.index');[m
+     }[m
+[31m-[m
+ }[m
+[1mdiff --git a/src/app/Http/Controllers/PurchaseController.php b/src/app/Http/Controllers/PurchaseController.php[m
+[1mindex ed2b539..96fc763 100644[m
+[1m--- a/src/app/Http/Controllers/PurchaseController.php[m
+[1m+++ b/src/app/Http/Controllers/PurchaseController.php[m
+[36m@@ -2,15 +2,12 @@[m
+ [m
+ namespace App\Http\Controllers;[m
+ [m
+[31m-use Illuminate\Http\Request;[m
+[31m-use App\Http\Requests\AddressRequest; // プロフィール編集で使用しているリクエスト[m
+[31m-use App\Models\Item;[m
+[31m-use App\Models\Purchase;[m
+[31m-use App\Models\Profile;[m
+[31m-use App\Models\Payment;[m
+[32m+[m[32m// プロフィール編集で使用しているリクエスト[m
+ use App\Http\Requests\PurchaseAddressRequest;[m
+ use App\Http\Requests\PurchaseRequest;[m
+[31m-[m
+[32m+[m[32muse App\Models\Item;[m
+[32m+[m[32muse App\Models\Payment;[m
+[32m+[m[32muse App\Models\Purchase;[m
+ use Illuminate\Support\Facades\Auth;[m
+ [m
+ class PurchaseController extends Controller[m
+[36m@@ -22,81 +19,80 @@[m [mpublic function showPurchasePage($item_id)[m
+         $user = Auth::user();[m
+ [m
+         // 購入画面のビューに商品情報を渡す[m
+[31m-        return view('purchase.show', compact('item','user'));[m
+[32m+[m[32m        return view('purchase.show', compact('item', 'user'));[m
+     }[m
+ [m
+[31m-         // POST: 購入処理の実行（PurchaseRequest を利用）[m
+[32m+[m[32m    // POST: 購入処理の実行（PurchaseRequest を利用）[m
+     public function executePurchase(PurchaseRequest $request, $item_id)[m
+     {[m
+[31m-    $user = auth()->user();[m
+[31m-    $item = Item::findOrFail($item_id);[m
+[31m-    $data = $request->validated();[m
+[31m-[m
+[31m-     // セッションに保存されている配送先情報を取得（なければユーザーのプロフィール情報をフォールバック）[m
+[31m-    $postal_code = session('postal_code', $user->profile->postal_code);[m
+[31m-    $address     = session('address', $user->profile->address);[m
+[31m-    $building    = session('building', $user->profile->building);[m
+[31m-[m
+[31m-    // 購入レコードの保存（Purchaseテーブルに郵便番号、住所、建物情報を登録）[m
+[31m-    $purchase = Purchase::create([[m
+[31m-            'user_id'     => $user->id,[m
+[31m-            'item_id'     => $item->id,[m
+[32m+[m[32m        $user = auth()->user();[m
+[32m+[m[32m        $item = Item::findOrFail($item_id);[m
+[32m+[m[32m        $data = $request->validated();[m
+[32m+[m
+[32m+[m[32m        // セッションに保存されている配送先情報を取得（なければユーザーのプロフィール情報をフォールバック）[m
+[32m+[m[32m        $postal_code = session('postal_code', $user->profile->postal_code);[m
+[32m+[m[32m        $address = session('address', $user->profile->address);[m
+[32m+[m[32m        $building = session('building', $user->profile->building);[m
+[32m+[m
+[32m+[m[32m        // 購入レコードの保存（Purchaseテーブルに郵便番号、住所、建物情報を登録）[m
+[32m+[m[32m        $purchase = Purchase::create([[m
+[32m+[m[32m            'user_id' => $user->id,[m
+[32m+[m[32m            'item_id' => $item->id,[m
+             'postal_code' => $postal_code,[m
+[31m-            'address'     => $address,[m
+[31m-            'building'    => $building,[m
+[31m-    ]);[m
+[31m-[m
+[31m-    // 支払方法の保存（今回はフォームからの選択）[m
+[31m-    Payment::create([[m
+[31m-        'purchase_id' => $purchase->id,[m
+[31m-        'payment_method' => $data['payment_method'], [m
+[31m-        'stripe_payment_id' => 'dummy_' . uniqid(), // 一意なダミーIDを生成[m
+[31m-        'amount' => $item->price,[m
+[31m-    ]);[m
+[31m-[m
+[31m-     // 購入完了後、使用済みのセッション配送先情報を削除[m
+[32m+[m[32m            'address' => $address,[m
+[32m+[m[32m            'building' => $building,[m
+[32m+[m[32m        ]);[m
+[32m+[m
+[32m+[m[32m        // 支払方法の保存（今回はフォームからの選択）[m
+[32m+[m[32m        Payment::create([[m
+[32m+[m[32m            'purchase_id' => $purchase->id,[m
+[32m+[m[32m            'payment_method' => $data['payment_method'],[m
+[32m+[m[32m            'stripe_payment_id' => 'dummy_'.uniqid(), // 一意なダミーIDを生成[m
+[32m+[m[32m            'amount' => $item->price,[m
+[32m+[m[32m        ]);[m
+[32m+[m
+[32m+[m[32m        // 購入完了後、使用済みのセッション配送先情報を削除[m
+         session()->forget(['postal_code', 'address', 'building']);[m
+ [m
+[31m-    return redirect()->route('mypage', ['tab' => 'buy']);[m
+[32m+[m[32m        return redirect()->route('mypage', ['tab' => 'buy']);[m
+     }[m
+[32m+[m
+     /**[m
+      * 送付先住所変更画面の表示[m
+      *[m
+[31m-     * @param int $item_id[m
+[32m+[m[32m     * @param  int  $item_id[m
+      * @return \Illuminate\View\View[m
+      */[m
+     public function edit($item_id)[m
+     {[m
+[31m-         // ログインユーザーのプロフィールを取得[m
+[32m+[m[32m        // ログインユーザーのプロフィールを取得[m
+         $user = auth()->user();[m
+         $profile = $user->profile; // リレーションが定義されている前提[m
+[31m-        [m
+[32m+[m
+         return view('purchase.address_edit', compact('profile', 'item_id'));[m
+     }[m
+ [m
+     /**[m
+      * 送付先住所の更新処理[m
+      *[m
+[31m-     * @param \Illuminate\Http\Request $request[m
+[31m-     * @param int $item_id[m
+[32m+[m[32m     * @param  \Illuminate\Http\Request  $request[m
+[32m+[m[32m     * @param  int  $item_id[m
+      * @return \Illuminate\Http\RedirectResponse[m
+      */[m
+     public function update(PurchaseAddressRequest $request, $item_id)[m
+[31m-{[m
+[32m+[m[32m    {[m
+ [m
+[31m-    // PurchaseAddressRequest でバリデーション済みのデータを取得[m
+[32m+[m[32m        // PurchaseAddressRequest でバリデーション済みのデータを取得[m
+         $data = $request->validated();[m
+ [m
+         // ユーザーの配送先情報をセッションに保存（プロフィールは更新しない）[m
+         session([[m
+             'postal_code' => $data['postal_code'],[m
+[31m-            'address'     => $data['address'],[m
+[31m-            'building'    => $data['building'] ?? null,[m
+[32m+[m[32m            'address' => $data['address'],[m
+[32m+[m[32m            'building' => $data['building'] ?? null,[m
+         ]);[m
+ [m
+[31m-[m
+[31m-    // 更新後、購入画面にリダイレクト[m
+[31m-    return redirect()->route('purchase.show', ['item_id' => $item_id]);[m
+[31m-}[m
+[31m-[m
+[32m+[m[32m        // 更新後、購入画面にリダイレクト[m
+[32m+[m[32m        return redirect()->route('purchase.show', ['item_id' => $item_id]);[m
+[32m+[m[32m    }[m
+ }[m
+[1mdiff --git a/src/app/Http/Controllers/UserController.php b/src/app/Http/Controllers/UserController.php[m
+[1mindex 820ccb5..aa1116a 100644[m
+[1m--- a/src/app/Http/Controllers/UserController.php[m
+[1m+++ b/src/app/Http/Controllers/UserController.php[m
+[36m@@ -2,63 +2,61 @@[m
+ [m
+ namespace App\Http\Controllers;[m
+ [m
+[31m-use Illuminate\Http\Request;[m
+[31m-use Illuminate\Support\Facades\Auth;[m
+[32m+[m[32muse App\Http\Requests\AddressRequest;[m
+[32m+[m[32muse App\Http\Requests\ProfileRequest;[m
+ use App\Models\Item;[m
+[32m+[m[32muse App\Models\Profile;[m
+ use App\Models\purchase;[m
+[32m+[m[32muse Illuminate\Http\Request;[m
+[32m+[m[32muse Illuminate\Support\Facades\Auth;[m
+ use Illuminate\Support\Facades\Storage;[m
+[31m-use App\Models\Profile;[m
+[31m-use App\Models\User;[m
+[31m-use App\Http\Requests\AddressRequest;[m
+[31m-use App\Http\Requests\ProfileRequest;[m
+ [m
+ class UserController extends Controller[m
+ {[m
+[32m+[m[32m    public function update(AddressRequest $request)[m
+[32m+[m[32m    {[m
+[32m+[m[32m        $user = Auth::user();[m
+ [m
+[31m-   public function update(AddressRequest $request)[m
+[31m-{[m
+[31m-    $user = Auth::user();[m
+[31m-[m
+[31m-    // `users` テーブルの `name` を更新[m
+[31m-    $user->update(['name' => $request->name]);[m
+[31m-[m
+[31m-    // `profiles` テーブルのデータを取得（なければ新規作成）[m
+[31m-    $profile = $user->profile ?: new Profile(['user_id' => $user->id]);[m
+[31m-    [m
+[31m-    // **ProfileRequest を手動で取得**[m
+[31m-    $profileRequest = app(ProfileRequest::class);[m
+[31m-[m
+[31m-    // 画像アップロード処理[m
+[31m-    if ($profileRequest->hasFile('profile_image')) {[m
+[31m-        // 古い画像を削除[m
+[31m-        if ($profile->profile_image) {[m
+[31m-            Storage::delete('public/' . $profile->profile_image);[m
+[31m-        }[m
+[32m+[m[32m        // `users` テーブルの `name` を更新[m
+[32m+[m[32m        $user->update(['name' => $request->name]);[m
+ [m
+[31m-        // 新しい画像を `storage/app/public/profile_images/` に保存[m
+[31m-        $imagePath = $profileRequest->file('profile_image')->store('profile_images', 'public');[m
+[32m+[m[32m        // `profiles` テーブルのデータを取得（なければ新規作成）[m
+[32m+[m[32m        $profile = $user->profile ?: new Profile(['user_id' => $user->id]);[m
+ [m
+[31m-        // データベースには画像のファイルパスを保存[m
+[31m-        $profile->profile_image = $imagePath;[m
+[31m-    }[m
+[32m+[m[32m        // **ProfileRequest を手動で取得**[m
+[32m+[m[32m        $profileRequest = app(ProfileRequest::class);[m
+ [m
+[31m-    // `profiles` テーブルを更新[m
+[31m-    $profile->postal_code = $request->postal_code;[m
+[31m-    $profile->address = $request->address;[m
+[31m-    $profile->building = $request->building;[m
+[31m-    $profile->save();[m
+[32m+[m[32m        // 画像アップロード処理[m
+[32m+[m[32m        if ($profileRequest->hasFile('profile_image')) {[m
+[32m+[m[32m            // 古い画像を削除[m
+[32m+[m[32m            if ($profile->profile_image) {[m
+[32m+[m[32m                Storage::delete('public/'.$profile->profile_image);[m
+[32m+[m[32m            }[m
+ [m
+[31m-    return redirect()->route('item.index');[m
+[32m+[m[32m            // 新しい画像を `storage/app/public/profile_images/` に保存[m
+[32m+[m[32m            $imagePath = $profileRequest->file('profile_image')->store('profile_images', 'public');[m
+ [m
+[31m-}[m
+[31m-    [m
+[31m-     public function edit()[m
+[32m+[m[32m            // データベースには画像のファイルパスを保存[m
+[32m+[m[32m            $profile->profile_image = $imagePath;[m
+[32m+[m[32m        }[m
+[32m+[m
+[32m+[m[32m        // `profiles` テーブルを更新[m
+[32m+[m[32m        $profile->postal_code = $request->postal_code;[m
+[32m+[m[32m        $profile->address = $request->address;[m
+[32m+[m[32m        $profile->building = $request->building;[m
+[32m+[m[32m        $profile->save();[m
+[32m+[m
+[32m+[m[32m        return redirect()->route('item.index');[m
+[32m+[m[32m    }[m
+[32m+[m
+[32m+[m[32m    public function edit()[m
+     {[m
+         $user = Auth::user();[m
+[32m+[m
+         return view('users.edit', compact('user'));[m
+     }[m
+ [m
+[31m-     public function show(Request $request)[m
+[32m+[m[32m    public function show(Request $request)[m
+     {[m
+         $user = Auth::user(); // ログインユーザー情報を取得[m
+ [m
+[36m@@ -68,7 +66,7 @@[m [mpublic function show(Request $request)[m
+         if ($tab === 'sell') {[m
+             // 出品した商品一覧[m
+             $items = $user->items()->latest()->get();[m
+[31m-            $mode  = 'sell';[m
+[32m+[m[32m            $mode = 'sell';[m
+         } else {[m
+             // それ以外 (tab=buy または 未指定) は購入した商品一覧[m
+             // Userモデルに purchases() リレーションがあり、[m
+[36m@@ -81,10 +79,10 @@[m [mpublic function show(Request $request)[m
+         }[m
+ [m
+         return view('users.mypage', [[m
+[31m-            'user'  => $user,[m
+[31m-            'mode'  => $mode,   // 'buy' or 'sell'[m
+[32m+[m[32m            'user' => $user,[m
+[32m+[m[32m            'mode' => $mode,   // 'buy' or 'sell'[m
+             'items' => $items,  // 購入 or 出品した商品のコレクション[m
+             'request' => $request,[m
+         ]);[m
+     }[m
+[31m-}[m
+\ No newline at end of file[m
+[32m+[m[32m}[m
+[1mdiff --git a/src/app/Http/Middleware/RedirectIfAuthenticated.php b/src/app/Http/Middleware/RedirectIfAuthenticated.php[m
+[1mindex a2813a0..4e7c24b 100755[m
+[1m--- a/src/app/Http/Middleware/RedirectIfAuthenticated.php[m
+[1m+++ b/src/app/Http/Middleware/RedirectIfAuthenticated.php[m
+[36m@@ -12,7 +12,6 @@[m [mclass RedirectIfAuthenticated[m
+     /**[m
+      * Handle an incoming request.[m
+      *[m
+[31m-     * @param  \Illuminate\Http\Request  $request[m
+      * @param  \Closure(\Illuminate\Http\Request): (\Illuminate\Http\Response|\Illuminate\Http\RedirectResponse)  $next[m
+      * @param  string|null  ...$guards[m
+      * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse[m
+[1mdiff --git a/src/app/Http/Middleware/VerifyCsrfToken.php b/src/app/Http/Middleware/VerifyCsrfToken.php[m
+[1mindex 5476f1e..13e2270 100755[m
+[1m--- a/src/app/Http/Middleware/VerifyCsrfToken.php[m
+[1m+++ b/src/app/Http/Middleware/VerifyCsrfToken.php[m
+[36m@@ -12,6 +12,6 @@[m [mclass VerifyCsrfToken extends Middleware[m
+      * @var array<int, string>[m
+      */[m
+     protected $except = [[m
+[31m-        [m
+[32m+[m
+     ];[m
+ }[m
+[1mdiff --git a/src/app/Http/Requests/CommentRequest.php b/src/app/Http/Requests/CommentRequest.php[m
+[1mindex 0fd27c0..ce94a37 100644[m
+[1m--- a/src/app/Http/Requests/CommentRequest.php[m
+[1m+++ b/src/app/Http/Requests/CommentRequest.php[m
+[36m@@ -24,7 +24,7 @@[m [mpublic function messages()[m
+     {[m
+         return [[m
+             'comment.required' => 'コメントを入力してください',[m
+[31m-            'comment.max'      => 'コメントは255文字以内で入力してください',[m
+[32m+[m[32m            'comment.max' => 'コメントは255文字以内で入力してください',[m
+         ];[m
+     }[m
+ }[m
+[1mdiff --git a/src/app/Http/Requests/ExhibitionRequest.php b/src/app/Http/Requests/ExhibitionRequest.php[m
+[1mindex ae027ac..f67f23e 100644[m
+[1m--- a/src/app/Http/Requests/ExhibitionRequest.php[m
+[1m+++ b/src/app/Http/Requests/ExhibitionRequest.php[m
+[36m@@ -26,20 +26,20 @@[m [mpublic function rules()[m
+         return [[m
+             // 商品名: 入力必須[m
+             'name' => 'required|string',[m
+[31m-            [m
+[32m+[m
+             // 商品説明: 入力必須、最大文字数255[m
+             'description' => 'required|string|max:255',[m
+[31m-            [m
+[32m+[m
+             // 商品画像: アップロード必須、画像であること、拡張子が.jpegまたは.png[m
+             'image' => 'required|image|mimes:jpeg,png',[m
+[31m-            [m
+[32m+[m
+             // 商品のカテゴリー: 選択必須、categoriesテーブルに存在するID[m
+             'category_id' => 'required|array',[m
+             'category_id.*' => 'exists:categories,id',[m
+[31m-            [m
+[32m+[m
+             // 商品の状態: 選択必須、conditionsテーブルに存在するID[m
+             'status_id' => 'required|exists:statuses,id',[m
+[31m-            [m
+[32m+[m
+             // 商品価格: 入力必須、数値型、0円以上[m
+             'price' => 'required|numeric|min:0',[m
+ [m
+[36m@@ -50,18 +50,18 @@[m [mpublic function rules()[m
+     public function messages()[m
+     {[m
+         return [[m
+[31m-            'name.required'             => '商品名を入力してください',[m
+[31m-            'description.required'      => '商品説明を入力してください',[m
+[31m-            'description.max'           => '商品説明は255文字以内で入力してください。',[m
+[31m-            'image.required'            => '商品画像はアップロード必須です',[m
+[31m-            'image.image'               => '商品画像はJPEGまたはPNG形式でアップロードしてください',[m
+[31m-            'image.mimes'               => '商品画像はJPEGまたはPNG形式でアップロードしてください',[m
+[31m-            'category_id.required'      => '商品のカテゴリーを選択してください',[m
+[31m-            'status_id.required'     => '商品の状態を選択してください',[m
+[31m-            'price.required'            => '商品価格を入力してください',[m
+[31m-            'price.numeric'             => '商品価格は数値で入力してください',[m
+[31m-            'price.min'                 => '商品価格は0円以上で入力してください',[m
+[31m-            'brand.max'                 => 'ブランド名は255文字以内で入力してください'[m
+[31m-        ];  [m
+[32m+[m[32m            'name.required' => '商品名を入力してください',[m
+[32m+[m[32m            'description.required' => '商品説明を入力してください',[m
+[32m+[m[32m            'description.max' => '商品説明は255文字以内で入力してください。',[m
+[32m+[m[32m            'image.required' => '商品画像はアップロード必須です',[m
+[32m+[m[32m            'image.image' => '商品画像はJPEGまたはPNG形式でアップロードしてください',[m
+[32m+[m[32m            'image.mimes' => '商品画像はJPEGまたはPNG形式でアップロードしてください',[m
+[32m+[m[32m            'category_id.required' => '商品のカテゴリーを選択してください',[m
+[32m+[m[32m            'status_id.required' => '商品の状態を選択してください',[m
+[32m+[m[32m            'price.required' => '商品価格を入力してください',[m
+[32m+[m[32m            'price.numeric' => '商品価格は数値で入力してください',[m
+[32m+[m[32m            'price.min' => '商品価格は0円以上で入力してください',[m
+[32m+[m[32m            'brand.max' => 'ブランド名は255文字以内で入力してください',[m
+[32m+[m[32m        ];[m
+     }[m
+[31m-}[m
+\ No newline at end of file[m
+[32m+[m[32m}[m
+[1mdiff --git a/src/app/Http/Requests/LoginRequest.php b/src/app/Http/Requests/LoginRequest.php[m
+[1mindex ebd9ccb..0d78540 100755[m
+[1m--- a/src/app/Http/Requests/LoginRequest.php[m
+[1m+++ b/src/app/Http/Requests/LoginRequest.php[m
+[36m@@ -25,7 +25,6 @@[m [mpublic function rules(): array[m
+         ];[m
+     }[m
+ [m
+[31m-    [m
+     public function messages(): array[m
+     {[m
+         return [[m
+[1mdiff --git a/src/app/Http/Requests/PurchaseAddressRequest.php b/src/app/Http/Requests/PurchaseAddressRequest.php[m
+[1mindex 9eb409f..58defda 100644[m
+[1m--- a/src/app/Http/Requests/PurchaseAddressRequest.php[m
+[1m+++ b/src/app/Http/Requests/PurchaseAddressRequest.php[m
+[36m@@ -8,8 +8,6 @@[m [mclass PurchaseAddressRequest extends FormRequest[m
+ {[m
+     /**[m
+      * Determine if the user is authorized to make this request.[m
+[31m-     *[m
+[31m-     * @return bool[m
+      */[m
+     public function authorize(): bool[m
+     {[m
+[36m@@ -18,8 +16,6 @@[m [mpublic function authorize(): bool[m
+ [m
+     /**[m
+      * Get the validation rules that apply to the request.[m
+[31m-     *[m
+[31m-     * @return array[m
+      */[m
+     public function rules(): array[m
+     {[m
+[1mdiff --git a/src/app/Http/Requests/PurchaseRequest.php b/src/app/Http/Requests/PurchaseRequest.php[m
+[1mindex 4c10fa4..b211ec2 100644[m
+[1m--- a/src/app/Http/Requests/PurchaseRequest.php[m
+[1m+++ b/src/app/Http/Requests/PurchaseRequest.php[m
+[36m@@ -18,14 +18,12 @@[m [mpublic function authorize()[m
+ [m
+     /**[m
+      * Get the validation rules that apply to the request.[m
+[31m-     *[m
+[31m-     * @return array[m
+      */[m
+     public function rules(): array[m
+     {[m
+         return [[m
+             'payment_method' => 'required|in:credit_card,convenience_store',[m
+[31m-            [m
+[32m+[m
+         ];[m
+     }[m
+ }[m
+[1mdiff --git a/src/app/Http/Requests/RegisterRequest.php b/src/app/Http/Requests/RegisterRequest.php[m
+[1mindex 86a1583..e811023 100755[m
+[1m--- a/src/app/Http/Requests/RegisterRequest.php[m
+[1m+++ b/src/app/Http/Requests/RegisterRequest.php[m
+[36m@@ -20,8 +20,8 @@[m [mpublic function authorize(): bool[m
+     public function rules(): array[m
+     {[m
+         return [[m
+[31m-            'name' => ['required','string','max:255'],[m
+[31m-            'email' => ['required', 'email','unique:users,email'], [m
+[32m+[m[32m            'name' => ['required', 'string', 'max:255'],[m
+[32m+[m[32m            'email' => ['required', 'email', 'unique:users,email'],[m
+             'password' => ['required', 'string', 'min:8', 'confirmed'], // 必須 & 8文字以上&確認一致[m
+         ];[m
+     }[m
+[1mdiff --git a/src/app/Models/Item.php b/src/app/Models/Item.php[m
+[1mindex b794d02..fa0ffec 100755[m
+[1m--- a/src/app/Models/Item.php[m
+[1m+++ b/src/app/Models/Item.php[m
+[36m@@ -5,8 +5,8 @@[m
+ use Illuminate\Database\Eloquent\Factories\HasFactory;[m
+ use Illuminate\Database\Eloquent\Model;[m
+ use Illuminate\Database\Eloquent\Relations\BelongsTo;[m
+[31m-use Illuminate\Database\Eloquent\Relations\HasOne;[m
+ use Illuminate\Database\Eloquent\Relations\HasMany;[m
+[32m+[m[32muse Illuminate\Database\Eloquent\Relations\HasOne;[m
+ [m
+ class Item extends Model[m
+ {[m
+[36m@@ -23,8 +23,6 @@[m [mclass Item extends Model[m
+         'brand',[m
+     ];[m
+ [m
+[31m-[m
+[31m-[m
+     /**[m
+      * 出品者（ユーザー）とのリレーション[m
+      */[m
+[36m@@ -72,7 +70,4 @@[m [mpublic function comments(): HasMany[m
+     {[m
+         return $this->hasMany(Comment::class);[m
+     }[m
+[31m-[m
+[31m-[m
+ }[m
+[31m-[m
+[1mdiff --git a/src/app/Models/Payment.php b/src/app/Models/Payment.php[m
+[1mindex f726925..f208155 100644[m
+[1m--- a/src/app/Models/Payment.php[m
+[1m+++ b/src/app/Models/Payment.php[m
+[36m@@ -14,7 +14,7 @@[m [mclass Payment extends Model[m
+         'purchase_id', // 購入ID[m
+         'stripe_payment_id', // Stripe決済ID[m
+         'payment_method', // 支払い方法（クレジットカード or コンビニ）[m
+[31m-        'amount'[m
+[32m+[m[32m        'amount',[m
+     ];[m
+ [m
+     /**[m
+[1mdiff --git a/src/app/Models/Purchase.php b/src/app/Models/Purchase.php[m
+[1mindex fc0edd6..ddd6d57 100755[m
+[1m--- a/src/app/Models/Purchase.php[m
+[1m+++ b/src/app/Models/Purchase.php[m
+[36m@@ -16,7 +16,7 @@[m [mclass Purchase extends Model[m
+         'item_id', // 購入された商品ID[m
+         'postal_code',[m
+         'address',[m
+[31m-        'building', [m
+[32m+[m[32m        'building',[m
+     ];[m
+ [m
+     /**[m
+[1mdiff --git a/src/app/Models/User.php b/src/app/Models/User.php[m
+[1mindex 0915c33..66b1867 100755[m
+[1m--- a/src/app/Models/User.php[m
+[1m+++ b/src/app/Models/User.php[m
+[36m@@ -4,23 +4,23 @@[m
+ [m
+ use Illuminate\Contracts\Auth\MustVerifyEmail;[m
+ use Illuminate\Database\Eloquent\Factories\HasFactory;[m
+[31m-use Illuminate\Foundation\Auth\User as Authenticatable;[m
+[31m-use Illuminate\Notifications\Notifiable;[m
+ use Illuminate\Database\Eloquent\Relations\HasMany;[m
+ use Illuminate\Database\Eloquent\Relations\HasOne;[m
+[32m+[m[32muse Illuminate\Foundation\Auth\User as Authenticatable;[m
+[32m+[m[32muse Illuminate\Notifications\Notifiable;[m
+ [m
+ class User extends Authenticatable implements MustVerifyEmail[m
+ {[m
+[31m-    use HasFactory, Notifiable;[m
+[32m+[m[32m    use HasFactory;[m
+[32m+[m[32m    use Notifiable;[m
+ [m
+     protected $fillable = [[m
+         'name',[m
+         'email',[m
+         'password',[m
+[31m-        'is_first_login', [m
+[32m+[m[32m        'is_first_login',[m
+     ];[m
+ [m
+[31m-[m
+     /**[m
+      * ユーザーが出品した商品[m
+      */[m
+[1mdiff --git a/src/app/Providers/AuthServiceProvider.php b/src/app/Providers/AuthServiceProvider.php[m
+[1mindex 22b77e6..59e239f 100755[m
+[1m--- a/src/app/Providers/AuthServiceProvider.php[m
+[1m+++ b/src/app/Providers/AuthServiceProvider.php[m
+[36m@@ -3,7 +3,6 @@[m
+ namespace App\Providers;[m
+ [m
+ use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;[m
+[31m-use Illuminate\Support\Facades\Gate;[m
+ [m
+ class AuthServiceProvider extends ServiceProvider[m
+ {[m
+[1mdiff --git a/src/app/Providers/FortifyServiceProvider.php b/src/app/Providers/FortifyServiceProvider.php[m
+[1mindex 258c945..7bd0c1c 100755[m
+[1m--- a/src/app/Providers/FortifyServiceProvider.php[m
+[1m+++ b/src/app/Providers/FortifyServiceProvider.php[m
+[36m@@ -4,14 +4,11 @@[m
+ [m
+ use App\Actions\Fortify\CreateNewUser;[m
+ use App\Actions\Fortify\UpdateUserProfileInformation;[m
+[31m-use Illuminate\Support\ServiceProvider;[m
+[31m-use Laravel\Fortify\Fortify;[m
+ use App\Http\Requests\LoginRequest;[m
+ use Illuminate\Support\Facades\Hash;[m
+[31m-use Illuminate\Support\Facades\Auth;[m
+[32m+[m[32muse Illuminate\Support\ServiceProvider;[m
+ use Illuminate\Validation\ValidationException;[m
+[31m-use Illuminate\Auth\Events\Failed;[m
+[31m-[m
+[32m+[m[32muse Laravel\Fortify\Fortify;[m
+ [m
+ class FortifyServiceProvider extends ServiceProvider[m
+ {[m
+[36m@@ -31,7 +28,7 @@[m [mpublic function boot()[m
+         Fortify::createUsersUsing(CreateNewUser::class);[m
+         Fortify::updateUserProfileInformationUsing(UpdateUserProfileInformation::class);[m
+ [m
+[31m-         // 登録ページのビューを指定[m
+[32m+[m[32m        // 登録ページのビューを指定[m
+         Fortify::registerView(fn () => view('auth.register'));[m
+ [m
+         // ログインページのビューを指定[m
+[36m@@ -40,31 +37,30 @@[m [mpublic function boot()[m
+         // Fortifyのログイン処理にカスタムバリデーションを適用[m
+         Fortify::authenticateUsing(function (LoginRequest $request) {[m
+ [m
+[31m-        // バリデーション適用[m
+[31m-        $validatedData = $request->validated();[m
+[32m+[m[32m            // バリデーション適用[m
+[32m+[m[32m            $validatedData = $request->validated();[m
+ [m
+[32m+[m[32m            // ユーザー情報取得[m
+[32m+[m[32m            $user = \App\Models\User::where('email', $request->email)->first();[m
+ [m
+[31m-        // ユーザー情報取得[m
+[31m-        $user = \App\Models\User::where('email', $request->email)->first();[m
+[31m-[m
+[31m-        // ユーザー認証[m
+[31m-        if ($user && Hash::check($request->password, $user->password)) {[m
+[31m-            return $user;[m
+[32m+[m[32m            // ユーザー認証[m
+[32m+[m[32m            if ($user && Hash::check($request->password, $user->password)) {[m
+[32m+[m[32m                return $user;[m
+ [m
+[31m-        // ✅ メール認証が完了していない場合はログイン不可[m
+[31m-        if (!$user->hasVerifiedEmail()) {[m
+[31m-            throw ValidationException::withMessages([[m
+[31m-                'email' => ['メール認証が完了していません。確認メールをご確認ください。'],[m
+[32m+[m[32m                // ✅ メール認証が完了していない場合はログイン不可[m
+[32m+[m[32m                if (! $user->hasVerifiedEmail()) {[m
+[32m+[m[32m                    throw ValidationException::withMessages([[m
+[32m+[m[32m                        'email' => ['メール認証が完了していません。確認メールをご確認ください。'],[m
+                     ]);[m
+                 }[m
+ [m
+                 return $user;[m
+             }[m
+ [m
+[31m-        // 認証エラー時のエラーメッセージ[m
+[31m-        throw ValidationException::withMessages([[m
+[31m-            'email' => ['ログイン情報が登録されていません'],[m
+[31m-        ]);[m
+[31m-    });[m
+[31m-     }[m
+[32m+[m[32m            // 認証エラー時のエラーメッセージ[m
+[32m+[m[32m            throw ValidationException::withMessages([[m
+[32m+[m[32m                'email' => ['ログイン情報が登録されていません'],[m
+[32m+[m[32m            ]);[m
+[32m+[m[32m        });[m
+     }[m
+[32m+[m[32m}[m
+[1mdiff --git a/src/config/app.php b/src/config/app.php[m
+[1mindex 55412a2..6375c68 100755[m
+[1m--- a/src/config/app.php[m
+[1m+++ b/src/config/app.php[m
+[36m@@ -161,7 +161,7 @@[m
+         Illuminate\Translation\TranslationServiceProvider::class,[m
+         Illuminate\Validation\ValidationServiceProvider::class,[m
+         Illuminate\View\ViewServiceProvider::class,[m
+[31m-        App\Providers\FortifyServiceProvider::class, [m
+[32m+[m[32m        App\Providers\FortifyServiceProvider::class,[m
+ [m
+         /*[m
+          * Package Service Providers...[m
+[1mdiff --git a/src/config/fortify.php b/src/config/fortify.php[m
+[1mindex b9bc78e..d020703 100755[m
+[1m--- a/src/config/fortify.php[m
+[1m+++ b/src/config/fortify.php[m
+[36m@@ -1,6 +1,5 @@[m
+ <?php[m
+ [m
+[31m-use App\Providers\RouteServiceProvider;[m
+ use Laravel\Fortify\Features;[m
+ [m
+ return [[m
+[36m@@ -144,11 +143,10 @@[m
+     |[m
+     */[m
+ [m
+[31m-    'features' =>   [[m
+[31m-    Features::registration(), // 会員登録機能を有効化[m
+[31m-    Features::emailVerification(), // メール認証[m
+[31m-    Features::updateProfileInformation(), // プロフィール情報更新[m
+[31m-                    ],[m
+[31m-[m
+[32m+[m[32m    'features' => [[m
+[32m+[m[32m        Features::registration(), // 会員登録機能を有効化[m
+[32m+[m[32m        Features::emailVerification(), // メール認証[m
+[32m+[m[32m        Features::updateProfileInformation(), // プロフィール情報更新[m
+[32m+[m[32m    ],[m
+ [m
+ ];[m
+[1mdiff --git a/src/database/factories/CommentFactory.php b/src/database/factories/CommentFactory.php[m
+[1mindex 63625c5..08dbc2d 100644[m
+[1m--- a/src/database/factories/CommentFactory.php[m
+[1m+++ b/src/database/factories/CommentFactory.php[m
+[36m@@ -3,8 +3,8 @@[m
+ namespace Database\Factories;[m
+ [m
+ use App\Models\Comment;[m
+[31m-use App\Models\User;[m
+ use App\Models\Item;[m
+[32m+[m[32muse App\Models\User;[m
+ use Illuminate\Database\Eloquent\Factories\Factory;[m
+ [m
+ class CommentFactory extends Factory[m
+[36m@@ -15,9 +15,9 @@[m [mclass CommentFactory extends Factory[m
+     public function definition()[m
+     {[m
+         return [[m
+[31m-            'user_id'    => User::factory(),         // 認証ユーザー[m
+[31m-            'item_id'    => Item::factory(),         // 対象商品[m
+[31m-            'comment'    => $this->faker->sentence,  // コメント本文[m
+[32m+[m[32m            'user_id' => User::factory(),         // 認証ユーザー[m
+[32m+[m[32m            'item_id' => Item::factory(),         // 対象商品[m
+[32m+[m[32m            'comment' => $this->faker->sentence,  // コメント本文[m
+             // created_at, updated_at は自動で挿入されます[m
+         ];[m
+     }[m
+[1mdiff --git a/src/database/factories/ItemFactory.php b/src/database/factories/ItemFactory.php[m
+[1mindex 6f6f272..0a26121 100644[m
+[1m--- a/src/database/factories/ItemFactory.php[m
+[1m+++ b/src/database/factories/ItemFactory.php[m
+[36m@@ -2,10 +2,10 @@[m
+ [m
+ namespace Database\Factories;[m
+ [m
+[31m-use App\Models\Item;[m
+[31m-use App\Models\User;[m
+ use App\Models\Category;[m
+[32m+[m[32muse App\Models\Item;[m
+ use App\Models\Status;[m
+[32m+[m[32muse App\Models\User;[m
+ use Illuminate\Database\Eloquent\Factories\Factory;[m
+ [m
+ class ItemFactory extends Factory[m
+[36m@@ -17,14 +17,14 @@[m [mpublic function definition()[m
+     {[m
+         return [[m
+             // 関連モデルもファクトリで作成[m
+[31m-            'user_id'     => User::factory(),[m
+[32m+[m[32m            'user_id' => User::factory(),[m
+             'category_id' => Category::factory(),[m
+[31m-            'status_id'   => Status::factory(),[m
+[31m-            'name'        => $this->faker->words(3, true),[m
+[32m+[m[32m            'status_id' => Status::factory(),[m
+[32m+[m[32m            'name' => $this->faker->words(3, true),[m
+             'description' => $this->faker->sentence(10),[m
+[31m-            'price'       => $this->faker->numberBetween(100, 10000),[m
+[31m-            'image'       => 'sample.jpg',[m
+[31m-            'brand'       => $this->faker->company(),[m
+[32m+[m[32m            'price' => $this->faker->numberBetween(100, 10000),[m
+[32m+[m[32m            'image' => 'sample.jpg',[m
+[32m+[m[32m            'brand' => $this->faker->company(),[m
+         ];[m
+     }[m
+ }[m
+[1mdiff --git a/src/database/factories/PurchaseFactory.php b/src/database/factories/PurchaseFactory.php[m
+[1mindex 2c842ff..79eba73 100644[m
+[1m--- a/src/database/factories/PurchaseFactory.php[m
+[1m+++ b/src/database/factories/PurchaseFactory.php[m
+[36m@@ -2,8 +2,8 @@[m
+ [m
+ namespace Database\Factories;[m
+ [m
+[31m-use App\Models\Purchase;[m
+ use App\Models\Item;[m
+[32m+[m[32muse App\Models\Purchase;[m
+ use App\Models\User;[m
+ use Illuminate\Database\Eloquent\Factories\Factory;[m
+ [m
+[36m@@ -17,8 +17,8 @@[m [mpublic function definition()[m
+         return [[m
+             'item_id' => Item::factory(),[m
+             'user_id' => User::factory(),[m
+[31m-            'address'      => $this->faker->address(),[m
+[31m-            'postal_code'  => $this->faker->postcode(),[m
+[32m+[m[32m            'address' => $this->faker->address(),[m
+[32m+[m[32m            'postal_code' => $this->faker->postcode(),[m
+         ];[m
+     }[m
+ }[m
+[1mdiff --git a/src/database/factories/UserFactory.php b/src/database/factories/UserFactory.php[m
+[1mindex e92f77e..82d17c7 100755[m
+[1m--- a/src/database/factories/UserFactory.php[m
+[1m+++ b/src/database/factories/UserFactory.php[m
+[36m@@ -3,7 +3,6 @@[m
+ namespace Database\Factories;[m
+ [m
+ use Illuminate\Database\Eloquent\Factories\Factory;[m
+[31m-use Illuminate\Support\Str;[m
+ [m
+ class UserFactory extends Factory[m
+ {[m
+[1mdiff --git a/src/database/migrations/2025_02_27_113153_create_items_table.php b/src/database/migrations/2025_02_27_113153_create_items_table.php[m
+[1mindex 334288f..092bd07 100755[m
+[1m--- a/src/database/migrations/2025_02_27_113153_create_items_table.php[m
+[1m+++ b/src/database/migrations/2025_02_27_113153_create_items_table.php[m
+[36m@@ -15,13 +15,13 @@[m [mpublic function up()[m
+     {[m
+         Schema::create('items', function (Blueprint $table) {[m
+             $table->id(); // bigint unsigned, AUTO_INCREMENT, PRIMARY KEY[m
+[31m-            $table->foreignId('user_id')->constrained('users')->onDelete('cascade'); [m
+[31m-            $table->json('category_id')->constrained('categories')->onDelete('cascade'); [m
+[31m-            $table->foreignId('status_id')->constrained('statuses')->onDelete('cascade'); [m
+[32m+[m[32m            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');[m
+[32m+[m[32m            $table->json('category_id')->constrained('categories')->onDelete('cascade');[m
+[32m+[m[32m            $table->foreignId('status_id')->constrained('statuses')->onDelete('cascade');[m
+             $table->string('name', 255); // VARCHAR(255) NOT NULL[m
+             $table->string('description', 255); // VARCHAR(255) NOT NULL[m
+             $table->integer('price'); // INT NOT NULL[m
+[31m-            $table->string('image', 255);// VARCHAR(255) NOT NULL[m
+[32m+[m[32m            $table->string('image', 255); // VARCHAR(255) NOT NULL[m
+             $table->timestamps(); // created_at, updated_at 自動追加[m
+         });[m
+     }[m
+[1mdiff --git a/src/database/migrations/2025_02_27_113214_create_purchases_table.php b/src/database/migrations/2025_02_27_113214_create_purchases_table.php[m
+[1mindex 2e044ce..2976276 100755[m
+[1m--- a/src/database/migrations/2025_02_27_113214_create_purchases_table.php[m
+[1m+++ b/src/database/migrations/2025_02_27_113214_create_purchases_table.php[m
+[36m@@ -15,8 +15,8 @@[m [mpublic function up()[m
+     {[m
+         Schema::create('purchases', function (Blueprint $table) {[m
+             $table->id(); // bigint unsigned, AUTO_INCREMENT, PRIMARY KEY[m
+[31m-            $table->foreignId('user_id')->constrained('users')->onDelete('cascade'); [m
+[31m-            $table->foreignId('item_id')->constrained('items')->onDelete('cascade'); [m
+[32m+[m[32m            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');[m
+[32m+[m[32m            $table->foreignId('item_id')->constrained('items')->onDelete('cascade');[m
+             $table->string('address', 255); // VARCHAR(255) NOT NULL[m
+             $table->timestamps(); // created_at, updated_at 自動追加[m
+         });[m
+[1mdiff --git a/src/database/migrations/2025_02_27_113229_create_profiles_table.php b/src/database/migrations/2025_02_27_113229_create_profiles_table.php[m
+[1mindex 8e3214a..21c723c 100755[m
+[1m--- a/src/database/migrations/2025_02_27_113229_create_profiles_table.php[m
+[1m+++ b/src/database/migrations/2025_02_27_113229_create_profiles_table.php[m
+[36m@@ -15,7 +15,7 @@[m [mpublic function up()[m
+     {[m
+         Schema::create('profiles', function (Blueprint $table) {[m
+             $table->id(); // bigint unsigned, AUTO_INCREMENT, PRIMARY KEY[m
+[31m-            $table->foreignId('user_id')->constrained('users')->onDelete('cascade'); [m
+[32m+[m[32m            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');[m
+             $table->string('profile_image', 255)->nullable(); // VARCHAR(255), NULL許容[m
+             $table->string('postal_code', 255); // VARCHAR(255) NOT NULL[m
+             $table->string('address', 255); // VARCHAR(255) NOT NULL[m
+[1mdiff --git a/src/database/migrations/2025_02_27_113247_create_favorites_table.php b/src/database/migrations/2025_02_27_113247_create_favorites_table.php[m
+[1mindex 0367085..6b5ac2b 100755[m
+[1m--- a/src/database/migrations/2025_02_27_113247_create_favorites_table.php[m
+[1m+++ b/src/database/migrations/2025_02_27_113247_create_favorites_table.php[m
+[36m@@ -15,11 +15,11 @@[m [mpublic function up()[m
+     {[m
+         Schema::create('favorites', function (Blueprint $table) {[m
+             $table->id(); // bigint unsigned, AUTO_INCREMENT, PRIMARY KEY[m
+[31m-            $table->foreignId('user_id')->constrained('users')->onDelete('cascade'); [m
+[31m-            $table->foreignId('item_id')->constrained('items')->onDelete('cascade'); [m
+[32m+[m[32m            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');[m
+[32m+[m[32m            $table->foreignId('item_id')->constrained('items')->onDelete('cascade');[m
+             $table->timestamps(); // created_at, updated_at 自動追加[m
+ [m
+[31m-            $table->unique(['user_id', 'item_id']);//複数回のいいね制限[m
+[32m+[m[32m            $table->unique(['user_id', 'item_id']); // 複数回のいいね制限[m
+         });[m
+     }[m
+ [m
+[1mdiff --git a/src/database/migrations/2025_02_27_113320_create_comments_table.php b/src/database/migrations/2025_02_27_113320_create_comments_table.php[m
+[1mindex 3e166ba..4bde7d1 100755[m
+[1m--- a/src/database/migrations/2025_02_27_113320_create_comments_table.php[m
+[1m+++ b/src/database/migrations/2025_02_27_113320_create_comments_table.php[m
+[36m@@ -15,8 +15,8 @@[m [mpublic function up()[m
+     {[m
+         Schema::create('comments', function (Blueprint $table) {[m
+             $table->id(); // bigint unsigned, AUTO_INCREMENT, PRIMARY KEY[m
+[31m-            $table->foreignId('user_id')->constrained('users')->onDelete('cascade'); [m
+[31m-            $table->foreignId('item_id')->constrained('items')->onDelete('cascade'); [m
+[32m+[m[32m            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');[m
+[32m+[m[32m            $table->foreignId('item_id')->constrained('items')->onDelete('cascade');[m
+             $table->string('comment', 255); // VARCHAR(255) NOT NULL[m
+             $table->timestamps(); // created_at, updated_at 自動追加[m
+         });[m
+[1mdiff --git a/src/database/migrations/2025_02_27_113336_create_payments_table.php b/src/database/migrations/2025_02_27_113336_create_payments_table.php[m
+[1mindex 82c4aa0..c9a69ef 100755[m
+[1m--- a/src/database/migrations/2025_02_27_113336_create_payments_table.php[m
+[1m+++ b/src/database/migrations/2025_02_27_113336_create_payments_table.php[m
+[36m@@ -15,9 +15,9 @@[m [mpublic function up()[m
+     {[m
+         Schema::create('payments', function (Blueprint $table) {[m
+             $table->id(); // bigint unsigned, AUTO_INCREMENT, PRIMARY KEY[m
+[31m-            $table->foreignId('purchase_id')->constrained('purchases')->onDelete('cascade'); [m
+[32m+[m[32m            $table->foreignId('purchase_id')->constrained('purchases')->onDelete('cascade');[m
+             $table->integer('amount'); // 支払金額 (例: 価格)[m
+[31m-            $table->enum('payment_method', ['credit_card', 'convenience_store']);//支払方法enum[m
+[32m+[m[32m            $table->enum('payment_method', ['credit_card', 'convenience_store']); // 支払方法enum[m
+             $table->string('stripe_payment_id', 255)->unique(); // Stripe決済ID, UNIQUE制約[m
+             $table->timestamps(); // created_at, updated_at 自動追加[m
+         });[m
+[1mdiff --git a/src/database/migrations/2025_03_17_133420_add_is_first_login_to_users_table.php b/src/database/migrations/2025_03_17_133420_add_is_first_login_to_users_table.php[m
+[1mindex 332ddbe..2911878 100644[m
+[1m--- a/src/database/migrations/2025_03_17_133420_add_is_first_login_to_users_table.php[m
+[1m+++ b/src/database/migrations/2025_03_17_133420_add_is_first_login_to_users_table.php[m
+[36m@@ -4,7 +4,8 @@[m
+ use Illuminate\Database\Schema\Blueprint;[m
+ use Illuminate\Support\Facades\Schema;[m
+ [m
+[31m-return new class extends Migration {[m
+[32m+[m[32mreturn new class extends Migration[m
+[32m+[m[32m{[m
+     public function up()[m
+     {[m
+         Schema::table('users', function (Blueprint $table) {[m
+[1mdiff --git a/src/database/migrations/2025_03_23_094044_drop_is_first_login_from_users_table.php b/src/database/migrations/2025_03_23_094044_drop_is_first_login_from_users_table.php[m
+[1mindex 2053fc1..1c47ef8 100644[m
+[1m--- a/src/database/migrations/2025_03_23_094044_drop_is_first_login_from_users_table.php[m
+[1m+++ b/src/database/migrations/2025_03_23_094044_drop_is_first_login_from_users_table.php[m
+[36m@@ -4,7 +4,8 @@[m
+ use Illuminate\Database\Schema\Blueprint;[m
+ use Illuminate\Support\Facades\Schema;[m
+ [m
+[31m-return new class extends Migration {[m
+[32m+[m[32mreturn new class extends Migration[m
+[32m+[m[32m{[m
+     public function up()[m
+     {[m
+         Schema::table('users', function (Blueprint $table) {[m
+[1mdiff --git a/src/database/migrations/2025_03_27_120211_revert_category_id_type_in_items_table.php b/src/database/migrations/2025_03_27_120211_revert_category_id_type_in_items_table.php[m
+[1mindex 4fd4c3e..1ca96da 100644[m
+[1m--- a/src/database/migrations/2025_03_27_120211_revert_category_id_type_in_items_table.php[m
+[1m+++ b/src/database/migrations/2025_03_27_120211_revert_category_id_type_in_items_table.php[m
+[36m@@ -2,8 +2,8 @@[m
+ [m
+ use Illuminate\Database\Migrations\Migration;[m
+ use Illuminate\Database\Schema\Blueprint;[m
+[31m-use Illuminate\Support\Facades\Schema;[m
+ use Illuminate\Support\Facades\DB;[m
+[32m+[m[32muse Illuminate\Support\Facades\Schema;[m
+ [m
+ class RevertCategoryIdTypeInItemsTable extends Migration[m
+ {[m
+[36m@@ -15,7 +15,7 @@[m [mclass RevertCategoryIdTypeInItemsTable extends Migration[m
+     public function up()[m
+     {[m
+         // 1. 既存データの変換：JSON_UNQUOTE() を使い、文字列から数値に変換する[m
+[31m-        DB::statement("UPDATE items SET category_id = JSON_UNQUOTE(category_id) WHERE category_id IS NOT NULL");[m
+[32m+[m[32m        DB::statement('UPDATE items SET category_id = JSON_UNQUOTE(category_id) WHERE category_id IS NOT NULL');[m
+ [m
+         // 2. category_id カラムの型を unsignedBigInteger に変更[m
+         Schema::table('items', function (Blueprint $table) {[m
+[36m@@ -25,9 +25,9 @@[m [mpublic function up()[m
+         // 3. 外部キー制約を再構築する[m
+         Schema::table('items', function (Blueprint $table) {[m
+             $table->foreign('category_id')[m
+[31m-                  ->references('id')[m
+[31m-                  ->on('categories')[m
+[31m-                  ->onDelete('cascade');[m
+[32m+[m[32m                ->references('id')[m
+[32m+[m[32m                ->on('categories')[m
+[32m+[m[32m                ->onDelete('cascade');[m
+         });[m
+     }[m
+ [m
+[36m@@ -36,41 +36,40 @@[m [mpublic function up()[m
+      *[m
+      * @return void[m
+      */[m
+[31m-   public function down()[m
+[31m-{[m
+[31m-    // 外部キーの存在をチェックして削除（以前のコード例と同様）[m
+[31m-    $foreignKeyExists = false;[m
+[31m-    $result = DB::select("SHOW CREATE TABLE items");[m
+[31m-    if (isset($result[0]->{'Create Table'})) {[m
+[31m-        $createTable = $result[0]->{'Create Table'};[m
+[31m-        if (strpos($createTable, 'items_category_id_foreign') !== false) {[m
+[31m-            $foreignKeyExists = true;[m
+[32m+[m[32m    public function down()[m
+[32m+[m[32m    {[m
+[32m+[m[32m        // 外部キーの存在をチェックして削除（以前のコード例と同様）[m
+[32m+[m[32m        $foreignKeyExists = false;[m
+[32m+[m[32m        $result = DB::select('SHOW CREATE TABLE items');[m
+[32m+[m[32m        if (isset($result[0]->{'Create Table'})) {[m
+[32m+[m[32m            $createTable = $result[0]->{'Create Table'};[m
+[32m+[m[32m            if (strpos($createTable, 'items_category_id_foreign') !== false) {[m
+[32m+[m[32m                $foreignKeyExists = true;[m
+[32m+[m[32m            }[m
+         }[m
+[31m-    }[m
+[31m-    [m
+[31m-    if ($foreignKeyExists) {[m
+[32m+[m
+[32m+[m[32m        if ($foreignKeyExists) {[m
+[32m+[m[32m            try {[m
+[32m+[m[32m                DB::statement('ALTER TABLE items DROP FOREIGN KEY `items_category_id_foreign`');[m
+[32m+[m[32m            } catch (\Exception $e) {[m
+[32m+[m[32m                // 外部キーが存在しない場合は無視[m
+[32m+[m[32m            }[m
+[32m+[m[32m        }[m
+[32m+[m
+[32m+[m[32m        // インデックスが残っている可能性があるため DROP INDEX も試みる[m
+         try {[m
+[31m-            DB::statement("ALTER TABLE items DROP FOREIGN KEY `items_category_id_foreign`");[m
+[32m+[m[32m            DB::statement('ALTER TABLE items DROP INDEX `items_category_id_foreign`');[m
+         } catch (\Exception $e) {[m
+[31m-            // 外部キーが存在しない場合は無視[m
+[32m+[m[32m            // インデックスが存在しない場合は無視[m
+         }[m
+[31m-    }[m
+[31m-    [m
+[31m-    // インデックスが残っている可能性があるため DROP INDEX も試みる[m
+[31m-    try {[m
+[31m-        DB::statement("ALTER TABLE items DROP INDEX `items_category_id_foreign`");[m
+[31m-    } catch (\Exception $e) {[m
+[31m-        // インデックスが存在しない場合は無視[m
+[31m-    }[m
+ [m
+[31m-    // ↓ カラム内の値を、正しい JSON 形式に更新する[m
+[31m-    // 例: "1,2,3" → "[1,2,3]"[m
+[31m-    DB::statement("UPDATE items SET category_id = CONCAT('[', category_id, ']') WHERE category_id IS NOT NULL");[m
+[32m+[m[32m        // ↓ カラム内の値を、正しい JSON 形式に更新する[m
+[32m+[m[32m        // 例: "1,2,3" → "[1,2,3]"[m
+[32m+[m[32m        DB::statement("UPDATE items SET category_id = CONCAT('[', category_id, ']') WHERE category_id IS NOT NULL");[m
+ [m
+[31m-    // カラム型を JSON 型に戻す[m
+[31m-    Schema::table('items', function (Blueprint $table) {[m
+[31m-        $table->json('category_id')->change();[m
+[31m-    });[m
+[32m+[m[32m        // カラム型を JSON 型に戻す[m
+[32m+[m[32m        Schema::table('items', function (Blueprint $table) {[m
+[32m+[m[32m            $table->json('category_id')->change();[m
+[32m+[m[32m        });[m
+[32m+[m[32m    }[m
+ }[m
+[31m-[m
+[31m-}[m
+\ No newline at end of file[m
+[1mdiff --git a/src/database/migrations/2025_04_07_152944_change_category_id_type_in_items_table.php b/src/database/migrations/2025_04_07_152944_change_category_id_type_in_items_table.php[m
+[1mindex 2131717..581d3cd 100644[m
+[1m--- a/src/database/migrations/2025_04_07_152944_change_category_id_type_in_items_table.php[m
+[1m+++ b/src/database/migrations/2025_04_07_152944_change_category_id_type_in_items_table.php[m
+[36m@@ -2,8 +2,8 @@[m
+ [m
+ use Illuminate\Database\Migrations\Migration;[m
+ use Illuminate\Database\Schema\Blueprint;[m
+[31m-use Illuminate\Support\Facades\Schema;[m
+ use Illuminate\Support\Facades\DB;[m
+[32m+[m[32muse Illuminate\Support\Facades\Schema;[m
+ [m
+ class ChangeCategoryIdTypeInItemsTable extends Migration[m
+ {[m
+[1mdiff --git a/src/database/seeders/CategorySeeder.php b/src/database/seeders/CategorySeeder.php[m
+[1mindex 77feb1b..c9634df 100644[m
+[1m--- a/src/database/seeders/CategorySeeder.php[m
+[1m+++ b/src/database/seeders/CategorySeeder.php[m
+[36m@@ -2,8 +2,8 @@[m
+ [m
+ namespace Database\Seeders;[m
+ [m
+[31m-use Illuminate\Database\Seeder;[m
+ use App\Models\Category;[m
+[32m+[m[32muse Illuminate\Database\Seeder;[m
+ [m
+ class CategorySeeder extends Seeder[m
+ {[m
+[1mdiff --git a/src/database/seeders/DatabaseSeeder.php b/src/database/seeders/DatabaseSeeder.php[m
+[1mindex dbac6a9..59c218e 100755[m
+[1m--- a/src/database/seeders/DatabaseSeeder.php[m
+[1m+++ b/src/database/seeders/DatabaseSeeder.php[m
+[36m@@ -13,11 +13,11 @@[m [mclass DatabaseSeeder extends Seeder[m
+      */[m
+     public function run()[m
+     {[m
+[31m-         $this->call([[m
+[32m+[m[32m        $this->call([[m
+             CategorySeeder::class,[m
+             StatusSeeder::class,[m
+             UserSeeder::class,[m
+             ItemSeeder::class,[m
+[31m-         ]);[m
+[32m+[m[32m        ]);[m
+     }[m
+ }[m
+[1mdiff --git a/src/database/seeders/ItemSeeder.php b/src/database/seeders/ItemSeeder.php[m
+[1mindex debdeb7..8142448 100644[m
+[1m--- a/src/database/seeders/ItemSeeder.php[m
+[1m+++ b/src/database/seeders/ItemSeeder.php[m
+[36m@@ -2,11 +2,10 @@[m
+ [m
+ namespace Database\Seeders;[m
+ [m
+[31m-use Illuminate\Database\Seeder;[m
+[31m-use App\Models\Item;[m
+[31m-use App\Models\User;[m
+ use App\Models\Category;[m
+[32m+[m[32muse App\Models\Item;[m
+ use Carbon\Carbon;[m
+[32m+[m[32muse Illuminate\Database\Seeder;[m
+ [m
+ class ItemSeeder extends Seeder[m
+ {[m
+[36m@@ -18,93 +17,93 @@[m [mpublic function run()[m
+         // 商品サンプルデータ[m
+         $products = [[m
+             [[m
+[31m-                'name'          => '腕時計',[m
+[31m-                'price'         => 15000,[m
+[31m-                'description'   => 'スタイリッシュなデザインのメンズ腕時計',[m
+[31m-                'image'         => 'images/Armani+Mens+Clock.jpg',[m
+[31m-                'condition'     => '良好',[m
+[31m-                'category'      => 'ファッション',[m
+[32m+[m[32m                'name' => '腕時計',[m
+[32m+[m[32m                'price' => 15000,[m
+[32m+[m[32m                'description' => 'スタイリッシュなデザインのメンズ腕時計',[m
+[32m+[m[32m                'image' => 'images/Armani+Mens+Clock.jpg',[m
+[32m+[m[32m                'condition' => '良好',[m
+[32m+[m[32m                'category' => 'ファッション',[m
+             ],[m
+             [[m
+[31m-                'name'          => 'HDD',[m
+[31m-                'price'         => 5000,[m
+[31m-                'description'   => '高速で信頼性の高いハードディスク',[m
+[31m-                'image'         => 'images/HDD+Hard+Disk.jpg',[m
+[31m-                'condition'     => '目立った傷や汚れなし',[m
+[31m-                'category'      => '家電',[m
+[32m+[m[32m                'name' => 'HDD',[m
+[32m+[m[32m                'price' => 5000,[m
+[32m+[m[32m                'description' => '高速で信頼性の高いハードディスク',[m
+[32m+[m[32m                'image' => 'images/HDD+Hard+Disk.jpg',[m
+[32m+[m[32m                'condition' => '目立った傷や汚れなし',[m
+[32m+[m[32m                'category' => '家電',[m
+             ],[m
+             [[m
+[31m-                'name'          => '玉ねぎ3束',[m
+[31m-                'price'         => 300,[m
+[31m-                'description'   => '新鮮な玉ねぎ3束のセット',[m
+[31m-                'image'         => 'images/iLoveIMG+d.jpg',[m
+[31m-                'condition'     => 'やや傷や汚れあり',[m
+[31m-                'category'      => 'キッチン',[m
+[32m+[m[32m                'name' => '玉ねぎ3束',[m
+[32m+[m[32m                'price' => 300,[m
+[32m+[m[32m                'description' => '新鮮な玉ねぎ3束のセット',[m
+[32m+[m[32m                'image' => 'images/iLoveIMG+d.jpg',[m
+[32m+[m[32m                'condition' => 'やや傷や汚れあり',[m
+[32m+[m[32m                'category' => 'キッチン',[m
+             ],[m
+             [[m
+[31m-                'name'          => '革靴',[m
+[31m-                'price'         => 4000,[m
+[31m-                'description'   => 'クラシックなデザインの革靴',[m
+[31m-                'image'         => 'images/Leather+Shoes+Product+Photo.jpg',[m
+[31m-                'condition'     => '状態が悪い',[m
+[31m-                'category'      => 'ファッション',[m
+[32m+[m[32m                'name' => '革靴',[m
+[32m+[m[32m                'price' => 4000,[m
+[32m+[m[32m                'description' => 'クラシックなデザインの革靴',[m
+[32m+[m[32m                'image' => 'images/Leather+Shoes+Product+Photo.jpg',[m
+[32m+[m[32m                'condition' => '状態が悪い',[m
+[32m+[m[32m                'category' => 'ファッション',[m
+             ],[m
+             [[m
+[31m-                'name'          => 'ノートPC',[m
+[31m-                'price'         => 45000,[m
+[31m-                'description'   => '高性能なノートパソコン',[m
+[31m-                'image'         => 'images/Living+Room+Laptop.jpg',[m
+[31m-                'condition'     => '良好',[m
+[31m-                'category'      => '家電',[m
+[32m+[m[32m                'name' => 'ノートPC',[m
+[32m+[m[32m                'price' => 45000,[m
+[32m+[m[32m                'description' => '高性能なノートパソコン',[m
+[32m+[m[32m                'image' => 'images/Living+Room+Laptop.jpg',[m
+[32m+[m[32m                'condition' => '良好',[m
+[32m+[m[32m                'category' => '家電',[m
+             ],[m
+             [[m
+[31m-                'name'          => 'マイク',[m
+[31m-                'price'         => 8000,[m
+[31m-                'description'   => '高音質のレコーディング用マイク',[m
+[31m-                'image'         => 'images/Music+Mic+4632231.jpg',[m
+[31m-                'condition'     => '目立った傷や汚れなし',[m
+[31m-                'category'      => '家電',[m
+[32m+[m[32m                'name' => 'マイク',[m
+[32m+[m[32m                'price' => 8000,[m
+[32m+[m[32m                'description' => '高音質のレコーディング用マイク',[m
+[32m+[m[32m                'image' => 'images/Music+Mic+4632231.jpg',[m
+[32m+[m[32m                'condition' => '目立った傷や汚れなし',[m
+[32m+[m[32m                'category' => '家電',[m
+             ],[m
+             [[m
+[31m-                'name'          => 'ショルダーバッグ',[m
+[31m-                'price'         => 3500,[m
+[31m-                'description'   => 'おしゃれなショルダーバッグ',[m
+[31m-                'image'         => 'images/Purse+fashion+pocket.jpg',[m
+[31m-                'condition'     => 'やや傷や汚れあり',[m
+[31m-                'category'      => 'ファッション',[m
+[32m+[m[32m                'name' => 'ショルダーバッグ',[m
+[32m+[m[32m                'price' => 3500,[m
+[32m+[m[32m                'description' => 'おしゃれなショルダーバッグ',[m
+[32m+[m[32m                'image' => 'images/Purse+fashion+pocket.jpg',[m
+[32m+[m[32m                'condition' => 'やや傷や汚れあり',[m
+[32m+[m[32m                'category' => 'ファッション',[m
+             ],[m
+             [[m
+[31m-                'name'          => 'タンブラー',[m
+[31m-                'price'         => 500,[m
+[31m-                'description'   => '使いやすいタンブラー',[m
+[31m-                'image'         => 'images/Tumbler+souvenir.jpg',[m
+[31m-                'condition'     => '状態が悪い',[m
+[31m-                'category'      => 'キッチン',[m
+[32m+[m[32m                'name' => 'タンブラー',[m
+[32m+[m[32m                'price' => 500,[m
+[32m+[m[32m                'description' => '使いやすいタンブラー',[m
+[32m+[m[32m                'image' => 'images/Tumbler+souvenir.jpg',[m
+[32m+[m[32m                'condition' => '状態が悪い',[m
+[32m+[m[32m                'category' => 'キッチン',[m
+             ],[m
+             [[m
+[31m-                'name'          => 'コーヒーミル',[m
+[31m-                'price'         => 4000,[m
+[31m-                'description'   => '手動のコーヒーミル',[m
+[31m-                'image'         => 'images/Waitress+with+Coffee+Grinder.jpg',[m
+[31m-                'condition'     => '良好',[m
+[31m-                'category'      => 'キッチン',[m
+[32m+[m[32m                'name' => 'コーヒーミル',[m
+[32m+[m[32m                'price' => 4000,[m
+[32m+[m[32m                'description' => '手動のコーヒーミル',[m
+[32m+[m[32m                'image' => 'images/Waitress+with+Coffee+Grinder.jpg',[m
+[32m+[m[32m                'condition' => '良好',[m
+[32m+[m[32m                'category' => 'キッチン',[m
+             ],[m
+             [[m
+[31m-                'name'          => 'メイクセット',[m
+[31m-                'price'         => 2500,[m
+[31m-                'description'   => '便利なメイクアップセット',[m
+[31m-                'image'         => 'images/外出メイクアップセット.jpg',[m
+[31m-                'condition'     => '目立った傷や汚れなし',[m
+[31m-                'category'      => 'コスメ',[m
+[32m+[m[32m                'name' => 'メイクセット',[m
+[32m+[m[32m                'price' => 2500,[m
+[32m+[m[32m                'description' => '便利なメイクアップセット',[m
+[32m+[m[32m                'image' => 'images/外出メイクアップセット.jpg',[m
+[32m+[m[32m                'condition' => '目立った傷や汚れなし',[m
+[32m+[m[32m                'category' => 'コスメ',[m
+             ],[m
+         ];[m
+ [m
+         // マッピング: condition文字列 → statusesテーブルのID[m
+         $statusMap = [[m
+[31m-            '良好'             => 1,[m
+[32m+[m[32m            '良好' => 1,[m
+             '目立った傷や汚れなし' => 2,[m
+[31m-            'やや傷や汚れあり'     => 3,[m
+[31m-            '状態が悪い'         => 4,[m
+[32m+[m[32m            'やや傷や汚れあり' => 3,[m
+[32m+[m[32m            '状態が悪い' => 4,[m
+         ];[m
+ [m
+         // ユーザーは既にシーディング済みと仮定（全ユーザーからランダムに選ぶ）[m
+[36m@@ -118,21 +117,21 @@[m [mpublic function run()[m
+ [m
+             // カテゴリー名から、対応するカテゴリーIDの配列を作成[m
+             $catName = $product['category'];[m
+[31m-           $categoryId = $categories->has($catName) ? $categories->get($catName)->id : null;[m
+[32m+[m[32m            $categoryId = $categories->has($catName) ? $categories->get($catName)->id : null;[m
+ [m
+             // 状態：condition文字列から status_id を取得[m
+             $statusId = $statusMap[$product['condition']];[m
+ [m
+             Item::create([[m
+[31m-                'user_id'     => $userId,[m
+[32m+[m[32m                'user_id' => $userId,[m
+                 'category_id' => $categoryId,[m
+[31m-                'status_id'   => $statusId,[m
+[31m-                'name'        => $product['name'],[m
+[32m+[m[32m                'status_id' => $statusId,[m
+[32m+[m[32m                'name' => $product['name'],[m
+                 'description' => $product['description'],[m
+[31m-                'price'       => $product['price'],[m
+[31m-                'image'       => $product['image'],[m
+[31m-                'created_at'  => $now,[m
+[31m-                'updated_at'  => $now,[m
+[32m+[m[32m                'price' => $product['price'],[m
+[32m+[m[32m                'image' => $product['image'],[m
+[32m+[m[32m                'created_at' => $now,[m
+[32m+[m[32m                'updated_at' => $now,[m
+             ]);[m
+         }[m
+     }[m
+[1mdiff --git a/src/database/seeders/StatusSeeder.php b/src/database/seeders/StatusSeeder.php[m
+[1mindex aef3e11..1e11c83 100644[m
+[1m--- a/src/database/seeders/StatusSeeder.php[m
+[1m+++ b/src/database/seeders/StatusSeeder.php[m
+[36m@@ -1,8 +1,9 @@[m
+ <?php[m
+ [m
+ namespace Database\Seeders;[m
+[31m-use Illuminate\Database\Seeder;[m
+[32m+[m
+ use App\Models\Status;[m
+[32m+[m[32muse Illuminate\Database\Seeder;[m
+ [m
+ class StatusSeeder extends Seeder[m
+ {[m
+[1mdiff --git a/src/database/seeders/UserSeeder.php b/src/database/seeders/UserSeeder.php[m
+[1mindex add0420..1bbbb23 100644[m
+[1m--- a/src/database/seeders/UserSeeder.php[m
+[1m+++ b/src/database/seeders/UserSeeder.php[m
+[36m@@ -2,8 +2,10 @@[m
+ [m
+ namespace Database\Seeders;[m
+ [m
+[32m+[m[32muse App\Models\User;[m
+ use Illuminate\Database\Seeder;[m
+[31m-use App\Models\User;  // Userモデルをインポート[m
+[32m+[m
+[32m+[m[32m// Userモデルをインポート[m
+ [m
+ class UserSeeder extends Seeder[m
+ {[m
+[1mdiff --git a/src/public/css/address_edit.css b/src/public/css/address_edit.css[m
+[1mindex 947c189..3b3df23 100644[m
+[1m--- a/src/public/css/address_edit.css[m
+[1m+++ b/src/public/css/address_edit.css[m
+[36m@@ -147,7 +147,7 @@[m [mbody {[m
+   }[m
+ [m
+   .address-edit-container .page-title {[m
+[31m-    font-size:  42px; [m
+[32m+[m[32m    font-size:  42px;[m
+     margin-bottom: 50px;[m
+   }[m
+ [m
+[1mdiff --git a/src/public/css/items/create.css b/src/public/css/items/create.css[m
+[1mindex bc41a99..e619014 100644[m
+[1m--- a/src/public/css/items/create.css[m
+[1m+++ b/src/public/css/items/create.css[m
+[36m@@ -123,19 +123,19 @@[m [mbody {[m
+ [m
+ /* カテゴリ選択 */[m
+ .category-list {[m
+[31m-  display: flex; [m
+[32m+[m[32m  display: flex;[m
+   flex-wrap: wrap; gap: 10px;[m
+ }[m
+ [m
+[31m-.category-label { [m
+[31m-  position: relative; [m
+[31m-  cursor: pointer; [m
+[32m+[m[32m.category-label {[m
+[32m+[m[32m  position: relative;[m
+[32m+[m[32m  cursor: pointer;[m
+ }[m
+ [m
+ .category-label input[type="checkbox"] {[m
+[31m-  position: absolute; [m
+[31m-  opacity: 0; [m
+[31m-  width: 0; [m
+[32m+[m[32m  position: absolute;[m
+[32m+[m[32m  opacity: 0;[m
+[32m+[m[32m  width: 0;[m
+   height: 0;[m
+ }[m
+ [m
+[36m@@ -156,9 +156,9 @@[m [mbody {[m
+ }[m
+ [m
+ /* 価格入力 */[m
+[31m-.price-input-wrapper { [m
+[31m-  position: relative; [m
+[31m-  width: 100%; [m
+[32m+[m[32m.price-input-wrapper {[m
+[32m+[m[32m  position: relative;[m
+[32m+[m[32m  width: 100%;[m
+ }[m
+ [m
+ .yen-symbol {[m
+[36m@@ -167,19 +167,19 @@[m [mbody {[m
+   color: #333; pointer-events: none;[m
+ }[m
+ [m
+[31m-.price-input-wrapper input { [m
+[31m-  padding-left: 28px !important; [m
+[32m+[m[32m.price-input-wrapper input {[m
+[32m+[m[32m  padding-left: 28px !important;[m
+ }[m
+ [m
+ /* スピンボタン削除 */[m
+ input[type="number"]::-webkit-outer-spin-button,[m
+ input[type="number"]::-webkit-inner-spin-button {[m
+[31m-  appearance: none; [m
+[32m+[m[32m  appearance: none;[m
+   margin: 0;[m
+ }[m
+ [m
+[31m-input[type="number"] { [m
+[31m-  appearance: textfield; [m
+[32m+[m[32minput[type="number"] {[m
+[32m+[m[32m  appearance: textfield;[m
+   appearance: none;[m
+  }[m
+ [m
+[1mdiff --git a/src/public/css/items/show.css b/src/public/css/items/show.css[m
+[1mindex 0a30f63..5638917 100644[m
+[1m--- a/src/public/css/items/show.css[m
+[1m+++ b/src/public/css/items/show.css[m
+[36m@@ -345,13 +345,13 @@[m
+   }[m
+ [m
+   /* 以下は既存の調整 */[m
+[31m-  .product-name { [m
+[31m-    font-size: 20px; [m
+[32m+[m[32m  .product-name {[m
+[32m+[m[32m    font-size: 20px;[m
+   }[m
+ [m
+ [m
+[31m-  .product-price { [m
+[31m-    font-size: 20px; [m
+[32m+[m[32m  .product-price {[m
+[32m+[m[32m    font-size: 20px;[m
+   }[m
+ [m
+ [m
+[36m@@ -360,29 +360,29 @@[m
+      padding: 10px;[m
+      }[m
+ [m
+[31m-  .section-title  { [m
+[31m-    font-size: 18px; [m
+[32m+[m[32m  .section-title  {[m
+[32m+[m[32m    font-size: 18px;[m
+   }[m
+ [m
+[31m-  .section-text   { [m
+[31m-    font-size: 14px; [m
+[32m+[m[32m  .section-text   {[m
+[32m+[m[32m    font-size: 14px;[m
+   }[m
+ [m
+[31m-  .comment-avatar { [m
+[31m-    width: 30px; [m
+[31m-    height: 30px; [m
+[32m+[m[32m  .comment-avatar {[m
+[32m+[m[32m    width: 30px;[m
+[32m+[m[32m    height: 30px;[m
+   }[m
+ [m
+[31m-  .comment-user   { [m
+[31m-    font-size: 14px; [m
+[32m+[m[32m  .comment-user   {[m
+[32m+[m[32m    font-size: 14px;[m
+   }[m
+ [m
+[31m-  .comment-body   { [m
+[31m-    font-size: 12px; [m
+[32m+[m[32m  .comment-body   {[m
+[32m+[m[32m    font-size: 12px;[m
+   }[m
+ [m
+[31m-  .comment-submit { [m
+[31m-    font-size: 14px; [m
+[32m+[m[32m  .comment-submit {[m
+[32m+[m[32m    font-size: 14px;[m
+   }[m
+ [m
+ }[m
+[36m@@ -399,75 +399,75 @@[m
+     gap: 40px;[m
+   }[m
+ [m
+[31m-  .left-column { [m
+[31m-    flex: 0 0 500px; [m
+[32m+[m[32m  .left-column {[m
+[32m+[m[32m    flex: 0 0 500px;[m
+   }[m
+ [m
+[31m-  .product-image { [m
+[31m-    width: 500px; [m
+[31m-    height: 500px; [m
+[32m+[m[32m  .product-image {[m
+[32m+[m[32m    width: 500px;[m
+[32m+[m[32m    height: 500px;[m
+   }[m
+ [m
+[31m-  .right-column { [m
+[31m-    flex: 1; [m
+[32m+[m[32m  .right-column {[m
+[32m+[m[32m    flex: 1;[m
+   }[m
+ [m
+[31m-  .product-name { [m
+[31m-    font-size: 32px; [m
+[32m+[m[32m  .product-name {[m
+[32m+[m[32m    font-size: 32px;[m
+   }[m
+ [m
+   .product-brand,[m
+[31m-  .product-price{ [m
+[31m-    font-size: 24px; [m
+[32m+[m[32m  .product-price{[m
+[32m+[m[32m    font-size: 24px;[m
+   }[m
+ [m
+[31m-  .tax-included { [m
+[31m-    font-size: 18px; [m
+[32m+[m[32m  .tax-included {[m
+[32m+[m[32m    font-size: 18px;[m
+   }[m
+ [m
+[31m-  .icon-img     { [m
+[31m-    width: 32px; [m
+[31m-    height: 32px; [m
+[32m+[m[32m  .icon-img     {[m
+[32m+[m[32m    width: 32px;[m
+[32m+[m[32m    height: 32px;[m
+   }[m
+ [m
+[31m-  .icon-count   { [m
+[31m-    font-size: 16px; [m
+[32m+[m[32m  .icon-count   {[m
+[32m+[m[32m    font-size: 16px;[m
+   }[m
+ [m
+[31m-  .purchase-btn { [m
+[31m-    width: 300px; [m
+[31m-    font-size: 20px; [m
+[31m-    padding: 12px 0; [m
+[32m+[m[32m  .purchase-btn {[m
+[32m+[m[32m    width: 300px;[m
+[32m+[m[32m    font-size: 20px;[m
+[32m+[m[32m    padding: 12px 0;[m
+   }[m
+ [m
+[31m-  .section-title{ [m
+[31m-    font-size: 24px; [m
+[32m+[m[32m  .section-title{[m
+[32m+[m[32m    font-size: 24px;[m
+   }[m
+ [m
+[31m-  .section-text { [m
+[31m-    font-size: 16px; [m
+[32m+[m[32m  .section-text {[m
+[32m+[m[32m    font-size: 16px;[m
+   }[m
+ [m
+[31m-  .category-tag { [m
+[31m-    font-size: 16px; [m
+[32m+[m[32m  .category-tag {[m
+[32m+[m[32m    font-size: 16px;[m
+   }[m
+ [m
+[31m-  .comment-avatar{ [m
+[31m-    width: 40px; [m
+[31m-    height: 40px; [m
+[32m+[m[32m  .comment-avatar{[m
+[32m+[m[32m    width: 40px;[m
+[32m+[m[32m    height: 40px;[m
+   }[m
+ [m
+[31m-  .comment-user { [m
+[31m-    font-size: 16px; [m
+[32m+[m[32m  .comment-user {[m
+[32m+[m[32m    font-size: 16px;[m
+   }[m
+ [m
+[31m-  .comment-body { [m
+[31m-    font-size: 14px; [m
+[32m+[m[32m  .comment-body {[m
+[32m+[m[32m    font-size: 14px;[m
+   }[m
+ [m
+[31m-  .comment-submit { [m
+[31m-    font-size: 16px; [m
+[31m-    padding: 12px 0; [m
+[32m+[m[32m  .comment-submit {[m
+[32m+[m[32m    font-size: 16px;[m
+[32m+[m[32m    padding: 12px 0;[m
+   }[m
+[31m-  [m
+[32m+[m
+ }[m
+[1mdiff --git a/src/resources/views/purchase/show.blade.php b/src/resources/views/purchase/show.blade.php[m
+[1mindex fc59cd0..956ae7b 100644[m
+[1m--- a/src/resources/views/purchase/show.blade.php[m
+[1m+++ b/src/resources/views/purchase/show.blade.php[m
+[36m@@ -31,7 +31,7 @@[m
+           <span class="label">支払方法</span>[m
+           <div class="content">[m
+             <form id="payment-form" action="{{ route('purchase.show', ['item_id' => $item->id]) }}" method="GET">[m
+[31m-              <select name="payment_method" id="payment_method">[m
+[32m+[m[32m              <select name="payment-method" id="payment-method">[m
+                 <option value="credit_card" @if(request('payment_method', 'credit_card') === 'credit_card') selected @endif>カード支払い</option>[m
+                 <option value="convenience_store" @if(request('payment_method') === 'convenience_store') selected @endif>コンビ二支払い</option>[m
+               </select>[m
+[36m@@ -67,7 +67,7 @@[m
+       <div class="right-info">[m
+         <div class="price-method-box">[m
+           @php[m
+[31m-            $paymentMethod = request('payment_method', 'credit_card');[m
+[32m+[m[32m            $paymentMethod = request('payment-method', 'credit_card');[m
+             $methodLabels = [[m
+               'credit_card' => 'カード支払い',[m
+               'convenience_store' => 'コンビニ支払い',[m
+[36m@@ -88,7 +88,7 @@[m
+         </div>[m
+         <form action="{{ route('purchase.execute', ['item_id' => $item->id]) }}" method="POST">[m
+           @csrf[m
+[31m-          <input type="hidden" name="payment_method" value="{{ $paymentMethod }}">[m
+[32m+[m[32m          <input type="hidden" name="payment-method" value="{{ $paymentMethod }}">[m
+           <button type="submit" class="purchase-btn">購入する</button>[m
+         </form>[m
+       </div>[m
+[36m@@ -98,9 +98,9 @@[m
+   <!-- JavaScript: リアルタイム更新 -->[m
+   <script>[m
+     document.addEventListener('DOMContentLoaded', function () {[m
+[31m-  var paymentSelect = document.getElementById('payment_method');[m
+[32m+[m[32m  var paymentSelect = document.getElementById('payment-method');[m
+   var methodRow = document.querySelector('.right-info .method-row');[m
+[31m-  var hiddenPaymentInput = document.querySelector('input[name="payment_method"]');[m
+[32m+[m[32m  var hiddenPaymentInput = document.querySelector('input[name="payment-method"]');[m
+ [m
+   const labels = {[m
+     credit_card: 'カード支払い',[m
+[1mdiff --git a/src/routes/web.php b/src/routes/web.php[m
+[1mindex ae982a4..a4d105f 100755[m
+[1m--- a/src/routes/web.php[m
+[1m+++ b/src/routes/web.php[m
+[36m@@ -1,12 +1,11 @@[m
+ <?php[m
+ [m
+[31m-use Illuminate\Support\Facades\Route;[m
+ use App\Http\Controllers\AuthController;[m
+[31m-use App\Http\Controllers\UserController;[m
+ use App\Http\Controllers\ItemController;[m
+ use App\Http\Controllers\PurchaseController;[m
+[31m-use Illuminate\Foundation\Auth\EmailVerificationRequest;[m
+[31m-use Illuminate\Http\Request;[m
+[32m+[m[32muse App\Http\Controllers\UserController;[m
+[32m+[m[32muse Illuminate\Support\Facades\Route;[m
+[32m+[m
+ /*[m
+ |--------------------------------------------------------------------------[m
+ | Web Routes[m
+[36m@@ -21,7 +20,7 @@[m
+ Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');[m
+ Route::post('/login', [AuthController::class, 'login']); // ← ここは必須[m
+ [m
+[31m-//商品一覧画面[m
+[32m+[m[32m// 商品一覧画面[m
+ Route::get('/', [ItemController::class, 'index'])->name('item.index');[m
+ [m
+ // ユーザ認証不要：商品詳細画面表示[m
+[36m@@ -36,14 +35,14 @@[m
+     Route::post('/sell', [ItemController::class, 'store'])->name('sell.store');[m
+ [m
+     Route::get('/purchase/address/{item_id}', [PurchaseController::class, 'edit'])[m
+[31m-    ->name('purchase.address.edit');[m
+[31m-    [m
+[32m+[m[32m        ->name('purchase.address.edit');[m
+[32m+[m
+     Route::put('/purchase/address/{item_id}', [PurchaseController::class, 'update'])[m
+[31m-    ->name('purchase.address.update');[m
+[32m+[m[32m        ->name('purchase.address.update');[m
+ [m
+     Route::get('/purchase/{item_id}', [PurchaseController::class, 'showPurchasePage'])->name('purchase.show');[m
+     Route::post('/purchase/{item_id}', [PurchaseController::class, 'executePurchase'])[m
+[31m-     ->name('purchase.execute');[m
+[32m+[m[32m        ->name('purchase.execute');[m
+ [m
+     Route::post('/item/{item_id}/like', [ItemController::class, 'like'])->name('item.like');[m
+     Route::delete('/item/{item_id}/unlike', [ItemController::class, 'unlike'])->name('item.unlike');[m
+[1mdiff --git a/src/server.php b/src/server.php[m
+[1mindex 1e44b88..c25c5a0 100755[m
+[1m--- a/src/server.php[m
+[1m+++ b/src/server.php[m
+[36m@@ -3,10 +3,8 @@[m
+ /**[m
+  * Laravel - A PHP Framework For Web Artisans[m
+  *[m
+[31m- * @package  Laravel[m
+  * @author   Taylor Otwell <taylor@laravel.com>[m
+  */[m
+[31m-[m
+ $uri = urldecode([m
+     parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH) ?? ''[m
+ );[m
+[1mdiff --git a/src/tests/Feature/CommentFunctionalityTest.php b/src/tests/Feature/CommentFunctionalityTest.php[m
+[1mindex 5761e5e..10a793b 100644[m
+[1m--- a/src/tests/Feature/CommentFunctionalityTest.php[m
+[1m+++ b/src/tests/Feature/CommentFunctionalityTest.php[m
+[36m@@ -2,11 +2,11 @@[m
+ [m
+ namespace Tests\Feature;[m
+ [m
+[31m-use Tests\TestCase;[m
+[31m-use Illuminate\Foundation\Testing\RefreshDatabase;[m
+[32m+[m[32muse App\Models\Comment;[m
+ use App\Models\Item;[m
+ use App\Models\User;[m
+[31m-use App\Models\Comment;[m
+[32m+[m[32muse Illuminate\Foundation\Testing\RefreshDatabase;[m
+[32m+[m[32muse Tests\TestCase;[m
+ [m
+ class CommentFunctionalityTest extends TestCase[m
+ {[m
+[36m@@ -20,9 +20,9 @@[m [mpublic function logged_in_user_can_post_a_comment()[m
+ [m
+         // POST /item/{item_id}/comment[m
+         $this->actingAs($user)[m
+[31m-             ->post(route('item.comment', ['item_id' => $item->id]), [[m
+[31m-                 'comment' => '素晴らしい商品です！',[m
+[31m-             ]);[m
+[32m+[m[32m            ->post(route('item.comment', ['item_id' => $item->id]), [[m
+[32m+[m[32m                'comment' => '素晴らしい商品です！',[m
+[32m+[m[32m            ]);[m
+ [m
+         // DB へ保存[m
+         $this->assertDatabaseHas('comments', [[m
+[36m@@ -58,10 +58,10 @@[m [mpublic function empty_comment_triggers_validation_error()[m
+         $item = Item::factory()->create();[m
+ [m
+         $response = $this->actingAs($user)[m
+[31m-             ->from(route('item.show', ['item_id' => $item->id]))[m
+[31m-             ->post(route('item.comment', ['item_id' => $item->id]), [[m
+[31m-                 'comment' => '',[m
+[31m-             ]);[m
+[32m+[m[32m            ->from(route('item.show', ['item_id' => $item->id]))[m
+[32m+[m[32m            ->post(route('item.comment', ['item_id' => $item->id]), [[m
+[32m+[m[32m                'comment' => '',[m
+[32m+[m[32m            ]);[m
+ [m
+         $response->assertRedirect(route('item.show', ['item_id' => $item->id]));[m
+         $response->assertSessionHasErrors('comment');[m
+[36m@@ -75,10 +75,10 @@[m [mpublic function overly_long_comment_triggers_validation_error()[m
+ [m
+         $long = str_repeat('あ', 256);[m
+         $response = $this->actingAs($user)[m
+[31m-             ->from(route('item.show', ['item_id' => $item->id]))[m
+[31m-             ->post(route('item.comment', ['item_id' => $item->id]), [[m
+[31m-                 'comment' => $long,[m
+[31m-             ]);[m
+[32m+[m[32m            ->from(route('item.show', ['item_id' => $item->id]))[m
+[32m+[m[32m            ->post(route('item.comment', ['item_id' => $item->id]), [[m
+[32m+[m[32m                'comment' => $long,[m
+[32m+[m[32m            ]);[m
+ [m
+         $response->assertRedirect(route('item.show', ['item_id' => $item->id]));[m
+         $response->assertSessionHasErrors('comment');[m
+[1mdiff --git a/src/tests/Feature/ExampleTest.php b/src/tests/Feature/ExampleTest.php[m
+[1mindex 4ae02bc..0894c60 100755[m
+[1m--- a/src/tests/Feature/ExampleTest.php[m
+[1m+++ b/src/tests/Feature/ExampleTest.php[m
+[36m@@ -2,7 +2,6 @@[m
+ [m
+ namespace Tests\Feature;[m
+ [m
+[31m-use Illuminate\Foundation\Testing\RefreshDatabase;[m
+ use Tests\TestCase;[m
+ [m
+ class ExampleTest extends TestCase[m
+[1mdiff --git a/src/tests/Feature/LikeFunctionalityTest.php b/src/tests/Feature/LikeFunctionalityTest.php[m
+[1mindex bd900d1..cbc9d2f 100644[m
+[1m--- a/src/tests/Feature/LikeFunctionalityTest.php[m
+[1m+++ b/src/tests/Feature/LikeFunctionalityTest.php[m
+[36m@@ -2,11 +2,10 @@[m
+ [m
+ namespace Tests\Feature;[m
+ [m
+[31m-use Tests\TestCase;[m
+[31m-use Illuminate\Foundation\Testing\RefreshDatabase;[m
+ use App\Models\Item;[m
+ use App\Models\User;[m
+[31m-use App\Models\Favorite;[m
+[32m+[m[32muse Illuminate\Foundation\Testing\RefreshDatabase;[m
+[32m+[m[32muse Tests\TestCase;[m
+ [m
+ class LikeFunctionalityTest extends TestCase[m
+ {[m
+[36m@@ -20,7 +19,7 @@[m [mpublic function logged_in_user_can_like_an_item_and_count_increases()[m
+ [m
+         // いいねをPOST[m
+         $this->actingAs($user)[m
+[31m-             ->post(route('item.like', ['item_id' => $item->id]));[m
+[32m+[m[32m            ->post(route('item.like', ['item_id' => $item->id]));[m
+ [m
+         // DB に保存されていること[m
+         $this->assertDatabaseHas('favorites', [[m
+[36m@@ -33,9 +32,9 @@[m [mpublic function logged_in_user_can_like_an_item_and_count_increases()[m
+ [m
+         $response->assertStatus(200)[m
+                  // <span class="icon-count">1</span> が生のまま含まれること[m
+[31m-                 ->assertSee('<span class="icon-count">1</span>', false)[m
+[32m+[m[32m            ->assertSee('<span class="icon-count">1</span>', false)[m
+                  // ボタンに liked クラスが付いていることもチェック[m
+[31m-                 ->assertSee('class="like-btn liked"', false);[m
+[32m+[m[32m            ->assertSee('class="like-btn liked"', false);[m
+     }[m
+ [m
+     /** @test */[m
+[36m@@ -45,13 +44,13 @@[m [mpublic function like_icon_changes_state_after_liking()[m
+         $item = Item::factory()->create();[m
+ [m
+         $this->actingAs($user)[m
+[31m-             ->post(route('item.like', ['item_id' => $item->id]));[m
+[32m+[m[32m            ->post(route('item.like', ['item_id' => $item->id]));[m
+ [m
+         $response = $this->get(route('item.show', ['item_id' => $item->id]));[m
+ [m
+         $response->assertStatus(200)[m
+                  // 生のクラス属性として liked が付与されているか[m
+[31m-                 ->assertSee('class="like-btn liked"', false);[m
+[32m+[m[32m            ->assertSee('class="like-btn liked"', false);[m
+     }[m
+ [m
+     /** @test */[m
+[36m@@ -62,10 +61,10 @@[m [mpublic function clicking_like_again_unlikes_and_count_decreases()[m
+ [m
+         // 1回目いいね[m
+         $this->actingAs($user)[m
+[31m-             ->post(route('item.like', ['item_id' => $item->id]));[m
+[32m+[m[32m            ->post(route('item.like', ['item_id' => $item->id]));[m
+         // 2回目で解除 (DELETE リクエスト)[m
+         $this->actingAs($user)[m
+[31m-             ->delete(route('item.unlike', ['item_id' => $item->id]));[m
+[32m+[m[32m            ->delete(route('item.unlike', ['item_id' => $item->id]));[m
+ [m
+         // DB レコードが消えていること[m
+         $this->assertDatabaseMissing('favorites', [[m
+[36m@@ -77,6 +76,6 @@[m [mpublic function clicking_like_again_unlikes_and_count_decreases()[m
+ [m
+         $response->assertStatus(200)[m
+                  // いいね数のスパンがなくなっていることをチェック[m
+[31m-                 ->assertDontSee('<span class="icon-count">1</span>', false);[m
+[32m+[m[32m            ->assertDontSee('<span class="icon-count">1</span>', false);[m
+     }[m
+ }[m
+[1mdiff --git a/src/tests/Feature/LoginTest.php b/src/tests/Feature/LoginTest.php[m
+[1mindex b53849a..5a1a819 100644[m
+[1m--- a/src/tests/Feature/LoginTest.php[m
+[1m+++ b/src/tests/Feature/LoginTest.php[m
+[36m@@ -2,9 +2,9 @@[m
+ [m
+ namespace Tests\Feature;[m
+ [m
+[32m+[m[32muse App\Models\User;[m
+ use Illuminate\Foundation\Testing\RefreshDatabase;[m
+ use Tests\TestCase;[m
+[31m-use App\Models\User;[m
+ [m
+ class LoginTest extends TestCase[m
+ {[m
+[36m@@ -16,7 +16,7 @@[m [mclass LoginTest extends TestCase[m
+     public function test_email_is_required_on_login()[m
+     {[m
+         $response = $this->post('/login', [[m
+[31m-            'email'    => '',[m
+[32m+[m[32m            'email' => '',[m
+             'password' => 'any-password',[m
+         ]);[m
+ [m
+[36m@@ -33,7 +33,7 @@[m [mpublic function test_email_is_required_on_login()[m
+     public function test_password_is_required_on_login()[m
+     {[m
+         $response = $this->post('/login', [[m
+[31m-            'email'    => 'user@example.com',[m
+[32m+[m[32m            'email' => 'user@example.com',[m
+             'password' => '',[m
+         ]);[m
+ [m
+[36m@@ -51,13 +51,13 @@[m [mpublic function test_cannot_login_with_invalid_credentials()[m
+     {[m
+         // 事前にユーザーを作成しておく[m
+         User::factory()->create([[m
+[31m-            'email'    => 'user@example.com',[m
+[32m+[m[32m            'email' => 'user@example.com',[m
+             'password' => bcrypt('correct-password'),[m
+         ]);[m
+ [m
+         // from() を付けると、リダイレクト元が /login になる[m
+         $response = $this->from('/login')->post('/login', [[m
+[31m-            'email'    => 'user@example.com',[m
+[32m+[m[32m            'email' => 'user@example.com',[m
+             'password' => 'wrong-password',[m
+         ]);[m
+ [m
+[36m@@ -75,12 +75,12 @@[m [mpublic function test_cannot_login_with_invalid_credentials()[m
+     public function test_successful_login_redirects_to_profile()[m
+     {[m
+         $user = User::factory()->create([[m
+[31m-            'email'    => 'user@example.com',[m
+[32m+[m[32m            'email' => 'user@example.com',[m
+             'password' => bcrypt('password123'),[m
+         ]);[m
+ [m
+         $response = $this->post('/login', [[m
+[31m-            'email'    => 'user@example.com',[m
+[32m+[m[32m            'email' => 'user@example.com',[m
+             'password' => 'password123',[m
+         ]);[m
+ [m
+[1mdiff --git a/src/tests/Feature/LogoutTest.php b/src/tests/Feature/LogoutTest.php[m
+[1mindex 28e3015..0284a57 100644[m
+[1m--- a/src/tests/Feature/LogoutTest.php[m
+[1m+++ b/src/tests/Feature/LogoutTest.php[m
+[36m@@ -1,9 +1,10 @@[m
+ <?php[m
+[32m+[m
+ namespace Tests\Feature;[m
+ [m
+[32m+[m[32muse App\Models\User;[m
+ use Illuminate\Foundation\Testing\RefreshDatabase;[m
+ use Tests\TestCase;[m
+[31m-use App\Models\User;[m
+ [m
+ class LogoutTest extends TestCase[m
+ {[m
+[1mdiff --git a/src/tests/Feature/MyListTest.php b/src/tests/Feature/MyListTest.php[m
+[1mindex 30dc60b..7d9212a 100644[m
+[1m--- a/src/tests/Feature/MyListTest.php[m
+[1m+++ b/src/tests/Feature/MyListTest.php[m
+[36m@@ -2,10 +2,10 @@[m
+ [m
+ namespace Tests\Feature;[m
+ [m
+[31m-use Illuminate\Foundation\Testing\RefreshDatabase;[m
+[31m-use App\Models\User;[m
+[31m-use App\Models\Item;[m
+ use App\Models\Favorite;[m
+[32m+[m[32muse App\Models\Item;[m
+[32m+[m[32muse App\Models\User;[m
+[32m+[m[32muse Illuminate\Foundation\Testing\RefreshDatabase;[m
+ use Tests\TestCase;[m
+ [m
+ class MyListTest extends TestCase[m
+[1mdiff --git a/src/tests/Feature/PaymentAndShippingTest.php b/src/tests/Feature/PaymentAndShippingTest.php[m
+[1mindex ab0113a..69b5b58 100644[m
+[1m--- a/src/tests/Feature/PaymentAndShippingTest.php[m
+[1m+++ b/src/tests/Feature/PaymentAndShippingTest.php[m
+[36m@@ -2,10 +2,10 @@[m
+ [m
+ namespace Tests\Feature;[m
+ [m
+[31m-use Tests\TestCase;[m
+[31m-use Illuminate\Foundation\Testing\RefreshDatabase;[m
+[31m-use App\Models\User;[m
+ use App\Models\Item;[m
+[32m+[m[32muse App\Models\User;[m
+[32m+[m[32muse Illuminate\Foundation\Testing\RefreshDatabase;[m
+[32m+[m[32muse Tests\TestCase;[m
+ [m
+ class PaymentAndShippingTest extends TestCase[m
+ {[m
+[36m@@ -18,13 +18,13 @@[m [mpublic function selecting_payment_method_reflects_immediately_on_purchase_page()[m
+         $item = Item::factory()->create();[m
+ [m
+         $this->actingAs($user)[m
+[31m-             ->get(route('purchase.show', [[m
+[31m-                 'item_id'        => $item->id,[m
+[31m-                 'payment_method' => 'convenience_store',[m
+[31m-             ]))[m
+[31m-             ->assertStatus(200)[m
+[32m+[m[32m            ->get(route('purchase.show', [[m
+[32m+[m[32m                'item_id' => $item->id,[m
+[32m+[m[32m                'payment_method' => 'convenience_store',[m
+[32m+[m[32m            ]))[m
+[32m+[m[32m            ->assertStatus(200)[m
+              // 右カラム .method-row に「コンビ二支払い」が表示されている[m
+[31m-             ->assertSeeText('コンビ二支払い');[m
+[32m+[m[32m            ->assertSeeText('コンビ二支払い');[m
+     }[m
+ [m
+     /** @test */[m
+[36m@@ -34,18 +34,18 @@[m [mpublic function updating_shipping_address_reflects_on_purchase_page()[m
+         $item = Item::factory()->create();[m
+ [m
+         $this->actingAs($user)[m
+[31m-             ->put(route('purchase.address.update', ['item_id' => $item->id]), [[m
+[31m-                 'postal_code' => '987-6543',[m
+[31m-                 'address'     => '大阪市中央区',[m
+[31m-                 'building'    => 'ビルA',[m
+[31m-             ])->assertRedirect(); // リダイレクト確認[m
+[32m+[m[32m            ->put(route('purchase.address.update', ['item_id' => $item->id]), [[m
+[32m+[m[32m                'postal_code' => '987-6543',[m
+[32m+[m[32m                'address' => '大阪市中央区',[m
+[32m+[m[32m                'building' => 'ビルA',[m
+[32m+[m[32m            ])->assertRedirect(); // リダイレクト確認[m
+ [m
+         $this->actingAs($user)[m
+[31m-             ->get(route('purchase.show', ['item_id' => $item->id]))[m
+[31m-             ->assertStatus(200)[m
+[32m+[m[32m            ->get(route('purchase.show', ['item_id' => $item->id]))[m
+[32m+[m[32m            ->assertStatus(200)[m
+              // 左カラム配送先に正しく反映[m
+[31m-             ->assertSeeText('〒987-6543')[m
+[31m-             ->assertSeeText('大阪市中央区')[m
+[31m-             ->assertSeeText('ビルA');[m
+[32m+[m[32m            ->assertSeeText('〒987-6543')[m
+[32m+[m[32m            ->assertSeeText('大阪市中央区')[m
+[32m+[m[32m            ->assertSeeText('ビルA');[m
+     }[m
+ }[m
+[1mdiff --git a/src/tests/Feature/ProductDetailTest.php b/src/tests/Feature/ProductDetailTest.php[m
+[1mindex 018f7b6..a517060 100644[m
+[1m--- a/src/tests/Feature/ProductDetailTest.php[m
+[1m+++ b/src/tests/Feature/ProductDetailTest.php[m
+[36m@@ -2,14 +2,14 @@[m
+ [m
+ namespace Tests\Feature;[m
+ [m
+[31m-use Tests\TestCase;[m
+[31m-use Illuminate\Foundation\Testing\RefreshDatabase;[m
+[31m-use App\Models\Item;[m
+ use App\Models\Category;[m
+[31m-use App\Models\Status;[m
+[31m-use App\Models\User;[m
+ use App\Models\Comment;[m
+ use App\Models\Favorite;[m
+[32m+[m[32muse App\Models\Item;[m
+[32m+[m[32muse App\Models\Status;[m
+[32m+[m[32muse App\Models\User;[m
+[32m+[m[32muse Illuminate\Foundation\Testing\RefreshDatabase;[m
+[32m+[m[32muse Tests\TestCase;[m
+ [m
+ class ProductDetailTest extends TestCase[m
+ {[m
+[36m@@ -19,18 +19,18 @@[m [mclass ProductDetailTest extends TestCase[m
+     public function product_detail_displays_all_required_information()[m
+     {[m
+         // 1) ユーザー・ステータス・カテゴリを作成[m
+[31m-        $owner    = User::factory()->create();[m
+[31m-        $status   = Status::factory()->create(['name' => '新品']);[m
+[32m+[m[32m        $owner = User::factory()->create();[m
+[32m+[m[32m        $status = Status::factory()->create(['name' => '新品']);[m
+         $category = Category::factory()->create(['category' => 'テストカテゴリ']);[m
+ [m
+         // 2) 商品を作成（category_id を直接指定）[m
+         $item = Item::factory()->create([[m
+[31m-            'user_id'     => $owner->id,[m
+[31m-            'status_id'   => $status->id,[m
+[32m+[m[32m            'user_id' => $owner->id,[m
+[32m+[m[32m            'status_id' => $status->id,[m
+             'category_id' => $category->id,[m
+[31m-            'name'        => 'Test Item',[m
+[31m-            'brand'       => 'Test Brand',[m
+[31m-            'price'       => 12345,[m
+[32m+[m[32m            'name' => 'Test Item',[m
+[32m+[m[32m            'brand' => 'Test Brand',[m
+[32m+[m[32m            'price' => 12345,[m
+             'description' => '詳細説明',[m
+         ]);[m
+ [m
+[36m@@ -53,22 +53,22 @@[m [mpublic function product_detail_displays_all_required_information()[m
+ [m
+         // — 商品名・ブランド・価格・説明・ステータス[m
+         $response->assertSeeText('Test Item')[m
+[31m-                 ->assertSeeText('Test Brand')[m
+[31m-                 ->assertSeeText('¥12,345')[m
+[31m-                 ->assertSeeText('詳細説明')[m
+[31m-                 ->assertSeeText('新品');[m
+[32m+[m[32m            ->assertSeeText('Test Brand')[m
+[32m+[m[32m            ->assertSeeText('¥12,345')[m
+[32m+[m[32m            ->assertSeeText('詳細説明')[m
+[32m+[m[32m            ->assertSeeText('新品');[m
+ [m
+         // — カテゴリ名[m
+         $response->assertSeeText('テストカテゴリ');[m
+ [m
+         // — いいね数(1) とコメント数(2)[m
+         $response->assertSeeText('1')              // like count[m
+[31m-                 ->assertSeeText('コメント (2)');  // comment title[m
+[32m+[m[32m            ->assertSeeText('コメント (2)');  // comment title[m
+ [m
+         // — 各コメントのユーザー名と本文[m
+         foreach ($comments as $comment) {[m
+             $response->assertSeeText($comment->user->name)[m
+[31m-                     ->assertSeeText($comment->comment);[m
+[32m+[m[32m                ->assertSeeText($comment->comment);[m
+         }[m
+     }[m
+ [m
+[36m@@ -77,10 +77,10 @@[m [mpublic function product_detail_shows_associated_category()[m
+     {[m
+         // 単一カテゴリでの表示テスト[m
+         $category = Category::factory()->create(['category' => 'Soloカテゴリ']);[m
+[31m-        $item     = Item::factory()->create(['category_id' => $category->id]);[m
+[32m+[m[32m        $item = Item::factory()->create(['category_id' => $category->id]);[m
+ [m
+         $response = $this->get(route('item.show', ['item_id' => $item->id]));[m
+         $response->assertStatus(200)[m
+[31m-                 ->assertSeeText('Soloカテゴリ');[m
+[32m+[m[32m            ->assertSeeText('Soloカテゴリ');[m
+     }[m
+ }[m
+[1mdiff --git a/src/tests/Feature/ProductListTest.php b/src/tests/Feature/ProductListTest.php[m
+[1mindex 8fdcfa8..27ddbca 100644[m
+[1m--- a/src/tests/Feature/ProductListTest.php[m
+[1m+++ b/src/tests/Feature/ProductListTest.php[m
+[36m@@ -2,10 +2,10 @@[m
+ [m
+ namespace Tests\Feature;[m
+ [m
+[31m-use Illuminate\Foundation\Testing\RefreshDatabase;[m
+[31m-use Tests\TestCase;[m
+ use App\Models\Item;[m
+ use App\Models\Purchase;[m
+[32m+[m[32muse Illuminate\Foundation\Testing\RefreshDatabase;[m
+[32m+[m[32muse Tests\TestCase;[m
+ [m
+ class ProductListTest extends TestCase[m
+ {[m
+[1mdiff --git a/src/tests/Feature/ProductSearchTest.php b/src/tests/Feature/ProductSearchTest.php[m
+[1mindex 095423c..25055e5 100644[m
+[1m--- a/src/tests/Feature/ProductSearchTest.php[m
+[1m+++ b/src/tests/Feature/ProductSearchTest.php[m
+[36m@@ -2,8 +2,8 @@[m
+ [m
+ namespace Tests\Feature;[m
+ [m
+[31m-use Illuminate\Foundation\Testing\RefreshDatabase;[m
+ use App\Models\Item;[m
+[32m+[m[32muse Illuminate\Foundation\Testing\RefreshDatabase;[m
+ use Tests\TestCase;[m
+ [m
+ class ProductSearchTest extends TestCase[m
+[1mdiff --git a/src/tests/Feature/PurchaseFunctionalityTest.php b/src/tests/Feature/PurchaseFunctionalityTest.php[m
+[1mindex b0b4410..a556615 100644[m
+[1m--- a/src/tests/Feature/PurchaseFunctionalityTest.php[m
+[1m+++ b/src/tests/Feature/PurchaseFunctionalityTest.php[m
+[36m@@ -2,11 +2,11 @@[m
+ [m
+ namespace Tests\Feature;[m
+ [m
+[31m-use Tests\TestCase;[m
+[31m-use Illuminate\Foundation\Testing\RefreshDatabase;[m
+[31m-use App\Models\User;[m
+ use App\Models\Item;[m
+ use App\Models\Purchase;[m
+[32m+[m[32muse App\Models\User;[m
+[32m+[m[32muse Illuminate\Foundation\Testing\RefreshDatabase;[m
+[32m+[m[32muse Tests\TestCase;[m
+ [m
+ class PurchaseFunctionalityTest extends TestCase[m
+ {[m
+[36m@@ -19,8 +19,8 @@[m [mpublic function logged_in_user_can_complete_a_purchase_and_item_is_marked_sold()[m
+         $user = User::factory()->create();[m
+         $user->profile()->create([[m
+             'postal_code' => '123-4567',[m
+[31m-            'address'     => '東京都新宿区',[m
+[31m-            'building'    => 'テストビル',[m
+[32m+[m[32m            'address' => '東京都新宿区',[m
+[32m+[m[32m            'building' => 'テストビル',[m
+         ]);[m
+ [m
+         // 商品作成[m
+[36m@@ -28,9 +28,9 @@[m [mpublic function logged_in_user_can_complete_a_purchase_and_item_is_marked_sold()[m
+ [m
+         // 購入画面表示[m
+         $this->actingAs($user)[m
+[31m-             ->get(route('purchase.show', ['item_id' => $item->id]))[m
+[31m-             ->assertStatus(200)[m
+[31m-             ->assertSee('購入する');[m
+[32m+[m[32m            ->get(route('purchase.show', ['item_id' => $item->id]))[m
+[32m+[m[32m            ->assertStatus(200)[m
+[32m+[m[32m            ->assertSee('購入する');[m
+ [m
+         // 購入実行[m
+         $response = $this->post(route('purchase.execute', ['item_id' => $item->id]), [[m
+[36m@@ -48,9 +48,9 @@[m [mpublic function logged_in_user_can_complete_a_purchase_and_item_is_marked_sold()[m
+ [m
+         // マイページ購入タブで Sold ラベルが表示されている[m
+         $this->actingAs($user)[m
+[31m-             ->get(route('mypage', ['tab' => 'buy']))[m
+[31m-             ->assertStatus(200)[m
+[31m-             ->assertSee('<p class="sold-label">Sold</p>', false);[m
+[32m+[m[32m            ->get(route('mypage', ['tab' => 'buy']))[m
+[32m+[m[32m            ->assertStatus(200)[m
+[32m+[m[32m            ->assertSee('<p class="sold-label">Sold</p>', false);[m
+     }[m
+ [m
+     /** @test */[m
+[36m@@ -64,9 +64,9 @@[m [mpublic function purchased_item_appears_in_user_profile_buy_list()[m
+ [m
+         // マイページ購入タブで該当商品と Sold ラベルを確認[m
+         $this->actingAs($user)[m
+[31m-             ->get(route('mypage', ['tab' => 'buy']))[m
+[31m-             ->assertStatus(200)[m
+[31m-             ->assertSeeText($item->name)[m
+[31m-             ->assertSee('<p class="sold-label">Sold</p>', false);[m
+[32m+[m[32m            ->get(route('mypage', ['tab' => 'buy']))[m
+[32m+[m[32m            ->assertStatus(200)[m
+[32m+[m[32m            ->assertSeeText($item->name)[m
+[32m+[m[32m            ->assertSee('<p class="sold-label">Sold</p>', false);[m
+     }[m
+ }[m
+[1mdiff --git a/src/tests/Feature/RegistrationTest.php b/src/tests/Feature/RegistrationTest.php[m
+[1mindex ba62c67..cbcc726 100644[m
+[1m--- a/src/tests/Feature/RegistrationTest.php[m
+[1m+++ b/src/tests/Feature/RegistrationTest.php[m
+[36m@@ -17,9 +17,9 @@[m [mclass RegistrationTest extends TestCase[m
+     public function test_name_is_required()[m
+     {[m
+         $response = $this->post('/register', [[m
+[31m-            'name'                  => '',[m
+[31m-            'email'                 => 'user@example.com',[m
+[31m-            'password'              => 'password123',[m
+[32m+[m[32m            'name' => '',[m
+[32m+[m[32m            'email' => 'user@example.com',[m
+[32m+[m[32m            'password' => 'password123',[m
+             'password_confirmation' => 'password123',[m
+         ]);[m
+ [m
+[36m@@ -38,9 +38,9 @@[m [mpublic function test_name_is_required()[m
+     public function test_email_is_required()[m
+     {[m
+         $response = $this->post('/register', [[m
+[31m-            'name'                  => 'テストユーザー',[m
+[31m-            'email'                 => '',[m
+[31m-            'password'              => 'password123',[m
+[32m+[m[32m            'name' => 'テストユーザー',[m
+[32m+[m[32m            'email' => '',[m
+[32m+[m[32m            'password' => 'password123',[m
+             'password_confirmation' => 'password123',[m
+         ]);[m
+ [m
+[36m@@ -59,9 +59,9 @@[m [mpublic function test_email_is_required()[m
+     public function test_password_is_required()[m
+     {[m
+         $response = $this->post('/register', [[m
+[31m-            'name'                  => 'テストユーザー',[m
+[31m-            'email'                 => 'user@example.com',[m
+[31m-            'password'              => '',[m
+[32m+[m[32m            'name' => 'テストユーザー',[m
+[32m+[m[32m            'email' => 'user@example.com',[m
+[32m+[m[32m            'password' => '',[m
+             'password_confirmation' => '',[m
+         ]);[m
+ [m
+[36m@@ -80,9 +80,9 @@[m [mpublic function test_password_is_required()[m
+     public function test_password_must_be_at_least_8_characters()[m
+     {[m
+         $response = $this->post('/register', [[m
+[31m-            'name'                  => 'テストユーザー',[m
+[31m-            'email'                 => 'user@example.com',[m
+[31m-            'password'              => 'short7',[m
+[32m+[m[32m            'name' => 'テストユーザー',[m
+[32m+[m[32m            'email' => 'user@example.com',[m
+[32m+[m[32m            'password' => 'short7',[m
+             'password_confirmation' => 'short7',[m
+         ]);[m
+ [m
+[36m@@ -101,9 +101,9 @@[m [mpublic function test_password_must_be_at_least_8_characters()[m
+     public function test_password_and_confirmation_must_match()[m
+     {[m
+         $response = $this->post('/register', [[m
+[31m-            'name'                  => 'テストユーザー',[m
+[31m-            'email'                 => 'user@example.com',[m
+[31m-            'password'              => 'password123',[m
+[32m+[m[32m            'name' => 'テストユーザー',[m
+[32m+[m[32m            'email' => 'user@example.com',[m
+[32m+[m[32m            'password' => 'password123',[m
+             'password_confirmation' => 'different123',[m
+         ]);[m
+ [m
+[36m@@ -122,9 +122,9 @@[m [mpublic function test_password_and_confirmation_must_match()[m
+     public function test_successful_registration_redirects_to_login_and_creates_user()[m
+     {[m
+         $response = $this->post('/register', [[m
+[31m-            'name'                  => 'テストユーザー',[m
+[31m-            'email'                 => 'user@example.com',[m
+[31m-            'password'              => 'password123',[m
+[32m+[m[32m            'name' => 'テストユーザー',[m
+[32m+[m[32m            'email' => 'user@example.com',[m
+[32m+[m[32m            'password' => 'password123',[m
+             'password_confirmation' => 'password123',[m
+         ]);[m
+ [m
+[1mdiff --git a/src/tests/Feature/SellFunctionalityTest.php b/src/tests/Feature/SellFunctionalityTest.php[m
+[1mindex 69b43f5..e2de775 100644[m
+[1m--- a/src/tests/Feature/SellFunctionalityTest.php[m
+[1m+++ b/src/tests/Feature/SellFunctionalityTest.php[m
+[36m@@ -2,14 +2,14 @@[m
+ [m
+ namespace Tests\Feature;[m
+ [m
+[31m-use Tests\TestCase;[m
+[31m-use Illuminate\Foundation\Testing\RefreshDatabase;[m
+[31m-use App\Models\User;[m
+ use App\Models\Category;[m
+[31m-use App\Models\Status;[m
+ use App\Models\Item;[m
+[32m+[m[32muse App\Models\Status;[m
+[32m+[m[32muse App\Models\User;[m
+[32m+[m[32muse Illuminate\Foundation\Testing\RefreshDatabase;[m
+ use Illuminate\Http\UploadedFile;[m
+ use Illuminate\Support\Facades\Storage;[m
+[32m+[m[32muse Tests\TestCase;[m
+ [m
+ class SellFunctionalityTest extends TestCase[m
+ {[m
+[36m@@ -21,38 +21,38 @@[m [mpublic function authenticated_user_can_register_a_new_item()[m
+         Storage::fake('public');[m
+ [m
+         // 準備：ユーザー、カテゴリ、ステータス[m
+[31m-        $user     = User::factory()->create();[m
+[32m+[m[32m        $user = User::factory()->create();[m
+         $category = Category::factory()->create();[m
+[31m-        $status   = Status::factory()->create();[m
+[32m+[m[32m        $status = Status::factory()->create();[m
+ [m
+         // ログインして出品画面を確認[m
+         $this->actingAs($user)[m
+[31m-             ->get(route('sell'))[m
+[31m-             ->assertStatus(200)[m
+[31m-             ->assertSee('出品');[m
+[32m+[m[32m            ->get(route('sell'))[m
+[32m+[m[32m            ->assertStatus(200)[m
+[32m+[m[32m            ->assertSee('出品');[m
+ [m
+         // フォーム送信[m
+         $response = $this->actingAs($user)[m
+[31m-             ->post(route('sell.store'), [[m
+[31m-                 'category_id' => [$category->id],[m
+[31m-                 'status_id'   => $status->id,[m
+[31m-                 'name'        => 'テスト商品',[m
+[31m-                 'brand'       => 'テストブランド',[m
+[31m-                 'description' => '詳細説明です',[m
+[31m-                 'price'       => 5000,[m
+[31m-                 'image'       => UploadedFile::fake()->create('photo.jpg', 100, 'image/jpeg'),[m
+[31m-             ]);[m
+[32m+[m[32m            ->post(route('sell.store'), [[m
+[32m+[m[32m                'category_id' => [$category->id],[m
+[32m+[m[32m                'status_id' => $status->id,[m
+[32m+[m[32m                'name' => 'テスト商品',[m
+[32m+[m[32m                'brand' => 'テストブランド',[m
+[32m+[m[32m                'description' => '詳細説明です',[m
+[32m+[m[32m                'price' => 5000,[m
+[32m+[m[32m                'image' => UploadedFile::fake()->create('photo.jpg', 100, 'image/jpeg'),[m
+[32m+[m[32m            ]);[m
+ [m
+         // 実装ではトップ (item.index) へリダイレクトするため、ここを修正[m
+         $response->assertRedirect(route('item.index'));[m
+ [m
+         // DB に登録されていること[m
+         $this->assertDatabaseHas('items', [[m
+[31m-            'user_id'     => $user->id,[m
+[31m-            'name'        => 'テスト商品',[m
+[31m-            'brand'       => 'テストブランド',[m
+[32m+[m[32m            'user_id' => $user->id,[m
+[32m+[m[32m            'name' => 'テスト商品',[m
+[32m+[m[32m            'brand' => 'テストブランド',[m
+             'description' => '詳細説明です',[m
+[31m-            'price'       => 5000,[m
+[32m+[m[32m            'price' => 5000,[m
+         ]);[m
+ [m
+         // ストレージにファイルが保存されている[m
+[36m@@ -66,10 +66,10 @@[m [mpublic function validation_errors_are_shown_when_required_fields_missing()[m
+         $user = User::factory()->create();[m
+ [m
+         $response = $this->actingAs($user)[m
+[31m-             ->from(route('sell'))[m
+[31m-             ->post(route('sell.store'), [[m
+[31m-                 // 全フィールド空送信[m
+[31m-             ]);[m
+[32m+[m[32m            ->from(route('sell'))[m
+[32m+[m[32m            ->post(route('sell.store'), [[m
+[32m+[m[32m                // 全フィールド空送信[m
+[32m+[m[32m            ]);[m
+ [m
+         $response->assertRedirect(route('sell'));[m
+ [m
+[1mdiff --git a/src/tests/Feature/UserProfileTest.php b/src/tests/Feature/UserProfileTest.php[m
+[1mindex b775825..2f4dfde 100644[m
+[1m--- a/src/tests/Feature/UserProfileTest.php[m
+[1m+++ b/src/tests/Feature/UserProfileTest.php[m
+[36m@@ -2,11 +2,11 @@[m
+ [m
+ namespace Tests\Feature;[m
+ [m
+[31m-use Tests\TestCase;[m
+[31m-use Illuminate\Foundation\Testing\RefreshDatabase;[m
+[31m-use App\Models\User;[m
+ use App\Models\Item;[m
+ use App\Models\Purchase;[m
+[32m+[m[32muse App\Models\User;[m
+[32m+[m[32muse Illuminate\Foundation\Testing\RefreshDatabase;[m
+[32m+[m[32muse Tests\TestCase;[m
+ [m
+ class UserProfileTest extends TestCase[m
+ {[m
+[36m@@ -15,25 +15,25 @@[m [mclass UserProfileTest extends TestCase[m
+     /** @test */[m
+     public function mypage_shows_profile_and_item_lists()[m
+     {[m
+[31m-        $user      = User::factory()->create(['name' => 'Taro']);[m
+[31m-        $sellItem  = Item::factory()->create(['user_id' => $user->id, 'name' => 'SellItem']);[m
+[31m-        $buyItem   = Item::factory()->create(['name' => 'BuyItem']);[m
+[32m+[m[32m        $user = User::factory()->create(['name' => 'Taro']);[m
+[32m+[m[32m        $sellItem = Item::factory()->create(['user_id' => $user->id, 'name' => 'SellItem']);[m
+[32m+[m[32m        $buyItem = Item::factory()->create(['name' => 'BuyItem']);[m
+         Purchase::factory()->for($user, 'user')->for($buyItem, 'item')->create();[m
+ [m
+         $this->actingAs($user);[m
+ [m
+         // 出品タブ[m
+         $this->get(route('mypage', ['tab' => 'sell']))[m
+[31m-             ->assertStatus(200)[m
+[31m-             ->assertSeeText('Taro')[m
+[31m-             ->assertSeeText('SellItem')[m
+[31m-             ->assertDontSeeText('BuyItem');[m
+[32m+[m[32m            ->assertStatus(200)[m
+[32m+[m[32m            ->assertSeeText('Taro')[m
+[32m+[m[32m            ->assertSeeText('SellItem')[m
+[32m+[m[32m            ->assertDontSeeText('BuyItem');[m
+ [m
+         // 購入タブ[m
+         $this->get(route('mypage', ['tab' => 'buy']))[m
+[31m-             ->assertStatus(200)[m
+[31m-             ->assertSeeText('BuyItem')[m
+[31m-             ->assertSee('<p class="sold-label">Sold</p>', false);[m
+[32m+[m[32m            ->assertStatus(200)[m
+[32m+[m[32m            ->assertSeeText('BuyItem')[m
+[32m+[m[32m            ->assertSee('<p class="sold-label">Sold</p>', false);[m
+     }[m
+ [m
+     /** @test */[m
+[36m@@ -43,41 +43,41 @@[m [mpublic function user_can_update_profile_information()[m
+         // プロフィール初期値[m
+         $user->profile()->create([[m
+             'postal_code' => '000-0000',[m
+[31m-            'address'     => '旧住所',[m
+[31m-            'building'    => '旧ビル',[m
+[32m+[m[32m            'address' => '旧住所',[m
+[32m+[m[32m            'building' => '旧ビル',[m
+         ]);[m
+ [m
+         // プロファイル更新リクエスト[m
+         $response = $this->actingAs($user)[m
+[31m-             ->from(route('profile.edit'))[m
+[31m-             ->put(route('profile.update'), [[m
+[31m-                 'name'        => 'NewName',[m
+[31m-                 'postal_code' => '111-1111',[m
+[31m-                 'address'     => '新宿区',[m
+[31m-                 'building'    => '新ビル',[m
+[31m-             ]);[m
+[32m+[m[32m            ->from(route('profile.edit'))[m
+[32m+[m[32m            ->put(route('profile.update'), [[m
+[32m+[m[32m                'name' => 'NewName',[m
+[32m+[m[32m                'postal_code' => '111-1111',[m
+[32m+[m[32m                'address' => '新宿区',[m
+[32m+[m[32m                'building' => '新ビル',[m
+[32m+[m[32m            ]);[m
+ [m
+         // ホーム (item.index) へのリダイレクトを期待[m
+         $response->assertRedirect(route('item.index'));[m
+ [m
+         // DB に更新内容が反映されていること[m
+         $this->assertDatabaseHas('users', [[m
+[31m-            'id'   => $user->id,[m
+[32m+[m[32m            'id' => $user->id,[m
+             'name' => 'NewName',[m
+         ]);[m
+         $this->assertDatabaseHas('profiles', [[m
+[31m-            'user_id'     => $user->id,[m
+[32m+[m[32m            'user_id' => $user->id,[m
+             'postal_code' => '111-1111',[m
+[31m-            'address'     => '新宿区',[m
+[31m-            'building'    => '新ビル',[m
+[32m+[m[32m            'address' => '新宿区',[m
+[32m+[m[32m            'building' => '新ビル',[m
+         ]);[m
+ [m
+         // 編集画面でフォームに新しい値が入っているかチェック[m
+         $this->actingAs($user)[m
+[31m-             ->get(route('profile.edit'))[m
+[31m-             ->assertSee('value="NewName"', false)[m
+[31m-             ->assertSee('value="111-1111"', false)[m
+[31m-             ->assertSee('value="新宿区"', false)[m
+[31m-             ->assertSee('value="新ビル"', false);[m
+[32m+[m[32m            ->get(route('profile.edit'))[m
+[32m+[m[32m            ->assertSee('value="NewName"', false)[m
+[32m+[m[32m            ->assertSee('value="111-1111"', false)[m
+[32m+[m[32m            ->assertSee('value="新宿区"', false)[m
+[32m+[m[32m            ->assertSee('value="新ビル"', false);[m
+     }[m
+ }[m
+[1mdiff --git a/src/vendor/composer/InstalledVersions.php b/src/vendor/composer/InstalledVersions.php[m
+[1mindex 6d29bff..2052022 100755[m
+[1m--- a/src/vendor/composer/InstalledVersions.php[m
+[1m+++ b/src/vendor/composer/InstalledVersions.php[m
+[36m@@ -26,6 +26,12 @@[m
+  */[m
+ class InstalledVersions[m
+ {[m
+[32m+[m[32m    /**[m
+[32m+[m[32m     * @var string|null if set (by reflection by Composer), this should be set to the path where this class is being copied to[m
+[32m+[m[32m     * @internal[m
+[32m+[m[32m     */[m
+[32m+[m[32m    private static $selfDir = null;[m
+[32m+[m
+     /**[m
+      * @var mixed[]|null[m
+      * @psalm-var array{root: array{name: string, pretty_version: string, version: string, reference: string|null, type: string, install_path: string, aliases: string[], dev: bool}, versions: array<string, array{pretty_version?: string, version?: string, reference?: string|null, type?: string, install_path?: string, aliases?: string[], dev_requirement: bool, replaced?: string[], provided?: string[]}>}|array{}|null[m
+[36m@@ -322,6 +328,18 @@[m [mpublic static function reload($data)[m
+         self::$installedIsLocalDir = false;[m
+     }[m
+ [m
+[32m+[m[32m    /**[m
+[32m+[m[32m     * @return string[m
+[32m+[m[32m     */[m
+[32m+[m[32m    private static function getSelfDir()[m
+[32m+[m[32m    {[m
+[32m+[m[32m        if (self::$selfDir === null) {[m
+[32m+[m[32m            self::$selfDir = strtr(__DIR__, '\\', '/');[m
+[32m+[m[32m        }[m
+[32m+[m
+[32m+[m[32m        return self::$selfDir;[m
+[32m+[m[32m    }[m
+[32m+[m
+     /**[m
+      * @return array[][m
+      * @psalm-return list<array{root: array{name: string, pretty_version: string, version: string, reference: string|null, type: string, install_path: string, aliases: string[], dev: bool}, versions: array<string, array{pretty_version?: string, version?: string, reference?: string|null, type?: string, install_path?: string, aliases?: string[], dev_requirement: bool, replaced?: string[], provided?: string[]}>}>[m
+[36m@@ -336,7 +354,7 @@[m [mprivate static function getInstalled()[m
+         $copiedLocalDir = false;[m
+ [m
+         if (self::$canGetVendors) {[m
+[31m-            $selfDir = strtr(__DIR__, '\\', '/');[m
+[32m+[m[32m            $selfDir = self::getSelfDir();[m
+             foreach (ClassLoader::getRegisteredLoaders() as $vendorDir => $loader) {[m
+                 $vendorDir = strtr($vendorDir, '\\', '/');[m
+                 if (isset(self::$installedByVendor[$vendorDir])) {[m
+[1mdiff --git a/src/vendor/composer/autoload_classmap.php b/src/vendor/composer/autoload_classmap.php[m
+[1mindex 5193453..c3950c9 100755[m
+[1m--- a/src/vendor/composer/autoload_classmap.php[m
+[1m+++ b/src/vendor/composer/autoload_classmap.php[m
+[36m@@ -135,19 +135,14 @@[m
+     'Carbon\\CarbonInterface' => $vendorDir . '/nesbot/carbon/src/Carbon/CarbonInterface.php',[m
+     'Carbon\\CarbonInterval' => $vendorDir . '/nesbot/carbon/src/Carbon/CarbonInterval.php',[m
+     'Carbon\\CarbonPeriod' => $vendorDir . '/nesbot/carbon/src/Carbon/CarbonPeriod.php',[m
+[32m+[m[32m    'Carbon\\CarbonPeriodImmutable' => $vendorDir . '/nesbot/carbon/src/Carbon/CarbonPeriodImmutable.php',[m
+     'Carbon\\CarbonTimeZone' => $vendorDir . '/nesbot/carbon/src/Carbon/CarbonTimeZone.php',[m
+     'Carbon\\Cli\\Invoker' => $vendorDir . '/nesbot/carbon/src/Carbon/Cli/Invoker.php',[m
+[31m-    'Carbon\\Doctrine\\CarbonDoctrineType' => $vendorDir . '/nesbot/carbon/src/Carbon/Doctrine/CarbonDoctrineType.php',[m
+[31m-    'Carbon\\Doctrine\\CarbonImmutableType' => $vendorDir . '/nesbot/carbon/src/Carbon/Doctrine/CarbonImmutableType.php',[m
+[31m-    'Carbon\\Doctrine\\CarbonType' => $vendorDir . '/nesbot/carbon/src/Carbon/Doctrine/CarbonType.php',[m
+[31m-    'Carbon\\Doctrine\\CarbonTypeConverter' => $vendorDir . '/nesbot/carbon/src/Carbon/Doctrine/CarbonTypeConverter.php',[m
+[31m-    'Carbon\\Doctrine\\DateTimeDefaultPrecision' => $vendorDir . '/nesbot/carbon/src/Carbon/Doctrine/DateTimeDefaultPrecision.php',[m
+[31m-    'Carbon\\Doctrine\\DateTimeImmutableType' => $vendorDir . '/nesbot/carbon/src/Carbon/Doctrine/DateTimeImmutableType.php',[m
+[31m-    'Carbon\\Doctrine\\DateTimeType' => $vendorDir . '/nesbot/carbon/src/Carbon/Doctrine/DateTimeType.php',[m
+     'Carbon\\Exceptions\\BadComparisonUnitException' => $vendorDir . '/nesbot/carbon/src/Carbon/Exceptions/BadComparisonUnitException.php',[m
+     'Carbon\\Exceptions\\BadFluentConstructorException' => $vendorDir . '/nesbot/carbon/src/Carbon/Exceptions/BadFluentConstructorException.php',[m
+     'Carbon\\Exceptions\\BadFluentSetterException' => $vendorDir . '/nesbot/carbon/src/Carbon/Exceptions/BadFluentSetterException.php',[m
+     'Carbon\\Exceptions\\BadMethodCallException' => $vendorDir . '/nesbot/carbon/src/Carbon/Exceptions/BadMethodCallException.php',[m
+[32m+[m[32m    'Carbon\\Exceptions\\EndLessPeriodException' => $vendorDir . '/nesbot/carbon/src/Carbon/Exceptions/EndLessPeriodException.php',[m
+     'Carbon\\Exceptions\\Exception' => $vendorDir . '/nesbot/carbon/src/Carbon/Exceptions/Exception.php',[m
+     'Carbon\\Exceptions\\ImmutableException' => $vendorDir . '/nesbot/carbon/src/Carbon/Exceptions/ImmutableException.php',[m
+     'Carbon\\Exceptions\\InvalidArgumentException' => $vendorDir . '/nesbot/carbon/src/Carbon/Exceptions/InvalidArgumentException.php',[m
+[36m@@ -176,6 +171,7 @@[m
+     'Carbon\\FactoryImmutable' => $vendorDir . '/nesbot/carbon/src/Carbon/FactoryImmutable.php',[m
+     'Carbon\\Language' => $vendorDir . '/nesbot/carbon/src/Carbon/Language.php',[m
+     'Carbon\\Laravel\\ServiceProvider' => $vendorDir . '/nesbot/carbon/src/Carbon/Laravel/ServiceProvider.php',[m
+[32m+[m[32m    'Carbon\\MessageFormatter\\MessageFormatterMapper' => $vendorDir . '/nesbot/carbon/src/Carbon/MessageFormatter/MessageFormatterMapper.php',[m
+     'Carbon\\PHPStan\\AbstractMacro' => $vendorDir . '/nesbot/carbon/src/Carbon/PHPStan/AbstractMacro.php',[m
+     'Carbon\\PHPStan\\Macro' => $vendorDir . '/nesbot/carbon/src/Carbon/PHPStan/Macro.php',[m
+     'Carbon\\PHPStan\\MacroExtension' => $vendorDir . '/nesbot/carbon/src/Carbon/PHPStan/MacroExtension.php',[m
+[36m@@ -192,6 +188,7 @@[m
+     'Carbon\\Traits\\IntervalStep' => $vendorDir . '/nesbot/carbon/src/Carbon/Traits/IntervalStep.php',[m
+     'Carbon\\Traits\\Localization' => $vendorDir . '/nesbot/carbon/src/Carbon/Traits/Localization.php',[m
+     'Carbon\\Traits\\Macro' => $vendorDir . '/nesbot/carbon/src/Carbon/Traits/Macro.php',[m
+[32m+[m[32m    'Carbon\\Traits\\MagicParameter' => $vendorDir . '/nesbot/carbon/src/Carbon/Traits/MagicParameter.php',[m
+     'Carbon\\Traits\\Mixin' => $vendorDir . '/nesbot/carbon/src/Carbon/Traits/Mixin.php',[m
+     'Carbon\\Traits\\Modifiers' => $vendorDir . '/nesbot/carbon/src/Carbon/Traits/Modifiers.php',[m
+     'Carbon\\Traits\\Mutability' => $vendorDir . '/nesbot/carbon/src/Carbon/Traits/Mutability.php',[m
+[36m@@ -201,6 +198,7 @@[m
+     'Carbon\\Traits\\Serialization' => $vendorDir . '/nesbot/carbon/src/Carbon/Traits/Serialization.php',[m
+     'Carbon\\Traits\\Test' => $vendorDir . '/nesbot/carbon/src/Carbon/Traits/Test.php',[m
+     'Carbon\\Traits\\Timestamp' => $vendorDir . '/nesbot/carbon/src/Carbon/Traits/Timestamp.php',[m
+[32m+[m[32m    'Carbon\\Traits\\ToStringFormat' => $vendorDir . '/nesbot/carbon/src/Carbon/Traits/ToStringFormat.php',[m
+     'Carbon\\Traits\\Units' => $vendorDir . '/nesbot/carbon/src/Carbon/Traits/Units.php',[m
+     'Carbon\\Traits\\Week' => $vendorDir . '/nesbot/carbon/src/Carbon/Traits/Week.php',[m
+     'Carbon\\Translator' => $vendorDir . '/nesbot/carbon/src/Carbon/Translator.php',[m
+[36m@@ -227,6 +225,12 @@[m
+     'DASPRiD\\Enum\\Exception\\SerializeNotSupportedException' => $vendorDir . '/dasprid/enum/src/Exception/SerializeNotSupportedException.php',[m
+     'DASPRiD\\Enum\\Exception\\UnserializeNotSupportedException' => $vendorDir . '/dasprid/enum/src/Exception/UnserializeNotSupportedException.php',[m
+     'DASPRiD\\Enum\\NullValue' => $vendorDir . '/dasprid/enum/src/NullValue.php',[m
+[32m+[m[32m    'Database\\Factories\\CategoryFactory' => $baseDir . '/database/factories/CategoryFactory.php',[m
+[32m+[m[32m    'Database\\Factories\\CommentFactory' => $baseDir . '/database/factories/CommentFactory.php',[m
+[32m+[m[32m    'Database\\Factories\\FavoriteFactory' => $baseDir . '/database/factories/FavoriteFactory.php',[m
+[32m+[m[32m    'Database\\Factories\\ItemFactory' => $baseDir . '/database/factories/ItemFactory.php',[m
+[32m+[m[32m    'Database\\Factories\\PurchaseFactory' => $baseDir . '/database/factories/PurchaseFactory.php',[m
+[32m+[m[32m    'Database\\Factories\\StatusFactory' => $baseDir . '/database/factories/StatusFactory.php',[m
+     'Database\\Factories\\UserFactory' => $baseDir . '/database/factories/UserFactory.php',[m
+     'Database\\Seeders\\CategorySeeder' => $baseDir . '/database/seeders/CategorySeeder.php',[m
+     'Database\\Seeders\\DatabaseSeeder' => $baseDir . '/database/seeders/DatabaseSeeder.php',[m
+[36m@@ -5480,6 +5484,7 @@[m
+     'Symfony\\Contracts\\Service\\ServiceSubscriberInterface' => $vendorDir . '/symfony/service-contracts/ServiceSubscriberInterface.php',[m
+     'Symfony\\Contracts\\Service\\ServiceSubscriberTrait' => $vendorDir . '/symfony/service-contracts/ServiceSubscriberTrait.php',[m
+     'Symfony\\Contracts\\Service\\Test\\ServiceLocatorTest' => $vendorDir . '/symfony/service-contracts/Test/ServiceLocatorTest.php',[m
+[32m+[m[32m    'Symfony\\Contracts\\Service\\Test\\ServiceLocatorTestCase' => $vendorDir . '/symfony/service-contracts/Test/ServiceLocatorTestCase.php',[m
+     'Symfony\\Contracts\\Translation\\LocaleAwareInterface' => $vendorDir . '/symfony/translation-contracts/LocaleAwareInterface.php',[m
+     'Symfony\\Contracts\\Translation\\Test\\TranslatorTest' => $vendorDir . '/symfony/translation-contracts/Test/TranslatorTest.php',[m
+     'Symfony\\Contracts\\Translation\\TranslatableInterface' => $vendorDir . '/symfony/translation-contracts/TranslatableInterface.php',[m
+[36m@@ -5500,7 +5505,20 @@[m
+     'Symfony\\Polyfill\\Php80\\PhpToken' => $vendorDir . '/symfony/polyfill-php80/PhpToken.php',[m
+     'Symfony\\Polyfill\\Php81\\Php81' => $vendorDir . '/symfony/polyfill-php81/Php81.php',[m
+     'Tests\\CreatesApplication' => $baseDir . '/tests/CreatesApplication.php',[m
+[32m+[m[32m    'Tests\\Feature\\CommentFunctionalityTest' => $baseDir . '/tests/Feature/CommentFunctionalityTest.php',[m
+     'Tests\\Feature\\ExampleTest' => $baseDir . '/tests/Feature/ExampleTest.php',[m
+[32m+[m[32m    'Tests\\Feature\\LikeFunctionalityTest' => $baseDir . '/tests/Feature/LikeFunctionalityTest.php',[m
+[32m+[m[32m    'Tests\\Feature\\LoginTest' => $baseDir . '/tests/Feature/LoginTest.php',[m
+[32m+[m[32m    'Tests\\Feature\\LogoutTest' => $baseDir . '/tests/Feature/LogoutTest.php',[m
+[32m+[m[32m    'Tests\\Feature\\MyListTest' => $baseDir . '/tests/Feature/MyListTest.php',[m
+[32m+[m[32m    'Tests\\Feature\\PaymentAndShippingTest' => $baseDir . '/tests/Feature/PaymentAndShippingTest.php',[m
+[32m+[m[32m    'Tests\\Feature\\ProductDetailTest' => $baseDir . '/tests/Feature/ProductDetailTest.php',[m
+[32m+[m[32m    'Tests\\Feature\\ProductListTest' => $baseDir . '/tests/Feature/ProductListTest.php',[m
+[32m+[m[32m    'Tests\\Feature\\ProductSearchTest' => $baseDir . '/tests/Feature/ProductSearchTest.php',[m
+[32m+[m[32m    'Tests\\Feature\\PurchaseFunctionalityTest' => $baseDir . '/tests/Feature/PurchaseFunctionalityTest.php',[m
+[32m+[m[32m    'Tests\\Feature\\RegistrationTest' => $baseDir . '/tests/Feature/RegistrationTest.php',[m
+[32m+[m[32m    'Tests\\Feature\\SellFunctionalityTest' => $baseDir . '/tests/Feature/SellFunctionalityTest.php',[m
+[32m+[m[32m    'Tests\\Feature\\UserProfileTest' => $baseDir . '/tests/Feature/UserProfileTest.php',[m
+     'Tests\\TestCase' => $baseDir . '/tests/TestCase.php',[m
+     'Tests\\Unit\\ExampleTest' => $baseDir . '/tests/Unit/ExampleTest.php',[m
+     'TheSeer\\Tokenizer\\Exception' => $vendorDir . '/theseer/tokenizer/src/Exception.php',[m
+[1mdiff --git a/src/vendor/composer/autoload_static.php b/src/vendor/composer/autoload_static.php[m
+[1mindex e09c46c..163d694 100755[m
+[1m--- a/src/vendor/composer/autoload_static.php[m
+[1m+++ b/src/vendor/composer/autoload_static.php[m
+[36m@@ -695,19 +695,14 @@[m [mclass ComposerStaticInitc61ff82cbf0142a401a48a8161e1595a[m
+         'Carbon\\CarbonInterface' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/CarbonInterface.php',[m
+         'Carbon\\CarbonInterval' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/CarbonInterval.php',[m
+         'Carbon\\CarbonPeriod' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/CarbonPeriod.php',[m
+[32m+[m[32m        'Carbon\\CarbonPeriodImmutable' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/CarbonPeriodImmutable.php',[m
+         'Carbon\\CarbonTimeZone' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/CarbonTimeZone.php',[m
+         'Carbon\\Cli\\Invoker' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Cli/Invoker.php',[m
+[31m-        'Carbon\\Doctrine\\CarbonDoctrineType' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Doctrine/CarbonDoctrineType.php',[m
+[31m-        'Carbon\\Doctrine\\CarbonImmutableType' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Doctrine/CarbonImmutableType.php',[m
+[31m-        'Carbon\\Doctrine\\CarbonType' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Doctrine/CarbonType.php',[m
+[31m-        'Carbon\\Doctrine\\CarbonTypeConverter' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Doctrine/CarbonTypeConverter.php',[m
+[31m-        'Carbon\\Doctrine\\DateTimeDefaultPrecision' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Doctrine/DateTimeDefaultPrecision.php',[m
+[31m-        'Carbon\\Doctrine\\DateTimeImmutableType' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Doctrine/DateTimeImmutableType.php',[m
+[31m-        'Carbon\\Doctrine\\DateTimeType' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Doctrine/DateTimeType.php',[m
+         'Carbon\\Exceptions\\BadComparisonUnitException' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Exceptions/BadComparisonUnitException.php',[m
+         'Carbon\\Exceptions\\BadFluentConstructorException' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Exceptions/BadFluentConstructorException.php',[m
+         'Carbon\\Exceptions\\BadFluentSetterException' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Exceptions/BadFluentSetterException.php',[m
+         'Carbon\\Exceptions\\BadMethodCallException' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Exceptions/BadMethodCallException.php',[m
+[32m+[m[32m        'Carbon\\Exceptions\\EndLessPeriodException' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Exceptions/EndLessPeriodException.php',[m
+         'Carbon\\Exceptions\\Exception' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Exceptions/Exception.php',[m
+         'Carbon\\Exceptions\\ImmutableException' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Exceptions/ImmutableException.php',[m
+         'Carbon\\Exceptions\\InvalidArgumentException' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Exceptions/InvalidArgumentException.php',[m
+[36m@@ -736,6 +731,7 @@[m [mclass ComposerStaticInitc61ff82cbf0142a401a48a8161e1595a[m
+         'Carbon\\FactoryImmutable' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/FactoryImmutable.php',[m
+         'Carbon\\Language' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Language.php',[m
+         'Carbon\\Laravel\\ServiceProvider' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Laravel/ServiceProvider.php',[m
+[32m+[m[32m        'Carbon\\MessageFormatter\\MessageFormatterMapper' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/MessageFormatter/MessageFormatterMapper.php',[m
+         'Carbon\\PHPStan\\AbstractMacro' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/PHPStan/AbstractMacro.php',[m
+         'Carbon\\PHPStan\\Macro' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/PHPStan/Macro.php',[m
+         'Carbon\\PHPStan\\MacroExtension' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/PHPStan/MacroExtension.php',[m
+[36m@@ -752,6 +748,7 @@[m [mclass ComposerStaticInitc61ff82cbf0142a401a48a8161e1595a[m
+         'Carbon\\Traits\\IntervalStep' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Traits/IntervalStep.php',[m
+         'Carbon\\Traits\\Localization' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Traits/Localization.php',[m
+         'Carbon\\Traits\\Macro' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Traits/Macro.php',[m
+[32m+[m[32m        'Carbon\\Traits\\MagicParameter' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Traits/MagicParameter.php',[m
+         'Carbon\\Traits\\Mixin' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Traits/Mixin.php',[m
+         'Carbon\\Traits\\Modifiers' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Traits/Modifiers.php',[m
+         'Carbon\\Traits\\Mutability' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Traits/Mutability.php',[m
+[36m@@ -761,6 +758,7 @@[m [mclass ComposerStaticInitc61ff82cbf0142a401a48a8161e1595a[m
+         'Carbon\\Traits\\Serialization' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Traits/Serialization.php',[m
+         'Carbon\\Traits\\Test' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Traits/Test.php',[m
+         'Carbon\\Traits\\Timestamp' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Traits/Timestamp.php',[m
+[32m+[m[32m        'Carbon\\Traits\\ToStringFormat' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Traits/ToStringFormat.php',[m
+         'Carbon\\Traits\\Units' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Traits/Units.php',[m
+         'Carbon\\Traits\\Week' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Traits/Week.php',[m
+         'Carbon\\Translator' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Translator.php',[m
+[36m@@ -787,6 +785,12 @@[m [mclass ComposerStaticInitc61ff82cbf0142a401a48a8161e1595a[m
+         'DASPRiD\\Enum\\Exception\\SerializeNotSupportedException' => __DIR__ . '/..' . '/dasprid/enum/src/Exception/SerializeNotSupportedException.php',[m
+         'DASPRiD\\Enum\\Exception\\UnserializeNotSupportedException' => __DIR__ . '/..' . '/dasprid/enum/src/Exception/UnserializeNotSupportedException.php',[m
+         'DASPRiD\\Enum\\NullValue' => __DIR__ . '/..' . '/dasprid/enum/src/NullValue.php',[m
+[32m+[m[32m        'Database\\Factories\\CategoryFactory' => __DIR__ . '/../..' . '/database/factories/CategoryFactory.php',[m
+[32m+[m[32m        'Database\\Factories\\CommentFactory' => __DIR__ . '/../..' . '/database/factories/CommentFactory.php',[m
+[32m+[m[32m        'Database\\Factories\\FavoriteFactory' => __DIR__ . '/../..' . '/database/factories/FavoriteFactory.php',[m
+[32m+[m[32m        'Database\\Factories\\ItemFactory' => __DIR__ . '/../..' . '/database/factories/ItemFactory.php',[m
+[32m+[m[32m        'Database\\Factories\\PurchaseFactory' => __DIR__ . '/../..' . '/database/factories/PurchaseFactory.php',[m
+[32m+[m[32m        'Database\\Factories\\StatusFactory' => __DIR__ . '/../..' . '/database/factories/StatusFactory.php',[m
+         'Database\\Factories\\UserFactory' => __DIR__ . '/../..' . '/database/factories/UserFactory.php',[m
+         'Database\\Seeders\\CategorySeeder' => __DIR__ . '/../..' . '/database/seeders/CategorySeeder.php',[m
+         'Database\\Seeders\\DatabaseSeeder' => __DIR__ . '/../..' . '/database/seeders/DatabaseSeeder.php',[m
+[36m@@ -6040,6 +6044,7 @@[m [mclass ComposerStaticInitc61ff82cbf0142a401a48a8161e1595a[m
+         'Symfony\\Contracts\\Service\\ServiceSubscriberInterface' => __DIR__ . '/..' . '/symfony/service-contracts/ServiceSubscriberInterface.php',[m
+         'Symfony\\Contracts\\Service\\ServiceSubscriberTrait' => __DIR__ . '/..' . '/symfony/service-contracts/ServiceSubscriberTrait.php',[m
+         'Symfony\\Contracts\\Service\\Test\\ServiceLocatorTest' => __DIR__ . '/..' . '/symfony/service-contracts/Test/ServiceLocatorTest.php',[m
+[32m+[m[32m        'Symfony\\Contracts\\Service\\Test\\ServiceLocatorTestCase' => __DIR__ . '/..' . '/symfony/service-contracts/Test/ServiceLocatorTestCase.php',[m
+         'Symfony\\Contracts\\Translation\\LocaleAwareInterface' => __DIR__ . '/..' . '/symfony/translation-contracts/LocaleAwareInterface.php',[m
+         'Symfony\\Contracts\\Translation\\Test\\TranslatorTest' => __DIR__ . '/..' . '/symfony/translation-contracts/Test/TranslatorTest.php',[m
+         'Symfony\\Contracts\\Translation\\TranslatableInterface' => __DIR__ . '/..' . '/symfony/translation-contracts/TranslatableInterface.php',[m
+[36m@@ -6060,7 +6065,20 @@[m [mclass ComposerStaticInitc61ff82cbf0142a401a48a8161e1595a[m
+         'Symfony\\Polyfill\\Php80\\PhpToken' => __DIR__ . '/..' . '/symfony/polyfill-php80/PhpToken.php',[m
+         'Symfony\\Polyfill\\Php81\\Php81' => __DIR__ . '/..' . '/symfony/polyfill-php81/Php81.php',[m
+         'Tests\\CreatesApplication' => __DIR__ . '/../..' . '/tests/CreatesApplication.php',[m
+[32m+[m[32m        'Tests\\Feature\\CommentFunctionalityTest' => __DIR__ . '/../..' . '/tests/Feature/CommentFunctionalityTest.php',[m
+         'Tests\\Feature\\ExampleTest' => __DIR__ . '/../..' . '/tests/Feature/ExampleTest.php',[m
+[32m+[m[32m        'Tests\\Feature\\LikeFunctionalityTest' => __DIR__ . '/../..' . '/tests/Feature/LikeFunctionalityTest.php',[m
+[32m+[m[32m        'Tests\\Feature\\LoginTest' => __DIR__ . '/../..' . '/tests/Feature/LoginTest.php',[m
+[32m+[m[32m        'Tests\\Feature\\LogoutTest' => __DIR__ . '/../..' . '/tests/Feature/LogoutTest.php',[m
+[32m+[m[32m        'Tests\\Feature\\MyListTest' => __DIR__ . '/../..' . '/tests/Feature/MyListTest.php',[m
+[32m+[m[32m        'Tests\\Feature\\PaymentAndShippingTest' => __DIR__ . '/../..' . '/tests/Feature/PaymentAndShippingTest.php',[m
+[32m+[m[32m        'Tests\\Feature\\ProductDetailTest' => __DIR__ . '/../..' . '/tests/Feature/ProductDetailTest.php',[m
+[32m+[m[32m        'Tests\\Feature\\ProductListTest' => __DIR__ . '/../..' . '/tests/Feature/ProductListTest.php',[m
+[32m+[m[32m        'Tests\\Feature\\ProductSearchTest' => __DIR__ . '/../..' . '/tests/Feature/ProductSearchTest.php',[m
+[32m+[m[32m        'Tests\\Feature\\PurchaseFunctionalityTest' => __DIR__ . '/../..' . '/tests/Feature/PurchaseFunctionalityTest.php',[m
+[32m+[m[32m        'Tests\\Feature\\RegistrationTest' => __DIR__ . '/../..' . '/tests/Feature/RegistrationTest.php',[m
+[32m+[m[32m        'Tests\\Feature\\SellFunctionalityTest' => __DIR__ . '/../..' . '/tests/Feature/SellFunctionalityTest.php',[m
+[32m+[m[32m        'Tests\\Feature\\UserProfileTest' => __DIR__ . '/../..' . '/tests/Feature/UserProfileTest.php',[m
+         'Tests\\TestCase' => __DIR__ . '/../..' . '/tests/TestCase.php',[m
+         'Tests\\Unit\\ExampleTest' => __DIR__ . '/../..' . '/tests/Unit/ExampleTest.php',[m
+         'TheSeer\\Tokenizer\\Exception' => __DIR__ . '/..' . '/theseer/tokenizer/src/Exception.php',[m

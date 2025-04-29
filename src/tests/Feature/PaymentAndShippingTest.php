@@ -2,10 +2,10 @@
 
 namespace Tests\Feature;
 
-use Tests\TestCase;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use App\Models\User;
 use App\Models\Item;
+use App\Models\User;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 
 class PaymentAndShippingTest extends TestCase
 {
@@ -18,13 +18,13 @@ class PaymentAndShippingTest extends TestCase
         $item = Item::factory()->create();
 
         $this->actingAs($user)
-             ->get(route('purchase.show', [
-                 'item_id'        => $item->id,
-                 'payment_method' => 'convenience_store',
-             ]))
-             ->assertStatus(200)
+            ->get(route('purchase.show', [
+                'item_id' => $item->id,
+                'payment_method' => 'convenience_store',
+            ]))
+            ->assertStatus(200)
              // 右カラム .method-row に「コンビ二支払い」が表示されている
-             ->assertSeeText('コンビ二支払い');
+            ->assertSeeText('コンビ二支払い');
     }
 
     /** @test */
@@ -34,18 +34,18 @@ class PaymentAndShippingTest extends TestCase
         $item = Item::factory()->create();
 
         $this->actingAs($user)
-             ->put(route('purchase.address.update', ['item_id' => $item->id]), [
-                 'postal_code' => '987-6543',
-                 'address'     => '大阪市中央区',
-                 'building'    => 'ビルA',
-             ])->assertRedirect(); // リダイレクト確認
+            ->put(route('purchase.address.update', ['item_id' => $item->id]), [
+                'postal_code' => '987-6543',
+                'address' => '大阪市中央区',
+                'building' => 'ビルA',
+            ])->assertRedirect(); // リダイレクト確認
 
         $this->actingAs($user)
-             ->get(route('purchase.show', ['item_id' => $item->id]))
-             ->assertStatus(200)
+            ->get(route('purchase.show', ['item_id' => $item->id]))
+            ->assertStatus(200)
              // 左カラム配送先に正しく反映
-             ->assertSeeText('〒987-6543')
-             ->assertSeeText('大阪市中央区')
-             ->assertSeeText('ビルA');
+            ->assertSeeText('〒987-6543')
+            ->assertSeeText('大阪市中央区')
+            ->assertSeeText('ビルA');
     }
 }

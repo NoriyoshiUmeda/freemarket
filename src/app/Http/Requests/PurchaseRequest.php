@@ -18,14 +18,12 @@ class PurchaseRequest extends FormRequest
 
     /**
      * Get the validation rules that apply to the request.
-     *
-     * @return array
      */
     public function rules(): array
     {
         return [
             'payment_method' => 'required|in:credit_card,convenience_store',
-            
+
         ];
     }
 }

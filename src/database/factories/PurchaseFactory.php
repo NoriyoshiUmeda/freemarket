@@ -2,8 +2,8 @@
 
 namespace Database\Factories;
 
-use App\Models\Purchase;
 use App\Models\Item;
+use App\Models\Purchase;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -17,8 +17,8 @@ class PurchaseFactory extends Factory
         return [
             'item_id' => Item::factory(),
             'user_id' => User::factory(),
-            'address'      => $this->faker->address(),
-            'postal_code'  => $this->faker->postcode(),
+            'address' => $this->faker->address(),
+            'postal_code' => $this->faker->postcode(),
         ];
     }
 }

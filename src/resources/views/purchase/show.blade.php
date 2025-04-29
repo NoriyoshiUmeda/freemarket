@@ -31,7 +31,7 @@
           <span class="label">支払方法</span>
           <div class="content">
             <form id="payment-form" action="{{ route('purchase.show', ['item_id' => $item->id]) }}" method="GET">
-              <select name="payment_method" id="payment_method">
+              <select name="payment-method" id="payment-method">
                 <option value="credit_card" @if(request('payment_method', 'credit_card') === 'credit_card') selected @endif>カード支払い</option>
                 <option value="convenience_store" @if(request('payment_method') === 'convenience_store') selected @endif>コンビ二支払い</option>
               </select>
@@ -67,7 +67,7 @@
       <div class="right-info">
         <div class="price-method-box">
           @php
-            $paymentMethod = request('payment_method', 'credit_card');
+            $paymentMethod = request('payment-method', 'credit_card');
             $methodLabels = [
               'credit_card' => 'カード支払い',
               'convenience_store' => 'コンビニ支払い',
@@ -88,7 +88,7 @@
         </div>
         <form action="{{ route('purchase.execute', ['item_id' => $item->id]) }}" method="POST">
           @csrf
-          <input type="hidden" name="payment_method" value="{{ $paymentMethod }}">
+          <input type="hidden" name="payment-method" value="{{ $paymentMethod }}">
           <button type="submit" class="purchase-btn">購入する</button>
         </form>
       </div>
@@ -98,9 +98,9 @@
   <!-- JavaScript: リアルタイム更新 -->
   <script>
     document.addEventListener('DOMContentLoaded', function () {
-  var paymentSelect = document.getElementById('payment_method');
+  var paymentSelect = document.getElementById('payment-method');
   var methodRow = document.querySelector('.right-info .method-row');
-  var hiddenPaymentInput = document.querySelector('input[name="payment_method"]');
+  var hiddenPaymentInput = document.querySelector('input[name="payment-method"]');
 
   const labels = {
     credit_card: 'カード支払い',

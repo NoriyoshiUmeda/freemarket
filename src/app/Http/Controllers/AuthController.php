@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\RegisterRequest; // バリデーション用のFormRequest
 use App\Http\Requests\LoginRequest; // バリデーション用のFormRequest
+use App\Http\Requests\RegisterRequest; // バリデーション用のFormRequest
 use App\Models\User;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
@@ -35,8 +34,7 @@ class AuthController extends Controller
         // ユーザーを自動ログインさせる
         Auth::login($user);
 
-      
-        return redirect()->route('profile.edit'); 
+        return redirect()->route('profile.edit');
     }
 
     public function showLoginForm()
@@ -45,16 +43,15 @@ class AuthController extends Controller
     }
 
     public function login(LoginRequest $request)
-{
-    $credentials = $request->only('email', 'password');
+    {
+        $credentials = $request->only('email', 'password');
 
-    if (Auth::attempt($credentials)) {
-        return redirect()->route('item.index');
+        if (Auth::attempt($credentials)) {
+            return redirect()->route('item.index');
+        }
+
+        return back()->withErrors([
+            'email' => 'ログイン情報が登録されていません',
+        ]);
     }
-
-    return back()->withErrors([
-        'email' => 'ログイン情報が登録されていません',
-    ]);
-}
-
 }

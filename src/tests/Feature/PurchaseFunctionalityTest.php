@@ -2,11 +2,11 @@
 
 namespace Tests\Feature;
 
-use Tests\TestCase;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use App\Models\User;
 use App\Models\Item;
 use App\Models\Purchase;
+use App\Models\User;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 
 class PurchaseFunctionalityTest extends TestCase
 {
@@ -19,8 +19,8 @@ class PurchaseFunctionalityTest extends TestCase
         $user = User::factory()->create();
         $user->profile()->create([
             'postal_code' => '123-4567',
-            'address'     => '東京都新宿区',
-            'building'    => 'テストビル',
+            'address' => '東京都新宿区',
+            'building' => 'テストビル',
         ]);
 
         // 商品作成
@@ -28,9 +28,9 @@ class PurchaseFunctionalityTest extends TestCase
 
         // 購入画面表示
         $this->actingAs($user)
-             ->get(route('purchase.show', ['item_id' => $item->id]))
-             ->assertStatus(200)
-             ->assertSee('購入する');
+            ->get(route('purchase.show', ['item_id' => $item->id]))
+            ->assertStatus(200)
+            ->assertSee('購入する');
 
         // 購入実行
         $response = $this->post(route('purchase.execute', ['item_id' => $item->id]), [
@@ -48,9 +48,9 @@ class PurchaseFunctionalityTest extends TestCase
 
         // マイページ購入タブで Sold ラベルが表示されている
         $this->actingAs($user)
-             ->get(route('mypage', ['tab' => 'buy']))
-             ->assertStatus(200)
-             ->assertSee('<p class="sold-label">Sold</p>', false);
+            ->get(route('mypage', ['tab' => 'buy']))
+            ->assertStatus(200)
+            ->assertSee('<p class="sold-label">Sold</p>', false);
     }
 
     /** @test */
@@ -64,9 +64,9 @@ class PurchaseFunctionalityTest extends TestCase
 
         // マイページ購入タブで該当商品と Sold ラベルを確認
         $this->actingAs($user)
-             ->get(route('mypage', ['tab' => 'buy']))
-             ->assertStatus(200)
-             ->assertSeeText($item->name)
-             ->assertSee('<p class="sold-label">Sold</p>', false);
+            ->get(route('mypage', ['tab' => 'buy']))
+            ->assertStatus(200)
+            ->assertSeeText($item->name)
+            ->assertSee('<p class="sold-label">Sold</p>', false);
     }
 }

@@ -16,7 +16,7 @@ class Purchase extends Model
         'item_id', // 購入された商品ID
         'postal_code',
         'address',
-        'building', 
+        'building',
     ];
 
     /**

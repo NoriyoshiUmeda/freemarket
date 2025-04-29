@@ -2,11 +2,11 @@
 
 namespace Tests\Feature;
 
-use Tests\TestCase;
-use Illuminate\Foundation\Testing\RefreshDatabase;
+use App\Models\Comment;
 use App\Models\Item;
 use App\Models\User;
-use App\Models\Comment;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 
 class CommentFunctionalityTest extends TestCase
 {
@@ -20,9 +20,9 @@ class CommentFunctionalityTest extends TestCase
 
         // POST /item/{item_id}/comment
         $this->actingAs($user)
-             ->post(route('item.comment', ['item_id' => $item->id]), [
-                 'comment' => '素晴らしい商品です！',
-             ]);
+            ->post(route('item.comment', ['item_id' => $item->id]), [
+                'comment' => '素晴らしい商品です！',
+            ]);
 
         // DB へ保存
         $this->assertDatabaseHas('comments', [
@@ -58,10 +58,10 @@ class CommentFunctionalityTest extends TestCase
         $item = Item::factory()->create();
 
         $response = $this->actingAs($user)
-             ->from(route('item.show', ['item_id' => $item->id]))
-             ->post(route('item.comment', ['item_id' => $item->id]), [
-                 'comment' => '',
-             ]);
+            ->from(route('item.show', ['item_id' => $item->id]))
+            ->post(route('item.comment', ['item_id' => $item->id]), [
+                'comment' => '',
+            ]);
 
         $response->assertRedirect(route('item.show', ['item_id' => $item->id]));
         $response->assertSessionHasErrors('comment');
@@ -75,10 +75,10 @@ class CommentFunctionalityTest extends TestCase
 
         $long = str_repeat('あ', 256);
         $response = $this->actingAs($user)
-             ->from(route('item.show', ['item_id' => $item->id]))
-             ->post(route('item.comment', ['item_id' => $item->id]), [
-                 'comment' => $long,
-             ]);
+            ->from(route('item.show', ['item_id' => $item->id]))
+            ->post(route('item.comment', ['item_id' => $item->id]), [
+                'comment' => $long,
+            ]);
 
         $response->assertRedirect(route('item.show', ['item_id' => $item->id]));
         $response->assertSessionHasErrors('comment');

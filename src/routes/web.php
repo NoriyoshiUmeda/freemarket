@@ -1,12 +1,11 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\UserController;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\PurchaseController;
-use Illuminate\Foundation\Auth\EmailVerificationRequest;
-use Illuminate\Http\Request;
+use App\Http\Controllers\UserController;
+use Illuminate\Support\Facades\Route;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -21,7 +20,7 @@ Route::post('/register', [AuthController::class, 'register']);
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [AuthController::class, 'login']); // ← ここは必須
 
-//商品一覧画面
+// 商品一覧画面
 Route::get('/', [ItemController::class, 'index'])->name('item.index');
 
 // ユーザ認証不要：商品詳細画面表示
@@ -36,14 +35,14 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/sell', [ItemController::class, 'store'])->name('sell.store');
 
     Route::get('/purchase/address/{item_id}', [PurchaseController::class, 'edit'])
-    ->name('purchase.address.edit');
-    
+        ->name('purchase.address.edit');
+
     Route::put('/purchase/address/{item_id}', [PurchaseController::class, 'update'])
-    ->name('purchase.address.update');
+        ->name('purchase.address.update');
 
     Route::get('/purchase/{item_id}', [PurchaseController::class, 'showPurchasePage'])->name('purchase.show');
     Route::post('/purchase/{item_id}', [PurchaseController::class, 'executePurchase'])
-     ->name('purchase.execute');
+        ->name('purchase.execute');
 
     Route::post('/item/{item_id}/like', [ItemController::class, 'like'])->name('item.like');
     Route::delete('/item/{item_id}/unlike', [ItemController::class, 'unlike'])->name('item.unlike');

@@ -15,7 +15,7 @@ class CreateProfilesTable extends Migration
     {
         Schema::create('profiles', function (Blueprint $table) {
             $table->id(); // bigint unsigned, AUTO_INCREMENT, PRIMARY KEY
-            $table->foreignId('user_id')->constrained('users')->onDelete('cascade'); 
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->string('profile_image', 255)->nullable(); // VARCHAR(255), NULL許容
             $table->string('postal_code', 255); // VARCHAR(255) NOT NULL
             $table->string('address', 255); // VARCHAR(255) NOT NULL
