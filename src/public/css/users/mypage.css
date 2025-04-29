@@ -1,6 +1,6 @@
-/*─────────────────────────────
+/* ─────────────────────────────
   ベース（モバイルファースト）
-─────────────────────────────*/
+───────────────────────────── */
 .container {
   max-width: 1200px;
   margin: 0 auto;
@@ -51,8 +51,8 @@
   justify-content: center;
   align-items: center;
   background: #fff;
-  color: #FF5555;
-  border: 2px solid #FF5555;
+  color: #F55;
+  border: 2px solid #F55;
   border-radius: 10px;
   text-decoration: none;
   font-size: 30px;
@@ -85,8 +85,9 @@
   color: #666;
   padding-bottom: 5px;
 }
+
 .nav-item.active {
-  color: #FF5555;
+  color: #F55;
 }
 
 /* 商品グリッド */
@@ -101,20 +102,24 @@
   text-align: left;
   position: relative;
 }
+
 .item-image {
   width: 290px;
   height: 290px;
   object-fit: cover;
   border-radius: 5px;
 }
+
 .item-name {
   margin-top: 10px;
   font-size: 16px;
   font-weight: bold;
 }
+
 .item-price {
   font-size: 14px;
 }
+
 .sold-label {
   position: absolute;
   top: 10px;
@@ -127,94 +132,111 @@
   font-weight: bold;
 }
 
-/*─────────────────────────────
+/* ─────────────────────────────
   タブレット対応 (768px〜850px)
-─────────────────────────────*/
-@media screen and (min-width: 768px) and (max-width: 850px) {
+───────────────────────────── */
+@media screen and (width >= 768px) and (width <= 850px) {
   .container {
     max-width: 680px;
     padding: 100px 20px 20px;
   }
+
   .profile-info {
     flex-direction: column;
     align-items: flex-start;
     padding: 40px 0;
     gap: 20px;
   }
+
   .profile-image,
   .profile-image.no-image {
     width: 100px;
     height: 100px;
   }
+
   .profile-name-edit {
     flex-direction: column;
     align-items: flex-start;
     gap: 12px;
   }
+
   .user-name {
     font-size: 20px;
   }
+
   .edit-profile-btn {
     width: auto;
     height: auto;
     padding: 6px 12px;
     font-size: 13px;
   }
+
   .item-grid {
     grid-template-columns: repeat(auto-fit, minmax(150px,1fr));
     gap: 16px;
   }
+
   .item-image {
     height: 120px;
     width: 100%;
   }
+
   .item-name, .item-price {
     font-size: 14px;
   }
 }
 
-/*─────────────────────────────
+/* ─────────────────────────────
   PC対応 (1400px〜1540px)
-─────────────────────────────*/
-@media screen and (min-width: 1400px) and (max-width: 1540px) {
+───────────────────────────── */
+@media screen and (width >= 1400px) and (width <= 1540px) {
   .container {
     max-width: 800px;
     padding: 100px 40px 20px;
   }
+
   .profile-info {
     flex-direction: row;
     align-items: center;
     padding: 80px 0;
     gap: 40px;
   }
+
   .profile-image,
   .profile-image.no-image {
     width: 150px;
     height: 150px;
   }
+
   .profile-name-edit {
     gap: 40px;
   }
+
   .user-name {
     font-size: 36px;
   }
+
   .edit-profile-btn {
     width: 319px;
     height: 59px;
     padding: 8px 16px;
     font-size: 30px;
   }
+
   .item-grid {
     grid-template-columns: repeat(auto-fit, minmax(290px,1fr));
     gap: 20px;
   }
+
   .item-image {
     width: 290px;
     height: 290px;
   }
+
   .item-name {
     font-size: 16px;
   }
+
   .item-price {
     font-size: 14px;
   }

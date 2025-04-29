@@ -1,19 +1,19 @@
-/*─────────────────────────────
+/* ─────────────────────────────
   全体リセット
-─────────────────────────────*/
+───────────────────────────── */
 body {
   margin: 0;
   padding: 0;
-  font-family: Arial, sans‑serif;
-  background-color: #ffffff;
+  font-family: Arial, sans-serif;
+  background-color: #fff;
   box-sizing: border-box;
 }
 
-/*─────────────────────────────
+/* ─────────────────────────────
   ヘッダー共通スタイル
-─────────────────────────────*/
+───────────────────────────── */
 .auth-header {
-  background-color: #000000;       /* 背景色 */
+  background-color: #000;       /* 背景色 */
   border-bottom: 1px solid #ddd;   /* 下線 */
   padding: 10px 1rem;              /* モバイル時の上下/左右余白 */
   box-sizing: border-box;
@@ -27,26 +27,28 @@ body {
   height: auto;
 }
 
-/*─────────────────────────────
+/* ─────────────────────────────
   タブレット対応 (768px〜850px)
-─────────────────────────────*/
-@media (min-width: 768px) and (max-width: 850px) {
+───────────────────────────── */
+@media (width >= 768px) and (width <= 850px) {
   .auth-header {
     padding: 15px 2rem;            /* タブレット時の余白 */
   }
+
   .auth-header a svg,
   .auth-header a img {
     width: 150px;                  /* タブレット時のロゴ幅 */
   }
 }
 
-/*─────────────────────────────
+/* ─────────────────────────────
   PC対応 (1400px〜1540px)
-─────────────────────────────*/
-@media (min-width: 1400px) and (max-width: 1540px) {
+───────────────────────────── */
+@media (width >= 1400px) and (width <= 1540px) {
   .auth-header {
     padding: 20px 4rem;            /* PC時の余白 */
   }
+
   .auth-header a svg,
   .auth-header a img {
     width: 180px;                  /* PC時のロゴ幅 */

@@ -1,10 +1,10 @@
-/*─────────────────────────────
+/* ─────────────────────────────
   ログインページ 共通スタイル
-─────────────────────────────*/
+───────────────────────────── */
 
 /* メインのラッパー */
 .login-container {
-    background: #FFFFFF;
+    background: #FFF;
     width: 90%;
     max-width: 680px;        /* 登録画面と同じ幅 */
     padding: 40px;
@@ -75,21 +75,18 @@
     /* ボタン幅 */
     width: 100%;
     max-width: 600px;        /* テキストボックスと同じ幅 */
-
     height: 65px;
     border-radius: 5px;
-
     font-size: 1.125rem;
     font-weight: bold;
-
     display: flex;
     align-items: center;
     justify-content: center;
-
     cursor: pointer;
     margin: 1.5rem auto 0;
     transition: background 0.2s;
 }
+
 .login-button:hover {
     background: #e04444;
 }
@@ -101,22 +98,25 @@
     color: #007bff;
     text-decoration: none;
 }
+
 .register-link:hover {
     text-decoration: underline;
 }
 
-/*─────────────────────────────
+/* ─────────────────────────────
   レスポンシブ対応
-─────────────────────────────*/
-@media (max-width: 480px) {
+───────────────────────────── */
+@media (width <= 480px) {
     .login-container {
         padding: 20px;
         margin: 30px auto;
     }
+
     .login-container h1 {
         font-size: 1.5rem;
         margin-bottom: 1.5rem;
     }
+
     .login-button {
         height: 50px;
         font-size: 1rem;

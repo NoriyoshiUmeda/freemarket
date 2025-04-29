@@ -57,22 +57,25 @@
   font-weight: 700;
   margin: 0 0 10px;
 }
+
 .product-brand {
   font-size: 20px;
   font-weight: 400;
-  color: #000000;
+  color: #000;
   margin: 0 0 15px;
 }
+
 .product-price {
   font-size: 45px;
   font-weight: 400;
-  color: #000000;
+  color: #000;
   margin: 0 0 15px;
 }
+
 .tax-included {
   font-size: 30px;
   font-weight: 400;
-  color: #000000;
+  color: #000;
 }
 
 /* いいね数・コメント数のアイコン */
@@ -81,17 +84,20 @@
   gap: 20px;         /* ブロック間の隙間 */
   align-items: center;
 }
+
 .icon-box {
   display: flex;
   flex-direction: column; /* アイコンが上、数値が下 */
   align-items: center;
   text-align: center;
 }
+
 .icon-img {
   width: 40px;
   height: 40px;
   display: block;
 }
+
 .icon-count {
   font-size: 18px;
   font-weight: 700;
@@ -106,10 +112,12 @@
   cursor: pointer;
   padding: 0;
 }
+
 .like-btn img.icon-img {
   filter: none;
   transition: filter 0.2s ease;
 }
+
 .like-btn.liked img.icon-img {
   filter: brightness(0) saturate(100%) invert(72%) sepia(75%) saturate(2900%) hue-rotate(2deg) brightness(103%) contrast(101%);
 }
@@ -119,11 +127,11 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  background-color: #FF5555;
+  background-color: #F55;
   color: #fff;
-  padding: 0 16px;   
+  padding: 0 16px;
   font-size: 30px;
-  font-weight: 700;     
+  font-weight: 700;
   border-radius: 4px;
   text-decoration: none;
   margin-bottom: 22px;
@@ -131,9 +139,10 @@
   width: 570px;
   line-height: 56px;  /* ボタンの高さと同じにする */
 }
+
 .purchase-btn.disabled {
-  background-color: #cccccc;
-  color: #666666;
+  background-color: #ccc;
+  color: #666;
   pointer-events: none;
   cursor: default;
   text-decoration: none;
@@ -143,19 +152,21 @@
 .product-section {
   margin-bottom: 20px;
 }
+
 .section-title {
   font-size: 36px;
   font-weight: 700;
   margin-bottom: 5px;
 }
+
 .bold-700 {
   font-weight: 700;
   font-size: 24px;
 }
+
 .section-text {
   font-size: 24px;
   font-weight: 400;
-  word-break: break-word;
   overflow-wrap: break-word;
   white-space: normal;
 }
@@ -165,10 +176,11 @@
   display: inline-block;
   margin-left: 10px;
 }
+
 .category-tag {
   display: inline-block;
   background-color: #D9D9D9;
-  color: #000000;
+  color: #000;
   padding: 6px 12px;
   margin-right: 8px;
   border-radius: 15px;
@@ -184,27 +196,32 @@
   align-self: flex-start;
   width: 100%;
 }
+
 .comment-title {
   font-size: 28px;
   font-weight: 700;
   margin-bottom: 15px;
   text-align: left;
 }
+
 .comment-list {
   margin-bottom: 20px;
   max-height: 400px;
   overflow-y: auto;
   padding-right: 10px;
 }
+
 .comment-item {
   margin-bottom: 10px;
   min-width: 0;
 }
+
 .user-info {
   display: flex;
   align-items: center;
   gap: 10px;
 }
+
 .comment-avatar {
   width: 70px;
   height: 70px;
@@ -212,25 +229,29 @@
   object-fit: cover;
   border: 1px solid #ccc;
 }
+
 .no-image {
   background-color: #d9d9d9;
   width: 70px;
   height: 70px;
   border-radius: 50%;
 }
+
 .comment-user {
   font-size: 30px;
   font-weight: 700;
   margin-bottom: 5px;
 }
+
 .comment-text {
   margin-top: 5px;
   margin-left: 0;
 }
+
 .comment-body {
   font-size: 20px;
   font-weight: 300;
-  color: #000000;
+  color: #000;
   margin: 0;
   text-align: left;
   word-wrap: break-word;
@@ -238,9 +259,10 @@
   white-space: pre-wrap;
   word-break: break-all;
 }
+
 .no-comment {
   font-size: 20px;
-  color: #000000;
+  color: #000;
   font-weight: 300;
 }
 
@@ -253,11 +275,13 @@
   gap: 10px;
   align-items: flex-start;
 }
+
 .error-message {
   color: red;
   font-size: 14px;
   margin: 10px 0;
 }
+
 .comment-form textarea {
   width: 100%;
   height: 246px;
@@ -268,14 +292,16 @@
   border: 1px solid #ccc;
   border-radius: 4px;
 }
+
 .submit-wrapper {
   width: 100%;
   text-align: center;
 }
+
 .comment-submit {
   display: inline-block;
   margin: 0 auto;
-  background-color: #FF5555;
+  background-color: #F55;
   color: #fff;
   border: none;
   border-radius: 4px;
@@ -287,15 +313,16 @@
   width: 100%;
 }
 
-/*─────────────────────────────
+/* ─────────────────────────────
   タブレット対応 (768px〜850px)
-─────────────────────────────*/
-@media screen and (min-width: 768px) and (max-width: 850px) {
+───────────────────────────── */
+@media screen and (width >= 768px) and (width <= 850px) {
   .product-detail-container {
     flex-direction: column;
     gap: 20px;
     margin: 100px 20px 20px;
   }
+
   .left-column {
     /* 固定幅・固定高さを解除 */
     width: 100% !important;
@@ -304,6 +331,7 @@
     overflow: visible !important;
     justify-content: center;
   }
+
   .product-image {
     /* 画像を縦横比を保持して最大幅に収める */
     width: 100% !important;
@@ -311,26 +339,58 @@
     max-width: 600px;
     object-fit: contain;
   }
+
   .right-column {
     width: 100% !important;
   }
 
   /* 以下は既存の調整 */
-  .product-name { font-size: 20px; }
-  .product-price { font-size: 20px; }
-  .purchase-btn { font-size: 16px; padding: 10px; }
-  .section-title  { font-size: 18px; }
-  .section-text   { font-size: 14px; }
-  .comment-avatar { width: 30px; height: 30px; }
-  .comment-user   { font-size: 14px; }
-  .comment-body   { font-size: 12px; }
-  .comment-submit { font-size: 14px; }
+  .product-name { 
+    font-size: 20px; 
+  }
+
+
+  .product-price { 
+    font-size: 20px; 
+  }
+
+
+  .purchase-btn {
+     font-size: 16px;
+     padding: 10px;
+     }
+
+  .section-title  { 
+    font-size: 18px; 
+  }
+
+  .section-text   { 
+    font-size: 14px; 
+  }
+
+  .comment-avatar { 
+    width: 30px; 
+    height: 30px; 
+  }
+
+  .comment-user   { 
+    font-size: 14px; 
+  }
+
+  .comment-body   { 
+    font-size: 12px; 
+  }
+
+  .comment-submit { 
+    font-size: 14px; 
+  }
+
 }
 
-/*─────────────────────────────
+/* ─────────────────────────────
   PC対応 (1400px〜1540px)
-─────────────────────────────*/
-@media screen and (min-width: 1400px) and (max-width: 1540px) {
+───────────────────────────── */
+@media screen and (width >= 1400px) and (width <= 1540px) {
   .product-detail-container {
     width: 1400px;
     flex-direction: row;
@@ -338,21 +398,76 @@
     margin: 100px auto 20px;
     gap: 40px;
   }
-  .left-column { flex: 0 0 500px; }
-  .product-image { width: 500px; height: 500px; }
-  .right-column { flex: 1; }
-  .product-name       { font-size: 32px; }
+
+  .left-column { 
+    flex: 0 0 500px; 
+  }
+
+  .product-image { 
+    width: 500px; 
+    height: 500px; 
+  }
+
+  .right-column { 
+    flex: 1; 
+  }
+
+  .product-name { 
+    font-size: 32px; 
+  }
+
   .product-brand,
-  .product-price      { font-size: 24px; }
-  .tax-included       { font-size: 18px; }
-  .icon-img           { width: 32px; height: 32px; }
-  .icon-count         { font-size: 16px; }
-  .purchase-btn       { width: 300px; font-size: 20px; padding: 12px 0; }
-  .section-title      { font-size: 24px; }
-  .section-text       { font-size: 16px; }
-  .category-tag       { font-size: 16px; }
-  .comment-avatar     { width: 40px; height: 40px; }
-  .comment-user       { font-size: 16px; }
-  .comment-body       { font-size: 14px; }
-  .comment-submit     { font-size: 16px; padding: 12px 0; }
+  .product-price{ 
+    font-size: 24px; 
+  }
+
+  .tax-included { 
+    font-size: 18px; 
+  }
+
+  .icon-img     { 
+    width: 32px; 
+    height: 32px; 
+  }
+
+  .icon-count   { 
+    font-size: 16px; 
+  }
+
+  .purchase-btn { 
+    width: 300px; 
+    font-size: 20px; 
+    padding: 12px 0; 
+  }
+
+  .section-title{ 
+    font-size: 24px; 
+  }
+
+  .section-text { 
+    font-size: 16px; 
+  }
+
+  .category-tag { 
+    font-size: 16px; 
+  }
+
+  .comment-avatar{ 
+    width: 40px; 
+    height: 40px; 
+  }
+
+  .comment-user { 
+    font-size: 16px; 
+  }
+
+  .comment-body { 
+    font-size: 14px; 
+  }
+
+  .comment-submit { 
+    font-size: 16px; 
+    padding: 12px 0; 
+  }
+  
 }

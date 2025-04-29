@@ -1,6 +1,6 @@
-/*─────────────────────────────
+/* ─────────────────────────────
   1. リセット & ベース（モバイルファースト）
-─────────────────────────────*/
+───────────────────────────── */
 .container {
   width: 90%;
   max-width: 800px;
@@ -12,7 +12,7 @@
 
 /* 成功メッセージ */
 .alert-success {
-  color: #FF5555;
+  color: #F55;
   padding: 10px 15px;
   border-radius: 4px;
   margin-bottom: 20px;
@@ -44,6 +44,7 @@
   border: 2px solid #ccc;
   overflow: hidden;
 }
+
 .profile-image,
 .profile-image.no-image {
   width: 100%;
@@ -62,6 +63,7 @@
   align-items: center;
   gap: 5px;
 }
+
 .file-label {
   display: flex;
   justify-content: center;
@@ -69,14 +71,15 @@
   width: 179px;
   height: 49px;
   background: #fff;
-  border: 2px solid #FF5555;
-  color: #FF5555;
+  border: 2px solid #F55;
+  color: #F55;
   border-radius: 10px;
   font-size: 25px;
   font-weight: 700;
   cursor: pointer;
   text-decoration: none;
 }
+
 .hidden {
   display: none;
 }
@@ -88,6 +91,7 @@
   max-width: 680px;
   text-align: left;
 }
+
 .form-group label {
   display: block;
   font-size: 14px;
@@ -95,6 +99,7 @@
   color: #333;
   margin: 8px 0;
 }
+
 .form-group input {
   width: 100%;
   padding: 12px;
@@ -104,6 +109,7 @@
   box-sizing: border-box;
   height: auto;
 }
+
 .error {
   color: red;
   font-size: 14px;
@@ -125,15 +131,16 @@
   cursor: pointer;
   box-sizing: border-box;
 }
+
 .submit-btn:hover {
   background: #cc1f1a;
 }
 
 
-/*─────────────────────────────
+/* ─────────────────────────────
   2. タブレット対応 (768px〜850px)
-─────────────────────────────*/
-@media screen and (min-width: 768px) and (max-width: 850px) {
+───────────────────────────── */
+@media screen and (width >= 768px) and (width <= 850px) {
   .container {
     max-width: 680px;
     padding: 0 1.5rem;
@@ -153,16 +160,17 @@
     width: 100%;
     max-width: 680px;
   }
+
   .form-group input {
     height: auto;
   }
 }
 
 
-/*─────────────────────────────
+/* ─────────────────────────────
   3. PC対応 (1400px〜1540px)
-─────────────────────────────*/
-@media screen and (min-width: 1400px) and (max-width: 1540px) {
+───────────────────────────── */
+@media screen and (width >= 1400px) and (width <= 1540px) {
   .container {
     width: 100%;
     max-width: 800px;
@@ -183,6 +191,7 @@
     width: 680px;
     max-width: none;
   }
+
   .form-group input {
     height: 55px;
   }

@@ -1,11 +1,12 @@
-/*───────────────────────────
+/* ───────────────────────────
   リセット＆共通
-───────────────────────────*/
+─────────────────────────── */
 *,
 *::before,
 *::after {
   box-sizing: border-box;
 }
+
 body {
   margin: 0;
   padding: 0;
@@ -13,9 +14,9 @@ body {
   background: #f5f7fa;
 }
 
-/*───────────────────────────
+/* ───────────────────────────
   住所変更ページのメインコンテナ
-───────────────────────────*/
+─────────────────────────── */
 .address-edit-container {
   max-width: 700px;
   margin: 100px auto;
@@ -47,11 +48,13 @@ body {
   align-items: flex-start; /* ラベルと入力を左寄せ */
   max-width: 680px;
 }
+
 .form-group label {
   font-size: 24px;
   font-weight: 700;
   margin-bottom: 8px;
 }
+
 .form-group input[type="text"] {
   width: 680px;
   height: 45px;
@@ -79,7 +82,7 @@ body {
   font-size: 18px;
   font-weight: bold;
   color: #fff;
-  background-color: #FF5555;
+  background-color: #F55;
   border: none;
   border-radius: 4px;
   cursor: pointer;
@@ -87,36 +90,42 @@ body {
   align-items: center;
   margin: 0 auto;
 }
+
 .update-btn:hover {
   background-color: #e03e3e;
 }
 
-/*───────────────────────────
+/* ───────────────────────────
   タブレット対応 (768px〜850px)
-───────────────────────────*/
-@media screen and (min-width: 768px) and (max-width: 850px) {
+─────────────────────────── */
+@media screen and (width >= 768px) and (width <= 850px) {
   .address-edit-container {
     max-width: 600px;
     padding: 0 30px;
     margin: 80px auto;
   }
+
   .address-edit-container .page-title {
     font-size: 28px;
     margin-bottom: 32px;
   }
+
   .form-group {
     max-width: 100%;
   }
+
   .form-group label {
     font-size: 18px;
     margin-bottom: 6px;
   }
+
   .form-group input[type="text"] {
     width: 100%;
     max-width: 560px;
     height: 40px;
     font-size: 14px;
   }
+
   .update-btn {
     width: 100%;
     max-width: 560px;
@@ -127,32 +136,37 @@ body {
   }
 }
 
-/*───────────────────────────
+/* ───────────────────────────
   PC対応 (1400px〜1540px)
-───────────────────────────*/
-@media screen and (min-width: 1400px) and (max-width: 1540px) {
+─────────────────────────── */
+@media screen and (width >= 1400px) and (width <= 1540px) {
   .address-edit-container {
     max-width: 900px;
     padding: 0 40px;
     margin: 120px auto;
   }
+
   .address-edit-container .page-title {
-    font-size:  Forty-two px; /* 例: 少し大きめに */
+    font-size:  42px; 
     margin-bottom: 50px;
   }
+
   .form-group {
     max-width: 100%;
   }
+
   .form-group label {
     font-size: 26px;
     margin-bottom: 10px;
   }
+
   .form-group input[type="text"] {
     width: 100%;
     max-width: 800px;
     height: 50px;
     font-size: 18px;
   }
+
   .update-btn {
     width: 100%;
     max-width: 800px;

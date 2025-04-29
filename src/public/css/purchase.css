@@ -1,6 +1,6 @@
-/*─────────────────────────────
+/* ─────────────────────────────
   全体リセット／モバイルファースト
-─────────────────────────────*/
+───────────────────────────── */
 *,
 *::before,
 *::after {
@@ -68,7 +68,7 @@
 }
 
 /* 支払方法選択 */
-#payment_method {
+#payment-method {
   width: 265px;
   height: 31px;
   font-size: 14px;
@@ -132,7 +132,7 @@
   max-width: 440px;
   height: 60px;
   margin: 0 auto 50px;
-  background-color: #ff5555;
+  background-color: #f55;
   color: #fff;
   font-size: 26px;
   font-weight: 700;
@@ -143,10 +143,10 @@
   line-height: 60px;
 }
 
-/*─────────────────────────────
+/* ─────────────────────────────
   タブレット対応 (768px〜850px)
-─────────────────────────────*/
-@media screen and (min-width: 768px) and (max-width: 850px) {
+───────────────────────────── */
+@media screen and (width >= 768px) and (width <= 850px) {
   .purchase-main {
     flex-direction: column;
     gap: 20px;
@@ -157,6 +157,7 @@
     flex-direction: column;
     align-items: flex-start;
   }
+
   .product-image {
     width: 100%;
     height: auto;
@@ -175,14 +176,15 @@
   .label { font-size: 16px; }
   .content { font-size: 16px; }
   .label-row { font-size: 14px; }
+
   .price-row,
   .method-row { font-size: 16px; }
 }
 
-/*─────────────────────────────
+/* ─────────────────────────────
   PC対応 (1400px〜1540px)
-─────────────────────────────*/
-@media screen and (min-width: 1400px) and (max-width: 1540px) {
+───────────────────────────── */
+@media screen and (width >= 1400px) and (width <= 1540px) {
   .purchase-main {
     display: flex;
     flex-direction: row;            /* 左右並び */

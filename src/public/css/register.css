@@ -2,7 +2,7 @@
 
 /* ───── 会員登録ラッパー ───── */
 .register-container {
-  background: #FFFFFF;
+  background: #FFF;
   width: 90%;
   max-width: 680px;
   padding: 40px;
@@ -32,12 +32,14 @@
   margin-bottom: 20px;
   text-align: left;
 }
+
 .register-container .form-group label {
   display: block;
   margin-bottom: 8px;
   font-weight: bold;
   font-size: 16px;
 }
+
 .register-container .form-group input {
   width: 100%;
   padding: 12px;
@@ -72,6 +74,7 @@
   cursor: pointer;
   transition: background 0.2s;
 }
+
 .register-button:hover {
   background: #e04444;
 }
@@ -84,20 +87,23 @@
   text-decoration: none;
   font-size: 14px;
 }
+
 .login-link:hover {
   text-decoration: underline;
 }
 
 /* レスポンシブ */
-@media (max-width: 480px) {
+@media (width <= 480px) {
   .register-container {
     padding: 20px;
     margin: 30px auto;
   }
+
   .register-title {
     font-size: 1.5rem;
     margin-bottom: 1rem;
   }
+
   .register-button {
     height: 50px;
     font-size: 16px;

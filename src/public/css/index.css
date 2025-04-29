@@ -1,15 +1,16 @@
-/*─────────────────────────────
+/* ─────────────────────────────
   全要素に box‑sizing を適用
-─────────────────────────────*/
+───────────────────────────── */
 *,
 *::before,
 *::after {
   box-sizing: border-box;
 }
 
-/*─────────────────────────────
+/* ─────────────────────────────
   ベース（モバイルファースト）
-─────────────────────────────*/
+───────────────────────────── */
+
 /* メインコンテンツ */
 .container {
   max-width: 1200px;
@@ -46,8 +47,9 @@
   font-weight: bold;
   padding-bottom: 5px;
 }
+
 .nav-item.active {
-  color: #FF0000;
+  color: #F00;
 }
 
 /* 商品グリッド */
@@ -83,6 +85,7 @@
   font-weight: 400;
   text-align: left;
 }
+
 .item-price {
   font-size: 14px;
   color: #333;
@@ -101,59 +104,69 @@
   border-radius: 5px;
 }
 
-/*─────────────────────────────
+/* ─────────────────────────────
   タブレット対応 (768px〜850px)
-─────────────────────────────*/
-@media screen and (min-width: 768px) and (max-width: 850px) {
+───────────────────────────── */
+@media screen and (width >= 768px) and (width <= 850px) {
   .container {
     max-width: 680px;
     padding: 100px 20px 20px;
   }
+
   .item-grid {
     grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
     gap: 20px;
   }
+
   .item-card {
     width: auto;
     height: auto;
   }
+
   .item-image {
     width: 100%;
     height: 120px;
   }
+
   .item-name {
     font-size: 14px;
   }
+
   .item-price {
     font-size: 14px;
   }
 }
 
-/*─────────────────────────────
+/* ─────────────────────────────
   PC対応 (1400px〜1540px)：4列レイアウト
-─────────────────────────────*/
-@media screen and (min-width: 1400px) and (max-width: 1540px) {
+───────────────────────────── */
+@media screen and (width >= 1400px) and (width <= 1540px) {
   .container {
     max-width: 1512px;     /* 4×290 + 3×gap(20)＝1280+60=1340に余裕を持たせ */
     padding: 100px 40px 20px;
   }
+
   .item-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr); /* 4列固定 */
     gap: 20px;
     justify-content: space-between;
   }
+
   .item-card {
     max-width: 290px;      /* 各カード幅を290pxに制限 */
     margin: 0 auto;
   }
+
   .item-image {
     width: 100%;
     height: 180px;
   }
+
   .item-name {
     font-size: 18px;
   }
+
   .item-price {
     font-size: 16px;
   }

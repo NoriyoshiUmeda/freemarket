@@ -1,7 +1,8 @@
-/*─────────────────────────────
+/* ─────────────────────────────
   リセット & ベース（モバイルファースト）
-─────────────────────────────*/
+───────────────────────────── */
 *, *::before, *::after { box-sizing: border-box; }
+
 body {
   margin: 0; padding: 0;
   font-family: Arial, sans-serif;
@@ -17,6 +18,7 @@ body {
   padding: 20px;
   border-radius: 8px;
 }
+
 .product-create-container h1 {
   text-align: center;
   font-size: 24px; font-weight: 700;
@@ -29,21 +31,24 @@ body {
   margin-top: 30px; margin-bottom: 10px;
 }
 .section-title-image { margin-left: 60px; }
+
 .section-title-detail {
   color: #666; font-size: 30px; font-weight: 700;
   margin-top: 30px; margin-bottom: 10px;
 }
+
 .section-line {
   border: none; border-top: 1px solid #ccc;
   margin: 10px auto; width: 100%;
 }
 
-/*── 画像アップロードまわり ───────────────────────*/
+/* ── 画像アップロードまわり ─────────────────────── */
 .image-upload-area {
   display: flex;
   justify-content: center;
   margin-bottom: 80px; /* 増やしてボタンを余裕で枠外に落とせるように */
 }
+
 .image-preview-container {
   position: relative;
   width: 100%; max-width: 600px;
@@ -54,6 +59,7 @@ body {
   overflow: visible; /* はみ出しを許可 */
   margin: 0 auto;
 }
+
 .image-preview {
   position: absolute;
   top: 0; left: 0;
@@ -83,6 +89,7 @@ body {
 }
 
 /* ■ has-image 時の切り替え ■ */
+
 /* ボタンを枠外に移動 */
 .image-preview-container.has-image .image-upload-label {
   top: auto;
@@ -91,17 +98,19 @@ body {
   transform: translateX(-50%);
 }
 
-/*── 以下、既存のフォーム全体 ───────────────────────*/
+/* ── 以下、既存のフォーム全体 ─────────────────────── */
 .sell-form {
   text-align: left;
   margin: 0 auto;
   max-width: 600px;
 }
 .form-group { margin-bottom: 20px; }
+
 .form-group label {
   display: block; font-weight: bold;
   margin-bottom: 5px; font-size: 16px;
 }
+
 .form-group input,
 .form-group select,
 .form-group textarea {
@@ -114,12 +123,22 @@ body {
 
 /* カテゴリ選択 */
 .category-list {
-  display: flex; flex-wrap: wrap; gap: 10px;
+  display: flex; 
+  flex-wrap: wrap; gap: 10px;
 }
-.category-label { position: relative; cursor: pointer; }
+
+.category-label { 
+  position: relative; 
+  cursor: pointer; 
+}
+
 .category-label input[type="checkbox"] {
-  position: absolute; opacity: 0; width: 0; height: 0;
+  position: absolute; 
+  opacity: 0; 
+  width: 0; 
+  height: 0;
 }
+
 .category-text {
   font-size: 15px; font-weight: 500;
   border: 2px solid #FF5655; color: #FF5655;
@@ -127,39 +146,53 @@ body {
   border-radius: 200px;
   transition: background 0.3s, color 0.3s;
 }
+
 .category-label:hover .category-text {
   background: #ddd;
 }
+
 .category-label input:checked ~ .category-text {
-  background: #FF5555; color: #fff;
+  background: #F55; color: #fff;
 }
 
 /* 価格入力 */
-.price-input-wrapper { position: relative; width: 100%; }
+.price-input-wrapper { 
+  position: relative; 
+  width: 100%; 
+}
+
 .yen-symbol {
   position: absolute; left: 10px; top: 50%;
   transform: translateY(-50%); font-size: 16px;
   color: #333; pointer-events: none;
 }
-.price-input-wrapper input { padding-left: 28px !important; }
+
+.price-input-wrapper input { 
+  padding-left: 28px !important; 
+}
 
 /* スピンボタン削除 */
 input[type="number"]::-webkit-outer-spin-button,
 input[type="number"]::-webkit-inner-spin-button {
-  -webkit-appearance: none; margin: 0;
+  appearance: none; 
+  margin: 0;
 }
-input[type="number"] { -moz-appearance: textfield; appearance: none; }
+
+input[type="number"] { 
+  appearance: textfield; 
+  appearance: none;
+ }
 
 /* 出品ボタン */
 .submit-button {
   display: block; width: 100%;
-  padding: 14px; background: #FF5555;
+  padding: 14px; background: #F55;
   color: #fff; font-size: 18px;
   font-weight: bold; border: none;
   border-radius: 4px; cursor: pointer;
   margin-top: 30px;
 }
-.submit-button:hover { background: #FF3333; }
+.submit-button:hover { background: #F33; }
 
 /* エラー表示 */
 .error-message {
@@ -167,43 +200,49 @@ input[type="number"] { -moz-appearance: textfield; appearance: none; }
   margin-top: 5px;
 }
 
-/*─────────────────────────────
+/* ─────────────────────────────
   タブレット (768px〜850px)
-─────────────────────────────*/
-@media screen and (min-width: 768px) and (max-width: 850px) {
+───────────────────────────── */
+@media screen and (width >= 768px) and (width <= 850px) {
   .product-create-container {
     max-width: 680px; padding: 30px;
   }
+
   .product-create-container h1 {
     font-size: 28px; margin-bottom: 32px;
   }
   .image-preview-container { height: 200px; }
+
   .sell-form .form-group input,
   .sell-form .form-group select,
   .sell-form .form-group textarea {
     font-size: 18px; padding: 12px;
   }
+
   .submit-button {
     font-size: 20px; padding: 14px;
   }
 }
 
-/*─────────────────────────────
+/* ─────────────────────────────
   PC (1400px〜1540px)
-─────────────────────────────*/
-@media screen and (min-width: 1400px) and (max-width: 1540px) {
+───────────────────────────── */
+@media screen and (width >= 1400px) and (width <= 1540px) {
   .product-create-container {
     max-width: 800px; padding: 40px;
   }
+
   .product-create-container h1 {
     font-size: 32px; margin-bottom: 40px;
   }
   .image-preview-container { height: 250px; }
+
   .sell-form .form-group input,
   .sell-form .form-group select,
   .sell-form .form-group textarea {
     font-size: 20px; padding: 14px;
   }
+
   .submit-button {
     font-size: 22px; padding: 16px;
     max-width: 400px; margin: 0 auto;
