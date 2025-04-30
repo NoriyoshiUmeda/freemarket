@@ -64,9 +64,14 @@ php artisan storage:link
 
 
 ## 使用技術(実行環境)
-- PHP7.4.9
+- PHP8.1
 - Laravel8.83.8
 - MySQL8.0.26
+
+### PHPバージョンについて
+本プロジェクトは PHP 8.1 環境で動作確認されています。  
+Dockerfile では `php:8.1-fpm` を使用しており、PHP 8.2 以上では依存パッケージの互換性により `composer install` 時にエラーが発生する可能性があります。  
+そのため、環境構築時には PHP 8.1 の使用を推奨します。
 
 ## ER図
 ![ER diagram](src/index.drawio.png)
