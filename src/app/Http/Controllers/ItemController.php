@@ -32,9 +32,12 @@ class ItemController extends Controller
                     ->where('user_id', $userId)
                     ->latest()
                     ->get();
-                $items = $favorites->pluck('item');
+                $items = $favorites->pluck('item')
+                    ->filter(function ($item) use ($userId) {
+                        return $item->user_id !== $userId; // 自分が出品した商品は除外
+                        });
 
-                // 検索キーワードが入力されている場合、コレクション上で部分一致検索
+
                 if ($search) {
                     $items = $items->filter(function ($item) use ($search) {
                         return stripos($item->name, $search) !== false;

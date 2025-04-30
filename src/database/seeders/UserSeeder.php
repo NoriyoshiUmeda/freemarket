@@ -2,10 +2,9 @@
 
 namespace Database\Seeders;
 
-use App\Models\User;
 use Illuminate\Database\Seeder;
-
-// Userモデルをインポート
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
 class UserSeeder extends Seeder
 {
@@ -16,7 +15,18 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        // 2件のユーザーを作成する
-        User::factory(2)->create();
+        // 一般ユーザー1
+        User::create([
+            'name' => 'User One',
+            'email' => 'user1@example.com',
+            'password' => Hash::make('password'), // パスワードはハッシュ化
+        ]);
+
+        // 一般ユーザー2
+        User::create([
+            'name' => 'User Two',
+            'email' => 'user2@example.com',
+            'password' => Hash::make('password'),
+        ]);
     }
 }
