@@ -6,7 +6,7 @@
 
 ## 環境構築
 **Dockerビルド**
-1. `git clone git@github.com:NoriyoshiUmeda/freemarket.gitを貼り付け`
+1. git clone git@github.com:NoriyoshiUmeda/freemarket.gitを貼り付け
 2. DockerDesktopアプリを立ち上げる
 3. `docker-compose up -d --build`
 
@@ -72,5 +72,5 @@ php artisan storage:link
 ![ER diagram](src/index.drawio.png)
 
 ## URL
-- 開発環境：http://localhost/
-- phpMyAdmin:：http://localhost:8080/
+- 開発環境： http://localhost/
+- phpMyAdmin: http://localhost:8080/
