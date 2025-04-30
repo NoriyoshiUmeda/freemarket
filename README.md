@@ -52,6 +52,17 @@ php artisan db:seed
 php artisan storage:link
 ```
 
+## ログイン情報（テスト用）
+
+### 一般ユーザー1
+- email: user1@example.com
+- password: password
+
+### 一般ユーザー2
+- email: user2@example.com
+- password: password
+
+
 ## 使用技術(実行環境)
 - PHP7.4.9
 - Laravel8.83.8
