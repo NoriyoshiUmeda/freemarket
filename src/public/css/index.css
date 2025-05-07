@@ -140,9 +140,9 @@
 /* ─────────────────────────────
   PC対応 (1400px〜1540px)：4列レイアウト
 ───────────────────────────── */
-@media screen and (width >= 1400px) and (width <= 1540px) {
+@media screen and (width >= 1400px) {
   .container {
-    max-width: 1512px;     /* 4×290 + 3×gap(20)＝1280+60=1340に余裕を持たせ */
+    max-width: 1512px;     
     padding: 100px 40px 20px;
   }
 

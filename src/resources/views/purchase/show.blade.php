@@ -53,15 +53,6 @@
             変更する
           </a>
           <div class="content">
-            @php
-              $postal_code = session('postal_code',
-                  optional($user->profile)->postal_code ?? '');
-              $address     = session('address',
-                  optional($user->profile)->address ?? '');
-              $building    = session('building',
-                  optional($user->profile)->building ?? '');
-            @endphp
-
             @if($postal_code && $address)
               〒{{ $postal_code }}<br>
               {{ $address }}<br>
@@ -79,8 +70,8 @@
           @php
             $paymentMethod = request('payment_method', 'credit_card');
             $methodLabels = [
-              'credit_card'      => 'カード支払い',
-              'convenience_store'=> 'コンビニ支払い',
+              'credit_card'       => 'カード支払い',
+              'convenience_store' => 'コンビニ支払い',
             ];
           @endphp
 
@@ -119,8 +110,8 @@
       const hiddenPaymentInput = document.querySelector('input[name="payment_method"]');
 
       const labels = {
-        credit_card     : 'カード支払い',
-        convenience_store: 'コンビニ払い'
+        credit_card       : 'カード支払い',
+        convenience_store : 'コンビニ支払い'
       };
 
       if (paymentSelect) {

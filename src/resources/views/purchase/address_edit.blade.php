@@ -23,8 +23,7 @@
           type="text" 
           name="postal_code" 
           id="postal_code" 
-          value="{{ old('postal_code', session('postal_code', $profile->postal_code)) }}"
-          required maxlength="255"
+          value="{{ old('postal_code', $profile->postal_code) }}"
         >
         @error('postal_code')
           <div class="error">{{ $message }}</div>
@@ -38,8 +37,7 @@
           type="text" 
           name="address" 
           id="address" 
-          value="{{ old('address', session('address', $profile->address)) }}"
-          required maxlength="255"
+          value="{{ old('address', $profile->address) }}"
         >
         @error('address')
           <div class="error">{{ $message }}</div>
@@ -53,7 +51,7 @@
           type="text" 
           name="building" 
           id="building" 
-          value="{{ old('building', session('building', $profile->building)) }}"
+          value="{{ old('building', $profile->building) }}"
           maxlength="255"
         >
         @error('building')

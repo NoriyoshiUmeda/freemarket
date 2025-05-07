@@ -190,7 +190,7 @@ body {
 /* ─────────────────────────────
   PC対応 (1400px〜1540px)
 ───────────────────────────── */
-@media (width >= 1400px) and (width <= 1540px) {
+@media (width >= 1400px) {
   .header-container {
     flex-direction: row;
     justify-content: space-between;
