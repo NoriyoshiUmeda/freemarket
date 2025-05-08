@@ -227,7 +227,7 @@ input[type="number"] {
 /* ─────────────────────────────
   PC (1400px〜1540px)
 ───────────────────────────── */
-@media screen and (width >= 1400px) and (width <= 1540px) {
+@media screen and (width >= 1400px) {
   .product-create-container {
     max-width: 800px; padding: 40px;
   }

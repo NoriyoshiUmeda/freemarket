@@ -139,7 +139,7 @@ body {
 /* ───────────────────────────
   PC対応 (1400px〜1540px)
 ─────────────────────────── */
-@media screen and (width >= 1400px) and (width <= 1540px) {
+@media screen and (width >= 1400px) {
   .address-edit-container {
     max-width: 900px;
     padding: 0 40px;
