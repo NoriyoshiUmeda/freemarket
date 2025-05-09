@@ -94,6 +94,9 @@
           <input type="hidden"
                  name="payment_method"
                  value="{{ $paymentMethod }}">
+          <input type="hidden" name="postal_code" value="{{ $postal_code }}">
+          <input type="hidden" name="address"     value="{{ $address }}">
+          <input type="hidden" name="building"    value="{{ $building }}">
           <button type="submit"
                   class="purchase-btn">
             購入する
@@ -123,8 +126,8 @@
           if (hiddenPaymentInput) {
             hiddenPaymentInput.value = val;
           }
-          // 必要ならフォーム自動送信：
-          // document.getElementById('payment-form').submit();
+
+
         });
       }
     });

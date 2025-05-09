@@ -11,13 +11,10 @@ class Category extends Model
     use HasFactory;
 
     protected $fillable = [
-        'category', // カテゴリ名
+        'category', 
     ];
 
-    /**
-     * カテゴリに属する商品（1対多）
-     */
-    public function items(): HasMany
+        public function items(): HasMany
     {
         return $this->hasMany(Item::class);
     }

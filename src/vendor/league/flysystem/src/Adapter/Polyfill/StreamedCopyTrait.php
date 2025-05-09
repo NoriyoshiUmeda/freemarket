@@ -31,7 +31,7 @@ trait StreamedCopyTrait
         return $result !== false;
     }
 
-    // Required abstract method
+
 
     /**
      * @param string $path

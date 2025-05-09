@@ -24,7 +24,7 @@ use Symfony\Component\Translation\Loader\LoaderInterface;
 use Symfony\Contracts\Translation\LocaleAwareInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
-// Help opcache.preload discover always-needed symbols
+
 class_exists(MessageCatalogue::class);
 
 /**
@@ -171,7 +171,7 @@ class Translator implements TranslatorInterface, TranslatorBagInterface, LocaleA
      */
     public function setFallbackLocales(array $locales)
     {
-        // needed as the fallback locales are linked to the already loaded catalogues
+
         $this->catalogues = [];
 
         foreach ($locales as $locale) {

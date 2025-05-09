@@ -54,7 +54,7 @@ trait StreamedWritingTrait
         return $this->stream($path, $resource, $config, 'update');
     }
 
-    // Required abstract methods
+
     abstract public function write($pash, $contents, Config $config);
     abstract public function update($pash, $contents, Config $config);
 }

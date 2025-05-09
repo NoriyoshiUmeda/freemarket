@@ -7,12 +7,9 @@ use App\Models\Profile;
 
 class ProfileSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
-    public function run(): void
+        public function run(): void
     {
-        // ユーザーID 1 のプロフィール
+
         Profile::create([
             'user_id'     => 1,
             'postal_code' => '123-4567',
@@ -20,7 +17,7 @@ class ProfileSeeder extends Seeder
             'building'    => 'Aビル',
         ]);
 
-        // ユーザーID 2 のプロフィール
+
         Profile::create([
             'user_id'     => 2,
             'postal_code' => '234-5678',

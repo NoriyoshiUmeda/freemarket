@@ -91,7 +91,7 @@ class XliffFileDumper extends FileDumper
             $s = $translation->appendChild($dom->createElement('source'));
             $s->appendChild($dom->createTextNode($source));
 
-            // Does the target contain characters requiring a CDATA section?
+
             $text = 1 === preg_match('/[&<>]/', $target) ? $dom->createCDATASection($target) : $dom->createTextNode($target);
 
             $targetElement = $dom->createElement('target');
@@ -157,7 +157,7 @@ class XliffFileDumper extends FileDumper
 
             $metadata = $messages->getMetadata($source, $domain);
 
-            // Add notes section
+
             if ($this->hasMetadataArrayInfo('notes', $metadata)) {
                 $notesElement = $dom->createElement('notes');
                 foreach ($metadata['notes'] as $note) {
@@ -178,7 +178,7 @@ class XliffFileDumper extends FileDumper
             $s = $segment->appendChild($dom->createElement('source'));
             $s->appendChild($dom->createTextNode($source));
 
-            // Does the target contain characters requiring a CDATA section?
+
             $text = 1 === preg_match('/[&<>]/', $target) ? $dom->createCDATASection($target) : $dom->createTextNode($target);
 
             $targetElement = $dom->createElement('target');

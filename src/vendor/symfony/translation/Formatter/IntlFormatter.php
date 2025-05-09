@@ -28,7 +28,7 @@ class IntlFormatter implements IntlFormatterInterface
      */
     public function formatIntl(string $message, string $locale, array $parameters = []): string
     {
-        // MessageFormatter constructor throws an exception if the message is empty
+
         if ('' === $message) {
             return '';
         }

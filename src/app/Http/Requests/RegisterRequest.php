@@ -6,18 +6,12 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class RegisterRequest extends FormRequest
 {
-    /**
-     * 認可の設定（基本的に true でOK）
-     */
-    public function authorize(): bool
+        public function authorize(): bool
     {
         return true;
     }
 
-    /**
-     * バリデーションルールの定義
-     */
-    public function rules(): array
+        public function rules(): array
     {
         return [
             'name' => ['required', 'string', 'max:255'],
@@ -26,10 +20,7 @@ class RegisterRequest extends FormRequest
         ];
     }
 
-    /**
-     * エラーメッセージのカスタマイズ
-     */
-    public function messages(): array
+        public function messages(): array
     {
         return [
             'name.required' => 'お名前を入力してください',

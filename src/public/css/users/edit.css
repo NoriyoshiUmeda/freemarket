@@ -2,197 +2,189 @@
   1. リセット & ベース（モバイルファースト）
 ───────────────────────────── */
 .container {
-  width: 90%;
-  max-width: 800px;
-  margin: 100px auto 0;
-  padding: 0 1rem;
-  box-sizing: border-box;
-  text-align: center;
+    width: 90%;
+    max-width: 800px;
+    margin: 100px auto 0;
+    padding: 0 1rem;
+    box-sizing: border-box;
+    text-align: center;
 }
 
-/* 成功メッセージ */
 .alert-success {
-  color: #F55;
-  padding: 10px 15px;
-  border-radius: 4px;
-  margin-bottom: 20px;
+    color: #f55;
+    padding: 10px 15px;
+    border-radius: 4px;
+    margin-bottom: 20px;
 }
 
-/* 見出し */
 .container h2 {
-  font-size: 36px;
-  font-weight: 700;
-  margin-bottom: 40px;
-  color: #000;
+    font-size: 36px;
+    font-weight: 700;
+    margin-bottom: 40px;
+    color: #000;
 }
 
-/* 画像アップロードまわり（縦積み） */
 .profile-image-wrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-  gap: 16px;
-  margin: 0 auto 32px;
-  box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    gap: 16px;
+    margin: 0 auto 32px;
+    box-sizing: border-box;
 }
 
 .profile-image-container {
-  width: 150px;
-  height: 150px;
-  border-radius: 50%;
-  border: 2px solid #ccc;
-  overflow: hidden;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 2px solid #ccc;
+    overflow: hidden;
 }
 
 .profile-image,
 .profile-image.no-image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .profile-image.no-image {
-  background-color: #D9D9D9;
+    background-color: #d9d9d9;
 }
 
-/* ファイル選択ボタン */
 .file-input-wrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
 }
 
 .file-label {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 179px;
-  height: 49px;
-  background: #fff;
-  border: 2px solid #F55;
-  color: #F55;
-  border-radius: 10px;
-  font-size: 25px;
-  font-weight: 700;
-  cursor: pointer;
-  text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 179px;
+    height: 49px;
+    background: #fff;
+    border: 2px solid #f55;
+    color: #f55;
+    border-radius: 10px;
+    font-size: 25px;
+    font-weight: 700;
+    cursor: pointer;
+    text-decoration: none;
 }
 
 .hidden {
-  display: none;
+    display: none;
 }
 
-/* フォームグループ（縦並び、可変幅） */
 .form-group {
-  margin: 0 auto 16px;
-  width: 100%;
-  max-width: 680px;
-  text-align: left;
+    margin: 0 auto 16px;
+    width: 100%;
+    max-width: 680px;
+    text-align: left;
 }
 
 .form-group label {
-  display: block;
-  font-size: 14px;
-  font-weight: bold;
-  color: #333;
-  margin: 8px 0;
+    display: block;
+    font-size: 14px;
+    font-weight: bold;
+    color: #333;
+    margin: 8px 0;
 }
 
 .form-group input {
-  width: 100%;
-  padding: 12px;
-  font-size: 16px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
-  height: auto;
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    height: auto;
 }
 
 .error {
-  color: red;
-  font-size: 14px;
-  margin-top: 5px;
+    color: red;
+    font-size: 14px;
+    margin-top: 5px;
 }
 
-/* 更新ボタン（可変幅） */
 .submit-btn {
-  display: block;
-  width: 100%;
-  max-width: 680px;
-  margin: 20px auto 0;
-  padding: 12px;
-  font-size: 16px;
-  background: #e3342f;
-  color: #fff;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  box-sizing: border-box;
+    display: block;
+    width: 100%;
+    max-width: 680px;
+    margin: 20px auto 0;
+    padding: 12px;
+    font-size: 16px;
+    background: #e3342f;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    box-sizing: border-box;
 }
 
 .submit-btn:hover {
-  background: #cc1f1a;
+    background: #cc1f1a;
 }
-
 
 /* ─────────────────────────────
   2. タブレット対応 (768px〜850px)
 ───────────────────────────── */
 @media screen and (width >= 768px) and (width <= 850px) {
-  .container {
-    max-width: 680px;
-    padding: 0 1.5rem;
-    margin: 100px auto 0;
-  }
+    .container {
+        max-width: 680px;
+        padding: 0 1.5rem;
+        margin: 100px auto 0;
+    }
 
-  .profile-image-wrapper {
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    margin: 0 auto 32px;
-    gap: 16px;
-  }
+    .profile-image-wrapper {
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        margin: 0 auto 32px;
+        gap: 16px;
+    }
 
-  .form-group,
-  .submit-btn {
-    width: 100%;
-    max-width: 680px;
-  }
+    .form-group,
+    .submit-btn {
+        width: 100%;
+        max-width: 680px;
+    }
 
-  .form-group input {
-    height: auto;
-  }
+    .form-group input {
+        height: auto;
+    }
 }
-
 
 /* ─────────────────────────────
   3. PC対応 (1400px〜1540px)
 ───────────────────────────── */
 @media screen and (width >= 1400px) and (width <= 1540px) {
-  .container {
-    width: 100%;
-    max-width: 800px;
-    margin: 100px auto 0;
-    padding: 0 2.5rem;
-  }
+    .container {
+        width: 100%;
+        max-width: 800px;
+        margin: 100px auto 0;
+        padding: 0 2.5rem;
+    }
 
-  .profile-image-wrapper {
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: center;
-    margin: 0 0 32px 50px;
-    gap: 16px;
-  }
+    .profile-image-wrapper {
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+        margin: 0 0 32px 50px;
+        gap: 16px;
+    }
 
-  .form-group,
-  .submit-btn {
-    width: 680px;
-    max-width: none;
-  }
+    .form-group,
+    .submit-btn {
+        width: 680px;
+        max-width: none;
+    }
 
-  .form-group input {
-    height: 55px;
-  }
+    .form-group input {
+        height: 55px;
+    }
 }

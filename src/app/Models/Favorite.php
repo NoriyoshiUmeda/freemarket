@@ -15,18 +15,12 @@ class Favorite extends Model
         'item_id', // 商品ID
     ];
 
-    /**
-     * ユーザーとのリレーション（多対1）
-     */
-    public function user(): BelongsTo
+        public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }
 
-    /**
-     * 商品とのリレーション（多対1）
-     */
-    public function item(): BelongsTo
+        public function item(): BelongsTo
     {
         return $this->belongsTo(Item::class);
     }

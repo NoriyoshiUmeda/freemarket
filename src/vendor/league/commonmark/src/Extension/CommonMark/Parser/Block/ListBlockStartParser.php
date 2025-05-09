@@ -49,11 +49,11 @@ final class ListBlockStartParser implements BlockStartParserInterface, Configura
 
         $listItemParser = new ListItemParser($listData);
 
-        // prepend the list block if needed
+
         $matched = $parserState->getLastMatchedBlockParser();
         if (! ($matched instanceof ListBlockParser) || ! $listData->equals($matched->getBlock()->getListData())) {
             $listBlockParser = new ListBlockParser($listData);
-            // We start out with assuming a list is tight. If we find a blank line, we set it to loose later.
+
             $listBlockParser->getBlock()->setTight(true);
 
             return BlockStart::of($listBlockParser, $listItemParser)->at($cursor);
@@ -89,13 +89,13 @@ final class ListBlockStartParser implements BlockStartParserInterface, Configura
             return null;
         }
 
-        // Make sure we have spaces after
+
         $nextChar = $tmpCursor->peek($markerLength);
         if (! ($nextChar === null || $nextChar === "\t" || $nextChar === ' ')) {
             return null;
         }
 
-        // If it interrupts paragraph, make sure first line isn't blank
+
         if ($inParagraph && ! RegexHelper::matchAt(RegexHelper::REGEX_NON_SPACE, $rest, $markerLength)) {
             return null;
         }
@@ -133,7 +133,7 @@ final class ListBlockStartParser implements BlockStartParserInterface, Configura
 
     private function generateListMarkerRegex(): string
     {
-        // No configuration given - use the defaults
+
         if ($this->config === null) {
             return $this->listMarkerRegex = '/^[*+-]/';
         }

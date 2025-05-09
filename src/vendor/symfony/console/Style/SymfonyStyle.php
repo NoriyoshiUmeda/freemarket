@@ -49,7 +49,7 @@ class SymfonyStyle extends OutputStyle
     {
         $this->input = $input;
         $this->bufferedOutput = new TrimmedBufferOutput(\DIRECTORY_SEPARATOR === '\\' ? 4 : 2, $output->getVerbosity(), false, clone $output->getFormatter());
-        // Windows cmd wraps lines as soon as the terminal width is reached, whether there are following chars or not.
+
         $width = (new Terminal())->getWidth() ?: self::MAX_LINE_LENGTH;
         $this->lineLength = min($width - (int) (\DIRECTORY_SEPARATOR === '\\'), self::MAX_LINE_LENGTH);
 
@@ -444,14 +444,14 @@ class SymfonyStyle extends OutputStyle
 
             return;
         }
-        //Prepend new line for each non LF chars (This means no blank line was output before)
+
         $this->newLine(2 - substr_count($chars, "\n"));
     }
 
     private function autoPrependText(): void
     {
         $fetched = $this->bufferedOutput->fetch();
-        //Prepend new line if last char isn't EOL:
+
         if (!str_ends_with($fetched, "\n")) {
             $this->newLine();
         }
@@ -459,7 +459,7 @@ class SymfonyStyle extends OutputStyle
 
     private function writeBuffer(string $message, bool $newLine, int $type): void
     {
-        // We need to know if the last chars are PHP_EOL
+
         $this->bufferedOutput->write($message, $newLine, $type);
     }
 
@@ -475,7 +475,7 @@ class SymfonyStyle extends OutputStyle
             $lineIndentation = str_repeat(' ', $indentLength);
         }
 
-        // wrap and add newlines for each element
+
         foreach ($messages as $key => $message) {
             if ($escape) {
                 $message = OutputFormatter::escape($message);

@@ -15,5 +15,5 @@ use InvalidArgumentException as BaseInvalidArgumentException;
 
 class UnitException extends BaseInvalidArgumentException implements InvalidArgumentException
 {
-    //
+
 }

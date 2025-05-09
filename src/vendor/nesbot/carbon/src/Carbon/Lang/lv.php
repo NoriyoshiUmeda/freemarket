@@ -49,7 +49,7 @@ $daysOfWeekLocativum = ['svētdien', 'pirmdien', 'otrdien', 'trešdien', 'ceturt
 
 $transformDiff = function ($input) {
     return strtr($input, [
-        // Nominative => "pirms/pēc" Dative
+
         'gads' => 'gada',
         'gadi' => 'gadiem',
         'gadu' => 'gadiem',

@@ -87,8 +87,8 @@ trait Difference
     {
         $diff = CarbonInterval::instance($diff, $skip);
 
-        // Work-around for https://bugs.php.net/bug.php?id=77145
-        // @codeCoverageIgnoreStart
+
+
         if ($diff->f > 0 && $diff->y === -1 && $diff->m === 11 && $diff->d >= 27 && $diff->h === 23 && $diff->i === 59 && $diff->s === 59) {
             $diff->y = 0;
             $diff->m = 0;
@@ -101,7 +101,7 @@ trait Difference
         } elseif ($diff->f < 0) {
             static::fixNegativeMicroseconds($diff);
         }
-        // @codeCoverageIgnoreEnd
+
 
         if ($absolute && $diff->invert) {
             $diff->invert();
@@ -125,15 +125,15 @@ trait Difference
     {
         $other = $this->resolveCarbon($date);
 
-        // Work-around for https://bugs.php.net/bug.php?id=81458
-        // It was initially introduced for https://bugs.php.net/bug.php?id=80998
-        // The very specific case of 80998 was fixed in PHP 8.1beta3, but it introduced 81458
-        // So we still need to keep this for now
-        // @codeCoverageIgnoreStart
+
+
+
+
+
         if (version_compare(PHP_VERSION, '8.1.0-dev', '>=') && $other->tz !== $this->tz) {
             $other = $other->avoidMutation()->tz($this->tz);
         }
-        // @codeCoverageIgnoreEnd
+
 
         return parent::diff($other, (bool) $absolute);
     }

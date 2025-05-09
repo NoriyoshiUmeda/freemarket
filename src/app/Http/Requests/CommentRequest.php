@@ -6,10 +6,10 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class CommentRequest extends FormRequest
 {
-    // 認証済みでなくてもバリデーションを通す場合は true にするか、認証チェックを自前で実装
+
     public function authorize()
     {
-        // 必要なら true を返すか、認証チェックを入れる
+
         return true;
     }
 

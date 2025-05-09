@@ -56,7 +56,7 @@ final class ReplacingWriter implements WriterInterface
             return $this->writer->write($name, $value);
         }
 
-        // succeed if nothing to do
+
         return true;
     }
 
@@ -73,7 +73,7 @@ final class ReplacingWriter implements WriterInterface
             return $this->writer->delete($name);
         }
 
-        // succeed if nothing to do
+
         return true;
     }
 

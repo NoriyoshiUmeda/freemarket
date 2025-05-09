@@ -12,15 +12,11 @@ class Payment extends Model
 
     protected $fillable = [
         'purchase_id', // 購入ID
-        'stripe_payment_id', // Stripe決済ID
         'payment_method', // 支払い方法（クレジットカード or コンビニ）
         'amount',
     ];
 
-    /**
-     * 支払い情報が紐づく購入履歴（1対1）
-     */
-    public function purchase(): BelongsTo
+        public function purchase(): BelongsTo
     {
         return $this->belongsTo(Purchase::class);
     }

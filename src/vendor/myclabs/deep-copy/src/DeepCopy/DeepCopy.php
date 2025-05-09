@@ -120,32 +120,32 @@ class DeepCopy
 
     private function recursiveCopy($var)
     {
-        // Matches Type Filter
+
         if ($filter = $this->getFirstMatchedTypeFilter($this->typeFilters, $var)) {
             return $filter->apply($var);
         }
 
-        // Resource
+
         if (is_resource($var)) {
             return $var;
         }
 
-        // Array
+
         if (is_array($var)) {
             return $this->copyArray($var);
         }
 
-        // Scalar
+
         if (! is_object($var)) {
             return $var;
         }
 
-        // Enum
+
         if (PHP_VERSION_ID >= 80100 && enum_exists(get_class($var))) {
             return $var;
         }
 
-        // Object
+
         return $this->copyObject($var);
     }
 
@@ -218,12 +218,12 @@ class DeepCopy
 
     private function copyObjectProperty($object, ReflectionProperty $property)
     {
-        // Ignore static properties
+
         if ($property->isStatic()) {
             return;
         }
 
-        // Apply the filters
+
         foreach ($this->filters as $item) {
             /** @var Matcher $matcher */
             $matcher = $item['matcher'];
@@ -239,21 +239,21 @@ class DeepCopy
                     }
                 );
 
-                // If a filter matches, we stop processing this property
+
                 return;
             }
         }
 
         $property->setAccessible(true);
 
-        // Ignore uninitialized properties (for PHP >7.4)
+
         if (method_exists($property, 'isInitialized') && !$property->isInitialized($object)) {
             return;
         }
 
         $propertyValue = $property->getValue($object);
 
-        // Copy the property
+
         $property->setValue($object, $this->recursiveCopy($propertyValue));
     }
 

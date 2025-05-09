@@ -33,7 +33,7 @@ final class InlinesOnlyExtension implements ConfigurableExtensionInterface
         ]));
     }
 
-    // phpcs:disable Generic.Functions.FunctionCallArgumentSpacing.TooMuchSpaceAfterComma,Squiz.WhiteSpace.SemicolonSpacing.Incorrect
+
     public function register(EnvironmentBuilderInterface $environment): void
     {
         $childRenderer = new ChildRenderer();

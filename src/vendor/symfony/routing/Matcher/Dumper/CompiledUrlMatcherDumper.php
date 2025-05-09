@@ -63,7 +63,7 @@ EOF;
      */
     public function getCompiledRoutes(bool $forDump = false): array
     {
-        // Group hosts by same-suffix, re-order when possible
+
         $matchHost = false;
         $routes = new StaticPrefixCollection();
         foreach ($this->getRoutes()->all() as $name => $route) {
@@ -348,7 +348,7 @@ EOF;
             $state->regex .= $rx;
             $state->markTail = 0;
 
-            // if the regex is too large, throw a signaling exception to recompute with smaller chunk size
+
             set_error_handler(function ($type, $message) { throw str_contains($message, $this->signalingException->getMessage()) ? $this->signalingException : new \ErrorException($message); });
             try {
                 preg_match($state->regex, '');

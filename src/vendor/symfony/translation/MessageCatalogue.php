@@ -66,7 +66,7 @@ class MessageCatalogue implements MessageCatalogueInterface, MetadataAwareInterf
     public function all(?string $domain = null)
     {
         if (null !== $domain) {
-            // skip messages merge if intl-icu requested explicitly
+
             if (str_ends_with($domain, self::INTL_DOMAIN_SUFFIX)) {
                 return $this->messages[$domain] ?? [];
             }
@@ -198,7 +198,7 @@ class MessageCatalogue implements MessageCatalogueInterface, MetadataAwareInterf
      */
     public function addFallbackCatalogue(MessageCatalogueInterface $catalogue)
     {
-        // detect circular references
+
         $c = $catalogue;
         while ($c = $c->getFallbackCatalogue()) {
             if ($c->getLocale() === $this->getLocale()) {

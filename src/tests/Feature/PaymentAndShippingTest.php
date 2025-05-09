@@ -4,6 +4,7 @@ namespace Tests\Feature;
 
 use App\Models\Item;
 use App\Models\User;
+use App\Models\Profile;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
@@ -15,6 +16,8 @@ class PaymentAndShippingTest extends TestCase
     public function selecting_payment_method_reflects_immediately_on_purchase_page()
     {
         $user = User::factory()->create();
+        Profile::factory()->create(['user_id' => $user->id]);
+
         $item = Item::factory()->create();
 
         $this->actingAs($user)
@@ -24,13 +27,15 @@ class PaymentAndShippingTest extends TestCase
             ]))
             ->assertStatus(200)
              // 右カラム .method-row に「コンビ二支払い」が表示されている
-            ->assertSeeText('コンビ二支払い');
+            ->assertSeeText('コンビニ支払い');
     }
 
     /** @test */
     public function updating_shipping_address_reflects_on_purchase_page()
     {
         $user = User::factory()->create();
+        Profile::factory()->create(['user_id' => $user->id]);
+
         $item = Item::factory()->create();
 
         $this->actingAs($user)

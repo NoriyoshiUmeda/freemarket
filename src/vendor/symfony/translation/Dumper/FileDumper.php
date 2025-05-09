@@ -51,7 +51,7 @@ abstract class FileDumper implements DumperInterface
             throw new InvalidArgumentException('The file dumper needs a path option.');
         }
 
-        // save a file for each domain
+
         foreach ($messages->getDomains() as $domain) {
             $fullpath = $options['path'].'/'.$this->getRelativePath($domain, $messages->getLocale());
             if (!file_exists($fullpath)) {

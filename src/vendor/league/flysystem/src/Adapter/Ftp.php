@@ -200,10 +200,10 @@ class Ftp extends AbstractFtpAdapter
             throw new InvalidRootException('Root is invalid or does not exist: ' . $this->getRoot());
         }
 
-        // Store absolute path for further reference.
-        // This is needed when creating directories and
-        // initial root was a relative path, else the root
-        // would be relative to the chdir'd path.
+
+
+
+
         $this->root = ftp_pwd($connection);
     }
 
@@ -371,7 +371,7 @@ class Ftp extends AbstractFtpAdapter
      */
     protected function createActualDirectory($directory, $connection)
     {
-        // List the current directory
+
         $listing = ftp_nlist($connection, '.') ?: [];
 
         foreach ($listing as $key => $item) {

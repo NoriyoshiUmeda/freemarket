@@ -54,7 +54,7 @@ class XmlFileLoader extends FileLoader
         $collection = new RouteCollection();
         $collection->addResource(new FileResource($path));
 
-        // process routes and imports
+
         foreach ($xml->documentElement->childNodes as $node) {
             if (!$node instanceof \DOMElement) {
                 continue;
@@ -339,9 +339,9 @@ class XmlFileLoader extends FileLoader
             return null;
         }
 
-        // Check for existing element nodes in the default element. There can
-        // only be a single element inside a default element. So this element
-        // (if one was found) can safely be returned.
+
+
+
         foreach ($element->childNodes as $child) {
             if (!$child instanceof \DOMElement) {
                 continue;
@@ -354,9 +354,9 @@ class XmlFileLoader extends FileLoader
             return $this->parseDefaultNode($child, $path);
         }
 
-        // If the default element doesn't contain a nested "bool", "int", "float",
-        // "string", "list", or "map" element, the element contents will be treated
-        // as the string value of the associated default option.
+
+
+
         return trim($element->textContent);
     }
 

@@ -334,21 +334,21 @@ class Util
         if (DIRECTORY_SEPARATOR === '/') {
             return $basename;
         }
-        // @codeCoverageIgnoreStart
-        // Extra Windows path munging. This is tested via AppVeyor, but code
-        // coverage is not reported.
 
-        // Handle relative paths with drive letters. c:file.txt.
+
+
+
+
         while (preg_match('#^[a-zA-Z]{1}:[^\\\/]#', $basename)) {
             $basename = substr($basename, 2);
         }
 
-        // Remove colon for standalone drive letter names.
+
         if (preg_match('#^[a-zA-Z]{1}:$#', $basename)) {
             $basename = rtrim($basename, ':');
         }
 
         return $basename;
-        // @codeCoverageIgnoreEnd
+
     }
 }

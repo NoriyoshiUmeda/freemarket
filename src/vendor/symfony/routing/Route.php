@@ -126,8 +126,8 @@ class Route implements \Serializable
     {
         $pattern = $this->extractInlineDefaultsAndRequirements($pattern);
 
-        // A pattern must start with a slash and must not have multiple slashes at the beginning because the
-        // generated path for this route would be confused with a network path, e.g. '//domain.com/path'.
+
+
         $this->path = '/'.ltrim(trim($pattern), '/');
         $this->compiled = null;
 

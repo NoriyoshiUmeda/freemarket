@@ -30,10 +30,10 @@ final class LooseDescriptionHandler
                 continue;
             }
 
-            // Does this description need to be added to a list?
+
             if (! $description->parent() instanceof DescriptionList) {
                 $list = new DescriptionList();
-                // Taking any preceding paragraphs with it
+
                 if (($paragraph = $description->previous()) instanceof Paragraph) {
                     $list->appendChild($paragraph);
                 }
@@ -42,12 +42,12 @@ final class LooseDescriptionHandler
                 $list->appendChild($description);
             }
 
-            // Is this description preceded by a paragraph that should really be a term?
+
             if (! (($paragraph = $description->previous()) instanceof Paragraph)) {
                 continue;
             }
 
-            // Convert the paragraph into one or more terms
+
             $term = new DescriptionTerm();
             $paragraph->replaceWith($term);
 

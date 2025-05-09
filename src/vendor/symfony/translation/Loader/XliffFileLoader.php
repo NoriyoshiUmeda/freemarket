@@ -120,8 +120,8 @@ class XliffFileLoader implements LoaderInterface
                     continue;
                 }
 
-                // If the xlf file has another encoding specified, try to convert it because
-                // simple_xml will always return utf-8 encoded values
+
+
                 $target = $this->utf8ToCharset((string) ($translation->target ?? $translation->source), $encoding);
 
                 $catalogue->set($source, $target, $domain);
@@ -164,8 +164,8 @@ class XliffFileLoader implements LoaderInterface
                 $attributes = $unit->attributes();
                 $source = $attributes['name'] ?? $segment->source;
 
-                // If the xlf file has another encoding specified, try to convert it because
-                // simple_xml will always return utf-8 encoded values
+
+
                 $target = $this->utf8ToCharset((string) ($segment->target ?? $segment->source), $encoding);
 
                 $catalogue->set((string) $source, $target, $domain);

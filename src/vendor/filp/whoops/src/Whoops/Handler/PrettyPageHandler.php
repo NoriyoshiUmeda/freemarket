@@ -137,27 +137,27 @@ class PrettyPageHandler extends Handler
     public function __construct()
     {
         if (ini_get('xdebug.file_link_format') || get_cfg_var('xdebug.file_link_format')) {
-            // Register editor using xdebug's file_link_format option.
+
             $this->editors['xdebug'] = function ($file, $line) {
                 return str_replace(['%f', '%l'], [$file, $line], ini_get('xdebug.file_link_format') ?: get_cfg_var('xdebug.file_link_format'));
             };
 
-            // If xdebug is available, use it as default editor.
+
             $this->setEditor('xdebug');
         }
 
-        // Add the default, local resource search path:
+
         $this->searchPaths[] = __DIR__ . "/../Resources";
 
-        // blacklist php provided auth based values
+
         $this->blacklist('_SERVER', 'PHP_AUTH_PW');
 
         $this->templateHelper = new TemplateHelper();
 
         if (class_exists('Symfony\Component\VarDumper\Cloner\VarCloner')) {
             $cloner = new VarCloner();
-            // Only dump object internals if a custom caster exists for performance reasons
-            // https://github.com/filp/whoops/pull/404
+
+
             $cloner->addCasters(['*' => function ($obj, $a, $stub, $isNested, $filter = 0) {
                 $class = $stub->class;
                 $classes = [$class => $class] + class_parents($obj) + class_implements($obj);
@@ -168,7 +168,7 @@ class PrettyPageHandler extends Handler
                     }
                 }
 
-                // Remove all internals
+
                 return [];
             }]);
             $this->templateHelper->setCloner($cloner);
@@ -183,11 +183,11 @@ class PrettyPageHandler extends Handler
     public function handle()
     {
         if (!$this->handleUnconditionally()) {
-            // Check conditions for outputting HTML:
-            // @todo: Make this more robust
+
+
             if (PHP_SAPI === 'cli') {
-                // Help users who have been relying on an internal test value
-                // fix their code to the proper method
+
+
                 if (isset($_ENV['whoops-test'])) {
                     throw new \Exception(
                         'Use handleUnconditionally instead of whoops-test'
@@ -219,11 +219,11 @@ class PrettyPageHandler extends Handler
         $frames = $this->getExceptionFrames();
         $code = $this->getExceptionCode();
 
-        // List of variables that will be passed to the layout template.
+
         $vars = [
             "page_title" => $this->getPageTitle(),
 
-            // @todo: Asset compiler
+
             "stylesheet" => file_get_contents($cssFile),
             "zepto"      => file_get_contents($zeptoFile),
             "prismJs"   => file_get_contents($prismJs),
@@ -231,7 +231,7 @@ class PrettyPageHandler extends Handler
             "clipboard"  => file_get_contents($clipboard),
             "javascript" => file_get_contents($jsFile),
 
-            // Template paths:
+
             "header"                     => $this->getResource("views/header.html.php"),
             "header_outer"               => $this->getResource("views/header_outer.html.php"),
             "frame_list"                 => $this->getResource("views/frame_list.html.php"),
@@ -279,8 +279,8 @@ class PrettyPageHandler extends Handler
             $vars["javascript"] .= file_get_contents($customJsFile);
         }
 
-        // Add extra entries list of data tables:
-        // @todo: Consolidate addDataTable and addDataTableCallback
+
+
         $extraTables = array_map(function ($table) use ($inspector) {
             return $table instanceof \Closure ? $table($inspector) : $table;
         }, $this->getDataTables());
@@ -331,7 +331,7 @@ class PrettyPageHandler extends Handler
 
         $code = $exception->getCode();
         if ($exception instanceof \ErrorException) {
-            // ErrorExceptions wrap the php-error types within the 'severity' property
+
             $code = Misc::translateErrorCode($exception->getSeverity());
         }
 
@@ -387,10 +387,10 @@ class PrettyPageHandler extends Handler
             try {
                 $result = call_user_func($callback, $inspector);
 
-                // Only return the result if it can be iterated over by foreach().
+
                 return is_array($result) || $result instanceof \Traversable ? $result : [];
             } catch (\Exception $e) {
-                // Don't allow failure to break the rendering of the original exception.
+
                 return [];
             }
         };
@@ -513,8 +513,8 @@ class PrettyPageHandler extends Handler
             return false;
         }
 
-        // Check that the editor is a string, and replace the
-        // %line and %file placeholders:
+
+
         if (!isset($editor['url']) || !is_string($editor['url'])) {
             throw new UnexpectedValueException(
                 __METHOD__ . " should always resolve to a string or a valid editor array; got something else instead."
@@ -541,7 +541,7 @@ class PrettyPageHandler extends Handler
     {
         $editor = $this->getEditor($filePath, $line);
 
-        // Check that the ajax is a bool
+
         if (!isset($editor['ajax']) || !is_bool($editor['ajax'])) {
             throw new UnexpectedValueException(
                 __METHOD__ . " should always resolve to a bool; got something else instead."
@@ -691,25 +691,25 @@ class PrettyPageHandler extends Handler
      */
     protected function getResource($resource)
     {
-        // If the resource was found before, we can speed things up
-        // by caching its absolute, resolved path:
+
+
         if (isset($this->resourceCache[$resource])) {
             return $this->resourceCache[$resource];
         }
 
-        // Search through available search paths, until we find the
-        // resource we're after:
+
+
         foreach ($this->searchPaths as $path) {
             $fullPath = $path . "/$resource";
 
             if (is_file($fullPath)) {
-                // Cache the result:
+
                 $this->resourceCache[$resource] = $fullPath;
                 return $fullPath;
             }
         }
 
-        // If we got this far, nothing was found.
+
         throw new RuntimeException(
             "Could not find resource '$resource' in any resource paths."
             . "(searched: " . join(", ", $this->searchPaths). ")"
@@ -725,7 +725,7 @@ class PrettyPageHandler extends Handler
     {
         $allPaths = $this->getResourcePaths();
 
-        // Compat: return only the first path added
+
         return end($allPaths) ?: null;
     }
 

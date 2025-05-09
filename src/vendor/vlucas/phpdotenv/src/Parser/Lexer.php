@@ -22,7 +22,7 @@ final class Lexer
      */
     private function __construct()
     {
-        //
+
     }
 
     /**

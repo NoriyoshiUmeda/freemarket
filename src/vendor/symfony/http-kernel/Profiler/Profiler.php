@@ -91,7 +91,7 @@ class Profiler implements ResetInterface
      */
     public function saveProfile(Profile $profile)
     {
-        // late collect
+
         foreach ($profile->getCollectors() as $collector) {
             if ($collector instanceof LateDataCollectorInterface) {
                 $collector->lateCollect();
@@ -160,7 +160,7 @@ class Profiler implements ResetInterface
         foreach ($this->collectors as $collector) {
             $collector->collect($request, $response, $exception);
 
-            // we need to clone for sub-requests
+
             $profile->addCollector(clone $collector);
         }
 

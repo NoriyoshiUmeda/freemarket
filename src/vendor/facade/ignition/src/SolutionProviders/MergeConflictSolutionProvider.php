@@ -60,12 +60,12 @@ class MergeConflictSolutionProvider implements HasSolutionsForThrowable
 
     protected function hasMergeConflictExceptionMessage(Throwable $throwable): bool
     {
-        // For PHP 7.x and below
+
         if (Str::startsWith($throwable->getMessage(), 'syntax error, unexpected \'<<\'')) {
             return true;
         }
 
-        // For PHP 8+
+
         if (Str::startsWith($throwable->getMessage(), 'syntax error, unexpected token "<<"')) {
             return true;
         }

@@ -52,11 +52,11 @@ final class FragmentUriGenerator implements FragmentUriGeneratorInterface
             $this->checkNonScalar($controller->attributes);
         }
 
-        // We need to forward the current _format and _locale values as we don't have
-        // a proper routing pattern to do the job for us.
-        // This makes things inconsistent if you switch from rendering a controller
-        // to rendering a route if the route pattern does not contain the special
-        // _format and _locale placeholders.
+
+
+
+
+
         if (!isset($controller->attributes['_format'])) {
             $controller->attributes['_format'] = $request->getRequestFormat();
         }
@@ -68,7 +68,7 @@ final class FragmentUriGenerator implements FragmentUriGeneratorInterface
         $controller->query['_path'] = http_build_query($controller->attributes, '', '&');
         $path = $this->fragmentPath.'?'.http_build_query($controller->query, '', '&');
 
-        // we need to sign the absolute URI, but want to return the path only.
+
         $fragmentUri = $sign || $absolute ? $request->getUriForPath($path) : $request->getBaseUrl().$path;
 
         if (!$sign) {

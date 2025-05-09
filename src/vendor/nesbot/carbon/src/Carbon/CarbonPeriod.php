@@ -480,7 +480,7 @@ class CarbonPeriod implements Iterator, Countable, JsonSerializable
             return false;
         }
 
-        // Match slash but not within a timezone name.
+
         $part = '[a-z]+(?:[_-][a-z]+)*';
 
         preg_match("#\b$part/$part\b|(/)#i", $var, $match);
@@ -648,8 +648,8 @@ class CarbonPeriod implements Iterator, Countable, JsonSerializable
             $this->options = static::IMMUTABLE;
         }
 
-        // Parse and assign arguments one by one. First argument may be an ISO 8601 spec,
-        // which will be first parsed into parts and then processed the same way.
+
+
 
         $argumentsCount = \count($arguments);
 
@@ -1830,7 +1830,7 @@ class CarbonPeriod implements Iterator, Countable, JsonSerializable
             case 'microseconds':
             case 'microsecond':
                 return $this->setDateInterval((
-                    // Override default P1D when instantiating via fluent setters.
+
                     [$this->isDefaultInterval ? new CarbonInterval('PT0S') : $this->dateInterval, $method]
                 )(...$parameters));
         }
@@ -2552,7 +2552,7 @@ class CarbonPeriod implements Iterator, Countable, JsonSerializable
             $this->rewind();
         }
 
-        // Check after the first rewind to avoid repeating the initial validation.
+
         return $this->validationResult ?? ($this->validationResult = $this->checkFilters());
     }
 

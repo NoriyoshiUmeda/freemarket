@@ -10,28 +10,22 @@ use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
-    /**
-     * 会員登録画面の表示
-     */
-    public function showRegisterForm()
+        public function showRegisterForm()
     {
         return view('auth.register');
     }
 
-    /**
-     * 会員登録処理
-     */
-    public function register(RegisterRequest $request)
+        public function register(RegisterRequest $request)
     {
 
-        // ユーザー作成
+
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
 
-        // ユーザーを自動ログインさせる
+
         Auth::login($user);
 
         return redirect()->route('profile.edit');

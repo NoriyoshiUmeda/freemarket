@@ -84,7 +84,7 @@ class UriSigner
     {
         $qs = ($qs = $request->server->get('QUERY_STRING')) ? '?'.$qs : '';
 
-        // we cannot use $request->getUri() here as we want to work with the original URI (no query string reordering)
+
         return $this->check($request->getSchemeAndHttpHost().$request->getBaseUrl().$request->getPathInfo().$qs);
     }
 

@@ -18,21 +18,21 @@
     <form action="{{ route('sell.store') }}" method="POST" enctype="multipart/form-data" class="sell-form">
       @csrf
 
-      {{-- ■ 商品画像セクション --}}
+      
       <div class="section-title section-title-image">商品画像</div>
       <div class="image-upload-area">
         <div class="image-preview-container" id="preview-container">
-          {{-- プレビュー画像 --}}
+          
           <img id="preview-image"
                class="image-preview"
                src=""
                alt="画像プレビュー"
                style="display: none;">
-          {{-- ファイル入力は非表示 --}}
+          
           <input type="file" id="image" name="image" accept="image/*" hidden>
-          {{-- プレビュー前の大ボタン --}}
+          
           <label for="image" class="image-upload-label">画像を選択する</label>
-          {{-- プレビュー後の小ボタン --}}
+          
           <label for="image" class="image-change-label">変更する</label>
         </div>
       </div>
@@ -40,7 +40,7 @@
         <p class="error-message">{{ $message }}</p>
       @enderror
 
-      {{-- ■ 以降、既存フォーム項目 --}}
+      
       <div class="section-title section-title-detail">商品の詳細</div>
       <hr class="section-line">
 
@@ -118,9 +118,9 @@
       const previewContainer = document.getElementById('preview-container');
       const form             = document.querySelector('.sell-form');
 
-      // ——————————————————————————————————————————————
-      // 1) sessionStorage から復元
-      // ——————————————————————————————————————————————
+
+
+
       const savedImageData = sessionStorage.getItem('selectedImage');
       if (savedImageData) {
         previewImage.src = savedImageData;
@@ -128,9 +128,9 @@
         previewContainer.classList.add('has-image');
       }
 
-      // ——————————————————————————————————————————————
-      // 2) 画像選択時のプレビュー
-      // ——————————————————————————————————————————————
+
+
+
       imageInput.addEventListener('change', function (e) {
         const file = e.target.files[0];
         if (file && file.type.startsWith('image/')) {
@@ -150,16 +150,16 @@
         }
       });
 
-      // ——————————————————————————————————————————————
-      // 3) ページ離脱時にストレージをクリア
-      // ——————————————————————————————————————————————
+
+
+
       window.addEventListener('beforeunload', function () {
         sessionStorage.removeItem('selectedImage');
       });
 
-      // ——————————————————————————————————————————————
-      // 4) フォーム送信時にもストレージをクリア
-      // ——————————————————————————————————————————————
+
+
+
       form.addEventListener('submit', function () {
         sessionStorage.removeItem('selectedImage');
       });

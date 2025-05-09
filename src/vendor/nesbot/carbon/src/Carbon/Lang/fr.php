@@ -90,8 +90,8 @@ return [
     'weekdays_min' => ['di', 'lu', 'ma', 'me', 'je', 've', 'sa'],
     'ordinal' => function ($number, $period) {
         switch ($period) {
-            // In French, only the first has to be ordinal, other number remains cardinal
-            // @link https://fr.wikihow.com/%C3%A9crire-la-date-en-fran%C3%A7ais
+
+
             case 'D':
                 return $number.($number === 1 ? 'er' : '');
 
@@ -102,7 +102,7 @@ return [
             case 'd':
                 return $number.($number === 1 ? 'er' : 'e');
 
-            // Words with feminine grammatical gender: semaine
+
             case 'w':
             case 'W':
                 return $number.($number === 1 ? 're' : 'e');

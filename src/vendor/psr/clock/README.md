@@ -33,7 +33,7 @@ class Foo
     {
         /** @var DateTimeImmutable $currentDateAndTime */
         $currentDateAndTime = $this->clock->now();
-        // do something useful with that information
+
     }
 }
 ```

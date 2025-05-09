@@ -644,21 +644,21 @@ trait Comparison
     public function isSameUnit($unit, $date = null)
     {
         $units = [
-            // @call isSameUnit
+
             'year' => 'Y',
-            // @call isSameUnit
+
             'week' => 'o-W',
-            // @call isSameUnit
+
             'day' => 'Y-m-d',
-            // @call isSameUnit
+
             'hour' => 'Y-m-d H',
-            // @call isSameUnit
+
             'minute' => 'Y-m-d H:i',
-            // @call isSameUnit
+
             'second' => 'Y-m-d H:i:s',
-            // @call isSameUnit
+
             'micro' => 'Y-m-d H:i:s.u',
-            // @call isSameUnit
+
             'microsecond' => 'Y-m-d H:i:s.u',
         ];
 
@@ -906,9 +906,9 @@ trait Comparison
      */
     public static function hasFormat($date, $format)
     {
-        // createFromFormat() is known to handle edge cases silently.
-        // E.g. "1975-5-1" (Y-n-j) will still be parsed correctly when "Y-m-d" is supplied as the format.
-        // To ensure we're really testing against our desired format, perform an additional regex validation.
+
+
+
 
         return self::matchFormatPattern((string) $date, preg_quote((string) $format, '/'), static::$regexFormats);
     }
@@ -950,8 +950,8 @@ trait Comparison
     public static function canBeCreatedFromFormat($date, $format)
     {
         try {
-            // Try to create a DateTime object. Throws an InvalidArgumentException if the provided time string
-            // doesn't match the format in any way.
+
+
             if (!static::rawCreateFromFormat($format, $date)) {
                 return false;
             }
@@ -1075,9 +1075,9 @@ trait Comparison
      */
     private static function matchFormatPattern(string $date, string $format, array $replacements): bool
     {
-        // Preg quote, but remove escaped backslashes since we'll deal with escaped characters in the format string.
+
         $regex = str_replace('\\\\', '\\', $format);
-        // Replace not-escaped letters
+
         $regex = preg_replace_callback(
             '/(?<!\\\\)((?:\\\\{2})*)(['.implode('', array_keys($replacements)).'])/',
             function ($match) use ($replacements) {
@@ -1085,9 +1085,9 @@ trait Comparison
             },
             $regex
         );
-        // Replace escaped letters by the letter itself
+
         $regex = preg_replace('/(?<!\\\\)((?:\\\\{2})*)\\\\(\w)/', '$1$2', $regex);
-        // Escape not escaped slashes
+
         $regex = preg_replace('#(?<!\\\\)((?:\\\\{2})*)/#', '$1\\/', $regex);
 
         return (bool) @preg_match('/^'.$regex.'$/', $date);

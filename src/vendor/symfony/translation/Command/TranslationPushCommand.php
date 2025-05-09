@@ -135,8 +135,8 @@ EOF
             $domains = $provider->getDomains();
         }
 
-        // Reading local translations must be done after retrieving the domains from the provider
-        // in order to manage only translations from configured domains
+
+
         $localTranslations = $this->readLocalTranslations($locales, $domains, $this->transPaths);
 
         if (!$domains) {
@@ -158,8 +158,8 @@ EOF
 
             $io->success(sprintf('Missing translations on "%s" has been deleted (for "%s" locale(s), and "%s" domain(s)).', parse_url($provider, \PHP_URL_SCHEME), implode(', ', $locales), implode(', ', $domains)));
 
-            // Read provider translations again, after missing translations deletion,
-            // to avoid push freshly deleted translations.
+
+
             $providerTranslations = $provider->read($domains, $locales);
         }
 

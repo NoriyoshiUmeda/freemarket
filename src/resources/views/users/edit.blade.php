@@ -29,7 +29,7 @@
   <!-- 画像を丸く表示する枠 -->
   <div class="profile-image-container">
     @php
-      // ユーザーのprofile_imageがあるかチェック
+
       $hasProfileImage = optional(auth()->user()->profile)->profile_image;
     @endphp
 
@@ -111,7 +111,7 @@
           if (preview) {
             preview.src = e.target.result;
           } else {
-            // 画像タグがまだない場合は作って差し込む
+
             const img = document.createElement('img');
             img.src = e.target.result;
             img.id = 'preview-image';

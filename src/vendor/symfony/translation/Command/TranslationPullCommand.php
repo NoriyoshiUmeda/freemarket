@@ -142,7 +142,7 @@ EOF
 
         switch ($format) {
             case 'xlf20': $xliffVersion = '2.0';
-                // no break
+
             case 'xlf12': $format = 'xlf';
         }
 
@@ -174,7 +174,7 @@ EOF
 
         $localTranslations = $this->readLocalTranslations($locales, $domains, $this->transPaths);
 
-        // Append pulled translations to local ones.
+
         $localTranslations->addBag($providerTranslations->diff($localTranslations));
 
         foreach ($localTranslations->getCatalogues() as $catalogue) {

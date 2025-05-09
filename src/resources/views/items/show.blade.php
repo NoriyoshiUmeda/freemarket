@@ -15,15 +15,15 @@
   @endif
 
   <main class="product-detail-container">
-    {{-- 左カラム：商品画像 --}}
+    
     <div class="left-column">
       <img src="{{ asset('storage/' . $item->image) }}" alt="{{ $item->name }}" class="product-image">
     </div>
 
-    {{-- 右カラム：商品情報 + コメント欄 --}}
+    
     <div class="right-column">
 
-      {{-- 商品情報 --}}
+      
       <div class="product-info">
         <h1 class="product-name">{{ $item->name }}</h1>
         <p class="product-brand">{{ $item->brand ?? '' }}</p>
@@ -31,9 +31,9 @@
           ¥{{ number_format($item->price) }} <span class="tax-included">（税込）</span>
         </p>
 
-        {{-- いいね数・コメント数のアイコン --}}
+        
         <div class="icon-info">
-          {{-- いいね部分 --}}
+          
           <div class="icon-box">
             @php
               $user      = Auth::user();
@@ -58,23 +58,23 @@
               </form>
             @endif
 
-            {{-- 常に 0 以上を表示 --}}
+            
             <span class="icon-count">{{ $likeCount }}</span>
           </div>
 
-          {{-- コメント部分 --}}
+          
           <div class="icon-box">
             <img src="{{ asset('storage/images/comment.png') }}" alt="コメント" class="icon-img">
             @php
               $commentCount = $item->comments->count();
             @endphp
 
-            {{-- 常に 0 以上を表示 --}}
+            
             <span class="icon-count">{{ $commentCount }}</span>
           </div>
         </div>
 
-        {{-- 購入ボタン制御 --}}
+        
         @if ($hasPurchased || $item->user_id == Auth::id())
           <span class="purchase-btn disabled">購入出来ません</span>
         @else
@@ -83,13 +83,13 @@
           </a>
         @endif
 
-        {{-- 商品説明 --}}
+        
         <div class="product-section">
           <h2 class="section-title">商品説明</h2>
           <p class="section-text">{{ $item->description }}</p>
         </div>
 
-        {{-- 商品情報（カテゴリ, 状態） --}}
+        
         <div class="product-section">
           <h2 class="section-title">商品の情報</h2>
           <div class="section-text">
@@ -106,13 +106,13 @@
         </div>
       </div>
 
-      {{-- コメント欄 --}}
+      
       <div class="product-comment">
         <h2 class="comment-title">コメント ({{ $commentCount }})</h2>
         <div class="comment-list">
           @forelse ($item->comments as $comment)
             <div class="comment-item">
-              {{-- ユーザー情報 --}}
+              
               <div class="user-info">
                 @php
                   $profileImage = optional($comment->user->profile)->profile_image
@@ -128,7 +128,7 @@
 
                 <p class="comment-user">{{ $comment->user->name }}</p>
               </div>
-              {{-- コメント本文 --}}
+              
               <div class="comment-text">
                 <p class="comment-body">{{ $comment->comment }}</p>
               </div>
@@ -138,7 +138,7 @@
           @endforelse
         </div>
 
-        {{-- コメント投稿フォーム --}}
+        
         <form action="{{ route('item.comment', ['item_id' => $item->id]) }}"
               method="POST"
               class="comment-form">

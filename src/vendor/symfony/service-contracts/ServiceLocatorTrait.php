@@ -14,7 +14,7 @@ namespace Symfony\Contracts\Service;
 use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\NotFoundExceptionInterface;
 
-// Help opcache.preload discover always-needed symbols
+
 class_exists(ContainerExceptionInterface::class);
 class_exists(NotFoundExceptionInterface::class);
 

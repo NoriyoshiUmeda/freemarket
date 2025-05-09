@@ -212,7 +212,7 @@ class PhpExtractor extends AbstractFileExtractor implements ExtractorInterface
         for (; $tokenIterator->valid(); $tokenIterator->next()) {
             $t = $tokenIterator->current();
             if ('.' === $t) {
-                // Concatenate with next token
+
                 continue;
             }
             if (!isset($t[1])) {

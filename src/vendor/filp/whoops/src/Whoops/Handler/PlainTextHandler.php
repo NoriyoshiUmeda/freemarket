@@ -237,12 +237,12 @@ class PlainTextHandler extends Handler
             return '';
         }
 
-        // Dump the arguments:
+
         ob_start();
         $this->dump($frame->getArgs());
         if (ob_get_length() > $this->getTraceFunctionArgsOutputLimit()) {
-            // The argument var_dump is to big.
-            // Discarded to limit memory usage.
+
+
             ob_clean();
             return sprintf(
                 "\n%sArguments dump length greater than %d Bytes. Discarded.",
@@ -293,7 +293,7 @@ class PlainTextHandler extends Handler
 
             $template = "\n%3d. %s->%s() %s:%d%s";
             if (! $class) {
-                // Remove method arrow (->) from output.
+
                 $template = "\n%3d. %s%s() %s:%d%s";
             }
 

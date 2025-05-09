@@ -24,7 +24,7 @@ return array_replace_recursive(require __DIR__.'/en.php', [
     'weekdays_min' => ['Swo', 'Mus', 'Vhi', 'Rar', 'ṋa', 'Ṱan', 'Mug'],
     'day_of_first_week_of_year' => 1,
 
-    // Too unreliable
+
     /*
     'day' => ':count vhege', // less reliable
     'd' => ':count vhege', // less reliable

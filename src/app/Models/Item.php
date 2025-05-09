@@ -23,50 +23,32 @@ class Item extends Model
         'brand',
     ];
 
-    /**
-     * 出品者（ユーザー）とのリレーション
-     */
-    public function user(): BelongsTo
+        public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }
 
-    /**
-     * カテゴリとのリレーション
-     */
-    public function category(): BelongsTo
+        public function category(): BelongsTo
     {
         return $this->belongsTo(Category::class);
     }
 
-    /**
-     * ステータスとのリレーション
-     */
-    public function status(): BelongsTo
+        public function status(): BelongsTo
     {
         return $this->belongsTo(Status::class);
     }
 
-    /**
-     * 購入履歴とのリレーション（1対1）
-     */
-    public function purchase(): HasOne
+        public function purchase(): HasOne
     {
         return $this->hasOne(Purchase::class, 'item_id');
     }
 
-    /**
-     * お気に入りとのリレーション（1対多）
-     */
-    public function favorites(): HasMany
+        public function favorites(): HasMany
     {
         return $this->hasMany(Favorite::class);
     }
 
-    /**
-     * コメントとのリレーション（1対多）
-     */
-    public function comments(): HasMany
+        public function comments(): HasMany
     {
         return $this->hasMany(Comment::class);
     }

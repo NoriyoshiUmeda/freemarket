@@ -19,26 +19,17 @@ class Purchase extends Model
         'building',
     ];
 
-    /**
-     * 購入者（ユーザー）とのリレーション(多対1)
-     */
-    public function user(): BelongsTo
+        public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }
 
-    /**
-     * 購入された商品とのリレーション(1対1)
-     */
-    public function item(): BelongsTo
+        public function item(): BelongsTo
     {
         return $this->belongsTo(Item::class);
     }
 
-    /**
-     * 支払い情報とのリレーション（1対1）
-     */
-    public function payment(): HasOne
+        public function payment(): HasOne
     {
         return $this->hasOne(Payment::class);
     }

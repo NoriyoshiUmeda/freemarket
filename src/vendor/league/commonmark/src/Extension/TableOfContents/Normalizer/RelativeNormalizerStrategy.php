@@ -38,7 +38,7 @@ final class RelativeNormalizerStrategy implements NormalizerStrategyInterface
     {
         $previousLevel = \array_key_last($this->listItemStack);
 
-        // Pop the stack if we're too deep
+
         while ($previousLevel !== null && $level < $previousLevel) {
             \array_pop($this->listItemStack);
             $previousLevel = \array_key_last($this->listItemStack);
@@ -46,17 +46,17 @@ final class RelativeNormalizerStrategy implements NormalizerStrategyInterface
 
         $lastListItem = \end($this->listItemStack);
 
-        // Need to go one level deeper? Add that level
+
         if ($lastListItem !== false && $level > $previousLevel) {
             $targetListBlock = new ListBlock($lastListItem->getListData());
             $targetListBlock->setStartLine($listItemToAdd->getStartLine());
             $targetListBlock->setEndLine($listItemToAdd->getEndLine());
             $lastListItem->appendChild($targetListBlock);
-        // Otherwise we're at the right level
-        // If there's no stack we're adding this item directly to the TOC element
+
+
         } elseif ($lastListItem === false) {
             $targetListBlock = $this->toc;
-        // Otherwise add it to the last list item
+
         } else {
             $targetListBlock = $lastListItem->parent();
         }

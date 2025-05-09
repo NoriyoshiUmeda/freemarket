@@ -145,7 +145,7 @@ trait Serialization
      */
     public function __serialize(): array
     {
-        // @codeCoverageIgnoreStart
+
         if (isset($this->timezone_type, $this->timezone, $this->date)) {
             return [
                 'date' => $this->date ?? null,
@@ -153,7 +153,7 @@ trait Serialization
                 'timezone' => $this->timezone ?? null,
             ];
         }
-        // @codeCoverageIgnoreEnd
+
 
         $timezone = $this->getTimezone();
         $export = [
@@ -162,14 +162,14 @@ trait Serialization
             'timezone' => $timezone->getName(),
         ];
 
-        // @codeCoverageIgnoreStart
+
         if (\extension_loaded('msgpack') && isset($this->constructedObjectId)) {
             $export['dumpDateProperties'] = [
                 'date' => $this->format('Y-m-d H:i:s.u'),
                 'timezone' => serialize($this->timezone ?? null),
             ];
         }
-        // @codeCoverageIgnoreEnd
+
 
         if ($this->localTranslator ?? null) {
             $export['dumpLocale'] = $this->locale ?? null;
@@ -189,19 +189,19 @@ trait Serialization
     public function __wakeup()
     {
         if (parent::class && method_exists(parent::class, '__wakeup')) {
-            // @codeCoverageIgnoreStart
+
             try {
                 parent::__wakeup();
             } catch (Throwable $exception) {
                 try {
-                    // FatalError occurs when calling msgpack_unpack() in PHP 7.4 or later.
+
                     ['date' => $date, 'timezone' => $timezone] = $this->dumpDateProperties;
                     parent::__construct($date, unserialize($timezone));
                 } catch (Throwable $ignoredException) {
                     throw $exception;
                 }
             }
-            // @codeCoverageIgnoreEnd
+
         }
 
         $this->constructedObjectId = spl_object_hash($this);
@@ -223,7 +223,7 @@ trait Serialization
      */
     public function __unserialize(array $data): void
     {
-        // @codeCoverageIgnoreStart
+
         try {
             $this->__construct($data['date'] ?? null, $data['timezone'] ?? null);
         } catch (Throwable $exception) {
@@ -232,14 +232,14 @@ trait Serialization
             }
 
             try {
-                // FatalError occurs when calling msgpack_unpack() in PHP 7.4 or later.
+
                 ['date' => $date, 'timezone' => $timezone] = $data['dumpDateProperties'];
                 $this->__construct($date, unserialize($timezone));
             } catch (Throwable $ignoredException) {
                 throw $exception;
             }
         }
-        // @codeCoverageIgnoreEnd
+
 
         if (isset($data['dumpLocale'])) {
             $this->locale($data['dumpLocale']);
@@ -289,7 +289,7 @@ trait Serialization
      */
     public function cleanupDumpProperties()
     {
-        // @codeCoverageIgnoreStart
+
         if (PHP_VERSION < 8.2) {
             foreach ($this->dumpProperties as $property) {
                 if (isset($this->$property)) {
@@ -297,7 +297,7 @@ trait Serialization
                 }
             }
         }
-        // @codeCoverageIgnoreEnd
+
 
         return $this;
     }
@@ -306,7 +306,7 @@ trait Serialization
     {
         $properties = $this->dumpProperties;
 
-        // @codeCoverageIgnoreStart
+
         if (!\extension_loaded('msgpack')) {
             return $properties;
         }
@@ -321,6 +321,6 @@ trait Serialization
         }
 
         return $properties;
-        // @codeCoverageIgnoreEnd
+
     }
 }

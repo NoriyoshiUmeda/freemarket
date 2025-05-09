@@ -21,8 +21,8 @@ trait CollectsViewExceptions
 
     public function filterViewData(array $data): array
     {
-        // By default, Laravel views get two shared data keys:
-        // __env and app. We try to filter them out.
+
+
         return array_filter($data, function ($value, $key) {
             if ($key === 'app') {
                 return ! $value instanceof Application;

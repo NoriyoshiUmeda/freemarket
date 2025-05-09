@@ -38,10 +38,10 @@ function getHtmlAttribute($rawValue): string
 function getOpenCollectiveSponsors(): string
 {
     $customSponsorImages = [
-        // For consistency and equity among sponsors, as of now, we kindly ask our sponsors
-        // to provide an image having a width/height ratio between 1/1 and 2/1.
-        // By default, we'll show the member picture from OpenCollective, and will resize it if bigger
-        // int(OpenCollective.MemberId) => ImageURL
+
+
+
+
     ];
 
     $members = json_decode(file_get_contents('https://opencollective.com/carbon/members/all.json'), true);

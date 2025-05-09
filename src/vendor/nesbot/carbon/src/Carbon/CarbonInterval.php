@@ -368,9 +368,9 @@ class CarbonInterval extends DateInterval implements CarbonConverterInterface
         self::$floatSettersEnabled = $floatSettersEnabled;
     }
 
-    ///////////////////////////////////////////////////////////////////
-    //////////////////////////// CONSTRUCTORS /////////////////////////
-    ///////////////////////////////////////////////////////////////////
+
+
+
 
     /**
      * Create a new CarbonInterval instance.
@@ -424,7 +424,7 @@ class CarbonInterval extends DateInterval implements CarbonConverterInterface
             }
 
             if ($spec === static::PERIOD_PREFIX) {
-                // Allow the zero interval.
+
                 $spec .= '0'.static::PERIOD_YEARS;
             }
         }
@@ -848,7 +848,7 @@ class CarbonInterval extends DateInterval implements CarbonConverterInterface
             $intValue = (int) $value;
             $fraction = (float) $value - $intValue;
 
-            // Fix calculation precision
+
             switch (round($fraction, 6)) {
                 case 1:
                     $fraction = 0;
@@ -1121,14 +1121,14 @@ class CarbonInterval extends DateInterval implements CarbonConverterInterface
             return static::fromString($interval);
         }
 
-        // @codeCoverageIgnoreStart
+
         try {
             /** @var static $interval */
             $interval = static::createFromDateString($interval);
         } catch (DateMalformedIntervalStringException $e) {
             return null;
         }
-        // @codeCoverageIgnoreEnd
+
 
         return !$interval || $interval->isEmpty() ? null : $interval;
     }
@@ -1166,9 +1166,9 @@ class CarbonInterval extends DateInterval implements CarbonConverterInterface
         return $interval;
     }
 
-    ///////////////////////////////////////////////////////////////////
-    ///////////////////////// GETTERS AND SETTERS /////////////////////
-    ///////////////////////////////////////////////////////////////////
+
+
+
 
     /**
      * Get a part of the CarbonInterval object.
@@ -1787,7 +1787,7 @@ class CarbonInterval extends DateInterval implements CarbonConverterInterface
                 $declensionMode = $declensionMode ?? $this->translate($transId.'_mode');
 
                 if ($this->needsDeclension($declensionMode, $index, $parts)) {
-                    // Some languages have special pluralization for past and future tense.
+
                     $key = $unit.'_'.$transId;
                     $result = $this->translate($key, $interpolations, $count, $translator, $altNumbers);
 
@@ -1893,12 +1893,12 @@ class CarbonInterval extends DateInterval implements CarbonConverterInterface
                 break;
             }
 
-            // break the loop after we get the required number of parts in array
+
             if (\count($interval) >= $parts) {
                 break;
             }
 
-            // break the loop after we have reached the minimum unit
+
             if (\in_array($minimumUnit, [$diffIntervalData['unit'], $diffIntervalData['unitShort']], true)) {
                 $fallbackUnit = [$diffIntervalData['unit'], $diffIntervalData['unitShort']];
 
@@ -1927,7 +1927,7 @@ class CarbonInterval extends DateInterval implements CarbonConverterInterface
             $interval[] = $this->translate($unit, $interpolations, $count, $translator, $altNumbers);
         }
 
-        // join the interval parts by a space
+
         $time = $join($interval);
 
         unset($diffIntervalArray, $interval);
@@ -2599,7 +2599,7 @@ class CarbonInterval extends DateInterval implements CarbonConverterInterface
             $result /= $daysPerWeek;
         }
 
-        // Cast as int numbers with no decimal part
+
         return fmod($result, 1) === 0.0 ? (int) $result : $result;
     }
 

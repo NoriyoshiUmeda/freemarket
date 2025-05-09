@@ -6,12 +6,7 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateProfilesTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
-    public function up()
+        public function up()
     {
         Schema::create('profiles', function (Blueprint $table) {
             $table->id(); // bigint unsigned, AUTO_INCREMENT, PRIMARY KEY
@@ -24,12 +19,7 @@ class CreateProfilesTable extends Migration
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
+        public function down()
     {
         Schema::dropIfExists('profiles');
     }

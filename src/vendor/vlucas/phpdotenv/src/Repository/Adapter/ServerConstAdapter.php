@@ -16,7 +16,7 @@ final class ServerConstAdapter implements AdapterInterface
      */
     private function __construct()
     {
-        //
+
     }
 
     /**

@@ -23,7 +23,7 @@ use Symfony\Component\Translation\TranslatorInterface;
 use Symfony\Contracts\Translation\LocaleAwareInterface;
 use Symfony\Contracts\Translation\TranslatorInterface as ContractsTranslatorInterface;
 
-// @codeCoverageIgnoreStart
+
 if (interface_exists('Symfony\\Contracts\\Translation\\TranslatorInterface') &&
     !interface_exists('Symfony\\Component\\Translation\\TranslatorInterface')
 ) {
@@ -32,7 +32,7 @@ if (interface_exists('Symfony\\Contracts\\Translation\\TranslatorInterface') &&
         'Symfony\\Component\\Translation\\TranslatorInterface'
     );
 }
-// @codeCoverageIgnoreEnd
+
 
 /**
  * Trait Localization.
@@ -231,11 +231,11 @@ trait Localization
             $parameters[':count'] = $parameters['%count%'];
         }
 
-        // @codeCoverageIgnoreStart
+
         $choice = $translator instanceof ContractsTranslatorInterface
             ? $translator->trans($key, $parameters)
             : $translator->transChoice($key, $number, $parameters);
-        // @codeCoverageIgnoreEnd
+
 
         return (string) $choice;
     }
@@ -330,7 +330,7 @@ trait Localization
      */
     public static function translateTimeString($timeString, $from = null, $to = null, $mode = CarbonInterface::TRANSLATE_ALL)
     {
-        // Fallback source and destination locales
+
         $from = $from ?: static::getLocale();
         $to = $to ?: 'en';
 
@@ -338,7 +338,7 @@ trait Localization
             return $timeString;
         }
 
-        // Standardize apostrophe
+
         $timeString = strtr($timeString, ['’' => "'"]);
 
         $fromTranslations = [];

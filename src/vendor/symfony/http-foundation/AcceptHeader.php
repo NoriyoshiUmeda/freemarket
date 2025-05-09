@@ -11,7 +11,7 @@
 
 namespace Symfony\Component\HttpFoundation;
 
-// Help opcache.preload discover always-needed symbols
+
 class_exists(AcceptHeaderItem::class);
 
 /**

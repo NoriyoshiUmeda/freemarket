@@ -82,7 +82,7 @@ class XmlReaderCaster
         }
 
         $info = Caster::filter($info, Caster::EXCLUDE_EMPTY, [], $count);
-        // +2 because hasValue and hasAttributes are always filtered
+
         $stub->cut += $count + 2;
 
         return $a + $info;

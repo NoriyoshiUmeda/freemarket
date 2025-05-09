@@ -525,7 +525,7 @@ class ReflectionClosure extends ReflectionFunction
                                         $id_start = $functions[$id_start_ci];
                                     } elseif ($nsf !== '\\' && function_exists($nsf . '\\' . $id_start)) {
                                         $id_start = $nsf . '\\' . $id_start;
-                                        // Cache it to functions array
+
                                         $functions[$id_start_ci] = $id_start;
                                     }
                                 }
@@ -657,17 +657,17 @@ class ReflectionClosure extends ReflectionFunction
      */
     private static function getBuiltinTypes()
     {
-        // PHP 5
+
         if (\PHP_MAJOR_VERSION === 5) {
             return ['array', 'callable'];
         }
 
-        // PHP 8
+
         if (\PHP_MAJOR_VERSION === 8) {
             return ['array', 'callable', 'string', 'int', 'bool', 'float', 'iterable', 'void', 'object', 'mixed', 'false', 'null'];
         }
 
-        // PHP 7
+
         switch (\PHP_MINOR_VERSION) {
             case 0:
                 return ['array', 'callable', 'string', 'int', 'bool', 'float'];

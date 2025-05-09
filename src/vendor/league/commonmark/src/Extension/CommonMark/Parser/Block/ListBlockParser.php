@@ -52,9 +52,9 @@ final class ListBlockParser extends AbstractBlockContinueParser
             return false;
         }
 
-        // Another list item is being added to this list block.
-        // If the previous line was blank, that means this list
-        // block is "loose" (not tight).
+
+
+
         if ($this->hadBlankLine && $this->linesAfterBlank === 1) {
             $this->block->setTight(false);
             $this->hadBlankLine = false;
@@ -72,8 +72,8 @@ final class ListBlockParser extends AbstractBlockContinueParser
             $this->linesAfterBlank++;
         }
 
-        // List blocks themselves don't have any markers, only list items. So try to stay in the list.
-        // If there is a block start other than list item, canContain makes sure that this list is closed.
+
+
         return BlockContinue::at($cursor);
     }
 }

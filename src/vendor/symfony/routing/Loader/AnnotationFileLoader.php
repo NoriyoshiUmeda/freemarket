@@ -113,7 +113,7 @@ class AnnotationFileLoader extends FileLoader
             }
 
             if (\T_CLASS === $token[0]) {
-                // Skip usage of ::class constant and anonymous classes
+
                 $skipClassToken = false;
                 for ($j = $i - 1; $j > 0; --$j) {
                     if (!isset($tokens[$j][1])) {

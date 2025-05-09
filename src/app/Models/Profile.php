@@ -19,10 +19,7 @@ class Profile extends Model
         'email_verified_at', // メール認証日時
     ];
 
-    /**
-     * ユーザーとのリレーション（1対1）
-     */
-    public function user(): BelongsTo
+        public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }

@@ -63,7 +63,7 @@ class TestCommand extends Command
             throw new RequirementsException('Running Collision ^5.0 artisan test command requires at least PHPUnit ^9.0.');
         }
 
-        // @phpstan-ignore-next-line
+
         if ((int) \Illuminate\Foundation\Application::VERSION[0] < 8) {
             throw new RequirementsException('Running Collision ^5.0 artisan test command requires at least Laravel ^8.0.');
         }
@@ -83,13 +83,13 @@ class TestCommand extends Command
         $parallel = $this->option('parallel');
 
         $process = (new Process(array_merge(
-                // Binary ...
+
                 $this->binary(),
-                // Arguments ...
+
                 $parallel ? $this->paratestArguments($options) : $this->phpunitArguments($options)
             ),
             null,
-            // Envs ...
+
             $parallel ? $this->paratestEnvironmentVariables() : $this->phpunitEnvironmentVariables(),
         ))->setTimeout(null);
 
@@ -210,9 +210,9 @@ class TestCommand extends Command
     {
         if (!$this->option('env')) {
             $vars = self::getEnvironmentVariables(
-                // @phpstan-ignore-next-line
+
                 $this->laravel->environmentPath(),
-                // @phpstan-ignore-next-line
+
                 $this->laravel->environmentFile()
             );
 

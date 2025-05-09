@@ -26,7 +26,7 @@ class StringContainsIgnoringCase extends SubstringMatcher
         return new self($substring);
     }
 
-    // -- Protected Methods
+
 
     protected function evalSubstringOf($item)
     {

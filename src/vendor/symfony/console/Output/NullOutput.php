@@ -31,7 +31,7 @@ class NullOutput implements OutputInterface
      */
     public function setFormatter(OutputFormatterInterface $formatter)
     {
-        // do nothing
+
     }
 
     /**
@@ -42,7 +42,7 @@ class NullOutput implements OutputInterface
         if ($this->formatter) {
             return $this->formatter;
         }
-        // to comply with the interface we must return a OutputFormatterInterface
+
         return $this->formatter = new NullOutputFormatter();
     }
 
@@ -51,7 +51,7 @@ class NullOutput implements OutputInterface
      */
     public function setDecorated(bool $decorated)
     {
-        // do nothing
+
     }
 
     /**
@@ -67,7 +67,7 @@ class NullOutput implements OutputInterface
      */
     public function setVerbosity(int $level)
     {
-        // do nothing
+
     }
 
     /**
@@ -115,7 +115,7 @@ class NullOutput implements OutputInterface
      */
     public function writeln($messages, int $options = self::OUTPUT_NORMAL)
     {
-        // do nothing
+
     }
 
     /**
@@ -123,6 +123,6 @@ class NullOutput implements OutputInterface
      */
     public function write($messages, bool $newline = false, int $options = self::OUTPUT_NORMAL)
     {
-        // do nothing
+
     }
 }

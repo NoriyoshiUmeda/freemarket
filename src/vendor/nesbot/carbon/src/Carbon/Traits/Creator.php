@@ -67,8 +67,8 @@ trait Creator
             $time = static::createFromTimestampUTC($time)->format('Y-m-d\TH:i:s.uP');
         }
 
-        // If the class has a test now set and we are trying to create a now()
-        // instance then override as required
+
+
         $isNow = empty($time) || $time === 'now';
 
         if (method_exists(static::class, 'hasTestNow') &&
@@ -79,7 +79,7 @@ trait Creator
             static::mockConstructorParameters($time, $tz);
         }
 
-        // Work-around for PHP bug https://bugs.php.net/bug.php?id=67127
+
         if (!str_contains((string) .1, '.')) {
             $locale = setlocale(LC_NUMERIC, '0'); // @codeCoverageIgnore
             setlocale(LC_NUMERIC, 'C'); // @codeCoverageIgnore
@@ -186,13 +186,13 @@ trait Creator
         try {
             return new static($time, $tz);
         } catch (Exception $exception) {
-            // @codeCoverageIgnoreStart
+
             try {
                 $date = @static::now($tz)->change($time);
             } catch (DateMalformedStringException $ignoredException) {
                 $date = null;
             }
-            // @codeCoverageIgnoreEnd
+
 
             if (!$date) {
                 throw new InvalidFormatException("Could not parse '$time': ".$exception->getMessage(), 0, $exception);
@@ -304,11 +304,11 @@ trait Creator
     public static function maxValue()
     {
         if (self::$PHPIntSize === 4) {
-            // 32 bit
+
             return static::createFromTimestamp(PHP_INT_MAX); // @codeCoverageIgnore
         }
 
-        // 64 bit
+
         return static::create(9999, 12, 31, 23, 59, 59);
     }
 
@@ -320,11 +320,11 @@ trait Creator
     public static function minValue()
     {
         if (self::$PHPIntSize === 4) {
-            // 32 bit
+
             return static::createFromTimestamp(~PHP_INT_MAX); // @codeCoverageIgnore
         }
 
-        // 64 bit
+
         return static::create(1, 1, 1, 0, 0, 0);
     }
 
@@ -593,12 +593,12 @@ trait Creator
      */
     private static function createFromFormatAndTimezone($format, $time, $originalTz)
     {
-        // Work-around for https://bugs.php.net/bug.php?id=75577
-        // @codeCoverageIgnoreStart
+
+
         if (version_compare(PHP_VERSION, '7.3.0-dev', '<')) {
             $format = str_replace('.v', '.u', $format);
         }
-        // @codeCoverageIgnoreEnd
+
 
         if ($originalTz === null) {
             return parent::createFromFormat($format, (string) $time);
@@ -630,7 +630,7 @@ trait Creator
      */
     public static function rawCreateFromFormat($format, $time, $tz = null)
     {
-        // Work-around for https://bugs.php.net/bug.php?id=80141
+
         $format = preg_replace('/(?<!\\\\)((?:\\\\{2})*)c/', '$1Y-m-d\TH:i:sP', $format);
 
         if (preg_match('/(?<!\\\\)(?:\\\\{2})*(a|A)/', $format, $aMatches, PREG_OFFSET_CAPTURE) &&
@@ -646,15 +646,15 @@ trait Creator
             $tz = null;
         }
 
-        // First attempt to create an instance, so that error messages are based on the unmodified format.
+
         $date = self::createFromFormatAndTimezone($format, $time, $tz);
         $lastErrors = parent::getLastErrors();
         /** @var \Carbon\CarbonImmutable|\Carbon\Carbon|null $mock */
         $mock = static::getMockedTestNow($tz);
 
         if ($mock && $date instanceof DateTimeInterface) {
-            // Set timezone from mock if custom timezone was neither given directly nor as a part of format.
-            // First let's skip the part that will be ignored by the parser.
+
+
             $nonEscaped = '(?<!\\\\)(\\\\{2})*';
 
             $nonIgnored = preg_replace("/^.*{$nonEscaped}!/s", '', $format);
@@ -665,7 +665,7 @@ trait Creator
 
             $mock = $mock->copy();
 
-            // Prepend mock datetime only if the format does not contain non escaped unix epoch reset flag.
+
             if (!preg_match("/{$nonEscaped}[!|]/", $format)) {
                 if (preg_match('/[HhGgisvuB]/', $format)) {
                     $mock = $mock->setTime(0, 0);
@@ -675,7 +675,7 @@ trait Creator
                 $time = ($mock instanceof self ? $mock->rawFormat(static::MOCK_DATETIME_FORMAT) : $mock->format(static::MOCK_DATETIME_FORMAT)).' '.$time;
             }
 
-            // Regenerate date from the modified format to base result on the mocked instance instead of now.
+
             $date = self::createFromFormatAndTimezone($format, $time, $tz);
         }
 

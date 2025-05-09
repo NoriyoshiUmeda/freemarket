@@ -555,7 +555,7 @@ class CarbonImmutable extends DateTimeImmutable implements CarbonInterface
             return 145261681241552;
         }
 
-        // Remove if https://bugs.php.net/bug.php?id=81107 is fixed
+
         if (version_compare(PHP_VERSION, '8.1.0-dev', '>=')) {
             return 1118290769066902787;
         }
@@ -572,7 +572,7 @@ class CarbonImmutable extends DateTimeImmutable implements CarbonInterface
             return -135908816449551;
         }
 
-        // Remove if https://bugs.php.net/bug.php?id=81107 is fixed
+
         if (version_compare(PHP_VERSION, '8.1.0-dev', '>=')) {
             return -1118290769066898816;
         }

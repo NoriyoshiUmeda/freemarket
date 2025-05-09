@@ -133,18 +133,18 @@ abstract class AbstractField implements FieldInterface
         $range = $chunks[0];
         $step = $chunks[1] ?? 0;
 
-        // No step or 0 steps aren't cool
+
         /** @phpstan-ignore-next-line */
         if (null === $step || '0' === $step || 0 === $step) {
             return false;
         }
 
-        // Expand the * to a full range
+
         if ('*' === $range) {
             $range = $this->rangeStart . '-' . $this->rangeEnd;
         }
 
-        // Generate the requested small range
+
         $rangeChunks = explode('-', $range, 2);
         $rangeStart = (int) $rangeChunks[0];
         $rangeEnd = $rangeChunks[1] ?? $rangeStart;
@@ -158,14 +158,14 @@ abstract class AbstractField implements FieldInterface
             throw new \OutOfRangeException('Invalid range end requested');
         }
 
-        // Steps larger than the range need to wrap around and be handled
-        // slightly differently than smaller steps
 
-        // UPDATE - This is actually false. The C implementation will allow a
-        // larger step as valid syntax, it never wraps around. It will stop
-        // once it hits the end. Unfortunately this means in future versions
-        // we will not wrap around. However, because the logic exists today
-        // per the above documentation, fixing the bug from #89
+
+
+
+
+
+
+
         if ($step > $this->rangeEnd) {
             $thisRange = [$this->fullRange[$step % \count($this->fullRange)]];
         } else {
@@ -263,12 +263,12 @@ abstract class AbstractField implements FieldInterface
     {
         $value = $this->convertLiterals($value);
 
-        // All fields allow * as a valid value
+
         if ('*' === $value) {
             return true;
         }
 
-        // Validate each chunk of a list individually
+
         if (false !== strpos($value, ',')) {
             foreach (explode(',', $value) as $listItem) {
                 if (!$this->validate($listItem)) {
@@ -282,7 +282,7 @@ abstract class AbstractField implements FieldInterface
         if (false !== strpos($value, '/')) {
             [$range, $step] = explode('/', $value);
 
-            // Don't allow numeric ranges
+
             if (is_numeric($range)) {
                 return false;
             }
@@ -314,7 +314,7 @@ abstract class AbstractField implements FieldInterface
             return false;
         }
 
-        // We should have a numeric by now, so coerce this into an integer
+
         $value = (int) $value;
 
         return \in_array($value, $this->fullRange, true);
@@ -333,7 +333,7 @@ abstract class AbstractField implements FieldInterface
     {
         $date = $date->setTime((int)$date->format('H'), ($invert ? 59 : 0));
 
-        // setTime caused the offset to change, moving time in the wrong direction
+
         $actualTimestamp = $date->format('U');
         if ((! $invert) && ($actualTimestamp <= $originalTimestamp)) {
             $date = $this->timezoneSafeModify($date, "+1 hour");

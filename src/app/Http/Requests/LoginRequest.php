@@ -6,18 +6,12 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class LoginRequest extends FormRequest
 {
-    /**
-     * 認可の設定（基本的に true でOK）
-     */
-    public function authorize(): bool
+        public function authorize(): bool
     {
         return true;
     }
 
-    /**
-     * バリデーションルールの定義
-     */
-    public function rules(): array
+        public function rules(): array
     {
         return [
             'email' => ['required', 'email'],

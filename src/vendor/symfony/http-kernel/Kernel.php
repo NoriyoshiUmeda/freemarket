@@ -42,7 +42,7 @@ use Symfony\Component\HttpKernel\Config\FileLocator;
 use Symfony\Component\HttpKernel\DependencyInjection\AddAnnotatedClassesToCachePass;
 use Symfony\Component\HttpKernel\DependencyInjection\MergeExtensionConfigurationPass;
 
-// Help opcache.preload discover always-needed symbols
+
 class_exists(ConfigCache::class);
 
 /**
@@ -346,7 +346,7 @@ abstract class Kernel implements KernelInterface, RebootableInterface, Terminabl
      */
     public function getBuildDir(): string
     {
-        // Returns $this->getCacheDir() for backward compatibility
+
         return $this->getCacheDir();
     }
 
@@ -381,7 +381,7 @@ abstract class Kernel implements KernelInterface, RebootableInterface, Terminabl
      */
     protected function initializeBundles()
     {
-        // init bundles
+
         $this->bundles = [];
         foreach ($this->registerBundles() as $bundle) {
             $name = $bundle->getName();
@@ -446,7 +446,7 @@ abstract class Kernel implements KernelInterface, RebootableInterface, Terminabl
         $cache = new ConfigCache($buildDir.'/'.$class.'.php', $this->debug);
         $cachePath = $cache->getPath();
 
-        // Silence E_WARNING to ignore "include" failures - don't use "@" to prevent silencing fatal errors
+
         $errorLevel = error_reporting(\E_ALL ^ \E_WARNING);
 
         try {
@@ -502,7 +502,7 @@ abstract class Kernel implements KernelInterface, RebootableInterface, Terminabl
                 }
 
                 $backtrace = debug_backtrace(\DEBUG_BACKTRACE_IGNORE_ARGS, 5);
-                // Clean the trace by removing first frames added by the error handler itself.
+
                 for ($i = 0; isset($backtrace[$i]); ++$i) {
                     if (isset($backtrace[$i]['file'], $backtrace[$i]['line']) && $backtrace[$i]['line'] === $line && $backtrace[$i]['file'] === $file) {
                         $backtrace = \array_slice($backtrace, 1 + $i);
@@ -521,7 +521,7 @@ abstract class Kernel implements KernelInterface, RebootableInterface, Terminabl
                     }
                 }
 
-                // Remove frames added by DebugClassLoader.
+
                 for ($i = \count($backtrace) - 2; 0 < $i; --$i) {
                     if (\in_array($backtrace[$i]['class'] ?? null, [DebugClassLoader::class, LegacyDebugClassLoader::class], true)) {
                         $backtrace = [$backtrace[$i + 1]];
@@ -566,9 +566,9 @@ abstract class Kernel implements KernelInterface, RebootableInterface, Terminabl
         $this->container->set('kernel', $this);
 
         if ($oldContainer && \get_class($this->container) !== $oldContainer->name) {
-            // Because concurrent requests might still be using them,
-            // old container files are not removed immediately,
-            // but on a next dump of the container.
+
+
+
             static $legacyContainers = [];
             $oldContainerDir = \dirname($oldContainer->getFileName());
             $legacyContainers[$oldContainerDir.'.legacy'] = true;
@@ -684,7 +684,7 @@ abstract class Kernel implements KernelInterface, RebootableInterface, Terminabl
             $extensions[] = $extension->getAlias();
         }
 
-        // ensure these extensions are implicitly loaded
+
         $container->getCompilerPassConfig()->setMergePass(new MergeExtensionConfigurationPass($extensions));
     }
 
@@ -719,7 +719,7 @@ abstract class Kernel implements KernelInterface, RebootableInterface, Terminabl
      */
     protected function dumpContainer(ConfigCache $cache, ContainerBuilder $container, string $class, string $baseClass)
     {
-        // cache the container
+
         $dumper = new PhpDumper($container);
 
         if (class_exists(\ProxyManager\Configuration::class) && class_exists(ProxyDumper::class)) {
@@ -837,7 +837,7 @@ abstract class Kernel implements KernelInterface, RebootableInterface, Terminabl
                     continue;
                 }
 
-                // replace multiple new lines with a single newline
+
                 $rawChunk .= preg_replace(['/\n{2,}/S'], "\n", $token[1]);
             } elseif (\in_array($token[0], [\T_COMMENT, \T_DOC_COMMENT])) {
                 if (!\in_array($rawChunk[\strlen($rawChunk) - 1], [' ', "\n", "\r", "\t"], true)) {
@@ -847,7 +847,7 @@ abstract class Kernel implements KernelInterface, RebootableInterface, Terminabl
             } else {
                 $rawChunk .= $token[1];
 
-                // The PHP-open tag already has a new-line
+
                 if (\T_OPEN_TAG === $token[0]) {
                     $ignoreSpace = true;
                 } else {

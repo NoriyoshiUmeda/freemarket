@@ -112,13 +112,13 @@ trait Mixin
                 $context = isset($this) ? $this->cast($className) : new $className();
 
                 try {
-                    // @ is required to handle error if not converted into exceptions
+
                     $closure = @$closureBase->bindTo($context);
                 } catch (Throwable $throwable) { // @codeCoverageIgnore
                     $closure = $closureBase; // @codeCoverageIgnore
                 }
 
-                // in case of errors not converted into exceptions
+
                 $closure = $closure ?: $closureBase;
 
                 $result = $closure(...$parameters);

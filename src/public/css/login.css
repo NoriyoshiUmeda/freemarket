@@ -2,11 +2,10 @@
   ログインページ 共通スタイル
 ───────────────────────────── */
 
-/* メインのラッパー */
 .login-container {
-    background: #FFF;
+    background: #fff;
     width: 90%;
-    max-width: 680px;        /* 登録画面と同じ幅 */
+    max-width: 680px;
     padding: 40px;
     margin: 50px auto;
     box-sizing: border-box;
@@ -18,30 +17,26 @@
     text-align: center;
 }
 
-/* タイトル */
 .login-container h1 {
     font-size: 2rem;
     font-weight: 700;
     margin-bottom: 2rem;
 }
 
-/* フォーム全体 */
 .login-container form {
     width: 100%;
-    max-width: 600px;        /* フォーム要素の最大幅 */
+    max-width: 600px;
     display: flex;
     flex-direction: column;
     align-items: stretch;
     gap: 1.5rem;
 }
 
-/* フォームグループ */
 .login-container .form-group {
     text-align: left;
     width: 100%;
 }
 
-/* ラベル */
 .login-container .form-group label {
     display: block;
     font-weight: bold;
@@ -49,7 +44,6 @@
     font-size: 1rem;
 }
 
-/* 入力フィールド */
 .login-container .form-group input {
     width: 100%;
     padding: 12px;
@@ -59,22 +53,19 @@
     box-sizing: border-box;
 }
 
-/* エラーメッセージ */
 .login-container .error-message {
     color: red;
     font-size: 0.875rem;
     margin-top: 0.5rem;
 }
 
-/* ログインボタン */
 .login-button {
     background: #ff5b5b;
     color: white;
     border: none;
 
-    /* ボタン幅 */
     width: 100%;
-    max-width: 600px;        /* テキストボックスと同じ幅 */
+    max-width: 600px;
     height: 65px;
     border-radius: 5px;
     font-size: 1.125rem;
@@ -91,7 +82,6 @@
     background: #e04444;
 }
 
-/* 会員登録リンク */
 .register-link {
     margin-top: 1rem;
     font-size: 0.875rem;

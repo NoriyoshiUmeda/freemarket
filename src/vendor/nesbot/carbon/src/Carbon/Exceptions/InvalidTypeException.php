@@ -15,5 +15,5 @@ use InvalidArgumentException as BaseInvalidArgumentException;
 
 class InvalidTypeException extends BaseInvalidArgumentException implements InvalidArgumentException
 {
-    //
+
 }

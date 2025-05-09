@@ -147,7 +147,7 @@ class ParameterBag implements \IteratorAggregate, \Countable
      */
     public function getDigits(string $key, string $default = '')
     {
-        // we need to remove - and + because they're allowed in the filter
+
         return str_replace(['-', '+'], '', $this->filter($key, $default, \FILTER_SANITIZE_NUMBER_INT));
     }
 
@@ -186,19 +186,19 @@ class ParameterBag implements \IteratorAggregate, \Countable
     {
         $value = $this->get($key, $default);
 
-        // Always turn $options into an array - this allows filter_var option shortcuts.
+
         if (!\is_array($options) && $options) {
             $options = ['flags' => $options];
         }
 
-        // Add a convenience check for arrays.
+
         if (\is_array($value) && !isset($options['flags'])) {
             $options['flags'] = \FILTER_REQUIRE_ARRAY;
         }
 
         if ((\FILTER_CALLBACK & $filter) && !(($options['options'] ?? null) instanceof \Closure)) {
             trigger_deprecation('symfony/http-foundation', '5.2', 'Not passing a Closure together with FILTER_CALLBACK to "%s()" is deprecated. Wrap your filter in a closure instead.', __METHOD__);
-            // throw new \InvalidArgumentException(sprintf('A Closure must be passed to "%s()" when FILTER_CALLBACK is used, "%s" given.', __METHOD__, get_debug_type($options['options'] ?? null)));
+
         }
 
         return filter_var($value, $filter, $options);

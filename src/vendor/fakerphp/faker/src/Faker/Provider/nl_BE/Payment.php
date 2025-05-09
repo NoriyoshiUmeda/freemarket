@@ -37,13 +37,13 @@ class Payment extends \Faker\Provider\Payment
     {
         $prefix = $spacedNationalPrefix ? 'BE ' : 'BE';
 
-        // Generate 7 numbers of vat.
+
         $firstSeven = self::randomNumber(7, true);
 
-        // Generate checksum for number
+
         $checksum = 97 - fmod($firstSeven, 97);
 
-        // '0' + 7 numbers + checksum
+
         return sprintf('%s0%s%s', $prefix, $firstSeven, $checksum);
     }
 }

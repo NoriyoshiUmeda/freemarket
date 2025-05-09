@@ -48,7 +48,7 @@ class ComposerClassMap
 
     public function listClassesInPsrMaps(): array
     {
-        // TODO: This is incorrect. Doesnt list all fqcns. Need to parse namespace? e.g. App\LoginController is wrong
+
 
         $prefixes = array_merge(
             $this->composer->getPrefixes(),

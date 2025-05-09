@@ -164,9 +164,9 @@ class PrimaryReadReplicaConnection extends Connection
             throw new InvalidArgumentException('Invalid option to connect(), only primary or replica allowed.');
         }
 
-        // If we have a connection open, and this is not an explicit connection
-        // change request, then abort right here, because we are already done.
-        // This prevents writes to the replica in case of "keepReplica" option enabled.
+
+
+
         if ($this->_conn !== null && ! $requestedConnectionChange) {
             return false;
         }
@@ -191,7 +191,7 @@ class PrimaryReadReplicaConnection extends Connection
         if ($connectionName === 'primary') {
             $this->connections['primary'] = $this->_conn = $this->connectTo($connectionName);
 
-            // Set replica connection to primary to avoid invalid reads
+
             if (! $this->keepReplica) {
                 $this->connections['replica'] = $this->connections['primary'];
             }

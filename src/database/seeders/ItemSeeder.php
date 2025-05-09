@@ -11,10 +11,10 @@ class ItemSeeder extends Seeder
 {
     public function run()
     {
-        // 現在日時
+
         $now = Carbon::now();
 
-        // 商品サンプルデータ
+
         $products = [
             [
                 'name' => '腕時計',
@@ -98,7 +98,7 @@ class ItemSeeder extends Seeder
             ],
         ];
 
-        // マッピング: condition文字列 → statusesテーブルのID
+
         $statusMap = [
             '良好' => 1,
             '目立った傷や汚れなし' => 2,
@@ -106,20 +106,20 @@ class ItemSeeder extends Seeder
             '状態が悪い' => 4,
         ];
 
-        // ユーザーは既にシーディング済みと仮定（全ユーザーからランダムに選ぶ）
+
         $users = \App\Models\User::all();
-        // カテゴリーは、categoriesテーブルの 'category' カラムに保存されていると仮定
+
         $categories = \App\Models\Category::all()->keyBy('category');
 
         foreach ($products as $product) {
-            // ランダムな出品者を選ぶ
+
             $userId = $users->random()->id;
 
-            // カテゴリー名から、対応するカテゴリーIDの配列を作成
+
             $catName = $product['category'];
             $categoryId = $categories->has($catName) ? $categories->get($catName)->id : null;
 
-            // 状態：condition文字列から status_id を取得
+
             $statusId = $statusMap[$product['condition']];
 
             Item::create([
