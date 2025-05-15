@@ -173,6 +173,8 @@ class ItemController extends Controller
 
         $item = Item::create($validated);
 
-        return redirect()->route('item.index');
+        return redirect()
+            ->route('item.show', ['item_id' => $item->id])
+            ->with('success', '商品を出品しました。');
     }
 }

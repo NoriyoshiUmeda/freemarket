@@ -1,237 +1,198 @@
-/* ─────────────────────────────
-  ベース（モバイルファースト）
-───────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 .container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 100px 20px 20px;
-    background: #fff;
-    box-sizing: border-box;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 100px 20px 20px;
+  background: #fff;
 }
 
 .profile-info {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 40px;
-    padding: 80px 0;
-    flex-wrap: wrap;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 80px 0;
 }
 
 .profile-image,
 .profile-image.no-image {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    object-fit: cover;
-    background-color: #d9d9d9;
-}
-
-.profile-name-edit {
-    display: flex;
-    align-items: center;
-    gap: 40px;
-    flex-wrap: wrap;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  background-color: #d9d9d9;
 }
 
 .user-name {
-    margin: 0;
-    font-size: 36px;
-    font-weight: 700;
-    color: #333;
+  margin: 0;
+  font-size: 36px;
+  font-weight: 700;
+  color: #333;
 }
 
 .edit-profile-btn {
-    width: 319px;
-    height: 59px;
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    background: #fff;
-    color: #f55;
-    border: 2px solid #f55;
-    border-radius: 10px;
-    text-decoration: none;
-    font-size: 30px;
-    font-weight: 700;
+  margin-left: auto;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 319px;
+  height: 59px;
+  background: #fff;
+  color: #f55;
+  border: 2px solid #f55;
+  border-radius: 10px;
+  text-decoration: none;
+  font-size: 30px;
+  font-weight: 700;
 }
 
 .nav-bar {
-    display: flex;
-    gap: 20px;
-    padding: 10px 0;
-    font-size: 24px;
-    font-weight: 700;
+  display: flex;
+  gap: 20px;
+  padding: 10px 0;
+  font-size: 24px;
+  font-weight: 700;
 }
 
 .full-width-line {
-    border: none;
-    border-top: 2px solid #ccc;
-    margin: 0.5rem 0;
-    width: 100vw;
-    margin-left: calc(50% - 50vw);
-    margin-right: calc(50% - 50vw);
-    box-sizing: content-box;
+  border: none;
+  border-top: 2px solid #ccc;
+  margin: 0.5rem 0;
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  box-sizing: content-box;
 }
 
 .nav-item {
-    text-decoration: none;
-    color: #666;
-    padding-bottom: 5px;
+  text-decoration: none;
+  color: #666;
+  padding-bottom: 5px;
 }
 
 .nav-item.active {
-    color: #f55;
+  color: #f55;
 }
 
 .item-grid {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    gap: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 20px;
 }
 
 .item-card {
-    text-align: left;
-    position: relative;
+  text-align: left;
+  position: relative;
 }
 
 .item-image {
-    width: 290px;
-    height: 290px;
-    object-fit: cover;
-    border-radius: 5px;
+  width: 290px;
+  height: 290px;
+  object-fit: cover;
+  border-radius: 5px;
 }
 
 .item-name {
-    margin-top: 10px;
-    font-size: 16px;
-    font-weight: bold;
+  margin-top: 10px;
+  font-size: 16px;
+  font-weight: bold;
 }
 
 .item-price {
-    font-size: 14px;
+  font-size: 14px;
 }
 
 .sold-label {
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    background: red;
-    color: #fff;
-    padding: 5px 10px;
-    border-radius: 5px;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: red;
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+@media screen and (min-width: 768px) and (max-width: 850px) {
+  .container {
+    max-width: 680px;
+    padding: 100px 20px 20px;
+  }
+  .profile-info {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 40px 0;
+    gap: 20px;
+  }
+  .profile-image,
+  .profile-image.no-image {
+    width: 100px;
+    height: 100px;
+  }
+  .user-name {
+    font-size: 20px;
+  }
+  .edit-profile-btn {
+    width: auto;
+    height: auto;
+    padding: 6px 12px;
+    font-size: 13px;
+  }
+  .item-grid {
+    gap: 16px;
+  }
+  .item-image {
+    width: 100%;
+    height: 120px;
+  }
+  .item-name,
+  .item-price {
     font-size: 14px;
-    font-weight: bold;
+  }
 }
 
-/* ─────────────────────────────
-  タブレット対応 (768px〜850px)
-───────────────────────────── */
-@media screen and (width >= 768px) and (width <= 850px) {
-    .container {
-        max-width: 680px;
-        padding: 100px 20px 20px;
-    }
-
-    .profile-info {
-        flex-direction: column;
-        align-items: flex-start;
-        padding: 40px 0;
-        gap: 20px;
-    }
-
-    .profile-image,
-    .profile-image.no-image {
-        width: 100px;
-        height: 100px;
-    }
-
-    .profile-name-edit {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 12px;
-    }
-
-    .user-name {
-        font-size: 20px;
-    }
-
-    .edit-profile-btn {
-        width: auto;
-        height: auto;
-        padding: 6px 12px;
-        font-size: 13px;
-    }
-
-    .item-grid {
-        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-        gap: 16px;
-    }
-
-    .item-image {
-        height: 120px;
-        width: 100%;
-    }
-
-    .item-name,
-    .item-price {
-        font-size: 14px;
-    }
-}
-
-/* ─────────────────────────────
-  PC対応 (1400px〜1540px)
-───────────────────────────── */
-@media screen and (width >= 1400px) and (width <= 1540px) {
-    .container {
-        max-width: 800px;
-        padding: 100px 40px 20px;
-    }
-
-    .profile-info {
-        flex-direction: row;
-        align-items: center;
-        padding: 80px 0;
-        gap: 40px;
-    }
-
-    .profile-image,
-    .profile-image.no-image {
-        width: 150px;
-        height: 150px;
-    }
-
-    .profile-name-edit {
-        gap: 40px;
-    }
-
-    .user-name {
-        font-size: 36px;
-    }
-
-    .edit-profile-btn {
-        width: 319px;
-        height: 59px;
-        padding: 8px 16px;
-        font-size: 30px;
-    }
-
-    .item-grid {
-        grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
-        gap: 20px;
-    }
-
-    .item-image {
-        width: 290px;
-        height: 290px;
-    }
-
-    .item-name {
-        font-size: 16px;
-    }
-
-    .item-price {
-        font-size: 14px;
-    }
+@media screen and (min-width: 1400px) and (max-width: 1540px) {
+  .container {
+    max-width: 800px;
+    padding: 100px 40px 20px;
+  }
+  .profile-info {
+    flex-direction: row;
+    align-items: center;
+    padding: 80px 0;
+    gap: 40px;
+  }
+  .profile-image,
+  .profile-image.no-image {
+    width: 150px;
+    height: 150px;
+  }
+  .user-name {
+    font-size: 36px;
+  }
+  .edit-profile-btn {
+    width: 319px;
+    height: 59px;
+    padding: 8px 16px;
+    font-size: 30px;
+  }
+  .item-grid {
+    gap: 20px;
+  }
+  .item-image {
+    width: 290px;
+    height: 290px;
+  }
+  .item-name {
+    font-size: 16px;
+  }
+  .item-price {
+    font-size: 14px;
+  }
 }

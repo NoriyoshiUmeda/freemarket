@@ -11,7 +11,7 @@
   @include('layouts.newapp')
 
   @if (session('success'))
-    <div class="alert-success">{{ session('success') }}</div>
+    <div class="flash-message">{{ session('success') }}</div>
   @endif
 
   <main class="product-detail-container">

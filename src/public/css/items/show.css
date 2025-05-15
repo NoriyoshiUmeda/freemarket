@@ -4,6 +4,15 @@
     box-sizing: border-box;
 }
 
+.flash-message {
+    color: red;          
+    text-align: center; 
+    margin: 20px 0;      
+    font-weight: bold;  
+    font-size: 18px;
+  }
+  
+
 .product-detail-container {
     width: 100%;
     max-width: 100%;
